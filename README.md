@@ -75,5 +75,23 @@ Creates an optimized production bundle in the `dist/` directory.
 
 ---
 
+## 🌐 Deploy to Vercel
+
+This repository is pre-configured for instant deployment on [Vercel](https://vercel.com):
+
+[![Deploy with Vercel](https://vercel.com/button)](https://vercel.com/new/clone?repository-url=https%3A%2F%2Fgithub.com%2FNikhilMalvi%2FVasudha-Freshline-Exports)
+
+### Simple Steps to Deploy:
+1. Log in to your [Vercel Dashboard](https://vercel.com).
+2. Click **Add New...** &rarr; **Project**.
+3. Select your repository: **`NikhilMalvi/Vasudha-Freshline-Exports`**.
+4. Vercel automatically detects the configuration from `vercel.json`:
+   - **Framework Preset:** Vite
+   - **Build Command:** `npm run build`
+   - **Output Directory:** `dist`
+5. Click **Deploy**. The site will be live with custom domain support, global CDN caching, and SPA routing support.
+
+---
+
 ## 📄 License
 Proprietary — All rights reserved by **Vasudha Freshline Exports LLP**.

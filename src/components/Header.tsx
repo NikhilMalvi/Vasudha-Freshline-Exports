@@ -176,7 +176,7 @@ export const Header: React.FC<HeaderProps> = ({
                         border: '1px solid var(--line)',
                         borderRadius: 'var(--radius)',
                         padding: '16px',
-                        boxShadow: '0 8px 24px rgba(16, 16, 79, 0.08)',
+                        boxShadow: '0 8px 24px rgba(0, 0, 0, 0.08)',
                         display: 'grid',
                         gridTemplateColumns: '1fr 1fr',
                         gap: '12px',

@@ -34,7 +34,7 @@ export const DocumentaryVideoPlayer: React.FC<DocumentaryVideoPlayerProps> = ({
       <div
         style={{
           aspectRatio: '9 / 16',
-          backgroundColor: '#0a0a28',
+          backgroundColor: 'var(--navy)',
           border: '1px solid rgba(217, 213, 200, 0.25)',
           borderRadius: 'var(--radius)',
           position: 'relative',
@@ -101,7 +101,7 @@ export const DocumentaryVideoPlayer: React.FC<DocumentaryVideoPlayerProps> = ({
             width: '32px',
             height: '32px',
             borderRadius: '50%',
-            backgroundColor: 'rgba(16, 16, 79, 0.75)',
+            backgroundColor: 'rgba(21, 28, 23, 0.85)',
             border: '1px solid rgba(247, 245, 239, 0.2)',
             display: 'flex',
             alignItems: 'center',
@@ -119,7 +119,7 @@ export const DocumentaryVideoPlayer: React.FC<DocumentaryVideoPlayerProps> = ({
             position: 'absolute',
             top: '12px',
             left: '12px',
-            backgroundColor: 'rgba(16, 16, 79, 0.85)',
+            backgroundColor: 'rgba(21, 28, 23, 0.92)',
             border: '1px solid rgba(217, 213, 200, 0.2)',
             padding: '3px 8px',
             borderRadius: 'var(--radius)',

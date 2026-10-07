@@ -59,7 +59,7 @@ export const WhatsAppFloating: React.FC = () => {
           display: 'flex',
           alignItems: 'center',
           justifyContent: 'center',
-          boxShadow: '0 2px 8px rgba(16, 16, 79, 0.15)',
+          boxShadow: '0 4px 14px rgba(0, 0, 0, 0.22)',
           textDecoration: 'none',
           transition: 'transform 200ms ease, background-color 200ms ease',
           border: '1px solid rgba(247, 245, 239, 0.15)',

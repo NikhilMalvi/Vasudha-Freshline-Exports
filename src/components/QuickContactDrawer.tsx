@@ -44,7 +44,7 @@ export const QuickContactDrawer: React.FC<QuickContactDrawerProps> = ({
       style={{
         position: 'fixed',
         inset: 0,
-        backgroundColor: 'rgba(16, 16, 79, 0.45)',
+        backgroundColor: 'rgba(21, 28, 23, 0.55)',
         backdropFilter: 'blur(2px)',
         zIndex: 90,
         display: 'flex',
@@ -62,7 +62,7 @@ export const QuickContactDrawer: React.FC<QuickContactDrawerProps> = ({
           height: '100%',
           backgroundColor: 'var(--ivory)',
           borderLeft: '1px solid var(--line)',
-          boxShadow: '-8px 0 24px rgba(16, 16, 79, 0.12)',
+          boxShadow: '-8px 0 32px rgba(0, 0, 0, 0.2)',
           display: 'flex',
           flexDirection: 'column',
           overflowY: 'auto',

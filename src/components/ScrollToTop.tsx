@@ -43,7 +43,7 @@ export const ScrollToTop: React.FC = () => {
         alignItems: 'center',
         justifyContent: 'center',
         cursor: 'pointer',
-        boxShadow: '0 2px 8px rgba(16, 16, 79, 0.08)',
+        boxShadow: '0 2px 8px rgba(0, 0, 0, 0.08)',
         transition: 'transform 180ms ease, background-color 180ms ease, border-color 180ms ease',
       }}
       onMouseEnter={(e) => {

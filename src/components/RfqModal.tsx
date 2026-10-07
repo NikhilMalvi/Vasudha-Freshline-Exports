@@ -69,7 +69,7 @@ export const RfqModal: React.FC<RfqModalProps> = ({ isOpen, onClose, initialProd
         left: 0,
         right: 0,
         bottom: 0,
-        backgroundColor: 'rgba(16, 16, 79, 0.6)',
+        backgroundColor: 'rgba(21, 28, 23, 0.65)',
         display: 'flex',
         alignItems: 'center',
         justifyContent: 'center',

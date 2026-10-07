@@ -8,15 +8,16 @@ Official B2B website and export inquiry platform for **Vasudha Freshline Exports
 This platform is designed as a **trust-and-enquiry website** for international buyers, wholesalers, retail chains, and container importers. It embodies the aesthetic of a **quiet European trading house**:
 - **Design Philosophy:** Minimalist, calm, factual, and modern. Lots of whitespace, strict 12-column grid, 1px hairlines (`#D9D5C8`), real documentary photography, and Newsreader serif headings paired with Inter sans-serif body.
 - **Brand Palette:**
-  - `--ivory`: `#F7F5EF` (Primary page background)
-  - `--bone`: `#ECE8DC` (Alternate section backgrounds)
-  - `--line`: `#D9D5C8` (1px hairlines)
-  - `--navy`: `#10104F` (Primary buttons & dark sections)
-  - `--olive`: `#687036` (Accents, links, status)
-  - `--olive-light`: `#A9B070` (Accents on dark navy)
-  - `--ink`: `#16161A` (Headlines)
-  - `--charcoal`: `#353535` (Body text)
-  - `--muted`: `#5F5D55` (Captions & metadata)
+  - `--ivory`: `#FAF8F3` (Warm editorial paper background)
+  - `--bone`: `#F0EDE4` (Alternate limestone section backgrounds)
+  - `--line`: `#DFDBD0` (1px razor-sharp hairlines)
+  - `--navy`: `#151C17` (Deep Botanical Obsidian Noir — buttons & dark architectural sections, zero blue)
+  - `--navy-hover`: `#222D25` (Deep forest charcoal hover)
+  - `--olive`: `#55602E` (Rich Mediterranean olive accents & links)
+  - `--olive-light`: `#B4BC7C` (Crisp luminescent olive on dark)
+  - `--ink`: `#121512` (Headlines)
+  - `--charcoal`: `#2C302C` (Authoritative body text)
+  - `--muted`: `#5C605C` (Captions & metadata)
 
 ---
 

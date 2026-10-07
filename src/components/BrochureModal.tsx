@@ -24,7 +24,7 @@ export const BrochureModal: React.FC<BrochureModalProps> = ({ isOpen, onClose, o
       style={{
         position: 'fixed',
         inset: 0,
-        backgroundColor: 'rgba(16, 16, 79, 0.6)',
+        backgroundColor: 'rgba(21, 28, 23, 0.65)',
         backdropFilter: 'blur(2px)',
         zIndex: 100,
         display: 'flex',
@@ -45,7 +45,7 @@ export const BrochureModal: React.FC<BrochureModalProps> = ({ isOpen, onClose, o
           backgroundColor: 'var(--ivory)',
           border: '1px solid var(--line)',
           borderRadius: 'var(--radius)',
-          boxShadow: '0 8px 32px rgba(16, 16, 79, 0.16)',
+          boxShadow: '0 12px 36px rgba(0, 0, 0, 0.22)',
           display: 'flex',
           flexDirection: 'column',
           position: 'relative',

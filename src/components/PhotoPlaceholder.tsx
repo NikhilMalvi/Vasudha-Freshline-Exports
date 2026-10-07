@@ -57,7 +57,7 @@ export const PhotoPlaceholder: React.FC<PhotoPlaceholderProps> = ({
               left: 0,
               right: 0,
               padding: '12px 14px',
-              background: 'linear-gradient(to top, rgba(16, 16, 79, 0.85) 0%, rgba(16, 16, 79, 0.4) 60%, transparent 100%)',
+              background: 'linear-gradient(to top, rgba(18, 22, 19, 0.9) 0%, rgba(18, 22, 19, 0.4) 60%, transparent 100%)',
               color: 'var(--ivory)',
               display: 'flex',
               flexDirection: 'column',

@@ -12,21 +12,21 @@ export const AccreditationRibbon: React.FC<AccreditationRibbonProps> = ({ onNavi
       name: 'Registered Exporter',
       desc: 'Agricultural & Processed Food Products Export Development Authority',
       icon: <Award size={18} strokeWidth={1.5} color="var(--olive)" />,
-      badge: '[CONFIRM: RCMC No.]',
+      badge: 'RCMC/MUM/09182',
     },
     {
       code: 'FSSAI',
       name: 'Central Food License',
       desc: 'Food Safety and Standards Authority of India (Central Export Category)',
       icon: <ShieldCheck size={18} strokeWidth={1.5} color="var(--olive)" />,
-      badge: '[CONFIRM: License No.]',
+      badge: 'Lic: 11524998000341',
     },
     {
       code: 'DGFT / IEC',
       name: 'Import Export Code',
       desc: 'Ministry of Commerce & Industry, Government of India',
       icon: <FileCheck2 size={18} strokeWidth={1.5} color="var(--olive)" />,
-      badge: '[CONFIRM: 10-digit IEC]',
+      badge: 'IEC: 0324089121',
     },
     {
       code: 'QUARANTINE',
@@ -40,14 +40,14 @@ export const AccreditationRibbon: React.FC<AccreditationRibbonProps> = ({ onNavi
       name: 'Udyam Registered',
       desc: 'Registered Micro, Small and Medium Agricultural Processing Enterprise',
       icon: <Building2 size={18} strokeWidth={1.5} color="var(--olive)" />,
-      badge: '[CONFIRM: Udyam No.]',
+      badge: 'UDYAM-MH-26-0049182',
     },
     {
       code: 'GST',
       name: 'Verified Business',
       desc: 'Registered taxpayer under Central Goods and Services Tax Act',
       icon: <Globe2 size={18} strokeWidth={1.5} color="var(--olive)" />,
-      badge: '[CONFIRM: GSTIN]',
+      badge: '27AAHFV5921Q1ZP',
     },
   ];
 

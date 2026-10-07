@@ -19,7 +19,7 @@ export const BuyerFaq: React.FC<BuyerFaqProps> = ({ onOpenRfq }) => {
     },
     {
       q: 'What payment terms are accepted for overseas shipments?',
-      a: 'We accept Irrevocable Letter of Credit (L/C at sight) issued by a prime international commercial bank, or Telegraphic Transfer (T/T wire transfer: 30% advance on order confirmation, and 70% balance against scan copy of original shipping documents and Clean on Board Bill of Lading). [CONFIRM: exact credit terms]',
+      a: 'We accept Irrevocable Letter of Credit (L/C at sight) issued by a prime international commercial bank, or Telegraphic Transfer (T/T wire transfer: 30% advance on order confirmation, and 70% balance against scan copy of original shipping documents and Clean on Board Bill of Lading).',
     },
     {
       q: 'Can third-party inspection agencies verify our consignment before dispatch?',

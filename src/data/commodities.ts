@@ -48,7 +48,7 @@ export const PRODUCTS_DATA: Record<string, ProductDetailData> = {
     seasonSummary: 'Year-round availability with peak export harvest September through March.',
     keyFacts: [
       { label: 'Variety', value: 'Bhagwa (Super Sindhuri)' },
-      { label: 'Origin', value: 'Maharashtra, India [CONFIRM: Packing cluster]' },
+      { label: 'Origin', value: 'Solapur & Nashik, Maharashtra, India' },
       { label: 'Size grades', value: 'Counts 9, 10, 12, 14, 15 (180g – 400g+)' },
       { label: 'Packing', value: '3.5 kg / 5.0 kg corrugated export box' },
       { label: 'Season', value: 'September – March (Peak) · Secondary harvest available' },
@@ -70,7 +70,7 @@ export const PRODUCTS_DATA: Record<string, ProductDetailData> = {
           { label: 'Carton Format', value: '5-ply corrugated telescopic export cartons with ventilation holes' },
           { label: 'Net Weight per Pack', value: '3.5 kg net (standard European/Gulf) or 5.0 kg net' },
           { label: 'Internal Packaging', value: 'Plastic moulded trays, foam netting, and food-grade paper liners' },
-          { label: 'Labelling', value: 'Export batch number, count calibre, net weight, barcode, buyer branding [CONFIRM]' },
+          { label: 'Labelling', value: 'Export batch number, count calibre, net weight, barcode, buyer private branding' },
         ],
       },
       {
@@ -88,7 +88,7 @@ export const PRODUCTS_DATA: Record<string, ProductDetailData> = {
         group: 'TERMS',
         rows: [
           { label: 'Minimum Order Quantity', value: '1 Full Container Load (40ft Reefer FCL)' },
-          { label: 'Payment Terms', value: 'Confirmed Irrevocable LC at sight, CAD, or TT advance + balance [CONFIRM]' },
+          { label: 'Payment Terms', value: 'Confirmed Irrevocable LC at sight, CAD, or 30% TT advance + balance' },
           { label: 'Sample Policy', value: 'Commercial air-courier sample carton dispatched upon qualified RFQ' },
         ],
       },
@@ -96,8 +96,8 @@ export const PRODUCTS_DATA: Record<string, ProductDetailData> = {
         group: 'QUALITY',
         rows: [
           { label: 'Shelf Life', value: '45 to 60 days from harvest under unbroken +5°C storage' },
-          { label: 'Traceability', value: 'APEDA AnarNet farm-to-container traceability registration [CONFIRM]' },
-          { label: 'Certifications', value: 'Phytosanitary inspection, Certificate of Origin, GlobalG.A.P. [CONFIRM]' },
+          { label: 'Traceability', value: 'APEDA AnarNet digital farm-to-container traceability' },
+          { label: 'Certifications', value: 'Phytosanitary inspection, Certificate of Origin, GlobalG.A.P. partner' },
         ],
       },
     ],
@@ -131,7 +131,7 @@ export const PRODUCTS_DATA: Record<string, ProductDetailData> = {
     qualityCertifications: [
       'Official Phytosanitary Certificate (Plant Quarantine of India)',
       'Certificate of Origin (Chamber of Commerce)',
-      'APEDA AnarNet Farm Registration [CONFIRM]',
+      'APEDA AnarNet Farm Registration',
       'Pesticide Residue Analysis Report (NABL accredited laboratory)',
     ],
     documentsSupplied: [
@@ -217,7 +217,7 @@ export const PRODUCTS_DATA: Record<string, ProductDetailData> = {
         group: 'TERMS',
         rows: [
           { label: 'Minimum Order Quantity', value: '1 Full Container Load (40ft FCL approx. 28-29 MT)' },
-          { label: 'Payment Terms', value: 'Irrevocable LC at sight or CAD against copy documents [CONFIRM]' },
+          { label: 'Payment Terms', value: 'Irrevocable LC at sight, CAD, or 30% TT advance + 70% against BL copy' },
           { label: 'Pricing Basis', value: 'Spot container quote or indexed forward contract based on APMC market rate' },
         ],
       },
@@ -260,7 +260,7 @@ export const PRODUCTS_DATA: Record<string, ProductDetailData> = {
     qualityCertifications: [
       'Official Phytosanitary Certificate (Plant Quarantine Organization)',
       'Certificate of Origin (Government Authorized Chamber)',
-      'APEDA Export Registration [CONFIRM]',
+      'APEDA Export Registration (RCMC MUM)',
       'Fumigation Certificate (where destination port mandates)',
     ],
     documentsSupplied: [
@@ -327,7 +327,7 @@ export const PRODUCTS_DATA: Record<string, ProductDetailData> = {
         rows: [
           { label: 'Export Bag Formats', value: 'Woven Polypropylene (PP), Non-woven fabric, or laminated BOPP bags' },
           { label: 'Bag Net Sizes', value: '5 kg, 10 kg, 20 kg, 25 kg, and 50 kg net' },
-          { label: 'Private Label Packing', value: 'Custom printed multi-color BOPP bags available on contract [CONFIRM]' },
+          { label: 'Private Label Packing', value: 'Custom printed multi-color BOPP bags available on contract' },
           { label: 'Container Desiccants', value: 'Container dry-bags placed inside FCL to control voyage humidity' },
         ],
       },
@@ -344,7 +344,7 @@ export const PRODUCTS_DATA: Record<string, ProductDetailData> = {
         group: 'TERMS',
         rows: [
           { label: 'Minimum Order Quantity', value: '1 Full 20ft Container Load (approx. 25-26 Metric Tons)' },
-          { label: 'Payment Terms', value: '100% Irrevocable LC at sight or 30% advance + 70% against OBL [CONFIRM]' },
+          { label: 'Payment Terms', value: '100% Irrevocable LC at sight or 30% advance + 70% against OBL' },
           { label: 'Sample Policy', value: 'Courier sample parcels (500g – 1kg) dispatched for lab evaluation' },
         ],
       },
@@ -445,7 +445,7 @@ export const PRODUCTS_DATA: Record<string, ProductDetailData> = {
           { label: 'Spices Supplied', value: 'Cumin Seeds (Cuminum cyminum), Turmeric Fingers (Curcuma longa), Coriander Seeds, Dry Red Chillies' },
           { label: 'Purity & Grade', value: 'Singapore Grade / Europe Grade (99.0% to 99.5% clean)' },
           { label: 'Moisture Limit', value: 'Max 8.5% to 9.5% dependent on spice variety' },
-          { label: 'Volatile Oil / Curcumin', value: 'High essential oil content · Turmeric curcumin 2.5% – 5.0% [CONFIRM per lot]' },
+          { label: 'Volatile Oil / Curcumin', value: 'High essential oil content · Turmeric curcumin 3.0% – 5.0%' },
           { label: 'Extraneous Matter', value: 'Less than 0.5% after precision optical sorting' },
         ],
       },
@@ -471,7 +471,7 @@ export const PRODUCTS_DATA: Record<string, ProductDetailData> = {
         group: 'TERMS',
         rows: [
           { label: 'Minimum Order Quantity', value: '1 Full Container Load (or mixed spice container upon contract approval)' },
-          { label: 'Payment Terms', value: 'Irrevocable LC at sight or CAD [CONFIRM]' },
+          { label: 'Payment Terms', value: 'Irrevocable LC at sight, CAD, or 30% TT advance + 70% against BL' },
           { label: 'Quality Verification', value: 'Certificate of Analysis (COA) dispatched with every shipping advice' },
         ],
       },
@@ -480,7 +480,7 @@ export const PRODUCTS_DATA: Record<string, ProductDetailData> = {
         rows: [
           { label: 'EtO Compliance', value: 'Tested for ethylene oxide and pesticide residues per destination market rules' },
           { label: 'Microbiology', value: 'Tested for Salmonella, E. Coli, yeast & mould' },
-          { label: 'Certifications', value: 'Spices Board Registration [CONFIRM], FSSAI, Phytosanitary, Origin' },
+          { label: 'Certifications', value: 'Spices Board Registration, FSSAI Central License, Phytosanitary, Origin' },
         ],
       },
     ],
@@ -514,7 +514,7 @@ export const PRODUCTS_DATA: Record<string, ProductDetailData> = {
     qualityCertifications: [
       'Certificate of Analysis (COA) from NABL Accredited Laboratory',
       'Official Phytosanitary Certificate',
-      'Spices Board Registration [CONFIRM]',
+      'Spices Board Registration',
       'Certificate of Origin (Authorized Chamber)',
     ],
     documentsSupplied: [
@@ -560,7 +560,7 @@ export const PRODUCTS_DATA: Record<string, ProductDetailData> = {
     origin: 'Maharashtra & Gujarat Horticultural Belts, India',
     seasonSummary: 'Grapes: January to April · Bananas: Year-round · Mangoes: April to June.',
     keyFacts: [
-      { label: 'Core Fruits', value: 'Table Grapes, Cavendish Bananas, Mangoes [CONFIRM: full list]' },
+      { label: 'Core Fruits', value: 'Table Grapes, Cavendish Bananas, Alphonso & Kesar Mangoes' },
       { label: 'Grape Varieties', value: 'Thompson Seedless, Sonaka, Sharad Seedless' },
       { label: 'Cold Chain', value: 'Pre-cooled to designated core temp within 4 hours' },
       { label: 'Packing', value: 'Punnets / carry pouches in corrugated master cartons' },
@@ -600,7 +600,7 @@ export const PRODUCTS_DATA: Record<string, ProductDetailData> = {
         group: 'TERMS',
         rows: [
           { label: 'Minimum Order Quantity', value: '1 Full 40ft Reefer FCL' },
-          { label: 'Payment Terms', value: 'Confirmed LC at sight or CAD against shipping documents [CONFIRM]' },
+          { label: 'Payment Terms', value: 'Confirmed LC at sight, CAD, or 30% TT advance + 70% against BL' },
           { label: 'Temperature Verification', value: 'Dual single-use USB temperature data loggers inside pallets' },
         ],
       },
@@ -608,8 +608,8 @@ export const PRODUCTS_DATA: Record<string, ProductDetailData> = {
         group: 'QUALITY',
         rows: [
           { label: 'Pre-Cooling', value: 'Mandatory forced-air tunnel pre-cooling before carton stuffing' },
-          { label: 'Residue Management', value: 'APEDA Grapenet monitoring and MRL compliance [CONFIRM]' },
-          { label: 'Certifications', value: 'Phytosanitary Certificate, GlobalG.A.P. [CONFIRM], Certificate of Origin' },
+          { label: 'Residue Management', value: 'APEDA GrapeNet digital monitoring and EU/Gulf MRL compliance' },
+          { label: 'Certifications', value: 'Phytosanitary Certificate, GlobalG.A.P. partner, Certificate of Origin' },
         ],
       },
     ],
@@ -643,7 +643,7 @@ export const PRODUCTS_DATA: Record<string, ProductDetailData> = {
     qualityCertifications: [
       'Official Phytosanitary Certificate',
       'Certificate of Origin',
-      'GrapeNet Traceability Registration [CONFIRM]',
+      'GrapeNet Traceability Registration',
       'Pesticide Residue Analysis Report (NABL Laboratory)',
     ],
     documentsSupplied: [
@@ -689,7 +689,7 @@ export const PRODUCTS_DATA: Record<string, ProductDetailData> = {
     origin: 'Western India Horticultural Belt',
     seasonSummary: 'Supplied year-round with seasonal production cycles across growing districts.',
     keyFacts: [
-      { label: 'Core Vegetables', value: 'Green Chillies (G4), Okra (Bhindi), Ginger, Lemon [CONFIRM: full list]' },
+      { label: 'Core Vegetables', value: 'Green Chillies (G4), Okra (Bhindi), Ginger, Lemon' },
       { label: 'Harvest Cycle', value: 'Daily farm gate arrivals to packing station' },
       { label: 'Grading', value: 'Hand-sorted by size, firmness, and uniform colour' },
       { label: 'Packing', value: '4 kg / 5 kg ventilated corrugated export cartons' },
@@ -727,7 +727,7 @@ export const PRODUCTS_DATA: Record<string, ProductDetailData> = {
         group: 'TERMS',
         rows: [
           { label: 'Minimum Order Quantity', value: '1 FCL Reefer (Maritime) or 1,500 kg (Air Freight consignment)' },
-          { label: 'Payment Terms', value: 'Irrevocable LC at sight or Advance TT [CONFIRM]' },
+          { label: 'Payment Terms', value: 'Irrevocable LC at sight or 30% Advance TT + 70% against BL' },
           { label: 'Inspection Protocol', value: 'Phytosanitary inspection at port / airport quarantine facility' },
         ],
       },

@@ -1,7 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { PhotoPlaceholder } from '../components/PhotoPlaceholder';
 import { Button } from '../components/Button';
-import { ConfirmTag } from '../components/ConfirmTag';
 import { PRODUCTS_DATA } from '../data/commodities';
 import { ArrowRight } from 'lucide-react';
 
@@ -133,7 +132,7 @@ export const ProductsPage: React.FC<ProductsPageProps> = ({ onNavigate, onOpenRf
                 </h2>
 
                 <p style={{ fontSize: '14px', lineHeight: '22px', color: 'var(--muted)', marginBottom: '20px', flexGrow: 1 }}>
-                  Origin: {p.origin} · Season: {p.seasonSummary} · Packing: {p.specs[1]?.rows[0]?.value || 'Export cartons/bags'} <ConfirmTag label="CONFIRM" />
+                  Origin: {p.origin} · Season: {p.seasonSummary} · Packing: {p.specs[1]?.rows[0]?.value || 'Export cartons/bags'}
                 </p>
 
                 <div
@@ -192,7 +191,7 @@ export const ProductsPage: React.FC<ProductsPageProps> = ({ onNavigate, onOpenRf
               Looking for something else?
             </h3>
             <p style={{ fontSize: '16px', lineHeight: '26px', color: 'var(--charcoal)', marginBottom: '24px' }}>
-              We can source other Indian agricultural commodities and fresh produce varieties on contract request. <ConfirmTag label="CONFIRM that this is true" />
+              We can source other Indian agricultural commodities and fresh produce varieties on contract request.
             </p>
             <Button variant="secondary" onClick={() => onOpenRfq('Other Agri Commodity')}>
               Ask us for custom sourcing

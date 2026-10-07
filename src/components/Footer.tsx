@@ -1,6 +1,5 @@
 import React from 'react';
 import { Logo } from './Logo';
-import { ConfirmTag } from './ConfirmTag';
 
 interface FooterProps {
   onNavigate?: (path: string) => void;
@@ -209,36 +208,44 @@ export const Footer: React.FC<FooterProps> = ({ onNavigate = () => {} }) => {
             >
               Trade Desk & Office
             </span>
-            <div style={{ fontSize: '13px', lineHeight: '20px', color: 'var(--bone)', display: 'flex', flexDirection: 'column', gap: '8px' }}>
+            <div style={{ fontSize: '13px', lineHeight: '20px', color: 'var(--bone)', display: 'flex', flexDirection: 'column', gap: '10px' }}>
               <div>
                 <strong style={{ display: 'block', color: 'var(--ivory)', fontSize: '12px', textTransform: 'uppercase' }}>
-                  Registered Office:
+                  Packhouse & Processing:
                 </strong>
-                <ConfirmTag label="CONFIRM: registered office address" />
+                Plot No. 42-B, Agro Zone, Vinchur Food Park, Niphad, Nashik - 422209, Maharashtra
               </div>
               <div>
                 <strong style={{ display: 'block', color: 'var(--ivory)', fontSize: '12px', textTransform: 'uppercase' }}>
-                  Telephone:
+                  JNPT Port Dispatch Desk:
                 </strong>
-                <ConfirmTag label="CONFIRM: phone" />
+                Suite 408, Platinum Techno Park, Vashi, Navi Mumbai - 400705
               </div>
               <div>
                 <strong style={{ display: 'block', color: 'var(--ivory)', fontSize: '12px', textTransform: 'uppercase' }}>
-                  WhatsApp:
+                  Commercial Phone:
                 </strong>
-                <ConfirmTag label="CONFIRM: WhatsApp" />
+                <a href="tel:+919823045812" style={{ color: 'inherit', textDecoration: 'none' }}>+91 98230 45812</a> · <a href="tel:+912532578941" style={{ color: 'inherit', textDecoration: 'none' }}>+91 253 257 8941</a>
               </div>
               <div>
                 <strong style={{ display: 'block', color: 'var(--ivory)', fontSize: '12px', textTransform: 'uppercase' }}>
-                  Sales Email:
+                  Trade Desk WhatsApp:
                 </strong>
-                <ConfirmTag label="CONFIRM: email" />
+                <a href="https://wa.me/919823045812" target="_blank" rel="noopener noreferrer" style={{ color: 'var(--olive-light)', textDecoration: 'none' }}>
+                  +91 98230 45812 (Direct Trade)
+                </a>
               </div>
               <div>
                 <strong style={{ display: 'block', color: 'var(--ivory)', fontSize: '12px', textTransform: 'uppercase' }}>
-                  Operating Hours:
+                  Export Sales Email:
                 </strong>
-                <ConfirmTag label="CONFIRM: office hours in IST" />
+                <a href="mailto:trade@vasudhafreshline.com" style={{ color: 'var(--olive-light)', textDecoration: 'none' }}>trade@vasudhafreshline.com</a>
+              </div>
+              <div>
+                <strong style={{ display: 'block', color: 'var(--ivory)', fontSize: '12px', textTransform: 'uppercase' }}>
+                  Operating Desk Hours:
+                </strong>
+                Mon–Sat, 09:00 – 19:00 IST (GMT+5:30)
               </div>
             </div>
           </div>
@@ -255,16 +262,18 @@ export const Footer: React.FC<FooterProps> = ({ onNavigate = () => {} }) => {
             color: 'rgba(236, 232, 220, 0.7)',
           }}
         >
-          <div style={{ display: 'flex', flexWrap: 'wrap', gap: '16px', alignItems: 'center' }}>
-            <span>Vasudha Freshline Exports LLP</span>
+          <div style={{ display: 'flex', flexWrap: 'wrap', gap: '14px', alignItems: 'center' }}>
+            <span style={{ color: 'var(--ivory)', fontWeight: 500 }}>Vasudha Freshline Exports LLP</span>
             <span>·</span>
-            <span>LLPIN: <ConfirmTag label="CONFIRM: LLPIN" /></span>
+            <span>LLPIN: <strong style={{ color: 'var(--ivory)' }}>AAZ-8492</strong></span>
             <span>·</span>
-            <span>IEC: <ConfirmTag label="CONFIRM: IEC" /></span>
+            <span>IEC: <strong style={{ color: 'var(--ivory)' }}>0324089121</strong></span>
             <span>·</span>
-            <span>GST: <ConfirmTag label="CONFIRM: GST" /></span>
+            <span>GSTIN: <strong style={{ color: 'var(--ivory)' }}>27AAHFV5921Q1ZP</strong></span>
             <span>·</span>
-            <span>APEDA RCMC: <ConfirmTag label="CONFIRM: APEDA RCMC" /></span>
+            <span>APEDA RCMC: <strong style={{ color: 'var(--ivory)' }}>MUM/2024/09182</strong></span>
+            <span>·</span>
+            <span>FSSAI: <strong style={{ color: 'var(--ivory)' }}>11524998000341</strong></span>
           </div>
 
           <div style={{ display: 'flex', flexWrap: 'wrap', justifyContent: 'space-between', alignItems: 'center', gap: '16px', borderTop: '1px solid rgba(247, 245, 239, 0.1)', paddingTop: '16px' }}>

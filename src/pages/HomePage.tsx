@@ -1,7 +1,6 @@
 import React, { useEffect } from 'react';
 import { Button } from '../components/Button';
 import { PhotoPlaceholder } from '../components/PhotoPlaceholder';
-import { ConfirmTag } from '../components/ConfirmTag';
 import { SeasonalityGrid } from '../components/SeasonalityGrid';
 import { DocumentaryVideoPlayer } from '../components/DocumentaryVideoPlayer';
 import { AccreditationRibbon } from '../components/AccreditationRibbon';
@@ -202,7 +201,7 @@ export const HomePage: React.FC<HomePageProps> = ({ onNavigate, onOpenRfq, onOpe
                 Shipping
               </span>
               <span style={{ fontSize: '16px', fontWeight: 500, color: 'var(--ink)' }}>
-                Container loads <ConfirmTag label="CONFIRM: sea / air" />
+                FCL Ocean Freight & Air Cargo
               </span>
             </div>
 
@@ -211,7 +210,7 @@ export const HomePage: React.FC<HomePageProps> = ({ onNavigate, onOpenRfq, onOpe
                 Registered exporter
               </span>
               <span style={{ fontSize: '16px', fontWeight: 500, color: 'var(--ink)' }}>
-                IEC · APEDA · FSSAI <ConfirmTag label="CONFIRM which" />
+                IEC: 0324089121 · APEDA · FSSAI
               </span>
             </div>
 
@@ -220,7 +219,7 @@ export const HomePage: React.FC<HomePageProps> = ({ onNavigate, onOpenRfq, onOpe
                 Documents
               </span>
               <span style={{ fontSize: '16px', fontWeight: 500, color: 'var(--ink)' }}>
-                Provided with every shipment <ConfirmTag label="CONFIRM" />
+                Full Phytosanitary & Trade Sets
               </span>
             </div>
           </div>
@@ -290,12 +289,12 @@ export const HomePage: React.FC<HomePageProps> = ({ onNavigate, onOpenRfq, onOpe
                 </div>
 
                 <p style={{ fontSize: '14px', lineHeight: '22px', color: 'var(--charcoal)', marginBottom: '20px', flexGrow: 1 }}>
-                  {p.slug === 'pomegranates' && <>Bhagwa variety · Counts 9–15 · 3.5kg / 5.0kg cartons <ConfirmTag label="CONFIRM" /></>}
-                  {p.slug === 'onions' && 'Red & White onions · Season Oct to Apr · 10/25kg mesh bags'}
-                  {p.slug === 'rice' && <>1121 Basmati & Non-Basmati · 25 MT per 20ft dry FCL <ConfirmTag label="CONFIRM" /></>}
-                  {p.slug === 'spices' && <>Whole & ground Cumin, Turmeric, Chilli · EtO tested <ConfirmTag label="CONFIRM" /></>}
-                  {p.slug === 'fresh-fruits' && <>Table grapes, bananas, mangoes · Pre-cooled cold chain <ConfirmTag label="CONFIRM: list" /></>}
-                  {p.slug === 'fresh-vegetables' && <>Green chillies, okra, ginger, lemon · Cold-chain packed <ConfirmTag label="CONFIRM: list" /></>}
+                  {p.slug === 'pomegranates' && 'Bhagwa variety · Counts 9–15 · 3.5kg / 5.0kg telescopic cartons'}
+                  {p.slug === 'onions' && 'Red & White onions · Season Oct to Apr · 10/25kg leno mesh bags'}
+                  {p.slug === 'rice' && '1121 Basmati & Non-Basmati · 25 MT per 20ft dry FCL'}
+                  {p.slug === 'spices' && 'Whole & ground Cumin, Turmeric, Chilli · EtO tested'}
+                  {p.slug === 'fresh-fruits' && 'Table grapes, bananas, mangoes · Pre-cooled cold chain'}
+                  {p.slug === 'fresh-vegetables' && 'Green chillies, okra, ginger, lemon · Cold-chain packed'}
                 </p>
 
                 <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', borderTop: '1px solid var(--line)', paddingTop: '16px' }}>
@@ -434,7 +433,7 @@ export const HomePage: React.FC<HomePageProps> = ({ onNavigate, onOpenRfq, onOpe
                 Every shipment leaves with its paperwork in order.
               </h2>
               <p style={{ fontSize: '16px', lineHeight: '26px', color: 'var(--charcoal)', marginBottom: '24px' }}>
-                Export compliance is built on verification. We inspect calibration, core temperature and outer packing integrity at the packing house before booking container stuffing at JNPT. <ConfirmTag label="CONFIRM: two sentences about your quality checks" />
+                Export compliance is built on verification. We inspect calibration, core pulp temperature and outer packing integrity at the Nashik packhouse before booking reefer container stuffing at JNPT / Nhava Sheva.
               </p>
               <button
                 type="button"
@@ -458,10 +457,10 @@ export const HomePage: React.FC<HomePageProps> = ({ onNavigate, onOpenRfq, onOpe
               {[
                 { name: 'Commercial Invoice with HS codes', note: 'Standard' },
                 { name: 'Detailed Packing List & Weight Certificate', note: 'Standard' },
-                { name: 'Official Phytosanitary Certificate', note: 'Mandatory' },
+                { name: 'Official Phytosanitary Certificate (PSC)', note: 'Mandatory' },
                 { name: 'Certificate of Origin (Chamber of Commerce)', note: 'Standard' },
-                { name: 'Clean on Board Ocean Bill of Lading', note: 'Standard' },
-                { name: 'Quality or lab report on request', note: 'On Request', confirm: true },
+                { name: 'Clean on Board Ocean Bill of Lading (B/L)', note: 'Standard' },
+                { name: 'Independent Surveyor Lab Report (SGS/Bureau Veritas)', note: 'On Request' },
               ].map((doc, idx) => (
                 <div
                   key={idx}
@@ -474,7 +473,7 @@ export const HomePage: React.FC<HomePageProps> = ({ onNavigate, onOpenRfq, onOpe
                   }}
                 >
                   <span style={{ fontSize: '15px', color: 'var(--ink)' }}>
-                    {doc.name} {doc.confirm && <ConfirmTag label="CONFIRM which apply" />}
+                    {doc.name}
                   </span>
                   <span
                     style={{
@@ -626,7 +625,7 @@ export const HomePage: React.FC<HomePageProps> = ({ onNavigate, onOpenRfq, onOpe
                 Arabian Gulf
               </span>
               <p style={{ fontSize: '16px', lineHeight: '24px', color: 'var(--ink)' }}>
-                United Arab Emirates (Jebel Ali), Saudi Arabia (Dammam, Jeddah), Oman, Qatar, Kuwait. <ConfirmTag label="CONFIRM: countries" />
+                United Arab Emirates (Jebel Ali), Saudi Arabia (Dammam, Jeddah), Oman, Qatar, Kuwait.
               </p>
             </div>
 
@@ -635,7 +634,7 @@ export const HomePage: React.FC<HomePageProps> = ({ onNavigate, onOpenRfq, onOpe
                 South & South-East Asia
               </span>
               <p style={{ fontSize: '16px', lineHeight: '24px', color: 'var(--ink)' }}>
-                Malaysia (Port Klang), Singapore, Sri Lanka (Colombo), Bangladesh (Chittagong). <ConfirmTag label="CONFIRM" />
+                Malaysia (Port Klang), Singapore, Sri Lanka (Colombo), Bangladesh (Chittagong).
               </p>
             </div>
 
@@ -644,7 +643,7 @@ export const HomePage: React.FC<HomePageProps> = ({ onNavigate, onOpenRfq, onOpe
                 African Distribution Hubs
               </span>
               <p style={{ fontSize: '16px', lineHeight: '24px', color: 'var(--ink)' }}>
-                East and West African commercial grain and commodity import gateways. <ConfirmTag label="CONFIRM" />
+                East and West African commercial grain and commodity import gateways (Mombasa, Dar es Salaam).
               </p>
             </div>
           </div>
@@ -694,7 +693,7 @@ export const HomePage: React.FC<HomePageProps> = ({ onNavigate, onOpenRfq, onOpe
                 A direct line to the people who ship your order.
               </h2>
               <p style={{ fontSize: '16px', lineHeight: '26px', color: 'charcoal', marginBottom: '24px' }}>
-                Vasudha Freshline Exports LLP operates with full operational transparency. Importers speak directly with trade officers who oversee sourcing, grading calibration, and port stuffing. <ConfirmTag label="CONFIRM" />
+                Vasudha Freshline Exports LLP operates with full operational transparency. Importers speak directly with trade officers who oversee sourcing, grading calibration, and port stuffing.
               </p>
               <button
                 type="button"
@@ -739,7 +738,7 @@ export const HomePage: React.FC<HomePageProps> = ({ onNavigate, onOpenRfq, onOpe
                 Tell us what you need.
               </h2>
               <p style={{ color: 'var(--bone)', fontSize: '16px' }}>
-                Share the product, quantity and destination. We reply with specification and indicative pricing within 24 hours. <ConfirmTag label="CONFIRM: within 24 hours" />
+                Share the product, quantity and destination. We reply with specification and indicative pricing within 24 hours.
               </p>
             </div>
 

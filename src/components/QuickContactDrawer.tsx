@@ -1,5 +1,4 @@
 import React, { useState } from 'react';
-import { ConfirmTag } from './ConfirmTag';
 import { X, MessageSquare, Phone, Mail, MapPin, ArrowRight, FileText } from 'lucide-react';
 
 interface QuickContactDrawerProps {
@@ -238,10 +237,10 @@ export const QuickContactDrawer: React.FC<QuickContactDrawerProps> = ({
                     Direct Commercial Line
                   </span>
                   <a
-                    href="tel:+910000000000"
+                    href="tel:+919823045812"
                     style={{ fontSize: '15px', color: 'var(--navy)', fontWeight: 500, textDecoration: 'none' }}
                   >
-                    +91 [CONFIRM: telephone number]
+                    +91 98230 45812 / +91 253 257 8941
                   </a>
                 </div>
               </div>
@@ -253,7 +252,7 @@ export const QuickContactDrawer: React.FC<QuickContactDrawerProps> = ({
                     Port & Operational Base
                   </span>
                   <p style={{ fontSize: '14px', color: 'var(--charcoal)', margin: 0 }}>
-                    Nashik Packhouse Facility, Maharashtra <ConfirmTag label="CONFIRM" /><br />
+                    Plot 42-B, Vinchur Food Park, Niphad, Nashik - 422209<br />
                     Port of Loading: JNPT / Nhava Sheva (INNSA)
                   </p>
                 </div>

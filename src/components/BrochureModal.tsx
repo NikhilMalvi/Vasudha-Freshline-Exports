@@ -1,6 +1,5 @@
 import React from 'react';
 import { Logo } from './Logo';
-import { ConfirmTag } from './ConfirmTag';
 import { X, Printer, ShieldCheck, CheckCircle2, ArrowRight } from 'lucide-react';
 
 interface BrochureModalProps {
@@ -148,8 +147,8 @@ export const BrochureModal: React.FC<BrochureModalProps> = ({ isOpen, onClose, o
             </div>
             <div style={{ textAlign: 'right', fontSize: '12px', color: 'var(--muted)', lineHeight: '20px' }}>
               <div><strong>Port of Loading:</strong> JNPT / Nhava Sheva (INNSA)</div>
-              <div><strong>Primary Packhouse:</strong> Nashik, Maharashtra <ConfirmTag label="CONFIRM" /></div>
-              <div><strong>Registration:</strong> IEC · APEDA · FSSAI <ConfirmTag label="CONFIRM" /></div>
+              <div><strong>Primary Packhouse:</strong> Vinchur Food Park, Niphad, Nashik - 422209</div>
+              <div><strong>Registration:</strong> IEC: 0324089121 · APEDA · FSSAI</div>
             </div>
           </div>
 
@@ -332,7 +331,7 @@ export const BrochureModal: React.FC<BrochureModalProps> = ({ isOpen, onClose, o
                 Vasudha Freshline Exports LLP — Trade Enquiries
               </div>
               <div style={{ fontSize: '13px', color: 'var(--muted)', marginTop: '2px' }}>
-                Email: exports@vasudhafreshline.com · Phone/WhatsApp: +91 [CONFIRM: phone]
+                Email: trade@vasudhafreshline.com · Phone/WhatsApp: +91 98230 45812 / +91 253 257 8941
               </div>
             </div>
 

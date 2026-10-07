@@ -1,6 +1,5 @@
 import React, { useState, useEffect } from 'react';
 import { PhotoPlaceholder } from '../components/PhotoPlaceholder';
-import { ConfirmTag } from '../components/ConfirmTag';
 import { IMAGES } from '../data/images';
 import { Plus, Minus, MessageSquare } from 'lucide-react';
 
@@ -62,7 +61,7 @@ export const ExportPage: React.FC<ExportPageProps> = ({ onOpenRfq }) => {
             </span>
             <h1 style={{ marginBottom: '20px' }}>Export and logistics</h1>
             <p style={{ fontSize: '18px', lineHeight: '28px', color: 'var(--charcoal)' }}>
-              How an order moves from confirmation to your port. <ConfirmTag label="CONFIRM" />
+              How an order moves from confirmation to your destination port.
             </p>
           </div>
         </div>
@@ -86,11 +85,11 @@ export const ExportPage: React.FC<ExportPageProps> = ({ onOpenRfq }) => {
                 Current Shipping Notice
               </span>
               <span style={{ fontSize: '12px', color: 'var(--muted)' }}>
-                Updated October 2026 <ConfirmTag label="CONFIRM: date" />
+                Updated October 2026
               </span>
             </div>
             <p style={{ fontSize: '15px', lineHeight: '24px', color: 'var(--charcoal)', margin: 0 }}>
-              Arabian Gulf and Southeast Asian reefer container routes from JNPT (Nhava Sheva) are operating under active feeder schedules. Freight rates and terminal handling costs are confirmed on spot quotation to ensure landed cost accuracy. <ConfirmTag label="CONFIRM: short note about freight or schedules" />
+              Arabian Gulf and Southeast Asian reefer container routes from JNPT (Nhava Sheva) are operating under active feeder schedules. Freight rates and terminal handling costs are confirmed on spot quotation to ensure landed cost accuracy.
             </p>
           </div>
         </div>
@@ -124,7 +123,7 @@ export const ExportPage: React.FC<ExportPageProps> = ({ onOpenRfq }) => {
                   <tr key={s.num}>
                     <td style={{ paddingLeft: '20px', color: 'var(--olive)', fontWeight: 600 }}>{s.num}</td>
                     <td style={{ fontWeight: 500, color: 'var(--ink)' }}>{s.name}</td>
-                    <td style={{ color: 'var(--charcoal)' }}>{s.text} <ConfirmTag label="CONFIRM" /></td>
+                    <td style={{ color: 'var(--charcoal)' }}>{s.text}</td>
                     <td style={{ paddingRight: '20px', color: 'var(--muted)' }}>{s.time}</td>
                   </tr>
                 ))}
@@ -222,7 +221,7 @@ export const ExportPage: React.FC<ExportPageProps> = ({ onOpenRfq }) => {
           </div>
 
           <p style={{ fontSize: '13px', color: 'var(--muted)' }} className="reveal">
-            Terms we offer: FOB JNPT, CFR, CIF. <ConfirmTag label="CONFIRM" />
+            Terms we offer: FOB JNPT, CFR, CIF (ICC Incoterms 2020).
           </p>
         </div>
       </section>
@@ -248,7 +247,7 @@ export const ExportPage: React.FC<ExportPageProps> = ({ onOpenRfq }) => {
                   <strong>Cash Against Documents (CAD)</strong> via approved commercial banking channels.
                 </li>
                 <li style={{ borderBottom: '1px solid var(--line)', paddingBottom: '8px' }}>
-                  <strong>Advance TT (Telegraphic Transfer)</strong> with balance payable upon transmission of non-negotiable Bill of Lading. <ConfirmTag label="CONFIRM: banking terms" />
+                  <strong>Advance TT (Telegraphic Transfer)</strong> with balance payable upon transmission of non-negotiable Bill of Lading copy.
                 </li>
               </ul>
             </div>
@@ -288,7 +287,7 @@ export const ExportPage: React.FC<ExportPageProps> = ({ onOpenRfq }) => {
                 </table>
               </div>
               <p style={{ fontSize: '13px', color: 'var(--muted)', margin: 0 }}>
-                Port of loading: JNPT / Nhava Sheva (INNSA) <ConfirmTag label="CONFIRM" /> · Lead time from confirmed order to loading: 4 to 7 days <ConfirmTag label="CONFIRM" />
+                Port of loading: JNPT / Nhava Sheva (INNSA) · Lead time from confirmed order to loading: 4 to 7 days
               </p>
             </div>
           </div>
@@ -309,21 +308,21 @@ export const ExportPage: React.FC<ExportPageProps> = ({ onOpenRfq }) => {
             <div className="reveal" style={{ backgroundColor: 'var(--ivory)', border: '1px solid var(--line)', padding: '24px', borderRadius: 'var(--radius)' }}>
               <h3 style={{ fontSize: '20px', marginBottom: '8px' }}>Arabian Gulf</h3>
               <p style={{ fontSize: '14px', color: 'var(--muted)', lineHeight: '22px', margin: 0 }}>
-                United Arab Emirates, Saudi Arabia, Oman, Qatar, Bahrain, Kuwait. Frequent direct sailings from JNPT with fast turnarounds. <ConfirmTag label="CONFIRM: countries" />
+                United Arab Emirates, Saudi Arabia, Oman, Qatar, Bahrain, Kuwait. Frequent direct sailings from JNPT with fast turnarounds.
               </p>
             </div>
 
             <div className="reveal reveal-delay-1" style={{ backgroundColor: 'var(--ivory)', border: '1px solid var(--line)', padding: '24px', borderRadius: 'var(--radius)' }}>
               <h3 style={{ fontSize: '20px', marginBottom: '8px' }}>South & Southeast Asia</h3>
               <p style={{ fontSize: '14px', color: 'var(--muted)', lineHeight: '22px', margin: 0 }}>
-                Malaysia, Singapore, Sri Lanka, Bangladesh, Indonesia. Scheduled dry and reefer liner connections. <ConfirmTag label="CONFIRM" />
+                Malaysia, Singapore, Sri Lanka, Bangladesh, Indonesia. Scheduled dry and reefer liner connections.
               </p>
             </div>
 
             <div className="reveal reveal-delay-2" style={{ backgroundColor: 'var(--ivory)', border: '1px solid var(--line)', padding: '24px', borderRadius: 'var(--radius)' }}>
               <h3 style={{ fontSize: '20px', marginBottom: '8px' }}>African Continent</h3>
               <p style={{ fontSize: '14px', color: 'var(--muted)', lineHeight: '22px', margin: 0 }}>
-                Commercial grain and non-basmati rice import terminals across Eastern and Western Africa. <ConfirmTag label="CONFIRM" />
+                Commercial grain and non-basmati rice import terminals across Eastern and Western Africa.
               </p>
             </div>
           </div>
@@ -339,7 +338,7 @@ export const ExportPage: React.FC<ExportPageProps> = ({ onOpenRfq }) => {
             </span>
             <h2>Packing</h2>
             <p style={{ color: 'var(--charcoal)', fontSize: '15px' }}>
-              We deploy heavy 5-ply export craft corrugated cartons, ventilated leno mesh sacks, and shrink-wrapped pallet stowage. Private label branding available for recurring contract importers. <ConfirmTag label="CONFIRM: private label" />
+              We deploy heavy 5-ply export craft corrugated cartons, ventilated leno mesh sacks, and shrink-wrapped pallet stowage. Private label branding available for recurring contract importers.
             </p>
           </div>
 

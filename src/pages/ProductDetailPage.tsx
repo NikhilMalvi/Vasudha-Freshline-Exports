@@ -1,7 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { PhotoPlaceholder } from '../components/PhotoPlaceholder';
 import { Button } from '../components/Button';
-import { ConfirmTag } from '../components/ConfirmTag';
 import { PRODUCTS_DATA, type ProductDetailData } from '../data/commodities';
 import { ArrowRight, Download, Plus, Minus, MessageSquare, AlertCircle, Check } from 'lucide-react';
 
@@ -232,14 +231,14 @@ export const ProductDetailPage: React.FC<ProductDetailPageProps> = ({ slug, onNa
                   ) : (
                     <>
                       <Download size={16} strokeWidth={1.5} />
-                      <span>Download spec sheet (PDF) [CONFIRM]</span>
+                      <span>Download spec sheet (PDF)</span>
                     </>
                   )}
                 </button>
               </div>
 
               <p style={{ fontSize: '13px', color: 'var(--muted)', lineHeight: '20px', margin: 0 }}>
-                We reply within 24 hours. <ConfirmTag label="CONFIRM: within 24 hours" /> Or message us directly on WhatsApp.
+                We reply within 24 business hours. Or message our trade desk directly on WhatsApp.
               </p>
             </div>
           </div>

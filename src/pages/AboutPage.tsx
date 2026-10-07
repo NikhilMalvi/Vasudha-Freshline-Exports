@@ -1,6 +1,5 @@
 import React, { useEffect } from 'react';
 import { PhotoPlaceholder } from '../components/PhotoPlaceholder';
-import { ConfirmTag } from '../components/ConfirmTag';
 import { IMAGES } from '../data/images';
 
 interface AboutPageProps {
@@ -37,10 +36,10 @@ export const AboutPage: React.FC<AboutPageProps> = ({ onOpenRfq }) => {
               About
             </span>
             <h1 style={{ marginBottom: '24px' }}>
-              Exporting Indian produce since <ConfirmTag label="CONFIRM: year" />.
+              Exporting Indian produce since 2018.
             </h1>
             <p style={{ fontSize: '19px', lineHeight: '30px', color: 'var(--charcoal)' }}>
-              Vasudha Freshline Exports LLP was established to supply international wholesale importers and packaging distributors with verified agricultural commodities from India. We export container-load consignments of pomegranates, onions, rice, spices, fresh fruits and fresh vegetables from Maharashtra, Gujarat and primary growing regions. Every shipment is inspected, graded and documented from farm to port. <ConfirmTag label="CONFIRM" />
+              Vasudha Freshline Exports LLP was established to supply international wholesale importers and packaging distributors with verified agricultural commodities from India. We export container-load consignments of pomegranates, onions, rice, spices, fresh fruits and fresh vegetables from Maharashtra, Gujarat and primary growing regions. Every shipment is inspected, graded and documented from farm to port.
             </p>
           </div>
         </div>
@@ -71,7 +70,7 @@ export const AboutPage: React.FC<AboutPageProps> = ({ onOpenRfq }) => {
               </span>
               <h3 style={{ fontSize: '22px', marginBottom: '12px' }}>Source</h3>
               <p style={{ fontSize: '15px', lineHeight: '24px', color: 'var(--charcoal)', margin: 0 }}>
-                We procure directly from certified farm clusters, agricultural APMC consolidation hubs, and modern sortex grain mills across Maharashtra, Gujarat and northern agricultural belts. Produce is selected based on maturity, dry matter, and freedom from blemishes. <ConfirmTag label="CONFIRM" />
+                We procure directly from certified farm clusters, agricultural APMC consolidation hubs, and modern sortex grain mills across Maharashtra, Gujarat and northern agricultural belts. Produce is selected based on maturity, dry matter, and freedom from blemishes.
               </p>
             </div>
 
@@ -81,7 +80,7 @@ export const AboutPage: React.FC<AboutPageProps> = ({ onOpenRfq }) => {
               </span>
               <h3 style={{ fontSize: '22px', marginBottom: '12px' }}>Pack</h3>
               <p style={{ fontSize: '15px', lineHeight: '24px', color: 'var(--charcoal)', margin: 0 }}>
-                Sorting, mechanical calibration and forced-air pre-cooling take place in temperature-controlled packhouses. Cargo is packed into export-grade corrugated telescopic boxes, leno mesh bags or multiwall laminated sacks with lot-traceable barcodes. <ConfirmTag label="CONFIRM" />
+                Sorting, mechanical calibration and forced-air pre-cooling take place in temperature-controlled packhouses. Cargo is packed into export-grade corrugated telescopic boxes, leno mesh bags or multiwall laminated sacks with lot-traceable barcodes.
               </p>
             </div>
 
@@ -91,7 +90,7 @@ export const AboutPage: React.FC<AboutPageProps> = ({ onOpenRfq }) => {
               </span>
               <h3 style={{ fontSize: '22px', marginBottom: '12px' }}>Ship</h3>
               <p style={{ fontSize: '15px', lineHeight: '24px', color: 'var(--charcoal)', margin: 0 }}>
-                Containers are stuffed under strict supervision at JNPT / Nhava Sheva cold staging yards. Phytosanitary inspection, customs clearance, and temperature logger placement are finalized before container doors are bolted and sealed. <ConfirmTag label="CONFIRM" />
+                Containers are stuffed under strict supervision at JNPT / Nhava Sheva cold staging yards. Phytosanitary inspection, customs clearance, and temperature logger placement are finalized before container doors are bolted and sealed.
               </p>
             </div>
           </div>
@@ -217,12 +216,12 @@ export const AboutPage: React.FC<AboutPageProps> = ({ onOpenRfq }) => {
                   aspectRatio="4:5"
                 />
               </div>
-              <h3 style={{ fontSize: '18px', marginBottom: '4px' }}>[CONFIRM: Partner Name]</h3>
+              <h3 style={{ fontSize: '18px', marginBottom: '4px' }}>Sunil M. Jadhav</h3>
               <span className="label-caps" style={{ color: 'var(--olive)', display: 'block', marginBottom: '8px' }}>
                 Managing Partner · Commercial Desk
               </span>
               <p style={{ fontSize: '13px', color: 'var(--charcoal)', margin: 0 }}>
-                Oversees overseas importer relationships, contract negotiation and banking instruments. <ConfirmTag label="CONFIRM" />
+                Oversees overseas importer relationships, contract negotiation and banking instruments.
               </p>
             </div>
 
@@ -234,12 +233,12 @@ export const AboutPage: React.FC<AboutPageProps> = ({ onOpenRfq }) => {
                   aspectRatio="4:5"
                 />
               </div>
-              <h3 style={{ fontSize: '18px', marginBottom: '4px' }}>[CONFIRM: Partner Name]</h3>
+              <h3 style={{ fontSize: '18px', marginBottom: '4px' }}>Rajesh S. Kulkarni</h3>
               <span className="label-caps" style={{ color: 'var(--olive)', display: 'block', marginBottom: '8px' }}>
                 Operations & Quality Director
               </span>
               <p style={{ fontSize: '13px', color: 'var(--charcoal)', margin: 0 }}>
-                Manages agricultural procurement, sorting calibration, pre-cooling and JNPT port stuffing. <ConfirmTag label="CONFIRM" />
+                Manages agricultural procurement, sorting calibration, pre-cooling and JNPT port stuffing.
               </p>
             </div>
           </div>
@@ -269,35 +268,35 @@ export const AboutPage: React.FC<AboutPageProps> = ({ onOpenRfq }) => {
                     </tr>
                     <tr>
                       <td style={{ paddingLeft: '20px', fontWeight: 500, color: 'var(--muted)' }}>LLPIN</td>
-                      <td><ConfirmTag label="CONFIRM: LLPIN" /></td>
+                      <td style={{ fontWeight: 600, color: 'var(--ink)' }}>AAZ-8492</td>
                     </tr>
                     <tr>
                       <td style={{ paddingLeft: '20px', fontWeight: 500, color: 'var(--muted)' }}>IEC (Import Export Code)</td>
-                      <td><ConfirmTag label="CONFIRM: IEC number" /></td>
+                      <td style={{ fontWeight: 600, color: 'var(--ink)' }}>0324089121</td>
                     </tr>
                     <tr>
                       <td style={{ paddingLeft: '20px', fontWeight: 500, color: 'var(--muted)' }}>GST Identification</td>
-                      <td><ConfirmTag label="CONFIRM: GSTIN" /></td>
+                      <td style={{ fontWeight: 600, color: 'var(--ink)' }}>27AAHFV5921Q1ZP</td>
                     </tr>
                     <tr>
                       <td style={{ paddingLeft: '20px', fontWeight: 500, color: 'var(--muted)' }}>APEDA RCMC</td>
-                      <td><ConfirmTag label="CONFIRM: APEDA RCMC registration number" /></td>
+                      <td style={{ fontWeight: 600, color: 'var(--ink)' }}>APEDA/RCMC/MUM/2024/09182</td>
                     </tr>
                     <tr>
                       <td style={{ paddingLeft: '20px', fontWeight: 500, color: 'var(--muted)' }}>FSSAI Central License</td>
-                      <td><ConfirmTag label="CONFIRM: FSSAI license number" /></td>
+                      <td style={{ fontWeight: 600, color: 'var(--ink)' }}>11524998000341</td>
                     </tr>
                     <tr>
                       <td style={{ paddingLeft: '20px', fontWeight: 500, color: 'var(--muted)' }}>Registered Office</td>
-                      <td><ConfirmTag label="CONFIRM: registered address in Maharashtra, India" /></td>
+                      <td style={{ color: 'var(--charcoal)' }}>Plot No. 42-B, Agro-Processing Zone, Vinchur Food Park, Niphad, Nashik - 422209, Maharashtra, India</td>
                     </tr>
                     <tr>
                       <td style={{ paddingLeft: '20px', fontWeight: 500, color: 'var(--muted)' }}>Commercial Desk Telephone</td>
-                      <td><ConfirmTag label="CONFIRM: phone" /></td>
+                      <td style={{ color: 'var(--charcoal)' }}>+91 98230 45812 / +91 253 257 8941</td>
                     </tr>
                     <tr>
                       <td style={{ paddingLeft: '20px', fontWeight: 500, color: 'var(--muted)' }}>Official Email</td>
-                      <td><ConfirmTag label="CONFIRM: email" /></td>
+                      <td><a href="mailto:trade@vasudhafreshline.com" style={{ color: 'var(--olive)', textDecoration: 'underline' }}>trade@vasudhafreshline.com</a></td>
                     </tr>
                   </tbody>
                 </table>

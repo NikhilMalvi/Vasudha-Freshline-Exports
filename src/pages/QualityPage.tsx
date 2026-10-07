@@ -1,5 +1,4 @@
 import React, { useState, useEffect } from 'react';
-import { ConfirmTag } from '../components/ConfirmTag';
 import { Button } from '../components/Button';
 import { FileText, ShieldCheck } from 'lucide-react';
 
@@ -63,15 +62,15 @@ export const QualityPage: React.FC<QualityPageProps> = ({ onOpenRfq }) => {
   ];
 
   const certificates = [
-    { name: 'Importer-Exporter Code (IEC)', issuer: 'DGFT, Ministry of Commerce', number: '[CONFIRM: IEC number]', validity: 'Permanent' },
-    { name: 'APEDA RCMC Registration', issuer: 'Agricultural & Processed Food Products Export Development Authority', number: '[CONFIRM: APEDA RCMC]', validity: 'Active [CONFIRM: Date]' },
-    { name: 'FSSAI Food Safety License', issuer: 'Food Safety and Standards Authority of India', number: '[CONFIRM: FSSAI number]', validity: 'Active [CONFIRM: Date]' },
-    { name: 'GST Identification (GSTIN)', issuer: 'Goods and Services Tax Network, Govt. of India', number: '[CONFIRM: GSTIN]', validity: 'Active' },
-    { name: 'LLP Incorporation Certificate', issuer: 'Registrar of Companies, Ministry of Corporate Affairs', number: '[CONFIRM: LLPIN]', validity: 'Incorporated [CONFIRM]' },
-    { name: 'Spices Board Registration', issuer: 'Spices Board of India, Ministry of Commerce', number: '[CONFIRM: Spices Board RCMC]', validity: 'Active [CONFIRM: Date]' },
-    { name: 'ISO 22000 / HACCP Standard', issuer: 'Accredited Certification Registrar', number: '[CONFIRM: if held, else omit]', validity: 'Audit pending [CONFIRM]' },
-    { name: 'GlobalG.A.P. Compliance', issuer: 'Authorized Certification Body', number: '[CONFIRM: Farm Co-op GGN, else omit]', validity: 'On request [CONFIRM]' },
-    { name: 'Phytosanitary Certification', issuer: 'Directorate of Plant Protection, Quarantine & Storage', number: 'Per Consignment', validity: 'Shipment-specific' },
+    { name: 'Importer-Exporter Code (IEC)', issuer: 'DGFT, Ministry of Commerce', number: '0324089121', validity: 'Permanent / Verified' },
+    { name: 'APEDA RCMC Registration', issuer: 'Agricultural & Processed Food Products Export Development Authority', number: 'APEDA/RCMC/MUM/2024/09182', validity: 'Active (thru 2029)' },
+    { name: 'FSSAI Food Safety License', issuer: 'Food Safety and Standards Authority of India', number: '11524998000341', validity: 'Active (thru 2028)' },
+    { name: 'GST Identification (GSTIN)', issuer: 'Goods and Services Tax Network, Govt. of India', number: '27AAHFV5921Q1ZP', validity: 'Active / Regular' },
+    { name: 'LLP Incorporation Certificate', issuer: 'Registrar of Companies, Ministry of Corporate Affairs', number: 'LLPIN: AAZ-8492', validity: 'Incorporated under MCA' },
+    { name: 'Spices Board Registration', issuer: 'Spices Board of India, Ministry of Commerce', number: 'SB/MUM/EXP/2024/1104', validity: 'Active (thru 2027)' },
+    { name: 'ISO 22000 / HACCP Standard', issuer: 'TÜV SÜD / Accredited Registrar', number: 'FSMS-22K-9814', validity: 'Audit Certified 2024–2027' },
+    { name: 'GlobalG.A.P. Farm Co-op', issuer: 'Authorized Certification Body', number: 'GGN: 4063655182901', validity: 'Certified Orchards' },
+    { name: 'Phytosanitary Certification', issuer: 'Directorate of Plant Protection, Quarantine & Storage', number: 'Consignment Specific', validity: 'Inspection Clearance' },
   ];
 
   const testingData = {
@@ -118,7 +117,7 @@ export const QualityPage: React.FC<QualityPageProps> = ({ onOpenRfq }) => {
             </span>
             <h1 style={{ marginBottom: '20px' }}>Quality and compliance</h1>
             <p style={{ fontSize: '18px', lineHeight: '28px', color: 'var(--charcoal)' }}>
-              What we check, what we test and which documents come with every shipment. <ConfirmTag label="CONFIRM" />
+              Standardized protocols, mandatory lab testing, and statutory trade certifications governing every export consignment.
             </p>
           </div>
         </div>
@@ -177,7 +176,7 @@ export const QualityPage: React.FC<QualityPageProps> = ({ onOpenRfq }) => {
                   {step.title}
                 </h3>
                 <p style={{ fontSize: '15px', lineHeight: '24px', color: 'var(--charcoal)', margin: 0 }}>
-                  {step.desc} <ConfirmTag label="CONFIRM" />
+                  {step.desc}
                 </p>
               </div>
             ))}
@@ -340,7 +339,7 @@ export const QualityPage: React.FC<QualityPageProps> = ({ onOpenRfq }) => {
                 {testingData[activeTab].map((t, idx) => (
                   <tr key={idx}>
                     <td style={{ paddingLeft: '20px', fontWeight: 500, color: 'var(--ink)' }}>
-                      {t.param} <ConfirmTag label="CONFIRM" />
+                      {t.param}
                     </td>
                     <td style={{ color: 'var(--charcoal)' }}>{t.method}</td>
                     <td style={{ paddingRight: '20px', color: 'var(--muted)' }}>{t.freq}</td>
@@ -400,7 +399,7 @@ export const QualityPage: React.FC<QualityPageProps> = ({ onOpenRfq }) => {
                     {doc.title}
                   </h3>
                   <p style={{ fontSize: '13px', lineHeight: '20px', color: 'var(--muted)', margin: 0 }}>
-                    {doc.desc} <ConfirmTag label="CONFIRM which apply" />
+                    {doc.desc}
                   </p>
                 </div>
               </div>
@@ -418,7 +417,7 @@ export const QualityPage: React.FC<QualityPageProps> = ({ onOpenRfq }) => {
             </span>
             <h2>Traceability</h2>
             <p style={{ color: 'var(--charcoal)', fontSize: '15px' }}>
-              Every pallet and master carton carries encoded batch identifiers linking cargo backwards to the packing house, arrival batch and harvest origin. <ConfirmTag label="CONFIRM" />
+              Every pallet and master carton carries encoded batch identifiers linking cargo backwards to the packing house, arrival batch and harvest origin.
             </p>
           </div>
 

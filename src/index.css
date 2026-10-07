@@ -4,18 +4,19 @@
    ========================================================================== */
 
 :root {
-  /* Colour tokens */
-  --ivory: #F7F5EF;        /* Page background */
-  --bone: #ECE8DC;         /* Alternate sections */
-  --line: #D9D5C8;         /* 1px hairlines, decoration only, never text */
-  --ink: #16161A;          /* Headlines */
-  --charcoal: #353535;     /* Body text */
-  --muted: #5F5D55;        /* Captions, secondary text */
-  --navy: #10104F;         /* Primary: buttons, dark sections */
-  --navy-hover: #19196b;   /* Primary button hover */
-  --olive: #687036;        /* Accent: links, small details */
-  --olive-deep: #4A5026;   /* Hover states */
-  --olive-light: #A9B070;  /* Accent on navy ONLY */
+  /* Elevated Colour Tokens */
+  --ivory: #FAF8F3;        /* Warm editorial paper background */
+  --bone: #F0EDE4;         /* Rich alternating limestone section */
+  --line: #DFDBD0;         /* 1px razor-sharp hairline divider */
+  --ink: #111319;          /* Deep editorial ink headline */
+  --charcoal: #2E3036;     /* Clear, authoritative body text */
+  --muted: #5C5E64;        /* Captions, secondary labels */
+  --navy: #0C1236;         /* Commanding midnight maritime navy */
+  --navy-hover: #162058;   /* Primary button hover */
+  --olive: #55602E;        /* Rich Mediterranean olive */
+  --olive-deep: #3C441E;   /* Deep olive hover states */
+  --olive-light: #B0B876;  /* Crisp luminescent olive on navy */
+  --gold-accent: #9E7E38;  /* Subtle statutory pedigree accent */
   --error: #9B2C2C;
 
   /* Typography */
@@ -25,7 +26,7 @@
   /* Layout */
   --max-width: 1240px;
   --gutter: 24px;
-  --radius: 1px; /* 0-2px corner radius */
+  --radius: 2px; /* Crisp 2px corner radius */
 }
 
 /* CSS Reset & Defaults */

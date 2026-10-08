@@ -135,6 +135,21 @@ h3 {
   }
 }
 
+@media (max-width: 480px) {
+  h1 {
+    font-size: 32px;
+    line-height: 40px;
+  }
+  h2 {
+    font-size: 26px;
+    line-height: 32px;
+  }
+  h3 {
+    font-size: 20px;
+    line-height: 26px;
+  }
+}
+
 p {
   color: var(--charcoal);
   font-size: 17px;
@@ -621,5 +636,38 @@ details.accordion .accordion-body {
   .reveal {
     opacity: 1 !important;
     transform: none !important;
+  }
+}
+
+/* Brand Logo Responsive Sizing */
+.brand-logo-wrapper {
+  display: inline-flex;
+  align-items: center;
+  max-width: 100%;
+}
+
+.brand-logo-img {
+  display: block;
+  height: auto;
+  max-height: 48px;
+  object-fit: contain;
+}
+
+@media (max-width: 768px) {
+  .brand-logo-img {
+    max-width: 165px !important;
+    max-height: 40px !important;
+  }
+  .hero-section {
+    padding-top: 36px !important;
+    padding-bottom: 48px !important;
+    min-height: auto !important;
+  }
+}
+
+@media (max-width: 480px) {
+  .brand-logo-img {
+    max-width: 150px !important;
+    max-height: 36px !important;
   }
 }

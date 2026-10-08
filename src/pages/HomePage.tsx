@@ -157,7 +157,7 @@ export const HomePage: React.FC<HomePageProps> = ({ onNavigate, onOpenRfq }) => 
           1. HERO (.section ivory, min-height 88vh). Two columns.
           ========================================================================= */}
       <section
-        className="section"
+        className="section hero-section"
         style={{
           minHeight: '88vh',
           display: 'flex',

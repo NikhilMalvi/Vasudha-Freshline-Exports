@@ -70,12 +70,12 @@ export const Header: React.FC<HeaderProps> = ({
 
   return (
     <header
+      className={`site-header ${isScrolled ? 'scrolled' : ''}`}
       style={{
         backgroundColor: isScrolled ? 'var(--white)' : 'var(--ivory)',
         position: 'sticky',
         top: 0,
         zIndex: 50,
-        height: isScrolled ? '68px' : '84px',
         borderBottom: isScrolled ? '1px solid var(--line)' : '1px solid transparent',
         transition: 'height 240ms cubic-bezier(0.22, 1, 0.36, 1), background-color 240ms ease, border-color 240ms ease',
         display: 'flex',
@@ -427,14 +427,24 @@ export const Header: React.FC<HeaderProps> = ({
 
       {/* Responsive media query hooks */}
       <style>{`
+        .site-header {
+          height: 84px;
+        }
+        .site-header.scrolled {
+          height: 68px;
+        }
         @media (min-width: 960px) {
           .desktop-nav { display: flex !important; }
           .desktop-actions { display: flex !important; }
           .mobile-toggle { display: none !important; }
         }
-        @media (max-width: 480px) {
-          .header-logo-desktop { display: none !important; }
-          .header-logo-mobile { display: flex !important; }
+        @media (max-width: 768px) {
+          .site-header {
+            height: 64px !important;
+          }
+          .site-header.scrolled {
+            height: 58px !important;
+          }
         }
       `}</style>
     </header>

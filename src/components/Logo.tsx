@@ -17,57 +17,48 @@ interface LogoProps {
  */
 export const Logo: React.FC<LogoProps> = ({
   variant = 'default',
-  width = 240,
+  width = 210,
   className = '',
   alt = 'Vasudha Freshline Exports LLP',
 }) => {
-  const isBelowMinimum = width < 140 || variant === 'swoosh';
-
-  const markSrc = variant === 'navy'
-    ? '/vasudha-mark-light-for-navy.svg'
-    : '/vasudha-mark-olive.svg';
-
-  const fullLogoSrc = variant === 'navy'
-    ? '/vasudha-logo-reversed-for-navy.svg'
-    : '/vasudha-logo-original.svg';
-
-  if (isBelowMinimum) {
+  if (variant === 'swoosh') {
+    const markSrc = '/vasudha-mark-olive.svg';
     return (
       <img
         src={markSrc}
         alt={`${alt} Mark`}
-        width={width}
-        height={width}
-        style={{ display: 'block', height: 'auto' }}
-        className={className}
+        width={38}
+        height={38}
+        style={{ display: 'block', width: '38px', height: '38px', objectFit: 'contain' }}
+        className={`brand-logo-swoosh ${className}`}
       />
     );
   }
+
+  const logoSrc = variant === 'navy'
+    ? '/vasudha-logo-reversed-for-navy.svg'
+    : '/vasudha-logo-original.svg';
 
   return (
     <div
       style={{
         display: 'inline-flex',
         alignItems: 'center',
-        padding: '4px 0',
       }}
-      className={className}
+      className={`brand-logo-wrapper ${className}`}
     >
-      <picture style={{ display: 'flex', alignItems: 'center' }}>
-        <source media="(max-width: 479px)" srcSet={markSrc} />
-        <img
-          src={fullLogoSrc}
-          alt={alt}
-          width={width}
-          height={Math.round(width * (180.47 / 743.11))}
-          style={{
-            display: 'block',
-            width: `${width}px`,
-            height: 'auto',
-            maxWidth: '100%',
-          }}
-        />
-      </picture>
+      <img
+        src={logoSrc}
+        alt={alt}
+        className="brand-logo-img"
+        style={{
+          display: 'block',
+          width: `${width}px`,
+          maxWidth: '100%',
+          height: 'auto',
+          objectFit: 'contain',
+        }}
+      />
     </div>
   );
 };

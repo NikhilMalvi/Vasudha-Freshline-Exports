@@ -10,13 +10,16 @@ export const DraftNoticeBar: React.FC = () => {
   return (
     <div
       style={{
-        height: '28px',
+        minHeight: '28px',
+        padding: '5px 12px',
         backgroundColor: '#ECE8DC',
         color: '#5F5D55',
-        fontSize: '12px',
+        fontSize: '11px',
+        lineHeight: '16px',
         display: 'flex',
         alignItems: 'center',
         justifyContent: 'center',
+        textAlign: 'center',
         width: '100%',
         letterSpacing: '0.02em',
         borderBottom: '1px solid #E3DFD3',

@@ -1,102 +1,263 @@
-import React from 'react';
-import { PhotoPlaceholder } from '../components/PhotoPlaceholder';
-import { IMAGES } from '../data/images';
+import React, { useState } from 'react';
+import {
+  ArrowRight,
+  FileText,
+  Package,
+  ShieldCheck,
+  CheckCircle2,
+  Ship,
+  ClipboardCheck,
+  X,
+} from 'lucide-react';
 
 interface CertificatesPageProps {
   onNavigate: (path: string) => void;
   onOpenRfq: (product?: string) => void;
 }
 
+// Sample Image Corner Tag
+const SampleImageTag: React.FC = () => (
+  <span
+    style={{
+      position: 'absolute',
+      bottom: '10px',
+      right: '10px',
+      backgroundColor: 'rgba(22, 22, 26, 0.6)',
+      color: '#FFFFFF',
+      fontSize: '10px',
+      fontWeight: 500,
+      padding: '2px 6px',
+      borderRadius: '4px',
+      letterSpacing: '0.04em',
+      pointerEvents: 'none',
+      zIndex: 3,
+      fontFamily: 'var(--font-sans)',
+    }}
+  >
+    SAMPLE IMAGE
+  </span>
+);
+
 export const CertificatesPage: React.FC<CertificatesPageProps> = ({
-  onNavigate: _onNavigate,
+  onNavigate,
   onOpenRfq,
 }) => {
-  const whatsappUrl =
-    'https://wa.me/910000000000?text=Hello%20Vasudha%20Freshline%20Exports%20LLP,%20I%20would%20like%20to%20inquire%20about%20export%20certifications.';
+  const [modalItem, setModalItem] = useState<string | null>(null);
 
-  const certCards = [
-    { name: 'APEDA Registration', desc: 'Agricultural produce export license and registration certificate.', reg: 'AAA-0000' },
-    { name: 'FSSAI License', desc: 'Food safety and standards compliance certificate for export operations.', reg: '0000000000' },
-    { name: 'IEC Registration', desc: 'Importer Exporter Code issued under foreign trade authority.', reg: '0000000000' },
-    { name: 'Certificate name', desc: 'Standard phytosanitary and export compliance inspection documentation.', reg: '0000000000' },
+  const whatsappUrl =
+    'https://wa.me/910000000000?text=Hello%20Vasudha%20Freshline%20Exports%20LLP,%20I%20would%20like%20to%20request%20certificate%20and%20document%20copies.';
+
+  // 6 Statutory Registrations
+  const registrations = [
+    {
+      name: 'IEC',
+      desc: 'Importer Exporter Code issued under foreign trade authority for global export operations.',
+      number: '0000000000',
+    },
+    {
+      name: 'APEDA registration',
+      desc: 'Agricultural and Processed Food Products Export Development Authority statutory registration.',
+      number: '0000000000',
+    },
+    {
+      name: 'FSSAI license',
+      desc: 'Food Safety and Standards Authority of India export establishment certificate.',
+      number: '0000000000',
+    },
+    {
+      name: 'GST registration',
+      desc: 'Goods and Services Tax statutory identification certificate for Indian export commerce.',
+      number: '0000000000',
+    },
+    {
+      name: 'LLP registration',
+      desc: 'Ministry of Corporate Affairs incorporation certificate for Limited Liability Partnership.',
+      number: '0000000000',
+    },
+    {
+      name: 'Certificate name',
+      desc: 'General export inspection compliance documentation and phytosanitary protocol records.',
+      number: '0000000000',
+    },
   ];
 
-  const shippingDocs = [
-    'Commercial Invoice & Packing List',
-    'Phytosanitary Certificate issued by plant quarantine authorities',
-    'Certificate of Origin issued by authorized chamber',
-    'Bill of Lading / Ocean Sea Waybill for [Sample] ports',
-    'Certificate name issued under reference 0000000000',
+  // 6 Shipment Documents with Icons
+  const documents = [
+    {
+      title: 'Commercial invoice',
+      desc: 'Itemised container weights, certified value, commercial trade terms and bank coordinates.',
+      icon: <FileText size={20} />,
+    },
+    {
+      title: 'Packing list',
+      desc: 'Carton and bag counts, tare weights, gross weights and individual pallet serials.',
+      icon: <Package size={20} />,
+    },
+    {
+      title: 'Phytosanitary certificate',
+      desc: 'Plant quarantine clearance certifying pest-free produce inspection prior to container loading.',
+      icon: <ShieldCheck size={20} />,
+    },
+    {
+      title: 'Certificate of origin',
+      desc: 'Authorised chamber of commerce documentation confirming Indian agricultural origin.',
+      icon: <CheckCircle2 size={20} />,
+    },
+    {
+      title: 'Bill of lading',
+      desc: 'Original negotiable ocean bill of lading or sea waybill issued by ocean shipping lines.',
+      icon: <Ship size={20} />,
+    },
+    {
+      title: 'Quality report on request',
+      desc: 'Batch inspection analysis and moisture/residue parameters provided upon buyer order request [Sample].',
+      icon: <ClipboardCheck size={20} />,
+    },
   ];
 
   return (
-    <main style={{ backgroundColor: '#F7F5EF', color: '#353535' }}>
-      {/* 1. HERO */}
-      <section style={{ padding: '64px 0', borderBottom: '1px solid #D9D5C8' }}>
+    <div className="certificates-page-content" style={{ width: '100%', overflowX: 'hidden' }}>
+      {/* =========================================================================
+          1. HERO (.section ivory). Two columns.
+          ========================================================================= */}
+      <section className="section" style={{ paddingTop: '56px', paddingBottom: '88px' }}>
         <div className="container">
+          {/* Breadcrumb */}
+          <nav
+            aria-label="Breadcrumb"
+            style={{
+              display: 'flex',
+              alignItems: 'center',
+              gap: '8px',
+              fontSize: '13px',
+              color: 'var(--muted)',
+              marginBottom: '24px',
+            }}
+          >
+            <button
+              type="button"
+              onClick={() => onNavigate('/')}
+              style={{
+                background: 'none',
+                border: 'none',
+                padding: 0,
+                color: 'var(--charcoal)',
+                cursor: 'pointer',
+                font: 'inherit',
+              }}
+            >
+              Home
+            </button>
+            <span>/</span>
+            <span style={{ color: 'var(--ink)', fontWeight: 500 }}>Certificates</span>
+          </nav>
+
           <div
             style={{
               display: 'grid',
-              gridTemplateColumns: 'repeat(auto-fit, minmax(min(100%, 440px), 1fr))',
-              gap: '40px',
+              gridTemplateColumns: 'repeat(auto-fit, minmax(min(100%, 460px), 1fr))',
+              gap: '48px',
               alignItems: 'center',
             }}
           >
-            <div>
-              <span className="label-caps">Compliance</span>
-              <h1 style={{ margin: '8px 0 16px 0' }}>Certificates & registrations</h1>
-              <p style={{ fontSize: '18px', lineHeight: '28px', color: '#353535', margin: '0 0 24px 0' }}>
-                Vasudha Freshline Exports LLP complies with Indian agricultural trade statutes. Full documentation is provided with every container shipment.
+            {/* Left Column */}
+            <div style={{ display: 'flex', flexDirection: 'column', gap: '20px' }}>
+              <span className="eyebrow">CERTIFICATES</span>
+
+              <h1 style={{ margin: 0 }}>Registrations and documents</h1>
+
+              <p style={{ margin: 0, fontSize: '18px', lineHeight: '30px', color: 'var(--charcoal)' }}>
+                The registrations we hold and the documents that travel with every shipment.
               </p>
-              <button type="button" className="btn-primary" onClick={() => onOpenRfq()}>
-                Request certificate copies
-              </button>
+
+              <p style={{ margin: 0, fontSize: '15px', lineHeight: '24px', color: 'var(--muted)' }}>
+                We operate within established Indian trade frameworks and ensure complete documentation before container arrival.
+              </p>
+
+              <div style={{ paddingTop: '8px' }}>
+                <button
+                  type="button"
+                  className="btn-primary"
+                  onClick={() => onOpenRfq('Certificates')}
+                >
+                  <span>Request documents</span>
+                  <ArrowRight size={16} />
+                </button>
+              </div>
             </div>
-            <div style={{ maxWidth: '400px', width: '100%', margin: '0 auto' }}>
-              <PhotoPlaceholder
-                src={IMAGES.packhouseInspection}
-                label="PHOTO NEEDED: export registration certificates"
-                aspectRatio="4:5"
-              />
+
+            {/* Right Column: Neatly stacked paper documents and a pen on a desk (fixed 4:3) */}
+            <div style={{ position: 'relative', width: '100%', maxWidth: '520px', margin: '0 auto' }}>
+              <div
+                style={{
+                  position: 'relative',
+                  width: '100%',
+                  aspectRatio: '4 / 3',
+                  borderRadius: '16px',
+                  overflow: 'hidden',
+                  backgroundColor: 'var(--bone)',
+                  boxShadow: 'var(--shadow-soft)',
+                }}
+              >
+                <img
+                  src="https://images.unsplash.com/photo-1450133064473-71024230f91b?auto=format&fit=crop&w=1000&q=80"
+                  alt="Neatly stacked paper documents and a pen on a desk with no readable text"
+                  style={{ width: '100%', height: '100%', objectFit: 'cover', display: 'block' }}
+                />
+                <SampleImageTag />
+              </div>
             </div>
           </div>
         </div>
       </section>
 
-      {/* 2. STATUTORY LICENSES */}
-      <section style={{ padding: '64px 0', backgroundColor: '#ECE8DC', borderBottom: '1px solid #D9D5C8' }}>
+      {/* =========================================================================
+          2. REGISTRATIONS (.section-white). 3 x 2 grid of equal .card items.
+          ========================================================================= */}
+      <section className="section-white">
         <div className="container">
-          <div style={{ marginBottom: '32px' }}>
-            <span className="label-caps">Statutory</span>
-            <h2 style={{ margin: '4px 0 8px 0' }}>Trade registrations</h2>
-            <p style={{ margin: 0, fontSize: '16px', color: '#5F5D55' }}>
-              Statutory trade registrations maintained for commercial produce export.
-            </p>
+          <div style={{ textAlign: 'center', maxWidth: '640px', margin: '0 auto 52px auto' }}>
+            <span className="eyebrow" style={{ justifyContent: 'center' }}>STATUTORY RECOGNITION</span>
+            <h2 style={{ margin: '10px 0 0 0' }}>Registrations</h2>
           </div>
+
           <div
+            className="grid-stretch"
             style={{
-              display: 'grid',
-              gridTemplateColumns: 'repeat(auto-fit, minmax(min(100%, 250px), 1fr))',
-              gap: '20px',
+              gridTemplateColumns: 'repeat(auto-fit, minmax(min(100%, 340px), 1fr))',
+              gap: '32px',
             }}
           >
-            {certCards.map((c) => (
-              <div
-                key={c.name}
-                style={{
-                  backgroundColor: '#F7F5EF',
-                  border: '1px solid #D9D5C8',
-                  borderRadius: 'var(--radius)',
-                  padding: '20px',
-                  display: 'flex',
-                  flexDirection: 'column',
-                  gap: '8px',
-                }}
-              >
-                <span style={{ fontSize: '18px', fontWeight: 600, color: '#16161A' }}>{c.name}</span>
-                <p style={{ fontSize: '14px', lineHeight: '20px', color: '#353535', margin: 0 }}>{c.desc}</p>
-                <div style={{ marginTop: 'auto', paddingTop: '8px' }}>
-                  <span className="confirm-tag" style={{ borderStyle: 'solid' }}>Number: {c.reg}</span>
+            {registrations.map((item, idx) => (
+              <div key={idx} className="card" style={{ gap: '16px', justifyContent: 'space-between' }}>
+                <div style={{ display: 'flex', flexDirection: 'column', gap: '16px' }}>
+                  <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between' }}>
+                    <div className="icon-circle">
+                      <FileText size={24} />
+                    </div>
+                    {/* Styled Pill with number "0000000000" */}
+                    <span className="pill" style={{ letterSpacing: '0.08em', fontVariantNumeric: 'tabular-nums' }}>
+                      {item.number}
+                    </span>
+                  </div>
+
+                  <h3 style={{ margin: 0, fontFamily: 'var(--font-serif)', fontSize: '24px' }}>
+                    {item.name}
+                  </h3>
+
+                  <p style={{ margin: 0, fontSize: '15px', color: 'var(--charcoal)', lineHeight: '24px' }}>
+                    {item.desc}
+                  </p>
+                </div>
+
+                <div style={{ paddingTop: '8px' }}>
+                  <button
+                    type="button"
+                    className="link"
+                    onClick={() => setModalItem(item.name)}
+                  >
+                    View copy &rarr;
+                  </button>
                 </div>
               </div>
             ))}
@@ -104,81 +265,320 @@ export const CertificatesPage: React.FC<CertificatesPageProps> = ({
         </div>
       </section>
 
-      {/* 3. SHIPPING DOCUMENTATION SET */}
-      <section style={{ padding: '64px 0', borderBottom: '1px solid #D9D5C8' }}>
-        <div className="container" style={{ maxWidth: '820px' }}>
-          <span className="label-caps">Documentation</span>
-          <h2 style={{ margin: '4px 0 12px 0' }}>Shipment document set</h2>
-          <p style={{ fontSize: '16px', lineHeight: '26px', color: '#353535', margin: '0 0 24px 0' }}>
-            Every container shipment is accompanied by complete commercial and regulatory clearance documents.
-          </p>
-          <div style={{ borderTop: '1px solid #D9D5C8' }}>
-            {shippingDocs.map((doc) => (
+      {/* =========================================================================
+          3. QUALITY CHECKS (.section ivory). Four .step items.
+          ========================================================================= */}
+      <section className="section">
+        <div className="container">
+          <div style={{ textAlign: 'center', maxWidth: '640px', margin: '0 auto 56px auto' }}>
+            <span className="eyebrow" style={{ justifyContent: 'center' }}>INSPECTION PROTOCOL</span>
+            <h2 style={{ margin: '10px 0 0 0' }}>How we check quality</h2>
+          </div>
+
+          <div
+            style={{
+              display: 'grid',
+              gridTemplateColumns: 'repeat(auto-fit, minmax(min(100%, 250px), 1fr))',
+              gap: '32px',
+            }}
+          >
+            {/* Step 1: Receiving */}
+            <div className="step" style={{ flexDirection: 'column', gap: '16px' }}>
+              <div className="step-number">01</div>
+              <div>
+                <h3 style={{ margin: '0 0 6px 0', fontSize: '20px', fontFamily: 'var(--font-sans)', fontWeight: 600 }}>
+                  Receiving
+                </h3>
+                <p style={{ margin: 0, fontSize: '14px', lineHeight: '22px', color: 'var(--charcoal)' }}>
+                  Fresh farm produce received at the packhouse and checked for harvest temperature and skin firmness.
+                </p>
+              </div>
+            </div>
+
+            {/* Step 2: Grading and sorting */}
+            <div className="step" style={{ flexDirection: 'column', gap: '16px' }}>
+              <div className="step-number">02</div>
+              <div>
+                <h3 style={{ margin: '0 0 6px 0', fontSize: '20px', fontFamily: 'var(--font-sans)', fontWeight: 600 }}>
+                  Grading and sorting
+                </h3>
+                <p style={{ margin: 0, fontSize: '14px', lineHeight: '22px', color: 'var(--charcoal)' }}>
+                  Produce calibrated by diameter, count per box, colour intensity and surface defects.
+                </p>
+              </div>
+            </div>
+
+            {/* Step 3: Packing and labelling */}
+            <div className="step" style={{ flexDirection: 'column', gap: '16px' }}>
+              <div className="step-number">03</div>
+              <div>
+                <h3 style={{ margin: '0 0 6px 0', fontSize: '20px', fontFamily: 'var(--font-sans)', fontWeight: 600 }}>
+                  Packing and labelling
+                </h3>
+                <p style={{ margin: 0, fontSize: '14px', lineHeight: '22px', color: 'var(--charcoal)' }}>
+                  Cartons or mesh bags packed with gross tare verification and export trace labels.
+                </p>
+              </div>
+            </div>
+
+            {/* Step 4: Pre-shipment check */}
+            <div className="step" style={{ flexDirection: 'column', gap: '16px' }}>
+              <div className="step-number">04</div>
+              <div>
+                <h3 style={{ margin: '0 0 6px 0', fontSize: '20px', fontFamily: 'var(--font-sans)', fontWeight: 600 }}>
+                  Pre-shipment check
+                </h3>
+                <p style={{ margin: 0, fontSize: '14px', lineHeight: '22px', color: 'var(--charcoal)' }}>
+                  Final reefer container pre-cooling check and customs wire seal affixing before gate-in.
+                </p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* =========================================================================
+          4. DOCUMENTS (.section-white). Two columns of six rows with icons.
+          ========================================================================= */}
+      <section className="section-white">
+        <div className="container">
+          <div style={{ textAlign: 'center', maxWidth: '640px', margin: '0 auto 52px auto' }}>
+            <span className="eyebrow" style={{ justifyContent: 'center' }}>EXPORT PAPERWORK</span>
+            <h2 style={{ margin: '10px 0 0 0' }}>Documents with every shipment</h2>
+          </div>
+
+          <div
+            style={{
+              display: 'grid',
+              gridTemplateColumns: 'repeat(auto-fit, minmax(min(100%, 460px), 1fr))',
+              gap: '24px 48px',
+            }}
+          >
+            {documents.map((doc, idx) => (
               <div
-                key={doc}
+                key={idx}
                 style={{
-                  padding: '16px 0',
-                  borderBottom: '1px solid #D9D5C8',
                   display: 'flex',
-                  alignItems: 'center',
-                  justifyContent: 'space-between',
+                  alignItems: 'flex-start',
                   gap: '16px',
+                  padding: '20px 0',
+                  borderBottom: '1px solid var(--line)',
                 }}
               >
-                <span style={{ fontSize: '15px', color: '#16161A', fontWeight: 500 }}>{doc}</span>
-                <span style={{ fontSize: '13px', color: '#687036', fontWeight: 500 }}>Standard Set</span>
+                <div
+                  className="icon-circle"
+                  style={{ width: '44px', height: '44px', color: 'var(--olive-deep)' }}
+                >
+                  {doc.icon}
+                </div>
+                <div>
+                  <h3 style={{ margin: '0 0 4px 0', fontSize: '18px', fontFamily: 'var(--font-sans)', fontWeight: 600 }}>
+                    {doc.title}
+                  </h3>
+                  <p style={{ margin: 0, fontSize: '14px', lineHeight: '22px', color: 'var(--charcoal)' }}>
+                    {doc.desc}
+                  </p>
+                </div>
               </div>
             ))}
           </div>
         </div>
       </section>
 
-      {/* 4. PRE-SHIPMENT INSPECTION */}
-      <section style={{ padding: '64px 0', backgroundColor: '#ECE8DC', borderBottom: '1px solid #D9D5C8' }}>
-        <div className="container">
+      {/* =========================================================================
+          5. REQUEST PANEL (.section-bone). Rounded white card.
+          ========================================================================= */}
+      <section className="section-bone">
+        <div className="container" style={{ maxWidth: '820px' }}>
           <div
+            className="card"
             style={{
-              display: 'grid',
-              gridTemplateColumns: 'repeat(auto-fit, minmax(min(100%, 420px), 1fr))',
-              gap: '36px',
+              padding: '48px',
+              textAlign: 'center',
+              display: 'flex',
+              flexDirection: 'column',
               alignItems: 'center',
+              gap: '16px',
             }}
           >
-            <div>
-              <span className="label-caps">Protocol</span>
-              <h2 style={{ margin: '4px 0 12px 0' }}>Pre-shipment inspection</h2>
-              <p style={{ fontSize: '16px', lineHeight: '26px', color: '#353535', margin: 0 }}>
-                Consignments undergo cargo grading and phytosanitary verification prior to container sealing. Official inspection reports accompany shipping bills.
-              </p>
+            <div className="icon-circle" style={{ width: '60px', height: '60px' }}>
+              <FileText size={26} />
             </div>
-            <div>
-              <PhotoPlaceholder
-                src={IMAGES.containerLoading}
-                label="PHOTO NEEDED: phytosanitary inspection and loading"
-                aspectRatio="3:2"
-              />
+
+            <h3 style={{ margin: 0, fontSize: '28px', fontFamily: 'var(--font-serif)' }}>
+              Need a copy of a certificate or a test report?
+            </h3>
+
+            <p style={{ margin: 0, fontSize: '16px', lineHeight: '26px', color: 'var(--charcoal)', maxWidth: '580px' }}>
+              We share registration copies, statutory certificates and sample inspection reports upon buyer enquiry.
+            </p>
+
+            <div style={{ paddingTop: '8px' }}>
+              <button
+                type="button"
+                className="btn-primary"
+                onClick={() => onOpenRfq('Certificates & Test Reports')}
+              >
+                <span>Request documents</span>
+                <ArrowRight size={16} />
+              </button>
             </div>
           </div>
         </div>
       </section>
 
-      {/* 5. CLOSING BAND (navy #10104F) */}
-      <section style={{ backgroundColor: '#10104F', color: '#F7F5EF', padding: '72px 0' }} className="dark-section">
-        <div className="container" style={{ textAlign: 'center', maxWidth: '640px' }}>
-          <h2 style={{ color: '#F7F5EF', margin: '0 0 16px 0' }}>Tell us what you need.</h2>
-          <p style={{ fontSize: '16px', lineHeight: '26px', color: '#DAD8E8', margin: '0 auto 32px auto' }}>
-            Request certification copies or discuss commercial compliance requirements.
+      {/* =========================================================================
+          6. CLOSING BAND (.band-navy).
+          ========================================================================= */}
+      <section className="band-navy" style={{ padding: '88px 0', textAlign: 'center' }}>
+        <div className="container" style={{ maxWidth: '720px' }}>
+          <h2 style={{ color: 'var(--white)', margin: '0 0 16px 0' }}>
+            Tell us what you need.
+          </h2>
+
+          <p
+            style={{
+              color: 'rgba(247, 245, 239, 0.9)',
+              margin: '0 auto 36px auto',
+              fontSize: '18px',
+              lineHeight: '28px',
+            }}
+          >
+            We supply calibrated produce with planned vessel departures and transparent export handling.
           </p>
-          <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'center', gap: '16px', flexWrap: 'wrap' }}>
-            <button type="button" className="btn-primary" onClick={() => onOpenRfq()}>
-              Request a quote
+
+          <div
+            style={{
+              display: 'flex',
+              flexWrap: 'wrap',
+              justifyContent: 'center',
+              gap: '16px',
+              alignItems: 'center',
+            }}
+          >
+            <button
+              type="button"
+              className="btn-light"
+              onClick={() => onOpenRfq()}
+            >
+              <span>Request a quote</span>
+              <ArrowRight size={16} />
             </button>
-            <a href={whatsappUrl} target="_blank" rel="noopener noreferrer" className="btn-secondary">
+
+            <a
+              href={whatsappUrl}
+              target="_blank"
+              rel="noopener noreferrer"
+              style={{
+                display: 'inline-flex',
+                alignItems: 'center',
+                justifyContent: 'center',
+                gap: '10px',
+                height: '52px',
+                padding: '0 28px',
+                backgroundColor: 'transparent',
+                color: 'var(--white)',
+                fontFamily: 'var(--font-sans)',
+                fontSize: '15px',
+                fontWeight: 500,
+                textDecoration: 'none',
+                border: '1px solid var(--white)',
+                borderRadius: 'var(--radius-btn)',
+                cursor: 'pointer',
+                transition: 'transform 200ms ease, background-color 200ms ease',
+              }}
+              onMouseEnter={(e) => {
+                e.currentTarget.style.backgroundColor = 'rgba(255, 255, 255, 0.1)';
+                e.currentTarget.style.transform = 'translateY(-2px)';
+              }}
+              onMouseLeave={(e) => {
+                e.currentTarget.style.backgroundColor = 'transparent';
+                e.currentTarget.style.transform = 'translateY(0)';
+              }}
+            >
               Chat on WhatsApp
             </a>
           </div>
         </div>
       </section>
-    </main>
+
+      {/* Document Copy Modal */}
+      {modalItem && (
+        <div
+          role="dialog"
+          aria-modal="true"
+          style={{
+            position: 'fixed',
+            inset: 0,
+            zIndex: 9999,
+            backgroundColor: 'rgba(16, 16, 79, 0.7)',
+            backdropFilter: 'blur(6px)',
+            display: 'flex',
+            alignItems: 'center',
+            justifyContent: 'center',
+            padding: '24px',
+          }}
+          onClick={() => setModalItem(null)}
+        >
+          <div
+            className="card"
+            style={{
+              maxWidth: '480px',
+              width: '100%',
+              padding: '36px',
+              textAlign: 'center',
+              position: 'relative',
+            }}
+            onClick={(e) => e.stopPropagation()}
+          >
+            <button
+              type="button"
+              onClick={() => setModalItem(null)}
+              aria-label="Close modal"
+              style={{
+                position: 'absolute',
+                top: '16px',
+                right: '16px',
+                background: 'none',
+                border: 'none',
+                cursor: 'pointer',
+                color: 'var(--muted)',
+              }}
+            >
+              <X size={20} />
+            </button>
+
+            <div className="icon-circle" style={{ margin: '0 auto 16px auto' }}>
+              <FileText size={24} />
+            </div>
+
+            <h3 style={{ margin: '0 0 8px 0', fontSize: '22px' }}>{modalItem}</h3>
+            <p style={{ margin: '0 0 20px 0', color: 'var(--charcoal)', fontSize: '15px' }}>
+              Registration copy reference: 0000000000 [Sample]. Full statutory copy available upon trade request.
+            </p>
+
+            <div style={{ display: 'flex', gap: '12px', justifyContent: 'center' }}>
+              <button
+                type="button"
+                className="btn-primary"
+                onClick={() => {
+                  setModalItem(null);
+                  onOpenRfq(modalItem);
+                }}
+              >
+                Request copy
+              </button>
+              <button
+                type="button"
+                className="btn-secondary"
+                onClick={() => setModalItem(null)}
+              >
+                Close
+              </button>
+            </div>
+          </div>
+        </div>
+      )}
+    </div>
   );
 };

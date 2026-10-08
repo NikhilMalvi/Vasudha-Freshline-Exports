@@ -155,7 +155,7 @@ export const PackagingFormats: React.FC<PackagingFormatsProps> = ({ onOpenRfq })
           className="packaging-content-grid"
         >
           {/* Left Column: Heading and Specs */}
-          <div style={{ gridColumn: 'span 8' }}>
+          <div className="packaging-col-specs" style={{ gridColumn: 'span 8' }}>
             <span className="label-caps" style={{ color: 'var(--olive)', display: 'block', marginBottom: '8px' }}>
               Suitable Commodities: {current.target}
             </span>
@@ -186,6 +186,7 @@ export const PackagingFormats: React.FC<PackagingFormatsProps> = ({ onOpenRfq })
 
           {/* Right Column: Trust callout and Quote Trigger */}
           <div
+            className="packaging-col-sidebar"
             style={{
               gridColumn: 'span 4',
               backgroundColor: 'var(--ivory)',
@@ -240,8 +241,15 @@ export const PackagingFormats: React.FC<PackagingFormatsProps> = ({ onOpenRfq })
 
       <style>{`
         @media (max-width: 900px) {
-          .packaging-content-grid div {
-            grid-column: span 12 !important;
+          .packaging-content-grid {
+            display: flex !important;
+            flex-direction: column !important;
+            padding: 20px !important;
+            gap: 24px !important;
+          }
+          .packaging-col-specs, .packaging-col-sidebar {
+            width: 100% !important;
+            max-width: 100% !important;
           }
           .spec-row-2col {
             grid-template-columns: 1fr !important;

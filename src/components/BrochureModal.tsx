@@ -54,6 +54,7 @@ export const BrochureModal: React.FC<BrochureModalProps> = ({ isOpen, onClose, o
       >
         {/* Modal Top Bar */}
         <div
+          className="brochure-modal-top-bar"
           style={{
             display: 'flex',
             alignItems: 'center',
@@ -122,6 +123,7 @@ export const BrochureModal: React.FC<BrochureModalProps> = ({ isOpen, onClose, o
         {/* Scrollable Printable Document Area */}
         <div
           id="printable-brochure"
+          className="brochure-body-wrapper"
           style={{
             padding: '36px 40px',
             overflowY: 'auto',
@@ -137,6 +139,8 @@ export const BrochureModal: React.FC<BrochureModalProps> = ({ isOpen, onClose, o
               borderBottom: '1px solid var(--line)',
               paddingBottom: '28px',
               marginBottom: '32px',
+              flexWrap: 'wrap',
+              gap: '16px',
             }}
           >
             <div>
@@ -145,7 +149,7 @@ export const BrochureModal: React.FC<BrochureModalProps> = ({ isOpen, onClose, o
                 Indian B2B Exporter of Agricultural Commodities & Fresh Produce
               </p>
             </div>
-            <div style={{ textAlign: 'right', fontSize: '12px', color: 'var(--muted)', lineHeight: '20px' }}>
+            <div style={{ textAlign: 'left', fontSize: '12px', color: 'var(--muted)', lineHeight: '20px' }}>
               <div><strong>Port of Loading:</strong> JNPT / Nhava Sheva (INNSA)</div>
               <div><strong>Primary Packhouse:</strong> Vinchur Food Park, Niphad, Nashik - 422209</div>
               <div><strong>Registration:</strong> IEC: 0324089121 · APEDA · FSSAI</div>
@@ -172,6 +176,7 @@ export const BrochureModal: React.FC<BrochureModalProps> = ({ isOpen, onClose, o
                 padding: '16px 20px',
                 border: '1px solid var(--line)',
               }}
+              className="brochure-3col-summary"
             >
               <div>
                 <span className="label-caps" style={{ display: 'block', fontSize: '11px', marginBottom: '4px' }}>
@@ -205,7 +210,8 @@ export const BrochureModal: React.FC<BrochureModalProps> = ({ isOpen, onClose, o
             <span className="label-caps" style={{ display: 'block', marginBottom: '12px' }}>
               Export Commodity Portfolio & Specifications
             </span>
-            <table className="spec-table">
+            <div style={{ width: '100%', maxWidth: '100%', overflowX: 'auto', WebkitOverflowScrolling: 'touch', border: '1px solid var(--line)', borderRadius: 'var(--radius)' }}>
+              <table className="spec-table">
               <thead>
                 <tr>
                   <th>Commodity</th>
@@ -261,6 +267,7 @@ export const BrochureModal: React.FC<BrochureModalProps> = ({ isOpen, onClose, o
               </tbody>
             </table>
           </div>
+        </div>
 
           {/* Section: Quality & Inspection Verification */}
           <div
@@ -288,6 +295,7 @@ export const BrochureModal: React.FC<BrochureModalProps> = ({ isOpen, onClose, o
               Standard Documentation Package Provided
             </span>
             <div
+              className="brochure-docs-grid"
               style={{
                 display: 'grid',
                 gridTemplateColumns: 'repeat(2, 1fr)',
@@ -354,6 +362,22 @@ export const BrochureModal: React.FC<BrochureModalProps> = ({ isOpen, onClose, o
       </div>
 
       <style>{`
+        @media (max-width: 640px) {
+          .brochure-modal-top-bar {
+            padding: 14px 16px !important;
+          }
+          .brochure-body-wrapper {
+            padding: 24px 16px !important;
+          }
+          .brochure-3col-summary {
+            grid-template-columns: 1fr !important;
+            gap: 12px !important;
+          }
+          .brochure-docs-grid {
+            grid-template-columns: 1fr !important;
+            gap: 8px !important;
+          }
+        }
         @media print {
           body * {
             visibility: hidden;

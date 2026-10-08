@@ -136,7 +136,7 @@ export const QualityPage: React.FC<QualityPageProps> = ({ onOpenRfq }) => {
             </p>
           </div>
 
-          <div style={{ maxWidth: '820px', borderLeft: '1px solid var(--line)', paddingLeft: '32px', marginLeft: '12px' }}>
+          <div style={{ maxWidth: '820px', borderLeft: '1px solid var(--line)', paddingLeft: '28px', marginLeft: '24px' }}>
             {timelineSteps.map((step, idx) => (
               <div
                 key={step.num}
@@ -150,7 +150,7 @@ export const QualityPage: React.FC<QualityPageProps> = ({ onOpenRfq }) => {
                 <div
                   style={{
                     position: 'absolute',
-                    left: '-44px',
+                    left: '-41px',
                     top: '2px',
                     width: '24px',
                     height: '24px',
@@ -200,7 +200,7 @@ export const QualityPage: React.FC<QualityPageProps> = ({ onOpenRfq }) => {
           <div
             style={{
               display: 'grid',
-              gridTemplateColumns: 'repeat(auto-fit, minmax(320px, 1fr))',
+              gridTemplateColumns: 'repeat(auto-fit, minmax(min(100%, 280px), 1fr))',
               gap: '24px',
             }}
           >
@@ -272,7 +272,7 @@ export const QualityPage: React.FC<QualityPageProps> = ({ onOpenRfq }) => {
           </div>
 
           {/* Underline Tabs */}
-          <div style={{ display: 'flex', gap: '32px', borderBottom: '1px solid var(--line)', marginBottom: '32px' }}>
+          <div style={{ display: 'flex', gap: '24px', borderBottom: '1px solid var(--line)', marginBottom: '32px', overflowX: 'auto', WebkitOverflowScrolling: 'touch', maxWidth: '100%', whiteSpace: 'nowrap' }}>
             <button
               type="button"
               onClick={() => setActiveTab('produce')}
@@ -364,7 +364,7 @@ export const QualityPage: React.FC<QualityPageProps> = ({ onOpenRfq }) => {
             </p>
           </div>
 
-          <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(320px, 1fr))', gap: '24px' }}>
+          <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(min(100%, 280px), 1fr))', gap: '24px' }}>
             {sampleDocs.map((doc, idx) => (
               <div
                 key={idx}

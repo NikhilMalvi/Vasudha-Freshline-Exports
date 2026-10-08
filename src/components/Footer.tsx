@@ -21,7 +21,7 @@ export const Footer: React.FC<FooterProps> = ({ onNavigate = () => {} }) => {
         <div
           style={{
             display: 'grid',
-            gridTemplateColumns: 'repeat(auto-fit, minmax(240px, 1fr))',
+            gridTemplateColumns: 'repeat(auto-fit, minmax(min(100%, 240px), 1fr))',
             gap: '48px',
             paddingBottom: '64px',
             borderBottom: '1px solid rgba(217, 213, 200, 0.2)',

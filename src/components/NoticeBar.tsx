@@ -17,29 +17,34 @@ export const NoticeBar: React.FC<NoticeBarProps> = ({ onNavigateToQuote }) => {
       style={{
         backgroundColor: 'var(--navy)',
         color: 'var(--ivory)',
-        height: '36px',
-        fontSize: '13px',
+        minHeight: '36px',
+        fontSize: '12px',
         display: 'flex',
         alignItems: 'center',
         justifyContent: 'center',
-        padding: '0 16px',
+        padding: '6px 36px 6px 16px',
         position: 'relative',
         zIndex: 60,
+        width: '100%',
+        maxWidth: '100%',
+        boxSizing: 'border-box',
+        overflow: 'hidden',
       }}
     >
       <div
         style={{
           display: 'flex',
           alignItems: 'center',
-          gap: '12px',
+          gap: '8px',
           overflow: 'hidden',
           textOverflow: 'ellipsis',
           whiteSpace: 'nowrap',
+          maxWidth: '100%',
         }}
       >
-        <span>
-          <strong style={{ color: 'var(--olive-light)', fontWeight: 500 }}>Shipping notice:</strong>{' '}
-          Gulf & Southeast Asia reefer space monitored weekly. Ask for current freight and loading schedules.
+        <span style={{ overflow: 'hidden', textOverflow: 'ellipsis', whiteSpace: 'nowrap' }}>
+          <strong style={{ color: 'var(--olive-light)', fontWeight: 500 }}>Notice:</strong>{' '}
+          Gulf & Southeast Asia reefer space monitored weekly.
         </span>
 
         {onNavigateToQuote && (
@@ -53,14 +58,15 @@ export const NoticeBar: React.FC<NoticeBarProps> = ({ onNavigateToQuote }) => {
               cursor: 'pointer',
               textDecoration: 'underline',
               textUnderlineOffset: '3px',
-              fontSize: '13px',
+              fontSize: '12px',
               display: 'inline-flex',
               alignItems: 'center',
               gap: '4px',
               padding: 0,
+              flexShrink: 0,
             }}
           >
-            <span>Ask for a current quote</span>
+            <span>Quote</span>
             <ArrowRight size={12} strokeWidth={1.5} />
           </button>
         )}

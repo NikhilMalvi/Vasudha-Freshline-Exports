@@ -82,7 +82,7 @@ export const RfqModal: React.FC<RfqModalProps> = ({ isOpen, onClose, initialProd
       }}
     >
       <div
-        className="animate-fade-in"
+        className="animate-fade-in rfq-modal-card"
         style={{
           backgroundColor: 'var(--ivory)',
           border: '1px solid var(--line)',
@@ -164,7 +164,7 @@ export const RfqModal: React.FC<RfqModalProps> = ({ isOpen, onClose, initialProd
 
             <form onSubmit={handleSubmit}>
               {/* Product and Quantity */}
-              <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '16px' }}>
+              <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '16px' }} className="rfq-grid-2col">
                 <div className="form-group">
                   <label className="form-label" htmlFor="rfq-product">
                     Product commodity
@@ -206,7 +206,7 @@ export const RfqModal: React.FC<RfqModalProps> = ({ isOpen, onClose, initialProd
               </div>
 
               {/* Destination Port & Country */}
-              <div style={{ display: 'grid', gridTemplateColumns: '1.2fr 1fr 0.8fr', gap: '16px' }}>
+              <div style={{ display: 'grid', gridTemplateColumns: '1.2fr 1fr 0.8fr', gap: '16px' }} className="rfq-grid-3col">
                 <div className="form-group">
                   <label className="form-label" htmlFor="rfq-port">
                     Discharge port
@@ -255,7 +255,7 @@ export const RfqModal: React.FC<RfqModalProps> = ({ isOpen, onClose, initialProd
               </div>
 
               {/* Buyer Company & Contact */}
-              <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '16px' }}>
+              <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '16px' }} className="rfq-grid-2col">
                 <div className="form-group">
                   <label className="form-label" htmlFor="rfq-company">
                     Company name
@@ -288,7 +288,7 @@ export const RfqModal: React.FC<RfqModalProps> = ({ isOpen, onClose, initialProd
               </div>
 
               {/* Email & Phone */}
-              <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '16px' }}>
+              <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '16px' }} className="rfq-grid-2col">
                 <div className="form-group">
                   <label className="form-label" htmlFor="rfq-email">
                     Corporate email
@@ -379,6 +379,17 @@ export const RfqModal: React.FC<RfqModalProps> = ({ isOpen, onClose, initialProd
           </div>
         )}
       </div>
+
+      <style>{`
+        @media (max-width: 600px) {
+          .rfq-modal-card {
+            padding: 24px 16px !important;
+          }
+          .rfq-grid-2col, .rfq-grid-3col {
+            grid-template-columns: 1fr !important;
+          }
+        }
+      `}</style>
     </div>
   );
 };

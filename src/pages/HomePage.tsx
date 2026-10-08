@@ -62,6 +62,7 @@ export const HomePage: React.FC<HomePageProps> = ({ onNavigate, onOpenRfq, onOpe
               gap: '32px',
               alignItems: 'center',
             }}
+            className="hero-grid"
           >
             {/* Left 7 Columns */}
             <div style={{ gridColumn: 'span 7' }} className="hero-text-col reveal">
@@ -148,6 +149,7 @@ export const HomePage: React.FC<HomePageProps> = ({ onNavigate, onOpenRfq, onOpe
             <div style={{ gridColumn: 'span 5', position: 'relative' }} className="hero-image-col reveal reveal-delay-1">
               {/* 1px offset frame */}
               <div
+                className="hero-offset-frame"
                 style={{
                   position: 'absolute',
                   top: '16px',
@@ -423,6 +425,7 @@ export const HomePage: React.FC<HomePageProps> = ({ onNavigate, onOpenRfq, onOpe
               gap: '48px',
               alignItems: 'start',
             }}
+            className="quality-home-grid"
           >
             {/* Left 6 cols */}
             <div style={{ gridColumn: 'span 6' }} className="quality-text-col reveal">
@@ -675,6 +678,7 @@ export const HomePage: React.FC<HomePageProps> = ({ onNavigate, onOpenRfq, onOpe
               gap: '48px',
               alignItems: 'center',
             }}
+            className="about-home-grid"
           >
             <div style={{ gridColumn: 'span 6' }} className="about-photo-col reveal">
               <PhotoPlaceholder
@@ -692,7 +696,7 @@ export const HomePage: React.FC<HomePageProps> = ({ onNavigate, onOpenRfq, onOpe
               <h2 style={{ marginBottom: '20px' }}>
                 A direct line to the people who ship your order.
               </h2>
-              <p style={{ fontSize: '16px', lineHeight: '26px', color: 'charcoal', marginBottom: '24px' }}>
+              <p style={{ fontSize: '16px', lineHeight: '26px', color: 'var(--charcoal)', marginBottom: '24px' }}>
                 Vasudha Freshline Exports LLP operates with full operational transparency. Importers speak directly with trade officers who oversee sourcing, grading calibration, and port stuffing.
               </p>
               <button
@@ -786,10 +790,21 @@ export const HomePage: React.FC<HomePageProps> = ({ onNavigate, onOpenRfq, onOpe
 
       <style>{`
         @media (max-width: 900px) {
+          .hero-grid,
+          .quality-home-grid,
+          .about-home-grid {
+            display: flex !important;
+            flex-direction: column !important;
+            gap: 32px !important;
+          }
           .hero-text-col, .hero-image-col,
           .quality-text-col, .quality-list-col,
           .about-photo-col, .about-text-col {
-            grid-column: span 12 !important;
+            width: 100% !important;
+            max-width: 100% !important;
+          }
+          .hero-offset-frame {
+            display: none !important;
           }
           .products-grid-3x2 {
             grid-template-columns: repeat(2, 1fr) !important;
@@ -807,6 +822,10 @@ export const HomePage: React.FC<HomePageProps> = ({ onNavigate, onOpenRfq, onOpe
         @media (max-width: 600px) {
           .products-grid-3x2, .trust-strip-grid {
             grid-template-columns: 1fr !important;
+          }
+          .trust-col {
+            border-right: none !important;
+            border-bottom: 1px solid var(--line) !important;
           }
         }
       `}</style>

@@ -94,6 +94,7 @@ export const ProductDetailPage: React.FC<ProductDetailPageProps> = ({ slug, onNa
               gridTemplateColumns: 'repeat(12, 1fr)',
               gap: '40px',
             }}
+            className="product-hero-grid"
           >
             {/* Left 7 Columns: Gallery */}
             <div style={{ gridColumn: 'span 7' }} className="prod-gallery-col reveal">
@@ -311,30 +312,32 @@ export const ProductDetailPage: React.FC<ProductDetailPageProps> = ({ slug, onNa
 
           {/* 12-Month Single Bar */}
           <div style={{ border: '1px solid var(--line)', backgroundColor: '#FFFFFF', borderRadius: 'var(--radius)', padding: '24px' }} className="reveal">
-            <div style={{ display: 'grid', gridTemplateColumns: 'repeat(12, 1fr)', gap: '6px', marginBottom: '16px' }}>
-              {MONTH_NAMES.map((m, idx) => {
-                const status = product.seasonalityMonths[idx];
-                const bg = status === 'peak' ? 'var(--olive-deep)' : status === 'available' ? 'var(--olive)' : 'var(--bone)';
-                return (
-                  <div key={m} style={{ textAlign: 'center' }}>
-                    <span style={{ fontSize: '12px', color: 'var(--muted)', display: 'block', marginBottom: '8px' }}>
-                      {m}
-                    </span>
-                    <div
-                      style={{
-                        height: '32px',
-                        backgroundColor: bg,
-                        border: status === 'off' ? '1px dashed var(--line)' : 'none',
-                        borderRadius: 'var(--radius)',
-                      }}
-                      title={`${m}: ${status}`}
-                    />
-                  </div>
-                );
-              })}
+            <div style={{ overflowX: 'auto', WebkitOverflowScrolling: 'touch', paddingBottom: '6px', maxWidth: '100%' }}>
+              <div style={{ display: 'grid', gridTemplateColumns: 'repeat(12, 1fr)', gap: '6px', minWidth: '460px', marginBottom: '16px' }}>
+                {MONTH_NAMES.map((m, idx) => {
+                  const status = product.seasonalityMonths[idx];
+                  const bg = status === 'peak' ? 'var(--olive-deep)' : status === 'available' ? 'var(--olive)' : 'var(--bone)';
+                  return (
+                    <div key={m} style={{ textAlign: 'center' }}>
+                      <span style={{ fontSize: '12px', color: 'var(--muted)', display: 'block', marginBottom: '8px' }}>
+                        {m}
+                      </span>
+                      <div
+                        style={{
+                          height: '32px',
+                          backgroundColor: bg,
+                          border: status === 'off' ? '1px dashed var(--line)' : 'none',
+                          borderRadius: 'var(--radius)',
+                        }}
+                        title={`${m}: ${status}`}
+                      />
+                    </div>
+                  );
+                })}
+              </div>
             </div>
 
-            <div style={{ display: 'flex', gap: '20px', fontSize: '12px', color: 'var(--charcoal)', borderTop: '1px solid var(--line)', paddingTop: '16px' }}>
+            <div style={{ display: 'flex', flexWrap: 'wrap', gap: '16px', fontSize: '12px', color: 'var(--charcoal)', borderTop: '1px solid var(--line)', paddingTop: '16px' }}>
               <div style={{ display: 'flex', alignItems: 'center', gap: '6px' }}>
                 <span style={{ width: '12px', height: '12px', backgroundColor: 'var(--olive-deep)', display: 'inline-block' }} />
                 <span>Peak harvest</span>
@@ -365,7 +368,7 @@ export const ProductDetailPage: React.FC<ProductDetailPageProps> = ({ slug, onNa
             </p>
           </div>
 
-          <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(320px, 1fr))', gap: '24px' }}>
+          <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(min(100%, 280px), 1fr))', gap: '24px' }}>
             {product.packingPhotos.map((photo, idx) => (
               <div key={idx} className={`reveal reveal-delay-${idx + 1}`} style={{ backgroundColor: 'var(--ivory)', border: '1px solid var(--line)', padding: '20px', borderRadius: 'var(--radius)' }}>
                 <div style={{ marginBottom: '16px' }}>
@@ -496,7 +499,7 @@ export const ProductDetailPage: React.FC<ProductDetailPageProps> = ({ slug, onNa
             </span>
             <h2 style={{ marginBottom: '32px' }} className="reveal">Related commodities</h2>
 
-            <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(320px, 1fr))', gap: '32px' }}>
+            <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(min(100%, 280px), 1fr))', gap: '32px' }}>
               {relatedProducts.map((rel, idx) => (
                 <div key={rel.slug} className={`reveal reveal-delay-${idx + 1}`} style={{ border: '1px solid var(--line)', padding: '24px', backgroundColor: 'var(--ivory)' }}>
                   <div style={{ marginBottom: '16px' }}>
@@ -626,9 +629,18 @@ export const ProductDetailPage: React.FC<ProductDetailPageProps> = ({ slug, onNa
 
       <style>{`
         @media (max-width: 900px) {
-          .prod-gallery-col, .prod-summary-col, .qual-docs-grid {
-            grid-column: span 12 !important;
+          .product-hero-grid {
+            display: flex !important;
+            flex-direction: column !important;
+            gap: 32px !important;
+          }
+          .prod-gallery-col, .prod-summary-col {
+            width: 100% !important;
+            max-width: 100% !important;
+          }
+          .qual-docs-grid {
             grid-template-columns: 1fr !important;
+            gap: 28px !important;
           }
         }
         @media (max-width: 768px) {

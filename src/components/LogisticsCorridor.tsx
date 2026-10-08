@@ -255,7 +255,7 @@ export const LogisticsCorridor: React.FC<LogisticsCorridorProps> = ({ onOpenRfq,
             }}
             className="route-details-grid"
           >
-            <div style={{ gridColumn: 'span 7' }}>
+            <div className="route-col-info" style={{ gridColumn: 'span 7' }}>
               <span className="label-caps" style={{ color: 'var(--olive)', display: 'block', marginBottom: '6px' }}>
                 {currentRoute.region}
               </span>
@@ -280,6 +280,7 @@ export const LogisticsCorridor: React.FC<LogisticsCorridorProps> = ({ onOpenRfq,
             </div>
 
             <div
+              className="route-col-stats"
               style={{
                 gridColumn: 'span 5',
                 backgroundColor: 'var(--bone)',
@@ -330,8 +331,15 @@ export const LogisticsCorridor: React.FC<LogisticsCorridorProps> = ({ onOpenRfq,
           .corridor-pillars {
             grid-template-columns: 1fr !important;
           }
-          .route-details-grid div {
-            grid-column: span 12 !important;
+          .route-details-grid {
+            display: flex !important;
+            flex-direction: column !important;
+            padding: 20px !important;
+            gap: 20px !important;
+          }
+          .route-col-info, .route-col-stats {
+            width: 100% !important;
+            max-width: 100% !important;
           }
         }
       `}</style>

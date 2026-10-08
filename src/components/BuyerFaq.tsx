@@ -62,7 +62,7 @@ export const BuyerFaq: React.FC<BuyerFaqProps> = ({ onOpenRfq }) => {
           className="faq-container-grid"
         >
           {/* Left Column: Heading and Contact CTA */}
-          <div style={{ gridColumn: 'span 5' }}>
+          <div className="faq-col-left" style={{ gridColumn: 'span 5' }}>
             <span className="label-caps" style={{ color: 'var(--olive)', display: 'block', marginBottom: '12px' }}>
               Importer FAQ
             </span>
@@ -104,6 +104,7 @@ export const BuyerFaq: React.FC<BuyerFaqProps> = ({ onOpenRfq }) => {
 
           {/* Right Column: FAQ Accordion items */}
           <div
+            className="faq-col-right"
             style={{
               gridColumn: 'span 7',
               borderTop: '1px solid var(--line)',
@@ -126,7 +127,7 @@ export const BuyerFaq: React.FC<BuyerFaqProps> = ({ onOpenRfq }) => {
                     aria-expanded={isOpen}
                     style={{
                       width: '100%',
-                      padding: '20px 24px',
+                      padding: '18px 16px',
                       display: 'flex',
                       alignItems: 'center',
                       justifyContent: 'space-between',
@@ -155,6 +156,7 @@ export const BuyerFaq: React.FC<BuyerFaqProps> = ({ onOpenRfq }) => {
                         display: 'flex',
                         alignItems: 'center',
                         color: 'var(--muted)',
+                        flexShrink: 0,
                       }}
                     >
                       <ChevronDown size={18} strokeWidth={1.5} />
@@ -165,10 +167,11 @@ export const BuyerFaq: React.FC<BuyerFaqProps> = ({ onOpenRfq }) => {
                     <div
                       className="animate-fade-in"
                       style={{
-                        padding: '0 24px 22px 24px',
+                        padding: '0 16px 20px 16px',
                         fontSize: '14px',
                         lineHeight: '23px',
                         color: 'var(--charcoal)',
+                        wordBreak: 'break-word',
                       }}
                     >
                       {faq.a}
@@ -183,8 +186,14 @@ export const BuyerFaq: React.FC<BuyerFaqProps> = ({ onOpenRfq }) => {
 
       <style>{`
         @media (max-width: 900px) {
-          .faq-container-grid div {
-            grid-column: span 12 !important;
+          .faq-container-grid {
+            display: flex !important;
+            flex-direction: column !important;
+            gap: 32px !important;
+          }
+          .faq-col-left, .faq-col-right {
+            width: 100% !important;
+            max-width: 100% !important;
           }
         }
       `}</style>

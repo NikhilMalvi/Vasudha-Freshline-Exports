@@ -342,7 +342,7 @@ export const ExportPage: React.FC<ExportPageProps> = ({ onOpenRfq }) => {
             </p>
           </div>
 
-          <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(320px, 1fr))', gap: '24px' }}>
+          <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(min(100%, 280px), 1fr))', gap: '24px' }}>
             <div className="reveal">
               <PhotoPlaceholder
                 label="Red mesh bags: palletized red onions ready for reefer stuffing"

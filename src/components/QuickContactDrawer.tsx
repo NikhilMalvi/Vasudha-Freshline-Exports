@@ -71,6 +71,7 @@ export const QuickContactDrawer: React.FC<QuickContactDrawerProps> = ({
       >
         {/* Drawer Header */}
         <div
+          className="quick-drawer-header"
           style={{
             padding: '24px 28px',
             borderBottom: '1px solid var(--line)',
@@ -111,7 +112,7 @@ export const QuickContactDrawer: React.FC<QuickContactDrawerProps> = ({
         </div>
 
         {/* Drawer Body */}
-        <div style={{ padding: '28px', display: 'flex', flexDirection: 'column', gap: '28px', flexGrow: 1 }}>
+        <div className="quick-drawer-body" style={{ padding: '28px', display: 'flex', flexDirection: 'column', gap: '28px', flexGrow: 1 }}>
           {/* Status badge */}
           <div
             style={{
@@ -315,6 +316,7 @@ export const QuickContactDrawer: React.FC<QuickContactDrawerProps> = ({
 
         {/* Drawer Bottom */}
         <div
+          className="quick-drawer-footer"
           style={{
             padding: '16px 28px',
             borderTop: '1px solid var(--line)',
@@ -330,6 +332,15 @@ export const QuickContactDrawer: React.FC<QuickContactDrawerProps> = ({
           <span>Container loads only</span>
         </div>
       </div>
+
+      <style>{`
+        @media (max-width: 480px) {
+          .quick-drawer-header, .quick-drawer-body, .quick-drawer-footer {
+            padding-left: 18px !important;
+            padding-right: 18px !important;
+          }
+        }
+      `}</style>
     </div>
   );
 };

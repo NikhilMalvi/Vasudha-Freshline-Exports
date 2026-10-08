@@ -165,7 +165,7 @@ export const AboutPage: React.FC<AboutPageProps> = ({ onOpenRfq }) => {
             <h2>On-site operations</h2>
           </div>
 
-          <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(320px, 1fr))', gap: '24px' }}>
+          <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(min(100%, 280px), 1fr))', gap: '24px' }}>
             <div className="reveal">
               <PhotoPlaceholder
                 label="Produce grading table: manual inspection and sizing check at packhouse"
@@ -207,7 +207,7 @@ export const AboutPage: React.FC<AboutPageProps> = ({ onOpenRfq }) => {
             </p>
           </div>
 
-          <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(260px, 1fr))', gap: '24px' }}>
+          <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(min(100%, 260px), 1fr))', gap: '24px' }}>
             <div className="reveal" style={{ border: '1px solid var(--line)', padding: '24px', backgroundColor: 'var(--bone)' }}>
               <div style={{ marginBottom: '16px' }}>
                 <PhotoPlaceholder

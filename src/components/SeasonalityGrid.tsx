@@ -11,7 +11,7 @@ export const SeasonalityGrid: React.FC<SeasonalityGridProps> = ({ onSelectProduc
   const products = Object.values(PRODUCTS_DATA);
 
   return (
-    <div style={{ width: '100%', overflowX: 'auto', border: '1px solid var(--line)', backgroundColor: '#FFFFFF', borderRadius: 'var(--radius)' }}>
+    <div style={{ width: '100%', maxWidth: '100%', overflowX: 'auto', WebkitOverflowScrolling: 'touch', border: '1px solid var(--line)', backgroundColor: '#FFFFFF', borderRadius: 'var(--radius)' }}>
       <table
         className="spec-table"
         style={{ width: '100%', minWidth: '760px', borderCollapse: 'collapse' }}

@@ -231,6 +231,7 @@ export const QuotePage: React.FC<QuotePageProps> = ({ initialProduct = '', onNav
               gap: '44px',
               alignItems: 'start',
             }}
+            className="quote-layout-grid"
           >
             {/* LEFT 7 COLUMNS: THE COMPREHENSIVE RFQ TERMINAL */}
             <div style={{ gridColumn: 'span 7' }} className="quote-form-col reveal">
@@ -252,7 +253,7 @@ export const QuotePage: React.FC<QuotePageProps> = ({ initialProduct = '', onNav
                   <label className="form-label" style={{ marginBottom: '10px' }}>
                     1. Select Commodity / Commodities (Multi-Select)
                   </label>
-                  <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '8px' }}>
+                  <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '8px' }} className="quote-subgrid-2col">
                     {productOptions.map((prod) => {
                       const isSelected = selectedProducts.includes(prod.name);
                       return (
@@ -300,7 +301,7 @@ export const QuotePage: React.FC<QuotePageProps> = ({ initialProduct = '', onNav
                 </div>
 
                 {/* 2. Volume & Container Configuration */}
-                <div style={{ display: 'grid', gridTemplateColumns: '1fr 2fr', gap: '16px', marginBottom: '24px' }}>
+                <div style={{ display: 'grid', gridTemplateColumns: '1fr 2fr', gap: '16px', marginBottom: '24px' }} className="quote-subgrid-volume">
                   <div className="form-group">
                     <label className="form-label" htmlFor="quote-quantity">
                       2. Quantity (Containers)
@@ -337,7 +338,7 @@ export const QuotePage: React.FC<QuotePageProps> = ({ initialProduct = '', onNav
                 </div>
 
                 {/* 3. Destination Port & IncoTerm */}
-                <div style={{ display: 'grid', gridTemplateColumns: '2fr 1fr', gap: '16px', marginBottom: '16px' }}>
+                <div style={{ display: 'grid', gridTemplateColumns: '2fr 1fr', gap: '16px', marginBottom: '16px' }} className="quote-subgrid-port">
                   <div className="form-group">
                     <label className="form-label" htmlFor="quote-port">
                       3. Destination Discharge Port
@@ -406,7 +407,7 @@ export const QuotePage: React.FC<QuotePageProps> = ({ initialProduct = '', onNav
                     4. Importer Corporate Credentials
                   </span>
 
-                  <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '16px', marginBottom: '16px' }}>
+                  <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '16px', marginBottom: '16px' }} className="quote-subgrid-2col">
                     <div className="form-group">
                       <label className="form-label" htmlFor="quote-company">
                         Company Name
@@ -438,7 +439,7 @@ export const QuotePage: React.FC<QuotePageProps> = ({ initialProduct = '', onNav
                     </div>
                   </div>
 
-                  <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '16px' }}>
+                  <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '16px' }} className="quote-subgrid-2col">
                     <div className="form-group">
                       <label className="form-label" htmlFor="quote-email">
                         Commercial Email (For Proforma Delivery)
@@ -495,7 +496,7 @@ export const QuotePage: React.FC<QuotePageProps> = ({ initialProduct = '', onNav
                     5. Specifications & Packaging Preference
                   </span>
 
-                  <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '16px', marginBottom: '16px' }}>
+                  <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '16px', marginBottom: '16px' }} className="quote-subgrid-2col">
                     <div className="form-group">
                       <label className="form-label" htmlFor="quote-pack">
                         Packaging Format
@@ -786,9 +787,22 @@ export const QuotePage: React.FC<QuotePageProps> = ({ initialProduct = '', onNav
       </div>
 
       <style>{`
-        @media (max-width: 900px) {
+        @media (max-width: 960px) {
+          .quote-layout-grid {
+            display: flex !important;
+            flex-direction: column !important;
+            gap: 40px !important;
+          }
           .quote-form-col, .quote-contact-col {
-            grid-column: span 12 !important;
+            width: 100% !important;
+            max-width: 100% !important;
+          }
+        }
+        @media (max-width: 640px) {
+          .quote-subgrid-2col,
+          .quote-subgrid-volume,
+          .quote-subgrid-port {
+            grid-template-columns: 1fr !important;
           }
         }
       `}</style>

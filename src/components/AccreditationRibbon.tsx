@@ -192,6 +192,11 @@ export const AccreditationRibbon: React.FC<AccreditationRibbonProps> = ({ onNavi
             grid-template-columns: repeat(2, 1fr) !important;
           }
         }
+        @media (max-width: 480px) {
+          .accreditation-grid {
+            grid-template-columns: 1fr !important;
+          }
+        }
       `}</style>
     </section>
   );

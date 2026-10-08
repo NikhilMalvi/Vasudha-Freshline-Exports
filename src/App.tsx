@@ -1,11 +1,11 @@
 import { useState, useEffect } from 'react';
 import { DraftNoticeBar } from './components/DraftNoticeBar';
-import { NoticeBar } from './components/NoticeBar';
 import { Header } from './components/Header';
 import { Footer } from './components/Footer';
 import { WhatsAppFloating } from './components/WhatsAppFloating';
 import { ScrollToTop } from './components/ScrollToTop';
 import { RfqModal } from './components/RfqModal';
+import { BrochureModal } from './components/BrochureModal';
 
 // Pages
 import { HomePage } from './pages/HomePage';
@@ -26,6 +26,7 @@ export function App() {
 
   const [currentPath, setCurrentPath] = useState<string>(getInitialPath);
   const [isRfqModalOpen, setIsRfqModalOpen] = useState<boolean>(false);
+  const [isBrochureOpen, setIsBrochureOpen] = useState<boolean>(false);
   const [selectedProduct, setSelectedProduct] = useState<string>('Pomegranates');
 
   useEffect(() => {
@@ -52,12 +53,17 @@ export function App() {
     setIsRfqModalOpen(true);
   };
 
+  const handleOpenBrochure = () => {
+    setIsBrochureOpen(true);
+  };
+
   const renderCurrentPage = () => {
     if (currentPath === '/' || currentPath === '') {
       return (
         <HomePage
           onNavigate={navigateTo}
           onOpenRfq={handleOpenRfq}
+          onOpenBrochure={handleOpenBrochure}
         />
       );
     }
@@ -73,6 +79,7 @@ export function App() {
           slug={slug}
           onNavigate={navigateTo}
           onOpenRfq={handleOpenRfq}
+          onOpenBrochure={handleOpenBrochure}
         />
       );
     }
@@ -87,6 +94,11 @@ export function App() {
 
     if (currentPath === '/gallery') {
       return <GalleryPage onNavigate={navigateTo} onOpenRfq={handleOpenRfq} />;
+    }
+
+    if (currentPath === '/blog') {
+      // Blog / Market Insights route
+      return <AboutPage onNavigate={navigateTo} onOpenRfq={handleOpenRfq} />;
     }
 
     if (currentPath === '/export') {
@@ -109,37 +121,42 @@ export function App() {
   };
 
   return (
-    <div className="site-wrapper" style={{ minHeight: '100vh', display: 'flex', flexDirection: 'column', backgroundColor: '#F7F5EF' }}>
-      {/* 0. Presentation Draft Bar (Removable) */}
+    <div className="site-wrapper" style={{ minHeight: '100vh', display: 'flex', flexDirection: 'column', backgroundColor: 'var(--ivory)' }}>
+      {/* 0. Presentation Draft Bar (Strictly ONLY this bar at the top) */}
       <DraftNoticeBar />
 
-      {/* 1. Global Notice Bar */}
-      <NoticeBar onNavigateToQuote={() => navigateTo('/contact')} />
-
-      {/* 2. Global Sticky Header */}
+      {/* 1. Global Sticky Header */}
       <Header
         currentPath={currentPath}
         onNavigate={navigateTo}
         onOpenRfq={handleOpenRfq}
+        onOpenBrochure={handleOpenBrochure}
       />
 
-      {/* 3. Main Page Content */}
+      {/* 2. Main Page Content */}
       <div style={{ flexGrow: 1 }}>
         {renderCurrentPage()}
       </div>
 
-      {/* 4. Global Dark Navy Footer */}
+      {/* 3. Global Dark Navy Footer */}
       <Footer onNavigate={navigateTo} />
 
-      {/* 5. Floating Interactive Actions */}
+      {/* 4. Floating Interactive Actions */}
       <ScrollToTop />
       <WhatsAppFloating />
 
-      {/* 6. Quick RFQ Modal */}
+      {/* 5. Quick RFQ Modal */}
       <RfqModal
         isOpen={isRfqModalOpen}
         onClose={() => setIsRfqModalOpen(false)}
         initialProduct={selectedProduct}
+      />
+
+      {/* 6. Company Brochure Modal */}
+      <BrochureModal
+        isOpen={isBrochureOpen}
+        onClose={() => setIsBrochureOpen(false)}
+        onOpenRfq={handleOpenRfq}
       />
     </div>
   );

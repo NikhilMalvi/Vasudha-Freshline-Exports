@@ -1,13 +1,13 @@
 import React, { useState } from 'react';
 
-const WhatsAppLineIcon: React.FC<{ size?: number; color?: string }> = ({ size = 24, color = '#F7F5EF' }) => (
+const WhatsAppLineIcon: React.FC<{ size?: number; color?: string }> = ({ size = 26, color = '#FFFFFF' }) => (
   <svg
     width={size}
     height={size}
     viewBox="0 0 24 24"
     fill="none"
     stroke={color}
-    strokeWidth="1.6"
+    strokeWidth="1.8"
     strokeLinecap="round"
     strokeLinejoin="round"
   >
@@ -16,6 +16,10 @@ const WhatsAppLineIcon: React.FC<{ size?: number; color?: string }> = ({ size = 
   </svg>
 );
 
+/**
+ * WhatsApp Floating Button
+ * Rule 17: navy circle 56px, white icon, tooltip "Chat on WhatsApp" bottom-right.
+ */
 export const WhatsAppFloating: React.FC = () => {
   const [showTooltip, setShowTooltip] = useState(false);
 
@@ -39,16 +43,17 @@ export const WhatsAppFloating: React.FC = () => {
           role="tooltip"
           style={{
             position: 'absolute',
-            bottom: '62px',
+            bottom: '66px',
             right: '0',
-            backgroundColor: '#10104F',
-            color: '#F7F5EF',
-            padding: '6px 12px',
-            borderRadius: 'var(--radius)',
-            fontSize: '12px',
+            backgroundColor: 'var(--navy)',
+            color: 'var(--ivory)',
+            padding: '6px 14px',
+            borderRadius: 'var(--radius-btn)',
+            fontSize: '13px',
+            fontWeight: 500,
             whiteSpace: 'nowrap',
             pointerEvents: 'none',
-            border: '1px solid rgba(247, 245, 239, 0.20)',
+            boxShadow: 'var(--shadow-soft)',
           }}
         >
           Chat on WhatsApp
@@ -60,25 +65,32 @@ export const WhatsAppFloating: React.FC = () => {
         target="_blank"
         rel="noopener noreferrer"
         aria-label="Chat on WhatsApp"
-        onMouseEnter={() => setShowTooltip(true)}
-        onMouseLeave={() => setShowTooltip(false)}
+        onMouseEnter={(e) => {
+          setShowTooltip(true);
+          e.currentTarget.style.transform = 'scale(1.05)';
+        }}
+        onMouseLeave={(e) => {
+          setShowTooltip(false);
+          e.currentTarget.style.transform = 'scale(1)';
+        }}
         onFocus={() => setShowTooltip(true)}
         onBlur={() => setShowTooltip(false)}
         style={{
-          width: '52px',
-          height: '52px',
+          width: '56px',
+          height: '56px',
           borderRadius: '50%',
-          backgroundColor: '#10104F',
+          backgroundColor: 'var(--navy)',
           display: 'flex',
           alignItems: 'center',
           justifyContent: 'center',
           cursor: 'pointer',
-          border: '1px solid #10104F',
-          transition: 'all 180ms ease',
+          border: '1px solid var(--navy)',
+          boxShadow: 'var(--shadow-floating)',
+          transition: 'transform 200ms ease, background-color 200ms ease',
           textDecoration: 'none',
         }}
       >
-        <WhatsAppLineIcon size={24} color="#F7F5EF" />
+        <WhatsAppLineIcon size={26} color="#FFFFFF" />
       </a>
     </div>
   );

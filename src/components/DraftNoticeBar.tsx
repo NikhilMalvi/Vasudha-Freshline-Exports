@@ -1,9 +1,10 @@
 import React from 'react';
 
 /**
- * Draft Notice Bar for Client Presentation
- * Requirement: 28px high, background #ECE8DC, text 12px #5F5D55, centered.
- * Easily removable by commenting out or deleting this component.
+ * Design Draft Top Bar
+ * Rule: 28px high, background #ECE8DC, text 12px --muted (#5F5D55), centered.
+ * Text: "DESIGN DRAFT: sample text, figures and images for presentation."
+ * No other notice bar on the page.
  */
 export const DraftNoticeBar: React.FC = () => {
   return (
@@ -18,12 +19,13 @@ export const DraftNoticeBar: React.FC = () => {
         justifyContent: 'center',
         width: '100%',
         letterSpacing: '0.02em',
-        borderBottom: '1px solid #D9D5C8',
+        borderBottom: '1px solid #E3DFD3',
         position: 'relative',
         zIndex: 100,
+        fontFamily: 'var(--font-sans)',
       }}
     >
-      DESIGN DRAFT: sample text and images for presentation.
+      DESIGN DRAFT: sample text, figures and images for presentation.
     </div>
   );
 };

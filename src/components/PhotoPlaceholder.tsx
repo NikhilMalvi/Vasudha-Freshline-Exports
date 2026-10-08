@@ -15,7 +15,7 @@ export const PhotoPlaceholder: React.FC<PhotoPlaceholderProps> = ({
   aspectRatio = '3:2',
   src,
   className = '',
-  showCaption = true,
+  showCaption: _showCaption = true,
 }) => {
   const [imageError, setImageError] = useState(false);
 
@@ -30,10 +30,13 @@ export const PhotoPlaceholder: React.FC<PhotoPlaceholderProps> = ({
   if (src && !imageError) {
     return (
       <div
-        className={`img-zoom-wrapper ${aspectClass} ${className}`}
+        className={`${aspectClass} ${className}`}
         style={{
-          border: '1px solid var(--line)',
+          border: '1px solid rgba(247, 245, 239, 0.20)',
+          borderRadius: 'var(--radius)',
           position: 'relative',
+          overflow: 'hidden',
+          backgroundColor: '#1A1A66',
         }}
       >
         <img
@@ -48,51 +51,21 @@ export const PhotoPlaceholder: React.FC<PhotoPlaceholderProps> = ({
             objectFit: 'cover',
           }}
         />
-
-        {showCaption && (
-          <div
-            style={{
-              position: 'absolute',
-              bottom: 0,
-              left: 0,
-              right: 0,
-              padding: '12px 14px',
-              background: 'linear-gradient(to top, rgba(18, 22, 19, 0.9) 0%, rgba(18, 22, 19, 0.4) 60%, transparent 100%)',
-              color: 'var(--ivory)',
-              display: 'flex',
-              flexDirection: 'column',
-              gap: '2px',
-              pointerEvents: 'none',
-            }}
-          >
-            <span
-              style={{
-                fontFamily: 'var(--font-sans)',
-                fontSize: '11px',
-                fontWeight: 500,
-                color: 'var(--ivory)',
-                whiteSpace: 'nowrap',
-                overflow: 'hidden',
-                textOverflow: 'ellipsis',
-              }}
-            >
-              {label}
-            </span>
-            <span style={{ fontSize: '10px', color: 'rgba(247, 245, 239, 0.75)' }}>
-              {subtext || `Natural lighting · Calibrated export lot · ${aspectRatio}`}
-            </span>
-          </div>
-        )}
       </div>
     );
   }
 
-  // Brand Rule: "Where no photo is supplied, use a grey placeholder block labelled with the photo that belongs there."
+  // Placeholder block: #1A1A66, 1px hairline border, #F7F5EF text, #B9B8D6 caption
   return (
     <div
       className={`photo-placeholder ${aspectClass} ${className}`}
       role="img"
       aria-label={label}
+      style={{
+        backgroundColor: '#1A1A66',
+        border: '1px solid rgba(247, 245, 239, 0.20)',
+        borderRadius: 'var(--radius)',
+      }}
     >
       <div style={{ maxWidth: '320px', margin: 'auto' }}>
         <p
@@ -101,7 +74,7 @@ export const PhotoPlaceholder: React.FC<PhotoPlaceholderProps> = ({
             fontSize: '13px',
             lineHeight: '18px',
             fontWeight: 500,
-            color: 'var(--charcoal)',
+            color: '#F7F5EF',
             marginBottom: '4px',
           }}
         >
@@ -112,7 +85,7 @@ export const PhotoPlaceholder: React.FC<PhotoPlaceholderProps> = ({
             fontFamily: 'var(--font-sans)',
             fontSize: '11px',
             lineHeight: '15px',
-            color: 'var(--muted)',
+            color: '#B9B8D6',
             display: 'block',
           }}
         >

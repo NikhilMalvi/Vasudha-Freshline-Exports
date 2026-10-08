@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { X, ArrowRight } from 'lucide-react';
+import { X } from 'lucide-react';
 
 interface NoticeBarProps {
   onNavigateToQuote?: () => void;
@@ -13,16 +13,17 @@ export const NoticeBar: React.FC<NoticeBarProps> = ({ onNavigateToQuote }) => {
   return (
     <div
       role="region"
-      aria-label="Current shipping advisory"
+      aria-label="Shipping notice"
       style={{
-        backgroundColor: 'var(--navy)',
-        color: 'var(--ivory)',
-        minHeight: '36px',
+        backgroundColor: '#0A0A38',
+        color: '#DAD8E8',
+        borderBottom: '1px solid rgba(247, 245, 239, 0.20)',
+        minHeight: '38px',
         fontSize: '12px',
         display: 'flex',
         alignItems: 'center',
         justifyContent: 'center',
-        padding: '6px 36px 6px 16px',
+        padding: '8px 36px 8px 16px',
         position: 'relative',
         zIndex: 60,
         width: '100%',
@@ -43,33 +44,31 @@ export const NoticeBar: React.FC<NoticeBarProps> = ({ onNavigateToQuote }) => {
         }}
       >
         <span style={{ overflow: 'hidden', textOverflow: 'ellipsis', whiteSpace: 'nowrap' }}>
-          <strong style={{ color: 'var(--olive-light)', fontWeight: 500 }}>Notice:</strong>{' '}
-          Gulf & Southeast Asia reefer space monitored weekly.
+          <strong style={{ color: '#F7F5EF', fontWeight: 500 }}>Shipping notice:</strong>{' '}
+          [CONFIRM: short note about freight or schedules].{' '}
+          {onNavigateToQuote ? (
+            <button
+              type="button"
+              onClick={onNavigateToQuote}
+              style={{
+                background: 'none',
+                border: 'none',
+                color: '#A9B070',
+                cursor: 'pointer',
+                textDecoration: 'underline',
+                textUnderlineOffset: '3px',
+                fontSize: '12px',
+                fontFamily: 'inherit',
+                padding: 0,
+                display: 'inline',
+              }}
+            >
+              Ask for a current quote.
+            </button>
+          ) : (
+            <span style={{ color: '#A9B070' }}>Ask for a current quote.</span>
+          )}
         </span>
-
-        {onNavigateToQuote && (
-          <button
-            type="button"
-            onClick={onNavigateToQuote}
-            style={{
-              background: 'none',
-              border: 'none',
-              color: 'var(--olive-light)',
-              cursor: 'pointer',
-              textDecoration: 'underline',
-              textUnderlineOffset: '3px',
-              fontSize: '12px',
-              display: 'inline-flex',
-              alignItems: 'center',
-              gap: '4px',
-              padding: 0,
-              flexShrink: 0,
-            }}
-          >
-            <span>Quote</span>
-            <ArrowRight size={12} strokeWidth={1.5} />
-          </button>
-        )}
       </div>
 
       <button
@@ -81,7 +80,7 @@ export const NoticeBar: React.FC<NoticeBarProps> = ({ onNavigateToQuote }) => {
           right: '12px',
           background: 'none',
           border: 'none',
-          color: 'rgba(247, 245, 239, 0.7)',
+          color: '#B9B8D6',
           cursor: 'pointer',
           display: 'flex',
           alignItems: 'center',

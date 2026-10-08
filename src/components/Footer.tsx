@@ -8,12 +8,12 @@ interface FooterProps {
 export const Footer: React.FC<FooterProps> = ({ onNavigate = () => {} }) => {
   return (
     <footer
-      className="dark-section"
       style={{
-        backgroundColor: 'var(--navy)',
-        color: 'var(--ivory)',
-        paddingTop: '120px',
+        backgroundColor: '#0A0A38',
+        color: '#DAD8E8',
+        paddingTop: '96px',
         paddingBottom: '48px',
+        borderTop: '1px solid rgba(247, 245, 239, 0.20)',
       }}
     >
       <div className="container">
@@ -24,7 +24,7 @@ export const Footer: React.FC<FooterProps> = ({ onNavigate = () => {} }) => {
             gridTemplateColumns: 'repeat(auto-fit, minmax(min(100%, 240px), 1fr))',
             gap: '48px',
             paddingBottom: '64px',
-            borderBottom: '1px solid rgba(217, 213, 200, 0.2)',
+            borderBottom: '1px solid rgba(247, 245, 239, 0.20)',
           }}
         >
           {/* Column 1: Brand & Identity */}
@@ -34,17 +34,17 @@ export const Footer: React.FC<FooterProps> = ({ onNavigate = () => {} }) => {
               style={{
                 fontSize: '15px',
                 lineHeight: '24px',
-                color: 'var(--bone)',
+                color: '#DAD8E8',
                 maxWidth: '320px',
               }}
             >
               Indian agricultural exports. Container loads to importers and wholesalers. Documented from farm to port.
             </p>
             <div style={{ display: 'flex', flexDirection: 'column', gap: '4px', fontSize: '13px' }}>
-              <span style={{ color: 'var(--olive-light)', textTransform: 'uppercase', letterSpacing: '0.12em', fontSize: '11px', fontWeight: 500 }}>
+              <span style={{ color: '#A9B070', textTransform: 'uppercase', letterSpacing: '0.12em', fontSize: '11px', fontWeight: 500 }}>
                 Constitution
               </span>
-              <span style={{ color: 'var(--ivory)' }}>
+              <span style={{ color: '#F7F5EF' }}>
                 Vasudha Freshline Exports LLP · Registered in India
               </span>
             </div>
@@ -58,7 +58,7 @@ export const Footer: React.FC<FooterProps> = ({ onNavigate = () => {} }) => {
                 fontSize: '12px',
                 letterSpacing: '0.12em',
                 textTransform: 'uppercase',
-                color: 'var(--olive-light)',
+                color: '#A9B070',
                 fontWeight: 500,
               }}
             >
@@ -71,7 +71,7 @@ export const Footer: React.FC<FooterProps> = ({ onNavigate = () => {} }) => {
                 flexDirection: 'column',
                 gap: '10px',
                 fontSize: '14px',
-                color: 'var(--bone)',
+                color: '#DAD8E8',
               }}
             >
               <li>
@@ -80,7 +80,7 @@ export const Footer: React.FC<FooterProps> = ({ onNavigate = () => {} }) => {
                   onClick={() => onNavigate('/products/pomegranates')}
                   style={{ background: 'none', border: 'none', color: 'inherit', cursor: 'pointer', padding: 0, font: 'inherit', textAlign: 'left' }}
                 >
-                  Pomegranates (Bhagwa)
+                  Pomegranates
                 </button>
               </li>
               <li>
@@ -89,7 +89,7 @@ export const Footer: React.FC<FooterProps> = ({ onNavigate = () => {} }) => {
                   onClick={() => onNavigate('/products/onions')}
                   style={{ background: 'none', border: 'none', color: 'inherit', cursor: 'pointer', padding: 0, font: 'inherit', textAlign: 'left' }}
                 >
-                  Fresh Red & White Onions
+                  Fresh Onions
                 </button>
               </li>
               <li>
@@ -98,7 +98,7 @@ export const Footer: React.FC<FooterProps> = ({ onNavigate = () => {} }) => {
                   onClick={() => onNavigate('/products/rice')}
                   style={{ background: 'none', border: 'none', color: 'inherit', cursor: 'pointer', padding: 0, font: 'inherit', textAlign: 'left' }}
                 >
-                  Rice (Basmati & Non-Basmati)
+                  Rice
                 </button>
               </li>
               <li>
@@ -107,7 +107,7 @@ export const Footer: React.FC<FooterProps> = ({ onNavigate = () => {} }) => {
                   onClick={() => onNavigate('/products/spices')}
                   style={{ background: 'none', border: 'none', color: 'inherit', cursor: 'pointer', padding: 0, font: 'inherit', textAlign: 'left' }}
                 >
-                  Indian Export Spices
+                  Spices
                 </button>
               </li>
               <li>
@@ -116,7 +116,7 @@ export const Footer: React.FC<FooterProps> = ({ onNavigate = () => {} }) => {
                   onClick={() => onNavigate('/products/fresh-fruits')}
                   style={{ background: 'none', border: 'none', color: 'inherit', cursor: 'pointer', padding: 0, font: 'inherit', textAlign: 'left' }}
                 >
-                  Fresh Seasonal Fruits
+                  Fresh Fruits
                 </button>
               </li>
               <li>
@@ -125,7 +125,7 @@ export const Footer: React.FC<FooterProps> = ({ onNavigate = () => {} }) => {
                   onClick={() => onNavigate('/products/fresh-vegetables')}
                   style={{ background: 'none', border: 'none', color: 'inherit', cursor: 'pointer', padding: 0, font: 'inherit', textAlign: 'left' }}
                 >
-                  Cold-Chain Fresh Vegetables
+                  Fresh Vegetables
                 </button>
               </li>
             </ul>
@@ -139,11 +139,11 @@ export const Footer: React.FC<FooterProps> = ({ onNavigate = () => {} }) => {
                 fontSize: '12px',
                 letterSpacing: '0.12em',
                 textTransform: 'uppercase',
-                color: 'var(--olive-light)',
+                color: '#A9B070',
                 fontWeight: 500,
               }}
             >
-              Company & Standards
+              Export Company
             </span>
             <ul
               style={{
@@ -152,7 +152,7 @@ export const Footer: React.FC<FooterProps> = ({ onNavigate = () => {} }) => {
                 flexDirection: 'column',
                 gap: '10px',
                 fontSize: '14px',
-                color: 'var(--bone)',
+                color: '#DAD8E8',
               }}
             >
               <li>
@@ -161,7 +161,16 @@ export const Footer: React.FC<FooterProps> = ({ onNavigate = () => {} }) => {
                   onClick={() => onNavigate('/about')}
                   style={{ background: 'none', border: 'none', color: 'inherit', cursor: 'pointer', padding: 0, font: 'inherit' }}
                 >
-                  About Us
+                  About Vasudha Freshline
+                </button>
+              </li>
+              <li>
+                <button
+                  type="button"
+                  onClick={() => onNavigate('/products')}
+                  style={{ background: 'none', border: 'none', color: 'inherit', cursor: 'pointer', padding: 0, font: 'inherit' }}
+                >
+                  Commodities & Specifications
                 </button>
               </li>
               <li>
@@ -194,7 +203,7 @@ export const Footer: React.FC<FooterProps> = ({ onNavigate = () => {} }) => {
             </ul>
           </div>
 
-          {/* Column 4: Contact & Operations */}
+          {/* Column 4: Contact & Operations (Placeholders as per Rule F) */}
           <div style={{ display: 'flex', flexDirection: 'column', gap: '14px' }}>
             <span
               style={{
@@ -202,50 +211,48 @@ export const Footer: React.FC<FooterProps> = ({ onNavigate = () => {} }) => {
                 fontSize: '12px',
                 letterSpacing: '0.12em',
                 textTransform: 'uppercase',
-                color: 'var(--olive-light)',
+                color: '#A9B070',
                 fontWeight: 500,
               }}
             >
               Trade Desk & Office
             </span>
-            <div style={{ fontSize: '13px', lineHeight: '20px', color: 'var(--bone)', display: 'flex', flexDirection: 'column', gap: '10px' }}>
+            <div style={{ fontSize: '13px', lineHeight: '20px', color: '#DAD8E8', display: 'flex', flexDirection: 'column', gap: '10px' }}>
               <div>
-                <strong style={{ display: 'block', color: 'var(--ivory)', fontSize: '12px', textTransform: 'uppercase' }}>
+                <strong style={{ display: 'block', color: '#F7F5EF', fontSize: '12px', textTransform: 'uppercase' }}>
                   Packhouse & Processing:
                 </strong>
-                Plot No. 42-B, Agro Zone, Vinchur Food Park, Niphad, Nashik - 422209, Maharashtra
+                [CONFIRM: packhouse address]
               </div>
               <div>
-                <strong style={{ display: 'block', color: 'var(--ivory)', fontSize: '12px', textTransform: 'uppercase' }}>
-                  JNPT Port Dispatch Desk:
+                <strong style={{ display: 'block', color: '#F7F5EF', fontSize: '12px', textTransform: 'uppercase' }}>
+                  Port Dispatch Desk:
                 </strong>
-                Suite 408, Platinum Techno Park, Vashi, Navi Mumbai - 400705
+                [CONFIRM: port desk address]
               </div>
               <div>
-                <strong style={{ display: 'block', color: 'var(--ivory)', fontSize: '12px', textTransform: 'uppercase' }}>
+                <strong style={{ display: 'block', color: '#F7F5EF', fontSize: '12px', textTransform: 'uppercase' }}>
                   Commercial Phone:
                 </strong>
-                <a href="tel:+919823045812" style={{ color: 'inherit', textDecoration: 'none' }}>+91 98230 45812</a> · <a href="tel:+912532578941" style={{ color: 'inherit', textDecoration: 'none' }}>+91 253 257 8941</a>
+                [CONFIRM: phone number]
               </div>
               <div>
-                <strong style={{ display: 'block', color: 'var(--ivory)', fontSize: '12px', textTransform: 'uppercase' }}>
+                <strong style={{ display: 'block', color: '#F7F5EF', fontSize: '12px', textTransform: 'uppercase' }}>
                   Trade Desk WhatsApp:
                 </strong>
-                <a href="https://wa.me/919823045812" target="_blank" rel="noopener noreferrer" style={{ color: 'var(--olive-light)', textDecoration: 'none' }}>
-                  +91 98230 45812 (Direct Trade)
-                </a>
+                [CONFIRM: WhatsApp number]
               </div>
               <div>
-                <strong style={{ display: 'block', color: 'var(--ivory)', fontSize: '12px', textTransform: 'uppercase' }}>
+                <strong style={{ display: 'block', color: '#F7F5EF', fontSize: '12px', textTransform: 'uppercase' }}>
                   Export Sales Email:
                 </strong>
-                <a href="mailto:trade@vasudhafreshline.com" style={{ color: 'var(--olive-light)', textDecoration: 'none' }}>trade@vasudhafreshline.com</a>
+                [CONFIRM: email address]
               </div>
               <div>
-                <strong style={{ display: 'block', color: 'var(--ivory)', fontSize: '12px', textTransform: 'uppercase' }}>
+                <strong style={{ display: 'block', color: '#F7F5EF', fontSize: '12px', textTransform: 'uppercase' }}>
                   Operating Desk Hours:
                 </strong>
-                Mon–Sat, 09:00 – 19:00 IST (GMT+5:30)
+                [CONFIRM: operating hours]
               </div>
             </div>
           </div>
@@ -259,24 +266,24 @@ export const Footer: React.FC<FooterProps> = ({ onNavigate = () => {} }) => {
             flexDirection: 'column',
             gap: '12px',
             fontSize: '12px',
-            color: 'rgba(236, 232, 220, 0.7)',
+            color: '#B9B8D6',
           }}
         >
           <div style={{ display: 'flex', flexWrap: 'wrap', gap: '14px', alignItems: 'center' }}>
-            <span style={{ color: 'var(--ivory)', fontWeight: 500 }}>Vasudha Freshline Exports LLP</span>
+            <span style={{ color: '#F7F5EF', fontWeight: 500 }}>Vasudha Freshline Exports LLP</span>
             <span>·</span>
-            <span>LLPIN: <strong style={{ color: 'var(--ivory)' }}>AAZ-8492</strong></span>
+            <span>LLPIN: <strong style={{ color: '#F7F5EF' }}>[CONFIRM: LLPIN]</strong></span>
             <span>·</span>
-            <span>IEC: <strong style={{ color: 'var(--ivory)' }}>0324089121</strong></span>
+            <span>IEC: <strong style={{ color: '#F7F5EF' }}>[CONFIRM: IEC]</strong></span>
             <span>·</span>
-            <span>GSTIN: <strong style={{ color: 'var(--ivory)' }}>27AAHFV5921Q1ZP</strong></span>
+            <span>GSTIN: <strong style={{ color: '#F7F5EF' }}>[CONFIRM: GSTIN]</strong></span>
             <span>·</span>
-            <span>APEDA RCMC: <strong style={{ color: 'var(--ivory)' }}>MUM/2024/09182</strong></span>
+            <span>APEDA: <strong style={{ color: '#F7F5EF' }}>[CONFIRM: APEDA]</strong></span>
             <span>·</span>
-            <span>FSSAI: <strong style={{ color: 'var(--ivory)' }}>11524998000341</strong></span>
+            <span>FSSAI: <strong style={{ color: '#F7F5EF' }}>[CONFIRM: FSSAI]</strong></span>
           </div>
 
-          <div style={{ display: 'flex', flexWrap: 'wrap', justifyContent: 'space-between', alignItems: 'center', gap: '16px', borderTop: '1px solid rgba(247, 245, 239, 0.1)', paddingTop: '16px' }}>
+          <div style={{ display: 'flex', flexWrap: 'wrap', justifyContent: 'space-between', alignItems: 'center', gap: '16px', borderTop: '1px solid rgba(247, 245, 239, 0.20)', paddingTop: '16px' }}>
             <div>
               © 2026 Vasudha Freshline Exports LLP. All rights reserved. Sells exclusively by container to importers and wholesalers.
             </div>
@@ -284,14 +291,14 @@ export const Footer: React.FC<FooterProps> = ({ onNavigate = () => {} }) => {
               <button
                 type="button"
                 onClick={() => onNavigate('/privacy')}
-                style={{ background: 'none', border: 'none', color: 'inherit', cursor: 'pointer', textDecoration: 'underline', textUnderlineOffset: '3px', font: 'inherit' }}
+                style={{ background: 'none', border: 'none', color: '#DAD8E8', cursor: 'pointer', textDecoration: 'underline', textUnderlineOffset: '3px', font: 'inherit' }}
               >
                 Privacy Policy
               </button>
               <button
                 type="button"
                 onClick={() => onNavigate('/terms')}
-                style={{ background: 'none', border: 'none', color: 'inherit', cursor: 'pointer', textDecoration: 'underline', textUnderlineOffset: '3px', font: 'inherit' }}
+                style={{ background: 'none', border: 'none', color: '#DAD8E8', cursor: 'pointer', textDecoration: 'underline', textUnderlineOffset: '3px', font: 'inherit' }}
               >
                 Terms of Trade
               </button>

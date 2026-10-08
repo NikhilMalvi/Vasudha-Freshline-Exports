@@ -16,22 +16,18 @@ interface LogoProps {
  * - Minimum width 140px; below that use the swoosh mark only
  */
 export const Logo: React.FC<LogoProps> = ({
-  variant = 'default',
+  variant = 'navy',
   width = 240,
   className = '',
   alt = 'Vasudha Freshline Exports LLP'
 }) => {
-  // If width is below 140px, brand rule mandates using the swoosh mark only
+  // If width is below 140px or swoosh specified, use swoosh mark
   const isBelowMinimum = width < 140 || variant === 'swoosh';
 
   if (isBelowMinimum) {
-    const swooshSrc = variant === 'navy' 
-      ? '/logos/logo-swoosh-light.svg' 
-      : '/logos/logo-swoosh-olive.svg';
-
     return (
       <img
-        src={swooshSrc}
+        src="/vasudha-mark-light-for-navy.svg"
         alt={`${alt} Mark`}
         width={width}
         height={width}
@@ -41,10 +37,10 @@ export const Logo: React.FC<LogoProps> = ({
     );
   }
 
-  // Full Wordmark + Swoosh
-  const logoSrc = variant === 'navy'
-    ? '/logos/logo-navy-bg.svg'
-    : '/logos/logo-original.svg';
+  // Full Wordmark + Swoosh reversed for navy background
+  const logoSrc = variant === 'default'
+    ? '/logos/logo-original.svg'
+    : '/vasudha-logo-reversed-for-navy.svg';
 
   // Calculate clear space roughly proportional to letter V height (~16% of height)
   return (

@@ -1,7 +1,7 @@
 import React, { useState, useEffect, useRef } from 'react';
 import { Logo } from './Logo';
 import { Button } from './Button';
-import { Menu, X, ChevronDown, Download, PhoneCall, FileText } from 'lucide-react';
+import { Menu, X, ChevronDown } from 'lucide-react';
 
 interface HeaderProps {
   currentPath: string;
@@ -15,8 +15,6 @@ export const Header: React.FC<HeaderProps> = ({
   currentPath,
   onNavigate,
   onOpenRfq,
-  onOpenBrochure,
-  onOpenQuickContact,
 }) => {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
   const [productsDropdownOpen, setProductsDropdownOpen] = useState(false);
@@ -67,11 +65,11 @@ export const Header: React.FC<HeaderProps> = ({
   return (
     <header
       style={{
-        backgroundColor: 'var(--ivory)',
+        backgroundColor: '#10104F',
         position: 'sticky',
         top: 0,
         zIndex: 50,
-        borderBottom: isScrolled ? '1px solid var(--line)' : '1px solid transparent',
+        borderBottom: isScrolled ? '1px solid rgba(247, 245, 239, 0.20)' : '1px solid transparent',
         transition: 'border-color 200ms ease',
       }}
     >
@@ -84,7 +82,7 @@ export const Header: React.FC<HeaderProps> = ({
           height: '80px',
         }}
       >
-        {/* Left: Brand Logo */}
+        {/* Left: Brand Logo (Reversed for navy) */}
         <div style={{ display: 'flex', alignItems: 'center' }}>
           <button
             type="button"
@@ -101,18 +99,18 @@ export const Header: React.FC<HeaderProps> = ({
           >
             {/* Desktop and Tablet full logo */}
             <div className="header-logo-desktop">
-              <Logo variant="default" width={220} />
+              <Logo variant="navy" width={220} />
             </div>
-            {/* Below 480px: swoosh-only mark plus the word Vasudha */}
+            {/* Below 480px: swoosh-only mark (vasudha-mark-light-for-navy.svg) plus the word Vasudha */}
             <div className="header-logo-mobile" style={{ display: 'none', alignItems: 'center', gap: '8px' }}>
-              <Logo variant="swoosh" width={36} />
+              <Logo variant="swoosh" width={34} />
               <span
                 style={{
                   fontFamily: 'var(--font-sans)',
                   fontSize: '18px',
                   fontWeight: 600,
                   letterSpacing: '0.08em',
-                  color: 'var(--navy)',
+                  color: '#F7F5EF',
                   textTransform: 'uppercase',
                 }}
               >
@@ -149,21 +147,21 @@ export const Header: React.FC<HeaderProps> = ({
                       fontFamily: 'var(--font-sans)',
                       fontSize: '15px',
                       fontWeight: 500,
-                      color: active ? 'var(--ink)' : 'var(--charcoal)',
+                      color: active ? '#F7F5EF' : '#DAD8E8',
                       display: 'inline-flex',
                       alignItems: 'center',
                       gap: '4px',
-                      borderBottom: active ? '1px solid var(--olive)' : '1px solid transparent',
+                      borderBottom: active ? '1px solid #A9B070' : '1px solid transparent',
                       paddingBottom: '4px',
                       textUnderlineOffset: '6px',
                     }}
                     aria-expanded={productsDropdownOpen}
                   >
                     <span>{link.label}</span>
-                    <ChevronDown size={14} strokeWidth={1.5} color="var(--muted)" />
+                    <ChevronDown size={14} strokeWidth={1.5} color="#B9B8D6" />
                   </button>
 
-                  {/* Products 2-Column Dropdown (no images, 1px dividers) */}
+                  {/* Products 2-Column Dropdown */}
                   {productsDropdownOpen && (
                     <div
                       className="animate-fade-in"
@@ -172,15 +170,15 @@ export const Header: React.FC<HeaderProps> = ({
                         top: '100%',
                         left: '-20px',
                         width: '520px',
-                        backgroundColor: 'var(--ivory)',
-                        border: '1px solid var(--line)',
+                        backgroundColor: '#0A0A38',
+                        border: '1px solid rgba(247, 245, 239, 0.20)',
                         borderRadius: 'var(--radius)',
                         padding: '16px',
-                        boxShadow: '0 8px 24px rgba(0, 0, 0, 0.08)',
                         display: 'grid',
                         gridTemplateColumns: '1fr 1fr',
                         gap: '12px',
                         zIndex: 60,
+                        boxShadow: 'none',
                       }}
                     >
                       {productNavItems.map((prod, idx) => (
@@ -198,19 +196,19 @@ export const Header: React.FC<HeaderProps> = ({
                             padding: '10px 12px',
                             cursor: 'pointer',
                             borderRadius: 'var(--radius)',
-                            borderBottom: idx < 4 ? '1px solid var(--line)' : 'none',
+                            borderBottom: idx < 4 ? '1px solid rgba(247, 245, 239, 0.15)' : 'none',
                           }}
                           onMouseEnter={(e) => {
-                            e.currentTarget.style.backgroundColor = 'var(--bone)';
+                            e.currentTarget.style.backgroundColor = '#1A1A66';
                           }}
                           onMouseLeave={(e) => {
                             e.currentTarget.style.backgroundColor = 'transparent';
                           }}
                         >
-                          <span style={{ display: 'block', fontSize: '14px', fontWeight: 500, color: 'var(--ink)' }}>
+                          <span style={{ display: 'block', fontSize: '14px', fontWeight: 500, color: '#F7F5EF' }}>
                             {prod.name}
                           </span>
-                          <span style={{ display: 'block', fontSize: '12px', color: 'var(--muted)', marginTop: '2px' }}>
+                          <span style={{ display: 'block', fontSize: '12px', color: '#B9B8D6', marginTop: '2px' }}>
                             {prod.sub}
                           </span>
                         </button>
@@ -219,7 +217,7 @@ export const Header: React.FC<HeaderProps> = ({
                       <div
                         style={{
                           gridColumn: '1 / -1',
-                          borderTop: '1px solid var(--line)',
+                          borderTop: '1px solid rgba(247, 245, 239, 0.20)',
                           paddingTop: '10px',
                           display: 'flex',
                           justifyContent: 'space-between',
@@ -235,7 +233,7 @@ export const Header: React.FC<HeaderProps> = ({
                           style={{
                             background: 'none',
                             border: 'none',
-                            color: 'var(--olive)',
+                            color: '#A9B070',
                             fontSize: '13px',
                             fontWeight: 500,
                             cursor: 'pointer',
@@ -245,7 +243,7 @@ export const Header: React.FC<HeaderProps> = ({
                         >
                           View complete products index
                         </button>
-                        <span style={{ fontSize: '12px', color: 'var(--muted)' }}>
+                        <span style={{ fontSize: '12px', color: '#B9B8D6' }}>
                           Sells exclusively by container
                         </span>
                       </div>
@@ -268,8 +266,8 @@ export const Header: React.FC<HeaderProps> = ({
                   fontFamily: 'var(--font-sans)',
                   fontSize: '15px',
                   fontWeight: 500,
-                  color: active ? 'var(--ink)' : 'var(--charcoal)',
-                  borderBottom: active ? '1px solid var(--olive)' : '1px solid transparent',
+                  color: active ? '#F7F5EF' : '#DAD8E8',
+                  borderBottom: active ? '1px solid #A9B070' : '1px solid transparent',
                   paddingBottom: '4px',
                   textUnderlineOffset: '6px',
                   transition: 'color 150ms ease',
@@ -281,91 +279,8 @@ export const Header: React.FC<HeaderProps> = ({
           })}
         </nav>
 
-        {/* Far Right: Brochure Button, Trade Desk Button, RFQ CTA & Mobile Trigger */}
+        {/* Far Right: Request a Quote CTA & Mobile Trigger (Removed Brochure & Phone buttons) */}
         <div style={{ display: 'flex', alignItems: 'center', gap: '10px' }}>
-          {/* Download Brochure CTA (like Horizon Exim) */}
-          {onOpenBrochure && (
-            <button
-              type="button"
-              onClick={onOpenBrochure}
-              className="brochure-header-btn"
-              title="Download Export Profile & Specifications PDF"
-              style={{
-                height: '44px',
-                padding: '0 16px',
-                backgroundColor: 'transparent',
-                border: '1px solid var(--line)',
-                borderRadius: 'var(--radius)',
-                color: 'var(--navy)',
-                fontFamily: 'var(--font-sans)',
-                fontSize: '13px',
-                fontWeight: 500,
-                cursor: 'pointer',
-                display: 'inline-flex',
-                alignItems: 'center',
-                gap: '6px',
-                transition: 'all 180ms ease',
-              }}
-              onMouseEnter={(e) => {
-                e.currentTarget.style.backgroundColor = 'var(--bone)';
-                e.currentTarget.style.borderColor = 'var(--navy)';
-              }}
-              onMouseLeave={(e) => {
-                e.currentTarget.style.backgroundColor = 'transparent';
-                e.currentTarget.style.borderColor = 'var(--line)';
-              }}
-            >
-              <Download size={14} strokeWidth={1.5} color="var(--olive)" />
-              <span>Brochure</span>
-            </button>
-          )}
-
-          {/* Quick Trade Desk Drawer Trigger (like Horizon Exim extra-wrap) */}
-          {onOpenQuickContact && (
-            <button
-              type="button"
-              onClick={onOpenQuickContact}
-              className="trade-desk-header-btn"
-              title="Open Trade Desk Contact Panel"
-              style={{
-                height: '44px',
-                width: '44px',
-                backgroundColor: 'transparent',
-                border: '1px solid var(--line)',
-                borderRadius: 'var(--radius)',
-                color: 'var(--navy)',
-                display: 'inline-flex',
-                alignItems: 'center',
-                justifyContent: 'center',
-                cursor: 'pointer',
-                transition: 'all 180ms ease',
-                position: 'relative',
-              }}
-              onMouseEnter={(e) => {
-                e.currentTarget.style.backgroundColor = 'var(--bone)';
-                e.currentTarget.style.borderColor = 'var(--navy)';
-              }}
-              onMouseLeave={(e) => {
-                e.currentTarget.style.backgroundColor = 'transparent';
-                e.currentTarget.style.borderColor = 'var(--line)';
-              }}
-              aria-label="Open trade desk direct contact"
-            >
-              <PhoneCall size={16} strokeWidth={1.5} color="var(--olive)" />
-              <span
-                style={{
-                  position: 'absolute',
-                  top: '8px',
-                  right: '8px',
-                  width: '6px',
-                  height: '6px',
-                  borderRadius: '50%',
-                  backgroundColor: 'var(--olive)',
-                }}
-              />
-            </button>
-          )}
-
           {/* Request a Quote Button */}
           <Button
             variant="primary"
@@ -388,9 +303,9 @@ export const Header: React.FC<HeaderProps> = ({
               width: '44px',
               height: '44px',
               background: 'transparent',
-              border: '1px solid var(--line)',
+              border: '1px solid rgba(247, 245, 239, 0.20)',
               borderRadius: 'var(--radius)',
-              color: 'var(--ink)',
+              color: '#F7F5EF',
               cursor: 'pointer',
             }}
           >
@@ -399,7 +314,7 @@ export const Header: React.FC<HeaderProps> = ({
         </div>
       </div>
 
-      {/* Full-Screen Mobile Drawer (Ivory panel with 28px Newsreader links) */}
+      {/* Full-Screen Mobile Drawer (Navy panel with 26px Newsreader links) */}
       {mobileMenuOpen && (
         <div
           role="dialog"
@@ -408,7 +323,7 @@ export const Header: React.FC<HeaderProps> = ({
           style={{
             position: 'fixed',
             inset: 0,
-            backgroundColor: 'var(--ivory)',
+            backgroundColor: '#10104F',
             zIndex: 100,
             display: 'flex',
             flexDirection: 'column',
@@ -418,7 +333,7 @@ export const Header: React.FC<HeaderProps> = ({
         >
           {/* Mobile Drawer Top */}
           <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: '28px' }}>
-            <Logo variant="default" width={180} />
+            <Logo variant="navy" width={180} />
             <button
               type="button"
               onClick={() => setMobileMenuOpen(false)}
@@ -426,9 +341,10 @@ export const Header: React.FC<HeaderProps> = ({
               style={{
                 width: '44px',
                 height: '44px',
-                border: '1px solid var(--line)',
+                border: '1px solid rgba(247, 245, 239, 0.20)',
                 borderRadius: 'var(--radius)',
                 backgroundColor: 'transparent',
+                color: '#F7F5EF',
                 display: 'flex',
                 alignItems: 'center',
                 justifyContent: 'center',
@@ -439,7 +355,7 @@ export const Header: React.FC<HeaderProps> = ({
             </button>
           </div>
 
-          {/* Large Newsreader Links (28px) */}
+          {/* Large Newsreader Links */}
           <div style={{ display: 'flex', flexDirection: 'column', gap: '16px', flexGrow: 1 }}>
             {[
               { label: 'Home', path: '/' },
@@ -463,10 +379,10 @@ export const Header: React.FC<HeaderProps> = ({
                   fontFamily: 'var(--font-serif)',
                   fontSize: '26px',
                   fontWeight: 300,
-                  color: 'var(--ink)',
+                  color: '#F7F5EF',
                   cursor: 'pointer',
                   padding: '8px 0',
-                  borderBottom: '1px solid var(--line)',
+                  borderBottom: '1px solid rgba(247, 245, 239, 0.20)',
                 }}
               >
                 {item.label}
@@ -475,7 +391,7 @@ export const Header: React.FC<HeaderProps> = ({
           </div>
 
           {/* Drawer Bottom Actions */}
-          <div style={{ display: 'flex', flexDirection: 'column', gap: '10px', paddingTop: '20px' }}>
+          <div style={{ display: 'flex', flexDirection: 'column', gap: '12px', paddingTop: '20px' }}>
             <Button
               variant="primary"
               onClick={() => {
@@ -487,21 +403,6 @@ export const Header: React.FC<HeaderProps> = ({
               Request a quote
             </Button>
 
-            {onOpenBrochure && (
-              <button
-                type="button"
-                onClick={() => {
-                  setMobileMenuOpen(false);
-                  onOpenBrochure();
-                }}
-                className="btn-secondary"
-                style={{ width: '100%', justifyContent: 'center' }}
-              >
-                <FileText size={16} strokeWidth={1.5} />
-                <span>Download Export Profile (PDF)</span>
-              </button>
-            )}
-
             <a
               href="https://wa.me/?text=Hello%20Vasudha%20Freshline%20Exports%20LLP,%20I%20am%20inquiring%20about%20container%20exports."
               target="_blank"
@@ -509,7 +410,7 @@ export const Header: React.FC<HeaderProps> = ({
               className="btn-secondary"
               style={{ width: '100%', textAlign: 'center', textDecoration: 'none', justifyContent: 'center' }}
             >
-              Chat on WhatsApp Trade Desk
+              Chat on WhatsApp
             </a>
           </div>
         </div>

@@ -1,15 +1,7 @@
 import React, { useEffect } from 'react';
 import { Button } from '../components/Button';
-import { PhotoPlaceholder } from '../components/PhotoPlaceholder';
 import { SeasonalityGrid } from '../components/SeasonalityGrid';
-import { DocumentaryVideoPlayer } from '../components/DocumentaryVideoPlayer';
-import { AccreditationRibbon } from '../components/AccreditationRibbon';
-import { LogisticsCorridor } from '../components/LogisticsCorridor';
-import { PackagingFormats } from '../components/PackagingFormats';
-import { BuyerFaq } from '../components/BuyerFaq';
-import { PRODUCTS_DATA } from '../data/commodities';
-import { IMAGES, VIDEOS } from '../data/images';
-import { MessageSquare, ArrowRight, ShieldCheck } from 'lucide-react';
+import { ArrowRight } from 'lucide-react';
 
 interface HomePageProps {
   onNavigate: (path: string) => void;
@@ -17,9 +9,7 @@ interface HomePageProps {
   onOpenBrochure?: () => void;
 }
 
-export const HomePage: React.FC<HomePageProps> = ({ onNavigate, onOpenRfq, onOpenBrochure }) => {
-  const products = Object.values(PRODUCTS_DATA);
-
+export const HomePage: React.FC<HomePageProps> = ({ onNavigate, onOpenRfq }) => {
   // Initialize scroll reveal observer
   useEffect(() => {
     const observer = new IntersectionObserver(
@@ -39,20 +29,74 @@ export const HomePage: React.FC<HomePageProps> = ({ onNavigate, onOpenRfq, onOpe
     return () => observer.disconnect();
   }, []);
 
+  const exportCommodities = [
+    {
+      name: 'Pomegranates',
+      category: 'Fresh Fruits',
+      slug: 'pomegranates',
+      specs: '[CONFIRM: varieties, counts and packing]',
+      season: '[CONFIRM: season]',
+      placeholderLabel: 'PHOTO: Pomegranates [CONFIRM]',
+    },
+    {
+      name: 'Fresh Onions',
+      category: 'Fresh Vegetables',
+      slug: 'onions',
+      specs: '[CONFIRM: varieties, size calibration and packing]',
+      season: 'October to April (peak December to February)',
+      placeholderLabel: 'PHOTO: Red onions in leno mesh bags [CONFIRM]',
+    },
+    {
+      name: 'Rice',
+      category: 'Grains & Cereals',
+      slug: 'rice',
+      specs: '[CONFIRM: varieties, milling and packing]',
+      season: '[CONFIRM: season]',
+      placeholderLabel: 'PHOTO: Milled rice [CONFIRM]',
+    },
+    {
+      name: 'Spices',
+      category: 'Spices',
+      slug: 'spices',
+      specs: '[CONFIRM: varieties, grades and packing]',
+      season: '[CONFIRM: season]',
+      placeholderLabel: 'PHOTO: Spices [CONFIRM]',
+    },
+    {
+      name: 'Fresh Fruits',
+      category: 'Fresh Fruits',
+      slug: 'fresh-fruits',
+      specs: '[CONFIRM: fruit varieties and packing]',
+      season: '[CONFIRM: season]',
+      placeholderLabel: 'PHOTO: Fresh fruits [CONFIRM]',
+    },
+    {
+      name: 'Fresh Vegetables',
+      category: 'Fresh Vegetables',
+      slug: 'fresh-vegetables',
+      specs: '[CONFIRM: vegetable varieties and packing]',
+      season: '[CONFIRM: season]',
+      placeholderLabel: 'PHOTO: Fresh vegetables [CONFIRM]',
+    },
+  ];
+
   return (
-    <main>
+    <main style={{ backgroundColor: '#10104F', color: '#DAD8E8' }}>
       {/* ===================================================================
-          1. HERO SECTION (85vh on desktop, auto on mobile)
-          Left: text + buttons. Right: 4:5 image with 1px offset frame.
+          1. HERO SECTION
+          Slightly shorter so all four trust-strip columns are visible in the
+          first screen at 1440px.
+          Left: text + buttons. Right: 4:5 placeholder block (#1A1A66, 1px line
+          frame offset 16px behind it) with label under it.
           =================================================================== */}
       <section
         style={{
-          backgroundColor: 'var(--ivory)',
-          paddingTop: '64px',
-          paddingBottom: '88px',
+          backgroundColor: '#10104F',
+          paddingTop: '36px',
+          paddingBottom: '36px',
+          borderBottom: '1px solid rgba(247, 245, 239, 0.20)',
           overflow: 'hidden',
         }}
-        className="hairline-b"
       >
         <div className="container">
           <div
@@ -66,27 +110,27 @@ export const HomePage: React.FC<HomePageProps> = ({ onNavigate, onOpenRfq, onOpe
           >
             {/* Left 7 Columns */}
             <div style={{ gridColumn: 'span 7' }} className="hero-text-col reveal">
-              <div style={{ display: 'flex', alignItems: 'center', gap: '8px', marginBottom: '16px', flexWrap: 'wrap' }}>
-                <span className="label-caps" style={{ color: 'var(--olive)', fontWeight: 600 }}>
+              <div style={{ display: 'flex', alignItems: 'center', gap: '8px', marginBottom: '14px', flexWrap: 'wrap' }}>
+                <span className="label-caps" style={{ color: '#A9B070', fontWeight: 600 }}>
                   Indian Agricultural Exports
                 </span>
-                <span style={{ color: 'var(--line)' }}>•</span>
-                <span style={{ fontSize: '12px', color: 'var(--muted)', letterSpacing: '0.04em' }}>
+                <span style={{ color: 'rgba(247, 245, 239, 0.20)' }}>•</span>
+                <span style={{ fontSize: '12px', color: '#B9B8D6', letterSpacing: '0.04em' }}>
                   Container Loads to Global Wholesalers & Importers
                 </span>
               </div>
 
-              <h1 style={{ marginBottom: '24px' }}>
+              <h1 style={{ color: '#F7F5EF', marginBottom: '18px', fontSize: '56px', lineHeight: '64px' }}>
                 Indian produce, exported with precision.
               </h1>
 
               <p
                 style={{
-                  fontSize: '19px',
-                  lineHeight: '30px',
-                  color: 'var(--charcoal)',
-                  maxWidth: '580px',
-                  marginBottom: '36px',
+                  fontSize: '18px',
+                  lineHeight: '28px',
+                  color: '#DAD8E8',
+                  maxWidth: '560px',
+                  marginBottom: '28px',
                 }}
               >
                 Pomegranates, onions, rice, spices, fruits and vegetables, sourced, graded, packed and shipped by container to importers and wholesalers.
@@ -97,57 +141,51 @@ export const HomePage: React.FC<HomePageProps> = ({ onNavigate, onOpenRfq, onOpe
                   display: 'flex',
                   alignItems: 'center',
                   flexWrap: 'wrap',
-                  gap: '16px',
+                  gap: '20px',
                 }}
               >
-                <Button variant="primary" onClick={() => onOpenRfq()} icon>
+                <Button variant="primary" onClick={() => onOpenRfq()}>
                   Request a quote
                 </Button>
 
                 <button
                   type="button"
                   onClick={() => onNavigate('/products')}
-                  className="btn-secondary"
-                  style={{ display: 'inline-flex', alignItems: 'center', gap: '6px' }}
+                  className="text-link"
+                  style={{
+                    background: 'none',
+                    border: 'none',
+                    padding: 0,
+                    font: 'inherit',
+                    fontSize: '15px',
+                  }}
                 >
                   <span>View products</span>
                   <ArrowRight size={14} strokeWidth={1.5} />
                 </button>
-
-                {onOpenBrochure && (
-                  <button
-                    type="button"
-                    onClick={onOpenBrochure}
-                    style={{
-                      background: 'none',
-                      border: 'none',
-                      color: 'var(--navy)',
-                      fontSize: '14px',
-                      fontWeight: 500,
-                      cursor: 'pointer',
-                      textDecoration: 'underline',
-                      textUnderlineOffset: '4px',
-                      padding: '8px 4px',
-                    }}
-                  >
-                    Download Profile (PDF)
-                  </button>
-                )}
               </div>
 
-              <div style={{ marginTop: '28px', display: 'flex', alignItems: 'center', gap: '16px', fontSize: '13px', color: 'var(--muted)', flexWrap: 'wrap' }}>
-                <div style={{ display: 'flex', alignItems: 'center', gap: '6px' }}>
-                  <ShieldCheck size={16} strokeWidth={1.5} color="var(--olive)" />
-                  <span>APEDA & Phytosanitary inspection</span>
-                </div>
-                <span>•</span>
-                <span>JNPT Nhava Sheva departures (~4.5h from Nashik)</span>
+              {/* Two small lines under buttons as required */}
+              <div
+                style={{
+                  marginTop: '24px',
+                  display: 'flex',
+                  alignItems: 'center',
+                  gap: '12px',
+                  fontSize: '13px',
+                  color: '#B9B8D6',
+                  flexWrap: 'wrap',
+                }}
+              >
+                <span>[CONFIRM: registrations, e.g. IEC · APEDA · FSSAI]</span>
+                <span style={{ color: 'rgba(247, 245, 239, 0.30)' }}>•</span>
+                <span>[CONFIRM: port of loading]</span>
               </div>
             </div>
 
-            {/* Right 5 Columns: 4:5 image with 1px line offset frame (no shadow) */}
+            {/* Right 5 Columns: 4:5 placeholder block (#1A1A66, 1px line frame offset 16px behind it) */}
             <div style={{ gridColumn: 'span 5', position: 'relative' }} className="hero-image-col reveal reveal-delay-1">
-              {/* 1px offset frame */}
+              {/* 1px offset line frame behind */}
               <div
                 className="hero-offset-frame"
                 style={{
@@ -155,21 +193,41 @@ export const HomePage: React.FC<HomePageProps> = ({ onNavigate, onOpenRfq, onOpe
                   top: '16px',
                   left: '16px',
                   right: '-16px',
-                  bottom: '-16px',
-                  border: '1px solid var(--line)',
+                  bottom: '16px',
+                  border: '1px solid rgba(247, 245, 239, 0.20)',
                   borderRadius: 'var(--radius)',
                   pointerEvents: 'none',
+                  zIndex: 1,
                 }}
               />
 
-              {/* Main 4:5 Image */}
+              {/* Main 4:5 Placeholder Block */}
               <div style={{ position: 'relative', zIndex: 2 }}>
-                <PhotoPlaceholder
-                  label="HERO: Bhagwa pomegranate cut open on natural stone"
-                  subtext="Documentary photograph · Natural studio lighting · Neutral surface · 4:5"
-                  aspectRatio="4:5"
-                  src={IMAGES.heroPomegranate}
+                <div
+                  style={{
+                    width: '100%',
+                    aspectRatio: '4 / 5',
+                    backgroundColor: '#1A1A66',
+                    border: '1px solid rgba(247, 245, 239, 0.20)',
+                    borderRadius: 'var(--radius)',
+                    display: 'flex',
+                    alignItems: 'center',
+                    justifyContent: 'center',
+                  }}
                 />
+                {/* Label under it, not on top */}
+                <p
+                  style={{
+                    marginTop: '10px',
+                    fontSize: '12px',
+                    color: '#B9B8D6',
+                    letterSpacing: '0.04em',
+                    textTransform: 'uppercase',
+                    textAlign: 'left',
+                  }}
+                >
+                  HERO PHOTO: pomegranate cut open on stone
+                </p>
               </div>
             </div>
           </div>
@@ -177,10 +235,17 @@ export const HomePage: React.FC<HomePageProps> = ({ onNavigate, onOpenRfq, onOpe
       </section>
 
       {/* ===================================================================
-          2. TRUST STRIP (visible in first screen on large monitors)
-          Four columns separated by 1px vertical lines
+          2. TRUST STRIP
+          Products "6 categories" | Shipping "Container loads [CONFIRM: sea / air]"
+          | Registered exporter "[CONFIRM: IEC · APEDA · FSSAI]"
+          | Documents "Provided with every shipment [CONFIRM]"
           =================================================================== */}
-      <section className="hairline-b" style={{ backgroundColor: 'var(--ivory)' }}>
+      <section
+        style={{
+          backgroundColor: '#0A0A38',
+          borderBottom: '1px solid rgba(247, 245, 239, 0.20)',
+        }}
+      >
         <div className="container">
           <div
             style={{
@@ -189,39 +254,39 @@ export const HomePage: React.FC<HomePageProps> = ({ onNavigate, onOpenRfq, onOpe
             }}
             className="trust-strip-grid"
           >
-            <div style={{ padding: '24px 20px', borderRight: '1px solid var(--line)' }} className="trust-col reveal">
-              <span className="label-caps" style={{ display: 'block', marginBottom: '6px' }}>
+            <div style={{ padding: '20px', borderRight: '1px solid rgba(247, 245, 239, 0.20)' }} className="trust-col reveal">
+              <span className="label-caps" style={{ display: 'block', marginBottom: '6px', color: '#B9B8D6' }}>
                 Products
               </span>
-              <span style={{ fontSize: '16px', fontWeight: 500, color: 'var(--ink)' }}>
-                6 core categories
+              <span style={{ fontSize: '15px', fontWeight: 500, color: '#F7F5EF' }}>
+                6 categories
               </span>
             </div>
 
-            <div style={{ padding: '24px 20px', borderRight: '1px solid var(--line)' }} className="trust-col reveal reveal-delay-1">
-              <span className="label-caps" style={{ display: 'block', marginBottom: '6px' }}>
+            <div style={{ padding: '20px', borderRight: '1px solid rgba(247, 245, 239, 0.20)' }} className="trust-col reveal reveal-delay-1">
+              <span className="label-caps" style={{ display: 'block', marginBottom: '6px', color: '#B9B8D6' }}>
                 Shipping
               </span>
-              <span style={{ fontSize: '16px', fontWeight: 500, color: 'var(--ink)' }}>
-                FCL Ocean Freight & Air Cargo
+              <span style={{ fontSize: '15px', fontWeight: 500, color: '#F7F5EF' }}>
+                Container loads [CONFIRM: sea / air]
               </span>
             </div>
 
-            <div style={{ padding: '24px 20px', borderRight: '1px solid var(--line)' }} className="trust-col reveal reveal-delay-2">
-              <span className="label-caps" style={{ display: 'block', marginBottom: '6px' }}>
+            <div style={{ padding: '20px', borderRight: '1px solid rgba(247, 245, 239, 0.20)' }} className="trust-col reveal reveal-delay-2">
+              <span className="label-caps" style={{ display: 'block', marginBottom: '6px', color: '#B9B8D6' }}>
                 Registered exporter
               </span>
-              <span style={{ fontSize: '16px', fontWeight: 500, color: 'var(--ink)' }}>
-                IEC: 0324089121 · APEDA · FSSAI
+              <span style={{ fontSize: '15px', fontWeight: 500, color: '#F7F5EF' }}>
+                [CONFIRM: IEC · APEDA · FSSAI]
               </span>
             </div>
 
-            <div style={{ padding: '24px 20px' }} className="trust-col reveal reveal-delay-3">
-              <span className="label-caps" style={{ display: 'block', marginBottom: '6px' }}>
+            <div style={{ padding: '20px' }} className="trust-col reveal reveal-delay-3">
+              <span className="label-caps" style={{ display: 'block', marginBottom: '6px', color: '#B9B8D6' }}>
                 Documents
               </span>
-              <span style={{ fontSize: '16px', fontWeight: 500, color: 'var(--ink)' }}>
-                Full Phytosanitary & Trade Sets
+              <span style={{ fontSize: '15px', fontWeight: 500, color: '#F7F5EF' }}>
+                Provided with every shipment [CONFIRM]
               </span>
             </div>
           </div>
@@ -229,22 +294,25 @@ export const HomePage: React.FC<HomePageProps> = ({ onNavigate, onOpenRfq, onOpe
       </section>
 
       {/* ===================================================================
-          2.5 ACCREDITATIONS & STATUTORY COMPLIANCE RIBBON (DMK Agro / Savaliya Pattern)
-          =================================================================== */}
-      <AccreditationRibbon onNavigateToQuality={() => onNavigate('/quality')} />
-
-      {/* ===================================================================
           3. WHAT WE EXPORT
-          Eyebrow "PRODUCTS", H2 "What we export", 3x2 grid of 6 tiles separated by 1px lines
+          Six tiles; image placeholders where no photo exists;
+          any unconfirmed detail line as [CONFIRM].
           =================================================================== */}
-      <section id="products" className="section-padding hairline-b" style={{ backgroundColor: 'var(--bone)' }}>
+      <section
+        id="products"
+        className="section-padding"
+        style={{
+          backgroundColor: '#10104F',
+          borderBottom: '1px solid rgba(247, 245, 239, 0.20)',
+        }}
+      >
         <div className="container">
-          <div style={{ maxWidth: '640px', marginBottom: '56px' }} className="reveal">
-            <span className="label-caps" style={{ display: 'block', marginBottom: '12px' }}>
+          <div style={{ maxWidth: '640px', marginBottom: '48px' }} className="reveal">
+            <span className="label-caps" style={{ display: 'block', marginBottom: '10px', color: '#A9B070' }}>
               Products
             </span>
-            <h2 style={{ marginBottom: '12px' }}>What we export</h2>
-            <p style={{ color: 'var(--muted)', fontSize: '16px' }}>
+            <h2 style={{ color: '#F7F5EF', marginBottom: '12px' }}>What we export</h2>
+            <p style={{ color: '#DAD8E8', fontSize: '16px' }}>
               We export exclusively by container to overseas importers, retail distributors and food processing enterprises.
             </p>
           </div>
@@ -253,70 +321,78 @@ export const HomePage: React.FC<HomePageProps> = ({ onNavigate, onOpenRfq, onOpe
             style={{
               display: 'grid',
               gridTemplateColumns: 'repeat(3, 1fr)',
-              borderTop: '1px solid var(--line)',
-              borderLeft: '1px solid var(--line)',
+              borderTop: '1px solid rgba(247, 245, 239, 0.20)',
+              borderLeft: '1px solid rgba(247, 245, 239, 0.20)',
             }}
             className="products-grid-3x2"
           >
-            {products.map((p, idx) => (
+            {exportCommodities.map((item, idx) => (
               <article
-                key={p.slug}
+                key={item.slug}
                 className={`reveal reveal-delay-${(idx % 3) + 1}`}
                 style={{
-                  borderRight: '1px solid var(--line)',
-                  borderBottom: '1px solid var(--line)',
-                  padding: '28px 24px',
-                  backgroundColor: 'var(--ivory)',
+                  borderRight: '1px solid rgba(247, 245, 239, 0.20)',
+                  borderBottom: '1px solid rgba(247, 245, 239, 0.20)',
+                  padding: '28px 22px',
+                  backgroundColor: '#10104F',
                   display: 'flex',
                   flexDirection: 'column',
-                  transition: 'background-color 200ms ease',
                 }}
               >
+                {/* 3:2 Placeholder block (#1A1A66) with label under it */}
                 <div style={{ marginBottom: '20px' }}>
-                  <PhotoPlaceholder
-                    label={p.packingPhotos[0].label}
-                    subtext={p.packingPhotos[0].subtext}
-                    aspectRatio="4:5"
-                    src={p.packingPhotos[0].src}
+                  <div
+                    style={{
+                      width: '100%',
+                      aspectRatio: '3 / 2',
+                      backgroundColor: '#1A1A66',
+                      border: '1px solid rgba(247, 245, 239, 0.20)',
+                      borderRadius: 'var(--radius)',
+                    }}
                   />
+                  <div style={{ marginTop: '8px', fontSize: '11px', color: '#B9B8D6', letterSpacing: '0.02em' }}>
+                    {item.placeholderLabel}
+                  </div>
                 </div>
 
-                <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'baseline', marginBottom: '8px' }}>
-                  <h3 style={{ fontSize: '26px', lineHeight: '32px' }}>
-                    {p.name}
-                  </h3>
-                  <span className="text-small" style={{ color: 'var(--muted)', fontSize: '12px' }}>
-                    1 FCL MOQ
-                  </span>
-                </div>
+                <span className="label-caps" style={{ display: 'block', marginBottom: '6px', color: '#B9B8D6' }}>
+                  {item.category}
+                </span>
 
-                <p style={{ fontSize: '14px', lineHeight: '22px', color: 'var(--charcoal)', marginBottom: '20px', flexGrow: 1 }}>
-                  {p.slug === 'pomegranates' && 'Bhagwa variety · Counts 9–15 · 3.5kg / 5.0kg telescopic cartons'}
-                  {p.slug === 'onions' && 'Red & White onions · Season Oct to Apr · 10/25kg leno mesh bags'}
-                  {p.slug === 'rice' && '1121 Basmati & Non-Basmati · 25 MT per 20ft dry FCL'}
-                  {p.slug === 'spices' && 'Whole & ground Cumin, Turmeric, Chilli · EtO tested'}
-                  {p.slug === 'fresh-fruits' && 'Table grapes, bananas, mangoes · Pre-cooled cold chain'}
-                  {p.slug === 'fresh-vegetables' && 'Green chillies, okra, ginger, lemon · Cold-chain packed'}
+                <h3 style={{ fontSize: '22px', lineHeight: '28px', color: '#F7F5EF', marginBottom: '8px' }}>
+                  {item.name}
+                </h3>
+
+                <p style={{ fontSize: '14px', lineHeight: '22px', color: '#DAD8E8', marginBottom: '18px', flexGrow: 1 }}>
+                  Specifications: {item.specs} · Season: {item.season}
                 </p>
 
-                <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', borderTop: '1px solid var(--line)', paddingTop: '16px' }}>
+                <div
+                  style={{
+                    display: 'flex',
+                    alignItems: 'center',
+                    justifyContent: 'space-between',
+                    borderTop: '1px solid rgba(247, 245, 239, 0.20)',
+                    paddingTop: '16px',
+                  }}
+                >
                   <button
                     type="button"
-                    onClick={() => onNavigate(`/products/${p.slug}`)}
+                    onClick={() => onNavigate(`/products/${item.slug}`)}
                     className="text-link"
-                    style={{ background: 'none', border: 'none', padding: 0, font: 'inherit' }}
+                    style={{ background: 'none', border: 'none', font: 'inherit', padding: 0 }}
                   >
-                    <span>Specification</span>
+                    <span>View specification</span>
                     <ArrowRight size={14} strokeWidth={1.5} />
                   </button>
 
                   <button
                     type="button"
-                    onClick={() => onOpenRfq(p.name)}
+                    onClick={() => onOpenRfq(item.name)}
                     style={{
                       background: 'none',
                       border: 'none',
-                      color: 'var(--navy)',
+                      color: '#F7F5EF',
                       fontSize: '13px',
                       fontWeight: 500,
                       cursor: 'pointer',
@@ -333,16 +409,24 @@ export const HomePage: React.FC<HomePageProps> = ({ onNavigate, onOpenRfq, onOpe
       </section>
 
       {/* ===================================================================
-          4. HOW AN ORDER MOVES (Bone background)
-          Five numbered steps in horizontal line (vertical mobile)
+          4. FROM ENQUIRY TO ARRIVAL (Five steps, kept as they are)
           =================================================================== */}
-      <section className="section-padding hairline-b" style={{ backgroundColor: 'var(--ivory)' }}>
+      <section
+        className="section-padding"
+        style={{
+          backgroundColor: '#0A0A38',
+          borderBottom: '1px solid rgba(247, 245, 239, 0.20)',
+        }}
+      >
         <div className="container">
-          <div style={{ maxWidth: '640px', marginBottom: '56px' }} className="reveal">
-            <span className="label-caps" style={{ display: 'block', marginBottom: '12px' }}>
-              Execution
+          <div style={{ maxWidth: '640px', marginBottom: '48px' }} className="reveal">
+            <span className="label-caps" style={{ display: 'block', marginBottom: '10px', color: '#A9B070' }}>
+              How we work
             </span>
-            <h2>From enquiry to arrival</h2>
+            <h2 style={{ color: '#F7F5EF', marginBottom: '12px' }}>From enquiry to arrival</h2>
+            <p style={{ color: '#DAD8E8', fontSize: '16px' }}>
+              Clear stages for every shipment. You always know what is happening with your container.
+            </p>
           </div>
 
           <div
@@ -355,21 +439,38 @@ export const HomePage: React.FC<HomePageProps> = ({ onNavigate, onOpenRfq, onOpe
             className="order-steps-grid"
           >
             {[
-              { num: '01', title: 'Enquiry', text: 'Tell us the product, quantity and destination.' },
-              { num: '02', title: 'Specification', text: 'We confirm grade, size and packing and send a spec sheet.' },
-              { num: '03', title: 'Sourcing & grading', text: 'Produce is selected and graded to your specification.' },
-              { num: '04', title: 'Packing & loading', text: 'Packed, labelled and loaded into the container.' },
-              { num: '05', title: 'Documents & shipping', text: 'Export documents prepared; the shipment is followed until arrival.' },
+              {
+                num: '01',
+                title: 'Specifications and quote',
+                text: 'Tell us the commodity, grade, packaging and destination port. We confirm availability and give a FOB or CIF price.',
+              },
+              {
+                num: '02',
+                title: 'Contract and advance',
+                text: 'We sign a proforma invoice and agree payment terms (Letter of Credit or advance T/T). Container space is booked.',
+              },
+              {
+                num: '03',
+                title: 'Sourcing and packing',
+                text: 'Produce is selected, graded and packed according to your specification. Core temperature is brought to transit level.',
+              },
+              {
+                num: '04',
+                title: 'Inspection and loading',
+                text: 'Government phytosanitary inspection at port. Container is loaded, sealed and temperature recorder activated.',
+              },
+              {
+                num: '05',
+                title: 'Sailing and documents',
+                text: 'Vessel departs [CONFIRM: port of loading]. Bill of Lading, phytosanitary certificate and full document set sent to your bank.',
+              },
             ].map((step, idx) => (
               <div
                 key={step.num}
                 className={`reveal reveal-delay-${idx + 1}`}
                 style={{
-                  display: 'flex',
-                  flexDirection: 'column',
                   paddingTop: '16px',
-                  borderTop: '1px solid var(--line)',
-                  position: 'relative',
+                  borderTop: '1px solid rgba(247, 245, 239, 0.20)',
                 }}
               >
                 <span
@@ -377,16 +478,17 @@ export const HomePage: React.FC<HomePageProps> = ({ onNavigate, onOpenRfq, onOpe
                     fontFamily: 'var(--font-sans)',
                     fontSize: '14px',
                     fontWeight: 600,
-                    color: 'var(--olive)',
+                    color: '#A9B070',
+                    display: 'block',
                     marginBottom: '8px',
                   }}
                 >
                   {step.num}
                 </span>
-                <h3 style={{ fontSize: '18px', lineHeight: '24px', marginBottom: '8px' }}>
+                <h3 style={{ fontSize: '17px', lineHeight: '24px', color: '#F7F5EF', marginBottom: '8px' }}>
                   {step.title}
                 </h3>
-                <p style={{ fontSize: '14px', lineHeight: '22px', color: 'var(--charcoal)' }}>
+                <p style={{ fontSize: '14px', lineHeight: '22px', color: '#DAD8E8' }}>
                   {step.text}
                 </p>
               </div>
@@ -408,15 +510,17 @@ export const HomePage: React.FC<HomePageProps> = ({ onNavigate, onOpenRfq, onOpe
       </section>
 
       {/* ===================================================================
-          4.5 PACKAGING FORMATS SHOWCASE (Horizon Exim / DMK Agro Pattern)
-          =================================================================== */}
-      <PackagingFormats onOpenRfq={onOpenRfq} />
-
-      {/* ===================================================================
           5. QUALITY AND DOCUMENTS
-          Two columns: Left text, right list of documents with "Provided" tag
+          Keep the list of documents with "Provided" tags;
+          Remove named inspection companies.
           =================================================================== */}
-      <section className="section-padding hairline-b" style={{ backgroundColor: 'var(--bone)' }}>
+      <section
+        className="section-padding"
+        style={{
+          backgroundColor: '#10104F',
+          borderBottom: '1px solid rgba(247, 245, 239, 0.20)',
+        }}
+      >
         <div className="container">
           <div
             style={{
@@ -429,14 +533,14 @@ export const HomePage: React.FC<HomePageProps> = ({ onNavigate, onOpenRfq, onOpe
           >
             {/* Left 6 cols */}
             <div style={{ gridColumn: 'span 6' }} className="quality-text-col reveal">
-              <span className="label-caps" style={{ display: 'block', marginBottom: '12px' }}>
+              <span className="label-caps" style={{ display: 'block', marginBottom: '10px', color: '#A9B070' }}>
                 Quality
               </span>
-              <h2 style={{ marginBottom: '20px' }}>
+              <h2 style={{ color: '#F7F5EF', marginBottom: '18px' }}>
                 Every shipment leaves with its paperwork in order.
               </h2>
-              <p style={{ fontSize: '16px', lineHeight: '26px', color: 'var(--charcoal)', marginBottom: '24px' }}>
-                Export compliance is built on verification. We inspect calibration, core pulp temperature and outer packing integrity at the Nashik packhouse before booking reefer container stuffing at JNPT / Nhava Sheva.
+              <p style={{ fontSize: '16px', lineHeight: '26px', color: '#DAD8E8', marginBottom: '24px' }}>
+                Export compliance is built on verification. We inspect calibration, core temperature and outer packing integrity before stuffing containers for export. [CONFIRM: packhouse and port inspection procedures].
               </p>
               <button
                 type="button"
@@ -449,46 +553,55 @@ export const HomePage: React.FC<HomePageProps> = ({ onNavigate, onOpenRfq, onOpe
               </button>
             </div>
 
-            {/* Right 6 cols: Document rows with "Provided" tag */}
+            {/* Right 6 cols: Document rows with "Provided" tag (Inspection companies removed) */}
             <div
               style={{
                 gridColumn: 'span 6',
-                borderTop: '1px solid var(--line)',
+                borderTop: '1px solid rgba(247, 245, 239, 0.20)',
               }}
               className="quality-list-col reveal reveal-delay-1"
             >
               {[
-                { name: 'Commercial Invoice with HS codes', note: 'Standard' },
-                { name: 'Detailed Packing List & Weight Certificate', note: 'Standard' },
-                { name: 'Official Phytosanitary Certificate (PSC)', note: 'Mandatory' },
-                { name: 'Certificate of Origin (Chamber of Commerce)', note: 'Standard' },
-                { name: 'Clean on Board Ocean Bill of Lading (B/L)', note: 'Standard' },
-                { name: 'Independent Surveyor Lab Report (SGS/Bureau Veritas)', note: 'On Request' },
-              ].map((doc, idx) => (
+                { title: 'Commercial invoice', detail: '[CONFIRM: invoice details]' },
+                { title: 'Packing list', detail: '[CONFIRM: packing sheet details]' },
+                { title: 'Phytosanitary certificate', detail: 'Plant Quarantine department certification' },
+                { title: 'Certificate of origin', detail: 'Export chamber certification' },
+                { title: 'Bill of Lading', detail: 'Clean on-board ocean carrier release' },
+                { title: 'Pre-shipment inspection certificate', detail: '[CONFIRM: inspection agency]' },
+                { title: 'Temperature logger chart', detail: '[CONFIRM: logger type]' },
+              ].map((doc) => (
                 <div
-                  key={idx}
+                  key={doc.title}
                   style={{
                     display: 'flex',
                     justifyContent: 'space-between',
                     alignItems: 'center',
-                    padding: '16px 0',
-                    borderBottom: '1px solid var(--line)',
+                    padding: '14px 0',
+                    borderBottom: '1px solid rgba(247, 245, 239, 0.20)',
+                    gap: '16px',
                   }}
                 >
-                  <span style={{ fontSize: '15px', color: 'var(--ink)' }}>
-                    {doc.name}
-                  </span>
+                  <div>
+                    <span style={{ fontSize: '15px', fontWeight: 500, color: '#F7F5EF', display: 'block' }}>
+                      {doc.title}
+                    </span>
+                    <span style={{ fontSize: '12px', color: '#B9B8D6' }}>
+                      {doc.detail}
+                    </span>
+                  </div>
+
                   <span
                     style={{
                       fontFamily: 'var(--font-sans)',
                       fontSize: '11px',
                       textTransform: 'uppercase',
                       letterSpacing: '0.08em',
-                      padding: '3px 8px',
+                      fontWeight: 500,
+                      padding: '4px 10px',
+                      border: '1px solid rgba(247, 245, 239, 0.20)',
                       borderRadius: 'var(--radius)',
-                      border: '1px solid var(--line)',
-                      color: 'var(--charcoal)',
-                      backgroundColor: 'var(--bone)',
+                      color: '#DAD8E8',
+                      backgroundColor: '#1A1A66',
                     }}
                   >
                     Provided
@@ -501,18 +614,24 @@ export const HomePage: React.FC<HomePageProps> = ({ onNavigate, onOpenRfq, onOpe
       </section>
 
       {/* ===================================================================
-          6. SEASONAL AVAILABILITY
+          6. AVAILABILITY
           12-month calendar grid
           =================================================================== */}
-      <section className="section-padding hairline-b" style={{ backgroundColor: 'var(--ivory)' }}>
+      <section
+        className="section-padding"
+        style={{
+          backgroundColor: '#0A0A38',
+          borderBottom: '1px solid rgba(247, 245, 239, 0.20)',
+        }}
+      >
         <div className="container">
-          <div style={{ maxWidth: '680px', marginBottom: '40px' }} className="reveal">
-            <span className="label-caps" style={{ display: 'block', marginBottom: '12px' }}>
+          <div style={{ maxWidth: '680px', marginBottom: '36px' }} className="reveal">
+            <span className="label-caps" style={{ display: 'block', marginBottom: '10px', color: '#A9B070' }}>
               Crop Cycles
             </span>
-            <h2 style={{ marginBottom: '12px' }}>When each product is available</h2>
-            <p style={{ color: 'var(--muted)', fontSize: '15px' }}>
-              Red onions export October to April (peak December to February). Other crop harvest timings calibrated below.
+            <h2 style={{ color: '#F7F5EF', marginBottom: '12px' }}>When each product is available</h2>
+            <p style={{ color: '#DAD8E8', fontSize: '15px' }}>
+              Red onions export October to April (peak December to February). For other crops, harvest timing is confirmed per enquiry.
             </p>
           </div>
 
@@ -523,32 +642,25 @@ export const HomePage: React.FC<HomePageProps> = ({ onNavigate, onOpenRfq, onOpe
       </section>
 
       {/* ===================================================================
-          6.5 LOGISTICS & COLD-CHAIN HIGHWAY CORRIDOR (Nashik to JNPT in 4.5h)
-          =================================================================== */}
-      <LogisticsCorridor onOpenRfq={onOpenRfq} onNavigateToExport={() => onNavigate('/export')} />
-
-      {/* ===================================================================
-          7. FROM THE FIELD TO THE MARKET (Navy background)
-          Three portrait 9:16 media frames: real client video proof!
+          7. FROM THE FIELD TO THE MARKET
+          Three empty video frames and their captions as placeholders.
           =================================================================== */}
       <section
-        className="dark-section"
+        className="section-padding"
         style={{
-          backgroundColor: 'var(--navy)',
-          color: 'var(--ivory)',
-          paddingTop: '100px',
-          paddingBottom: '100px',
+          backgroundColor: '#10104F',
+          borderBottom: '1px solid rgba(247, 245, 239, 0.20)',
         }}
       >
         <div className="container">
-          <div style={{ maxWidth: '640px', marginBottom: '56px' }} className="reveal">
-            <span className="label-caps" style={{ color: 'var(--olive-light)', display: 'block', marginBottom: '12px' }}>
+          <div style={{ maxWidth: '640px', marginBottom: '48px' }} className="reveal">
+            <span className="label-caps" style={{ color: '#A9B070', display: 'block', marginBottom: '10px' }}>
               Documentary Proof
             </span>
-            <h2 style={{ color: 'var(--ivory)', marginBottom: '16px' }}>
+            <h2 style={{ color: '#F7F5EF', marginBottom: '14px' }}>
               From the field to the market
             </h2>
-            <p style={{ color: 'var(--bone)', fontSize: '16px' }}>
+            <p style={{ color: '#DAD8E8', fontSize: '16px' }}>
               We document our consignments from packing and container stuffing in India to discharge at destination wholesale markets.
             </p>
           </div>
@@ -557,58 +669,95 @@ export const HomePage: React.FC<HomePageProps> = ({ onNavigate, onOpenRfq, onOpe
             style={{
               display: 'grid',
               gridTemplateColumns: 'repeat(3, 1fr)',
-              gap: '32px',
+              gap: '28px',
             }}
             className="field-market-grid"
           >
-            {/* Frame 1: Real client video IMG_8996 */}
+            {/* Frame 1 placeholder */}
             <div className="reveal">
-              <DocumentaryVideoPlayer
-                src={VIDEOS.loadingSource}
-                title="Loading at source"
-                caption="Covered packhouse facility: onion sorting, leno mesh bag stacks, and container doorway."
+              <div
+                style={{
+                  width: '100%',
+                  aspectRatio: '16 / 9',
+                  backgroundColor: '#1A1A66',
+                  border: '1px solid rgba(247, 245, 239, 0.20)',
+                  borderRadius: 'var(--radius)',
+                }}
               />
+              <div style={{ marginTop: '12px' }}>
+                <span style={{ fontSize: '15px', fontWeight: 500, color: '#F7F5EF', display: 'block' }}>
+                  Loading at source
+                </span>
+                <span style={{ fontSize: '13px', color: '#B9B8D6', display: 'block', marginTop: '2px' }}>
+                  Covered packhouse facility: [CONFIRM: sorting, bag stacking and loading details].
+                </span>
+              </div>
             </div>
 
-            {/* Frame 2: Real client video IMG_9086 */}
+            {/* Frame 2 placeholder */}
             <div className="reveal reveal-delay-1">
-              <DocumentaryVideoPlayer
-                src={VIDEOS.containerYard}
-                title="Container yard inspection"
-                caption="Logistics yard: container stuffing, PTI pre-trip inspection, and high-security seal application."
+              <div
+                style={{
+                  width: '100%',
+                  aspectRatio: '16 / 9',
+                  backgroundColor: '#1A1A66',
+                  border: '1px solid rgba(247, 245, 239, 0.20)',
+                  borderRadius: 'var(--radius)',
+                }}
               />
+              <div style={{ marginTop: '12px' }}>
+                <span style={{ fontSize: '15px', fontWeight: 500, color: '#F7F5EF', display: 'block' }}>
+                  Container yard inspection
+                </span>
+                <span style={{ fontSize: '13px', color: '#B9B8D6', display: 'block', marginTop: '2px' }}>
+                  Logistics yard: [CONFIRM: container stuffing, inspection and high-security seal details].
+                </span>
+              </div>
             </div>
 
-            {/* Frame 3: Real client video IMG_9078 */}
+            {/* Frame 3 placeholder */}
             <div className="reveal reveal-delay-2">
-              <DocumentaryVideoPlayer
-                src={VIDEOS.wholesaleMarket}
-                title="Arrival at wholesale market"
-                caption="Overseas wholesale market lane: container de-stuffing, trolleys, and arrival grading check."
+              <div
+                style={{
+                  width: '100%',
+                  aspectRatio: '16 / 9',
+                  backgroundColor: '#1A1A66',
+                  border: '1px solid rgba(247, 245, 239, 0.20)',
+                  borderRadius: 'var(--radius)',
+                }}
               />
+              <div style={{ marginTop: '12px' }}>
+                <span style={{ fontSize: '15px', fontWeight: 500, color: '#F7F5EF', display: 'block' }}>
+                  Arrival at wholesale market
+                </span>
+                <span style={{ fontSize: '13px', color: '#B9B8D6', display: 'block', marginTop: '2px' }}>
+                  Overseas destination: [CONFIRM: container de-stuffing and arrival verification details].
+                </span>
+              </div>
             </div>
           </div>
         </div>
       </section>
 
       {/* ===================================================================
-          7.5 COMMERCIAL BUYER FAQ ACCORDION (Horizon Exim Pattern)
+          8. MARKETS ("Where we ship")
+          Three columns with [CONFIRM: countries] only.
           =================================================================== */}
-      <BuyerFaq onOpenRfq={onOpenRfq} />
-
-      {/* ===================================================================
-          8. MARKETS
-          Eyebrow "MARKETS", H2 "Where we ship", three-column text list
-          =================================================================== */}
-      <section className="section-padding hairline-b" style={{ backgroundColor: 'var(--ivory)' }}>
+      <section
+        className="section-padding"
+        style={{
+          backgroundColor: '#0A0A38',
+          borderBottom: '1px solid rgba(247, 245, 239, 0.20)',
+        }}
+      >
         <div className="container">
-          <div style={{ maxWidth: '640px', marginBottom: '48px' }} className="reveal">
-            <span className="label-caps" style={{ display: 'block', marginBottom: '12px' }}>
+          <div style={{ maxWidth: '640px', marginBottom: '44px' }} className="reveal">
+            <span className="label-caps" style={{ display: 'block', marginBottom: '10px', color: '#A9B070' }}>
               Markets
             </span>
-            <h2 style={{ marginBottom: '12px' }}>Where we ship</h2>
-            <p style={{ color: 'var(--muted)', fontSize: '15px' }}>
-              Direct maritime container departures from JNPT / Nhava Sheva (INNSA) to major commercial discharge terminals.
+            <h2 style={{ color: '#F7F5EF', marginBottom: '12px' }}>Where we ship</h2>
+            <p style={{ color: '#DAD8E8', fontSize: '15px' }}>
+              Direct maritime container departures from [CONFIRM: port of loading] to commercial discharge terminals.
             </p>
           </div>
 
@@ -617,36 +766,36 @@ export const HomePage: React.FC<HomePageProps> = ({ onNavigate, onOpenRfq, onOpe
               display: 'grid',
               gridTemplateColumns: 'repeat(3, 1fr)',
               gap: '32px',
-              borderTop: '1px solid var(--line)',
-              paddingTop: '32px',
+              borderTop: '1px solid rgba(247, 245, 239, 0.20)',
+              paddingTop: '28px',
               marginBottom: '32px',
             }}
             className="markets-3col"
           >
             <div className="reveal">
-              <span className="label-caps" style={{ display: 'block', marginBottom: '8px' }}>
+              <span className="label-caps" style={{ display: 'block', marginBottom: '8px', color: '#B9B8D6' }}>
                 Arabian Gulf
               </span>
-              <p style={{ fontSize: '16px', lineHeight: '24px', color: 'var(--ink)' }}>
-                United Arab Emirates (Jebel Ali), Saudi Arabia (Dammam, Jeddah), Oman, Qatar, Kuwait.
+              <p style={{ fontSize: '15px', lineHeight: '24px', color: '#F7F5EF' }}>
+                [CONFIRM: countries]
               </p>
             </div>
 
             <div className="reveal reveal-delay-1">
-              <span className="label-caps" style={{ display: 'block', marginBottom: '8px' }}>
+              <span className="label-caps" style={{ display: 'block', marginBottom: '8px', color: '#B9B8D6' }}>
                 South & South-East Asia
               </span>
-              <p style={{ fontSize: '16px', lineHeight: '24px', color: 'var(--ink)' }}>
-                Malaysia (Port Klang), Singapore, Sri Lanka (Colombo), Bangladesh (Chittagong).
+              <p style={{ fontSize: '15px', lineHeight: '24px', color: '#F7F5EF' }}>
+                [CONFIRM: countries]
               </p>
             </div>
 
             <div className="reveal reveal-delay-2">
-              <span className="label-caps" style={{ display: 'block', marginBottom: '8px' }}>
+              <span className="label-caps" style={{ display: 'block', marginBottom: '8px', color: '#B9B8D6' }}>
                 African Distribution Hubs
               </span>
-              <p style={{ fontSize: '16px', lineHeight: '24px', color: 'var(--ink)' }}>
-                East and West African commercial grain and commodity import gateways (Mombasa, Dar es Salaam).
+              <p style={{ fontSize: '15px', lineHeight: '24px', color: '#F7F5EF' }}>
+                [CONFIRM: countries]
               </p>
             </div>
           </div>
@@ -667,9 +816,16 @@ export const HomePage: React.FC<HomePageProps> = ({ onNavigate, onOpenRfq, onOpe
 
       {/* ===================================================================
           9. ABOUT SNIPPET
-          Two columns: Left 3:2 photo, Right text + link
+          Two columns: Left 3:2 placeholder block (#1A1A66) with label under it,
+          Right text + link
           =================================================================== */}
-      <section className="section-padding hairline-b" style={{ backgroundColor: 'var(--bone)' }}>
+      <section
+        className="section-padding"
+        style={{
+          backgroundColor: '#10104F',
+          borderBottom: '1px solid rgba(247, 245, 239, 0.20)',
+        }}
+      >
         <div className="container">
           <div
             style={{
@@ -681,23 +837,38 @@ export const HomePage: React.FC<HomePageProps> = ({ onNavigate, onOpenRfq, onOpe
             className="about-home-grid"
           >
             <div style={{ gridColumn: 'span 6' }} className="about-photo-col reveal">
-              <PhotoPlaceholder
-                label="Team operations: Sorting & grading inspection at loading dock"
-                subtext="Documentary photograph · Neutral surface · 3:2"
-                aspectRatio="3:2"
-                src={IMAGES.packhouseInspection}
+              <div
+                style={{
+                  width: '100%',
+                  aspectRatio: '3 / 2',
+                  backgroundColor: '#1A1A66',
+                  border: '1px solid rgba(247, 245, 239, 0.20)',
+                  borderRadius: 'var(--radius)',
+                }}
               />
+              <p
+                style={{
+                  marginTop: '10px',
+                  fontSize: '12px',
+                  color: '#B9B8D6',
+                  letterSpacing: '0.04em',
+                  textTransform: 'uppercase',
+                  textAlign: 'left',
+                }}
+              >
+                PHOTO: Packhouse sorting and inspection [CONFIRM]
+              </p>
             </div>
 
             <div style={{ gridColumn: 'span 6' }} className="about-text-col reveal reveal-delay-1">
-              <span className="label-caps" style={{ display: 'block', marginBottom: '12px' }}>
+              <span className="label-caps" style={{ display: 'block', marginBottom: '10px', color: '#A9B070' }}>
                 About
               </span>
-              <h2 style={{ marginBottom: '20px' }}>
+              <h2 style={{ color: '#F7F5EF', marginBottom: '18px' }}>
                 A direct line to the people who ship your order.
               </h2>
-              <p style={{ fontSize: '16px', lineHeight: '26px', color: 'var(--charcoal)', marginBottom: '24px' }}>
-                Vasudha Freshline Exports LLP operates with full operational transparency. Importers speak directly with trade officers who oversee sourcing, grading calibration, and port stuffing.
+              <p style={{ fontSize: '16px', lineHeight: '26px', color: '#DAD8E8', marginBottom: '24px' }}>
+                Vasudha Freshline Exports LLP operates with full operational transparency. Importers speak directly with trade officers who oversee sourcing, grading calibration, and port stuffing. [CONFIRM: packhouse location, facility details and operational team].
               </p>
               <button
                 type="button"
@@ -714,57 +885,48 @@ export const HomePage: React.FC<HomePageProps> = ({ onNavigate, onOpenRfq, onOpe
       </section>
 
       {/* ===================================================================
-          10. CLOSING CALL TO ACTION (Navy Band)
-          "Tell us what you need." Buttons: primary (ivory fill, navy text)
+          10. CLOSING CALL TO ACTION
+          "Tell us what you need." with "Request a quote" and "Chat on WhatsApp".
           =================================================================== */}
       <section
-        className="dark-section"
+        className="section-padding"
         style={{
-          backgroundColor: 'var(--navy)',
-          color: 'var(--ivory)',
-          paddingTop: '80px',
-          paddingBottom: '80px',
+          backgroundColor: '#0A0A38',
         }}
       >
         <div className="container">
           <div
             style={{
-              display: 'flex',
-              flexWrap: 'wrap',
-              justifyContent: 'space-between',
-              alignItems: 'center',
-              gap: '32px',
+              maxWidth: '680px',
+              margin: '0 auto',
+              textAlign: 'center',
             }}
             className="reveal"
           >
-            <div style={{ maxWidth: '600px' }}>
-              <h2 style={{ color: 'var(--ivory)', marginBottom: '12px' }}>
-                Tell us what you need.
-              </h2>
-              <p style={{ color: 'var(--bone)', fontSize: '16px' }}>
-                Share the product, quantity and destination. We reply with specification and indicative pricing within 24 hours.
-              </p>
-            </div>
+            <span className="label-caps" style={{ color: '#A9B070', display: 'block', marginBottom: '12px' }}>
+              Enquiries
+            </span>
 
-            <div style={{ display: 'flex', flexWrap: 'wrap', gap: '16px' }}>
+            <h2 style={{ color: '#F7F5EF', marginBottom: '16px', fontSize: '38px', lineHeight: '46px' }}>
+              Tell us what you need.
+            </h2>
+
+            <p style={{ color: '#DAD8E8', fontSize: '17px', lineHeight: '28px', marginBottom: '32px' }}>
+              Container loads of fresh produce, rice and spices. Send specifications for a quote, or message our trade desk.
+            </p>
+
+            <div
+              style={{
+                display: 'flex',
+                gap: '16px',
+                justifyContent: 'center',
+                flexWrap: 'wrap',
+              }}
+            >
               <button
                 type="button"
                 onClick={() => onOpenRfq()}
-                style={{
-                  height: '52px',
-                  padding: '0 28px',
-                  backgroundColor: 'var(--ivory)',
-                  color: 'var(--navy)',
-                  fontFamily: 'var(--font-sans)',
-                  fontSize: '15px',
-                  fontWeight: 500,
-                  border: '1px solid var(--ivory)',
-                  borderRadius: 'var(--radius)',
-                  cursor: 'pointer',
-                  display: 'inline-flex',
-                  alignItems: 'center',
-                  justifyContent: 'center',
-                }}
+                className="btn-primary"
               >
                 Request a quote
               </button>
@@ -774,14 +936,8 @@ export const HomePage: React.FC<HomePageProps> = ({ onNavigate, onOpenRfq, onOpe
                 target="_blank"
                 rel="noopener noreferrer"
                 className="btn-secondary"
-                style={{
-                  borderColor: 'var(--ivory)',
-                  color: 'var(--ivory)',
-                  textDecoration: 'none',
-                }}
               >
-                <MessageSquare size={16} strokeWidth={1.5} color="var(--olive-light)" />
-                <span>Chat on WhatsApp</span>
+                Chat on WhatsApp
               </a>
             </div>
           </div>
@@ -825,7 +981,7 @@ export const HomePage: React.FC<HomePageProps> = ({ onNavigate, onOpenRfq, onOpe
           }
           .trust-col {
             border-right: none !important;
-            border-bottom: 1px solid var(--line) !important;
+            border-bottom: 1px solid rgba(247, 245, 239, 0.20) !important;
           }
         }
       `}</style>

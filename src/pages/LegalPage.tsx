@@ -38,7 +38,7 @@ export const LegalPage: React.FC<LegalPageProps> = ({ type }) => {
             {isPrivacy ? 'Privacy Policy' : 'Terms of International Trade'}
           </h1>
           <p style={{ color: '#5F5D55', fontSize: '15px' }}>
-            Vasudha Freshline Exports LLP · LLPIN: [CONFIRM: LLPIN]
+            Vasudha Freshline Exports LLP · LLPIN: AAA-0000
           </p>
         </div>
 
@@ -114,7 +114,7 @@ export const LegalPage: React.FC<LegalPageProps> = ({ type }) => {
                 <section id="contact">
                   <h2 style={{ fontSize: '26px', marginBottom: '16px' }}>5. Contact Officer</h2>
                   <p style={{ fontSize: '16px', lineHeight: '26px', color: '#353535' }}>
-                    For privacy inquiries or corporate record updates, contact our compliance desk at: [CONFIRM: email].
+                    For privacy inquiries or corporate record updates, contact our compliance desk at: name@example.com.
                   </p>
                 </section>
               </>
@@ -130,28 +130,28 @@ export const LegalPage: React.FC<LegalPageProps> = ({ type }) => {
                 <section id="incoterms" style={{ borderBottom: '1px solid #D9D5C8', paddingBottom: '32px' }}>
                   <h2 style={{ fontSize: '26px', marginBottom: '16px' }}>2. Incoterms & Delivery</h2>
                   <p style={{ fontSize: '16px', lineHeight: '26px', color: '#353535' }}>
-                    Quotations adhere to agreed Incoterms [CONFIRM: Incoterms]. Risk of cargo transfers according to the contractually agreed commercial terms and bill of lading issuance.
+                    Quotations adhere to agreed Incoterms [Sample]. Risk of cargo transfers according to the contractually agreed commercial terms and bill of lading issuance.
                   </p>
                 </section>
 
                 <section id="tolerances" style={{ borderBottom: '1px solid #D9D5C8', paddingBottom: '32px' }}>
                   <h2 style={{ fontSize: '26px', marginBottom: '16px' }}>3. Inspection & Tolerances</h2>
                   <p style={{ fontSize: '16px', lineHeight: '26px', color: '#353535' }}>
-                    Agricultural produce is subject to natural transit shrinkage [CONFIRM: tolerance limits]. Joint surveyor inspection must be requested according to agreed trade procedure.
+                    Agricultural produce is subject to natural transit shrinkage [Sample]. Joint surveyor inspection must be requested according to agreed trade procedure.
                   </p>
                 </section>
 
                 <section id="payment" style={{ borderBottom: '1px solid #D9D5C8', paddingBottom: '32px' }}>
                   <h2 style={{ fontSize: '26px', marginBottom: '16px' }}>4. Commercial Payment Terms</h2>
                   <p style={{ fontSize: '16px', lineHeight: '26px', color: '#353535' }}>
-                    Payment instruments must be issued in freely convertible currency [CONFIRM: payment terms and letters of credit].
+                    Payment instruments must be issued in freely convertible currency [Sample].
                   </p>
                 </section>
 
                 <section id="jurisdiction">
                   <h2 style={{ fontSize: '26px', marginBottom: '16px' }}>5. Arbitration & Governing Law</h2>
                   <p style={{ fontSize: '16px', lineHeight: '26px', color: '#353535' }}>
-                    Contracts are governed by the commercial laws of India. Dispute resolution takes place under Indian Arbitration and Conciliation statutes [CONFIRM: legal seat].
+                    Contracts are governed by the commercial laws of India. Dispute resolution takes place under Indian Arbitration and Conciliation statutes [Sample].
                   </p>
                 </section>
               </>

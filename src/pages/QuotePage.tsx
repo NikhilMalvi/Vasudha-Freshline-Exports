@@ -28,7 +28,7 @@ export const QuotePage: React.FC<QuotePageProps> = ({
   };
 
   const whatsappUrl =
-    'https://wa.me/?text=Hello%20Vasudha%20Freshline%20Exports%20LLP,%20I%20would%20like%20to%20request%20an%20export%20quotation.';
+    'https://wa.me/910000000000?text=Hello%20Vasudha%20Freshline%20Exports%20LLP,%20I%20would%20like%20to%20request%20an%20export%20quotation.';
 
   return (
     <main style={{ backgroundColor: '#F7F5EF', color: '#353535' }}>
@@ -49,7 +49,7 @@ export const QuotePage: React.FC<QuotePageProps> = ({
           <span className="label-caps">Coordinates</span>
           <h2 style={{ margin: '4px 0 12px 0' }}>Trade desk contact</h2>
           <p style={{ fontSize: '16px', lineHeight: '26px', color: '#353535', margin: '0 0 24px 0' }}>
-            Official registered coordinates for commercial export correspondence.
+            Official registered coordinates for commercial export correspondence. Contact: Team Member Name, role "Trade Officer".
           </p>
 
           <div
@@ -61,19 +61,19 @@ export const QuotePage: React.FC<QuotePageProps> = ({
           >
             <div style={{ backgroundColor: '#F7F5EF', border: '1px solid #D9D5C8', padding: '16px', borderRadius: 'var(--radius)' }}>
               <span style={{ fontSize: '12px', color: '#5F5D55', textTransform: 'uppercase', display: 'block' }}>Address</span>
-              <span style={{ fontSize: '14px', color: '#16161A', display: 'block', marginTop: '4px' }}>[CONFIRM: registered office address]</span>
+              <span style={{ fontSize: '14px', color: '#16161A', display: 'block', marginTop: '4px' }}>Street, City, State, PIN</span>
             </div>
             <div style={{ backgroundColor: '#F7F5EF', border: '1px solid #D9D5C8', padding: '16px', borderRadius: 'var(--radius)' }}>
               <span style={{ fontSize: '12px', color: '#5F5D55', textTransform: 'uppercase', display: 'block' }}>Phone</span>
-              <span style={{ fontSize: '14px', color: '#16161A', display: 'block', marginTop: '4px' }}>[CONFIRM: phone number]</span>
+              <span style={{ fontSize: '14px', color: '#16161A', display: 'block', marginTop: '4px' }}>+91 00000 00000</span>
             </div>
             <div style={{ backgroundColor: '#F7F5EF', border: '1px solid #D9D5C8', padding: '16px', borderRadius: 'var(--radius)' }}>
               <span style={{ fontSize: '12px', color: '#5F5D55', textTransform: 'uppercase', display: 'block' }}>Email</span>
-              <span style={{ fontSize: '14px', color: '#16161A', display: 'block', marginTop: '4px' }}>[CONFIRM: email]</span>
+              <span style={{ fontSize: '14px', color: '#16161A', display: 'block', marginTop: '4px' }}>name@example.com</span>
             </div>
             <div style={{ backgroundColor: '#F7F5EF', border: '1px solid #D9D5C8', padding: '16px', borderRadius: 'var(--radius)' }}>
               <span style={{ fontSize: '12px', color: '#5F5D55', textTransform: 'uppercase', display: 'block' }}>Hours</span>
-              <span style={{ fontSize: '14px', color: '#16161A', display: 'block', marginTop: '4px' }}>[CONFIRM: business hours]</span>
+              <span style={{ fontSize: '14px', color: '#16161A', display: 'block', marginTop: '4px' }}>Monday – Saturday, 09:00 – 18:00 IST</span>
             </div>
           </div>
         </div>
@@ -114,7 +114,7 @@ export const QuotePage: React.FC<QuotePageProps> = ({
                     className="form-input"
                     value={formData.name}
                     onChange={(e) => setFormData({ ...formData, name: e.target.value })}
-                    placeholder="Buyer or trade representative"
+                    placeholder="Team Member Name"
                   />
                 </div>
                 <div className="form-group" style={{ margin: 0 }}>
@@ -138,7 +138,7 @@ export const QuotePage: React.FC<QuotePageProps> = ({
                     className="form-input"
                     value={formData.email}
                     onChange={(e) => setFormData({ ...formData, email: e.target.value })}
-                    placeholder="name@company.com"
+                    placeholder="name@example.com"
                   />
                 </div>
                 <div className="form-group" style={{ margin: 0 }}>
@@ -149,7 +149,7 @@ export const QuotePage: React.FC<QuotePageProps> = ({
                     className="form-input"
                     value={formData.phone}
                     onChange={(e) => setFormData({ ...formData, phone: e.target.value })}
-                    placeholder="+Country code & number"
+                    placeholder="+91 00000 00000"
                   />
                 </div>
               </div>
@@ -178,7 +178,7 @@ export const QuotePage: React.FC<QuotePageProps> = ({
                     className="form-input"
                     value={formData.destinationPort}
                     onChange={(e) => setFormData({ ...formData, destinationPort: e.target.value })}
-                    placeholder="e.g. Jebel Ali, Rotterdam, Singapore"
+                    placeholder="Destination port [Sample]"
                   />
                 </div>
               </div>
@@ -210,7 +210,7 @@ export const QuotePage: React.FC<QuotePageProps> = ({
           <span className="label-caps">Instant messaging</span>
           <h2 style={{ margin: '4px 0 12px 0' }}>Direct WhatsApp connect</h2>
           <p style={{ fontSize: '16px', lineHeight: '26px', color: '#353535', margin: '0 0 24px 0' }}>
-            Message our trade desk directly for quick inquiries, harvest updates, or document requests.
+            Message our trade desk directly at +91 00000 00000 for quick inquiries, harvest updates, or document requests.
           </p>
           <a
             href={whatsappUrl}

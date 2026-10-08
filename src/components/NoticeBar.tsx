@@ -18,12 +18,12 @@ export const NoticeBar: React.FC<NoticeBarProps> = ({ onNavigateToQuote }) => {
         backgroundColor: '#ECE8DC',
         color: '#353535',
         borderBottom: '1px solid #D9D5C8',
-        minHeight: '38px',
+        minHeight: '36px',
         fontSize: '13px',
         display: 'flex',
         alignItems: 'center',
         justifyContent: 'center',
-        padding: '8px 36px 8px 16px',
+        padding: '6px 36px 6px 16px',
         position: 'relative',
         zIndex: 60,
         width: '100%',
@@ -44,7 +44,7 @@ export const NoticeBar: React.FC<NoticeBarProps> = ({ onNavigateToQuote }) => {
       >
         <span style={{ overflow: 'hidden', textOverflow: 'ellipsis', whiteSpace: 'nowrap' }}>
           <strong style={{ color: '#16161A', fontWeight: 600 }}>Shipping notice:</strong>{' '}
-          [CONFIRM: short note about freight or schedules].{' '}
+          Ocean freight schedules active for [Sample] container sailings.{' '}
           {onNavigateToQuote ? (
             <button
               type="button"

@@ -1,5 +1,6 @@
 import React from 'react';
 import { PhotoPlaceholder } from '../components/PhotoPlaceholder';
+import { IMAGES } from '../data/images';
 
 interface ProductsPageProps {
   onNavigate: (path: string) => void;
@@ -11,49 +12,54 @@ export const ProductsPage: React.FC<ProductsPageProps> = ({
   onOpenRfq,
 }) => {
   const whatsappUrl =
-    'https://wa.me/?text=Hello%20Vasudha%20Freshline%20Exports%20LLP,%20I%20would%20like%20to%20request%20an%20export%20quotation.';
+    'https://wa.me/910000000000?text=Hello%20Vasudha%20Freshline%20Exports%20LLP,%20I%20would%20like%20to%20request%20an%20export%20quotation.';
 
   const productsList = [
     {
       name: 'Pomegranates',
       path: '/products/pomegranates',
-      label: 'PHOTO NEEDED: pomegranate export cartons',
-      spec: '[CONFIRM: Bhagwa variety, export counts and carton weights]',
+      src: IMAGES.pomegranates,
+      label: 'Bhagwa export pomegranates',
+      spec: 'Bhagwa variety calibrated in counts 9 to 15, packed in 3.5kg export cartons.',
     },
     {
       name: 'Onions',
       path: '/products/onions',
-      label: 'PHOTO NEEDED: red onion mesh bags',
-      spec: 'Red onion season October to April, peak December to February. [CONFIRM: sizes].',
+      src: IMAGES.onions,
+      label: 'Fresh red export onions',
+      spec: 'Red onion season October to April, peak December to February. Sizes 45mm to 65mm [Sample].',
     },
     {
       name: 'Rice',
       path: '/products/rice',
-      label: 'PHOTO NEEDED: rice bulk bags',
-      spec: '[CONFIRM: basmati and non-basmati varieties, 20ft container loads]',
+      src: IMAGES.rice,
+      label: 'Basmati and non-basmati rice',
+      spec: 'Traditional basmati and premium non-basmati varieties in 20ft dry containers.',
     },
     {
       name: 'Spices',
       path: '/products/spices',
-      label: 'PHOTO NEEDED: whole and ground spices',
-      spec: '[CONFIRM: turmeric, cumin, chilli and coriander varieties]',
+      src: IMAGES.spices,
+      label: 'Indian export spices',
+      spec: 'Whole and ground turmeric, cumin, and chilli in multiwall export bags.',
     },
     {
       name: 'Fresh fruits',
       path: '/products/fresh-fruits',
-      label: 'PHOTO NEEDED: fresh fruit packing',
-      spec: '[CONFIRM: seasonal grapes, bananas and mango varieties]',
+      src: IMAGES.fruits,
+      label: 'Fresh seasonal fruits',
+      spec: 'Table grapes, bananas, and seasonal varieties in pre-cooled reefer containers.',
     },
     {
       name: 'Fresh vegetables',
       path: '/products/fresh-vegetables',
-      label: 'PHOTO NEEDED: fresh vegetable packing',
-      spec: '[CONFIRM: cold-chain green chillies, okra and seasonal vegetables]',
+      src: IMAGES.vegetables,
+      label: 'Fresh Indian vegetables',
+      spec: 'Green chillies, okra, and seasonal produce handled under temperature management.',
     },
   ];
 
   const months = ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'];
-  // Onions: Oct-Apr (index 9, 10, 11, 0, 1, 2, 3), peak Dec-Feb (index 11, 0, 1)
   const isAvailable = (mIdx: number) => [9, 10, 11, 0, 1, 2, 3].includes(mIdx);
   const isPeak = (mIdx: number) => [11, 0, 1].includes(mIdx);
 
@@ -81,7 +87,11 @@ export const ProductsPage: React.FC<ProductsPageProps> = ({
               </button>
             </div>
             <div style={{ maxWidth: '400px', width: '100%', margin: '0 auto' }}>
-              <PhotoPlaceholder label="PHOTO NEEDED: commodity collection" aspectRatio="4:5" />
+              <PhotoPlaceholder
+                src={IMAGES.pomegranatesCut}
+                label="PHOTO NEEDED: commodity collection"
+                aspectRatio="4:5"
+              />
             </div>
           </div>
         </div>
@@ -118,7 +128,7 @@ export const ProductsPage: React.FC<ProductsPageProps> = ({
                   gap: '12px',
                 }}
               >
-                <PhotoPlaceholder label={p.label} aspectRatio="3:2" />
+                <PhotoPlaceholder src={p.src} label={p.label} aspectRatio="3:2" />
                 <div>
                   <h3 style={{ margin: '4px 0 6px 0', fontSize: '20px' }}>{p.name}</h3>
                   <p style={{ fontSize: '14px', lineHeight: '20px', color: '#5F5D55', margin: 0 }}>
@@ -147,7 +157,7 @@ export const ProductsPage: React.FC<ProductsPageProps> = ({
           <span className="label-caps">Harvest calendar</span>
           <h2 style={{ margin: '4px 0 12px 0' }}>Fresh onion seasonality</h2>
           <p style={{ fontSize: '16px', lineHeight: '26px', color: '#353535', margin: '0 0 24px 0' }}>
-            Red onion harvest spans October to April, with peak export volume December to February. Other crops: [CONFIRM: harvest months].
+            Red onion harvest spans October to April, with peak export volume December to February. Shipments are packed in ventilated mesh bags.
           </p>
 
           <div
@@ -215,11 +225,15 @@ export const ProductsPage: React.FC<ProductsPageProps> = ({
               <span className="label-caps">Logistics</span>
               <h2 style={{ margin: '4px 0 12px 0' }}>Container packing</h2>
               <p style={{ fontSize: '16px', lineHeight: '26px', color: '#353535', margin: 0 }}>
-                Produce is packed into export cartons, mesh bags, or bulk bags [CONFIRM]. Dispatched in full 20ft dry or 40ft reefer containers.
+                We pack produce in export-grade cartons and mesh bags. Goods are loaded into 20ft dry or 40ft reefer containers for sea transit.
               </p>
             </div>
             <div>
-              <PhotoPlaceholder label="PHOTO NEEDED: containerized pallet cargo" aspectRatio="3:2" />
+              <PhotoPlaceholder
+                src={IMAGES.portContainers}
+                label="PHOTO NEEDED: containerized pallet cargo"
+                aspectRatio="3:2"
+              />
             </div>
           </div>
         </div>

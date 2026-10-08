@@ -1,6 +1,7 @@
 import React from 'react';
 import { PhotoPlaceholder } from '../components/PhotoPlaceholder';
 import { PRODUCTS_DATA, type ProductDetailData } from '../data/commodities';
+import { IMAGES } from '../data/images';
 
 interface ProductDetailPageProps {
   slug: string;
@@ -16,17 +17,26 @@ export const ProductDetailPage: React.FC<ProductDetailPageProps> = ({
   onNavigate,
   onOpenRfq,
 }) => {
-  // Normalize slug
   const normalizedSlug = slug.replace(/^fresh-/, '').replace(/s$/, '');
   const foundKey = Object.keys(PRODUCTS_DATA).find(
     (k) => k === slug || k.startsWith(normalizedSlug) || slug.startsWith(k)
   );
 
   const product: ProductDetailData = foundKey ? PRODUCTS_DATA[foundKey] : PRODUCTS_DATA.pomegranates;
-
   const isOnion = product.slug.includes('onion') || slug.includes('onion');
 
-  const whatsappUrl = `https://wa.me/?text=Hello%20Vasudha%20Freshline%20Exports%20LLP,%20I%20would%20like%20to%20inquire%20about%20${encodeURIComponent(product.name)}.`;
+  // Select stock photo matching the commodity
+  const getProductImage = () => {
+    if (product.slug.includes('pomegranate')) return IMAGES.pomegranatesCut;
+    if (product.slug.includes('onion')) return IMAGES.onions;
+    if (product.slug.includes('rice')) return IMAGES.rice;
+    if (product.slug.includes('spice')) return IMAGES.spices;
+    if (product.slug.includes('fruit')) return IMAGES.fruits;
+    if (product.slug.includes('veg')) return IMAGES.vegetables;
+    return IMAGES.pomegranates;
+  };
+
+  const whatsappUrl = `https://wa.me/910000000000?text=Hello%20Vasudha%20Freshline%20Exports%20LLP,%20I%20would%20like%20to%20inquire%20about%20${encodeURIComponent(product.name)}.`;
 
   return (
     <main style={{ backgroundColor: '#F7F5EF', color: '#353535' }}>
@@ -82,6 +92,7 @@ export const ProductDetailPage: React.FC<ProductDetailPageProps> = ({
 
             <div style={{ maxWidth: '400px', width: '100%', margin: '0 auto' }}>
               <PhotoPlaceholder
+                src={getProductImage()}
                 label={`PHOTO NEEDED: ${product.name} export packing`}
                 aspectRatio="4:5"
               />
@@ -96,7 +107,7 @@ export const ProductDetailPage: React.FC<ProductDetailPageProps> = ({
           <span className="label-caps">Grading</span>
           <h2 style={{ margin: '4px 0 12px 0' }}>Product specifications</h2>
           <p style={{ fontSize: '16px', lineHeight: '26px', color: '#353535', margin: '0 0 24px 0' }}>
-            Graded and sorted according to international export specifications [CONFIRM]. Available in standard commercial packing.
+            We pack produce in export-grade cartons and mesh bags. All batches are graded by size and quality standards.
           </p>
 
           <div
@@ -108,19 +119,19 @@ export const ProductDetailPage: React.FC<ProductDetailPageProps> = ({
           >
             <div style={{ backgroundColor: '#F7F5EF', border: '1px solid #D9D5C8', padding: '16px', borderRadius: 'var(--radius)' }}>
               <span style={{ fontSize: '12px', color: '#5F5D55', textTransform: 'uppercase', display: 'block' }}>Variety</span>
-              <strong style={{ fontSize: '15px', color: '#16161A', display: 'block', marginTop: '4px' }}>[CONFIRM: variety]</strong>
+              <strong style={{ fontSize: '15px', color: '#16161A', display: 'block', marginTop: '4px' }}>Export Grade [Sample]</strong>
             </div>
             <div style={{ backgroundColor: '#F7F5EF', border: '1px solid #D9D5C8', padding: '16px', borderRadius: 'var(--radius)' }}>
               <span style={{ fontSize: '12px', color: '#5F5D55', textTransform: 'uppercase', display: 'block' }}>Origin</span>
-              <strong style={{ fontSize: '15px', color: '#16161A', display: 'block', marginTop: '4px' }}>[CONFIRM: Indian origin]</strong>
+              <strong style={{ fontSize: '15px', color: '#16161A', display: 'block', marginTop: '4px' }}>India [Sample]</strong>
             </div>
             <div style={{ backgroundColor: '#F7F5EF', border: '1px solid #D9D5C8', padding: '16px', borderRadius: 'var(--radius)' }}>
               <span style={{ fontSize: '12px', color: '#5F5D55', textTransform: 'uppercase', display: 'block' }}>Packaging</span>
-              <strong style={{ fontSize: '15px', color: '#16161A', display: 'block', marginTop: '4px' }}>[CONFIRM: packaging format]</strong>
+              <strong style={{ fontSize: '15px', color: '#16161A', display: 'block', marginTop: '4px' }}>Export Box / Bag [Sample]</strong>
             </div>
             <div style={{ backgroundColor: '#F7F5EF', border: '1px solid #D9D5C8', padding: '16px', borderRadius: 'var(--radius)' }}>
               <span style={{ fontSize: '12px', color: '#5F5D55', textTransform: 'uppercase', display: 'block' }}>Minimum Order</span>
-              <strong style={{ fontSize: '15px', color: '#16161A', display: 'block', marginTop: '4px' }}>Container load (FCL)</strong>
+              <strong style={{ fontSize: '15px', color: '#16161A', display: 'block', marginTop: '4px' }}>1 Container Load (FCL)</strong>
             </div>
           </div>
         </div>
@@ -137,7 +148,7 @@ export const ProductDetailPage: React.FC<ProductDetailPageProps> = ({
             </p>
           ) : (
             <p style={{ fontSize: '16px', lineHeight: '26px', color: '#353535', margin: '0 0 24px 0' }}>
-              Commercial export availability depends on seasonal harvests. [CONFIRM: harvest months and sailing windows].
+              Commercial export availability depends on seasonal harvest cycles. Shipments are coordinated during active picking windows [Sample].
             </p>
           )}
 
@@ -158,8 +169,8 @@ export const ProductDetailPage: React.FC<ProductDetailPageProps> = ({
               }}
             >
               {MONTH_NAMES.map((m, idx) => {
-                const isAvail = isOnion && [9, 10, 11, 0, 1, 2, 3].includes(idx);
-                const isPeak = isOnion && [11, 0, 1].includes(idx);
+                const isAvail = isOnion ? [9, 10, 11, 0, 1, 2, 3].includes(idx) : [8, 9, 10, 11, 0, 1].includes(idx);
+                const isPeak = isOnion ? [11, 0, 1].includes(idx) : [9, 10, 11].includes(idx);
 
                 return (
                   <div key={m} style={{ display: 'flex', flexDirection: 'column', gap: '4px' }}>
@@ -180,11 +191,14 @@ export const ProductDetailPage: React.FC<ProductDetailPageProps> = ({
                 );
               })}
             </div>
-            {!isOnion && (
-              <p style={{ fontSize: '12px', color: '#5F5D55', marginTop: '12px', margin: '12px 0 0 0' }}>
-                [CONFIRM: specific harvest and export calendar months]
-              </p>
-            )}
+            <div style={{ display: 'flex', gap: '20px', marginTop: '12px', fontSize: '12px', color: '#5F5D55' }}>
+              <span style={{ display: 'inline-flex', alignItems: 'center', gap: '6px' }}>
+                <span style={{ width: '10px', height: '10px', backgroundColor: '#687036', display: 'inline-block' }} /> Peak Harvest
+              </span>
+              <span style={{ display: 'inline-flex', alignItems: 'center', gap: '6px' }}>
+                <span style={{ width: '10px', height: '10px', backgroundColor: 'rgba(104, 112, 54, 0.4)', display: 'inline-block' }} /> Available
+              </span>
+            </div>
           </div>
         </div>
       </section>
@@ -204,11 +218,12 @@ export const ProductDetailPage: React.FC<ProductDetailPageProps> = ({
               <span className="label-caps">Logistics</span>
               <h2 style={{ margin: '4px 0 12px 0' }}>Container logistics</h2>
               <p style={{ fontSize: '16px', lineHeight: '26px', color: '#353535', margin: 0 }}>
-                Dispatched by full container load with temperature management [CONFIRM]. Accompanied by statutory phytosanitary certification.
+                Dispatched by full container load with temperature management to [Sample] ports. Accompanied by statutory phytosanitary certification.
               </p>
             </div>
             <div>
               <PhotoPlaceholder
+                src={IMAGES.containerLoading}
                 label={`PHOTO NEEDED: container loading for ${product.name}`}
                 aspectRatio="3:2"
               />

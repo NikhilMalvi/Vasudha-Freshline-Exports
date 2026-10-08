@@ -53,7 +53,7 @@ export const RfqModal: React.FC<RfqModalProps> = ({ isOpen, onClose, initialProd
 - Buyer Company: ${formData.companyName || '[Company]'}
 - Contact: ${formData.contactName || '[Name]'}`;
 
-    const url = `https://wa.me/?text=${encodeURIComponent(message)}`;
+    const url = `https://wa.me/910000000000?text=${encodeURIComponent(message)}`;
     window.open(url, '_blank');
   };
 
@@ -135,7 +135,7 @@ export const RfqModal: React.FC<RfqModalProps> = ({ isOpen, onClose, initialProd
             </div>
             <h3 style={{ marginBottom: '12px' }}>Request for quote received</h3>
             <p style={{ maxWidth: '440px', margin: '0 auto 24px', color: '#353535', fontSize: '15px' }}>
-              Your inquiry has been logged. Our export trade desk will review specifications and respond [CONFIRM: response turnaround time].
+              Your inquiry has been logged. Our export trade desk will review specifications and respond with formal proforma pricing.
             </p>
             <div style={{ display: 'flex', gap: '16px', justifyContent: 'center', flexWrap: 'wrap' }}>
               <button

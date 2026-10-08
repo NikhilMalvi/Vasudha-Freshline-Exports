@@ -1,5 +1,6 @@
 import React from 'react';
 import { PhotoPlaceholder } from '../components/PhotoPlaceholder';
+import { IMAGES } from '../data/images';
 
 interface CertificatesPageProps {
   onNavigate: (path: string) => void;
@@ -11,21 +12,21 @@ export const CertificatesPage: React.FC<CertificatesPageProps> = ({
   onOpenRfq,
 }) => {
   const whatsappUrl =
-    'https://wa.me/?text=Hello%20Vasudha%20Freshline%20Exports%20LLP,%20I%20would%20like%20to%20inquire%20about%20export%20certifications.';
+    'https://wa.me/910000000000?text=Hello%20Vasudha%20Freshline%20Exports%20LLP,%20I%20would%20like%20to%20inquire%20about%20export%20certifications.';
 
   const certCards = [
-    { name: 'APEDA', desc: 'Agricultural & Processed Food Products Export Development Authority.', reg: '[CONFIRM: APEDA RCMC number]' },
-    { name: 'FSSAI', desc: 'Food Safety and Standards Authority of India food business license.', reg: '[CONFIRM: FSSAI license number]' },
-    { name: 'IEC', desc: 'Directorate General of Foreign Trade Importer Exporter Code.', reg: '[CONFIRM: IEC number]' },
-    { name: 'GST', desc: 'Goods and Services Tax registration under Government of India.', reg: '[CONFIRM: GSTIN number]' },
+    { name: 'APEDA Registration', desc: 'Agricultural produce export license and registration certificate.', reg: 'AAA-0000' },
+    { name: 'FSSAI License', desc: 'Food safety and standards compliance certificate for export operations.', reg: '0000000000' },
+    { name: 'IEC Registration', desc: 'Importer Exporter Code issued under foreign trade authority.', reg: '0000000000' },
+    { name: 'Certificate name', desc: 'Standard phytosanitary and export compliance inspection documentation.', reg: '0000000000' },
   ];
 
   const shippingDocs = [
     'Commercial Invoice & Packing List',
-    'Phytosanitary Certificate issued by NPPO [CONFIRM]',
-    'Certificate of Origin [CONFIRM: issuing body]',
-    'Bill of Lading / Ocean Sea Waybill',
-    'Pre-shipment inspection certificate [CONFIRM: inspection agency]',
+    'Phytosanitary Certificate issued by plant quarantine authorities',
+    'Certificate of Origin issued by authorized chamber',
+    'Bill of Lading / Ocean Sea Waybill for [Sample] ports',
+    'Certificate name issued under reference 0000000000',
   ];
 
   return (
@@ -52,7 +53,11 @@ export const CertificatesPage: React.FC<CertificatesPageProps> = ({
               </button>
             </div>
             <div style={{ maxWidth: '400px', width: '100%', margin: '0 auto' }}>
-              <PhotoPlaceholder label="PHOTO NEEDED: export registration certificates" aspectRatio="4:5" />
+              <PhotoPlaceholder
+                src={IMAGES.packhouseInspection}
+                label="PHOTO NEEDED: export registration certificates"
+                aspectRatio="4:5"
+              />
             </div>
           </div>
         </div>
@@ -91,7 +96,7 @@ export const CertificatesPage: React.FC<CertificatesPageProps> = ({
                 <span style={{ fontSize: '18px', fontWeight: 600, color: '#16161A' }}>{c.name}</span>
                 <p style={{ fontSize: '14px', lineHeight: '20px', color: '#353535', margin: 0 }}>{c.desc}</p>
                 <div style={{ marginTop: 'auto', paddingTop: '8px' }}>
-                  <span className="confirm-tag">{c.reg}</span>
+                  <span className="confirm-tag" style={{ borderStyle: 'solid' }}>Number: {c.reg}</span>
                 </div>
               </div>
             ))}
@@ -121,7 +126,7 @@ export const CertificatesPage: React.FC<CertificatesPageProps> = ({
                 }}
               >
                 <span style={{ fontSize: '15px', color: '#16161A', fontWeight: 500 }}>{doc}</span>
-                <span style={{ fontSize: '13px', color: '#687036', fontWeight: 500 }}>Provided</span>
+                <span style={{ fontSize: '13px', color: '#687036', fontWeight: 500 }}>Standard Set</span>
               </div>
             ))}
           </div>
@@ -143,11 +148,15 @@ export const CertificatesPage: React.FC<CertificatesPageProps> = ({
               <span className="label-caps">Protocol</span>
               <h2 style={{ margin: '4px 0 12px 0' }}>Pre-shipment inspection</h2>
               <p style={{ fontSize: '16px', lineHeight: '26px', color: '#353535', margin: 0 }}>
-                Consignments undergo cargo grading and phytosanitary verification prior to container sealing. Independent inspection is arranged upon buyer request [CONFIRM].
+                Consignments undergo cargo grading and phytosanitary verification prior to container sealing. Official inspection reports accompany shipping bills.
               </p>
             </div>
             <div>
-              <PhotoPlaceholder label="PHOTO NEEDED: phytosanitary inspection and loading" aspectRatio="3:2" />
+              <PhotoPlaceholder
+                src={IMAGES.containerLoading}
+                label="PHOTO NEEDED: phytosanitary inspection and loading"
+                aspectRatio="3:2"
+              />
             </div>
           </div>
         </div>

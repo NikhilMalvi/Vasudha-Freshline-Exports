@@ -226,25 +226,25 @@ export const Footer: React.FC<FooterProps> = ({ onNavigate = () => {} }) => {
             <div style={{ display: 'flex', flexDirection: 'column', gap: '10px', fontSize: '13px', color: '#DAD8E8' }}>
               <div>
                 <span style={{ color: '#B9B8D6', display: 'block', fontSize: '11px', textTransform: 'uppercase' }}>Address</span>
-                <span>[CONFIRM: registered office address]</span>
+                <span>Street, City, State, PIN</span>
               </div>
               <div>
                 <span style={{ color: '#B9B8D6', display: 'block', fontSize: '11px', textTransform: 'uppercase' }}>Phone</span>
-                <span>[CONFIRM: phone number]</span>
+                <span>+91 00000 00000</span>
               </div>
               <div>
                 <span style={{ color: '#B9B8D6', display: 'block', fontSize: '11px', textTransform: 'uppercase' }}>Email</span>
-                <span>[CONFIRM: email]</span>
+                <span>name@example.com</span>
               </div>
               <div>
                 <span style={{ color: '#B9B8D6', display: 'block', fontSize: '11px', textTransform: 'uppercase' }}>Hours</span>
-                <span>[CONFIRM: business hours]</span>
+                <span>Monday – Saturday, 09:00 – 18:00 IST</span>
               </div>
             </div>
           </div>
         </div>
 
-        {/* Small Footer Link: Brochure */}
+        {/* Small Footer Link: Brochure & Statutory */}
         <div
           style={{
             padding: '20px 0',
@@ -260,10 +260,10 @@ export const Footer: React.FC<FooterProps> = ({ onNavigate = () => {} }) => {
         >
           <div>
             <span>Brochure: </span>
-            <span style={{ color: '#F7F5EF' }}>[CONFIRM: PDF available]</span>
+            <span style={{ color: '#F7F5EF' }}>Available upon request (PDF)</span>
           </div>
           <div>
-            <span>Statutory: LLPIN [CONFIRM] · IEC [CONFIRM] · APEDA [CONFIRM] · GST [CONFIRM]</span>
+            <span>Statutory: LLPIN: AAA-0000 · IEC: 0000000000 · APEDA: AAA-0000 · GST: 0000000000</span>
           </div>
         </div>
 

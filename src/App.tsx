@@ -1,4 +1,5 @@
 import { useState, useEffect } from 'react';
+import { DraftNoticeBar } from './components/DraftNoticeBar';
 import { NoticeBar } from './components/NoticeBar';
 import { Header } from './components/Header';
 import { Footer } from './components/Footer';
@@ -109,6 +110,9 @@ export function App() {
 
   return (
     <div className="site-wrapper" style={{ minHeight: '100vh', display: 'flex', flexDirection: 'column', backgroundColor: '#F7F5EF' }}>
+      {/* 0. Presentation Draft Bar (Removable) */}
+      <DraftNoticeBar />
+
       {/* 1. Global Notice Bar */}
       <NoticeBar onNavigateToQuote={() => navigateTo('/contact')} />
 

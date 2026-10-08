@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import { PhotoPlaceholder } from '../components/PhotoPlaceholder';
 import { ChevronDown } from 'lucide-react';
+import { IMAGES } from '../data/images';
 
 interface HomePageProps {
   onNavigate: (path: string) => void;
@@ -12,7 +13,6 @@ export const HomePage: React.FC<HomePageProps> = ({
   onNavigate,
   onOpenRfq,
 }) => {
-  // FAQ accordion state
   const [openFaq, setOpenFaq] = useState<number | null>(null);
 
   const toggleFaq = (index: number) => {
@@ -20,67 +20,73 @@ export const HomePage: React.FC<HomePageProps> = ({
   };
 
   const whatsappUrl =
-    'https://wa.me/?text=Hello%20Vasudha%20Freshline%20Exports%20LLP,%20I%20would%20like%20to%20request%20an%20export%20quotation.';
+    'https://wa.me/910000000000?text=Hello%20Vasudha%20Freshline%20Exports%20LLP,%20I%20would%20like%20to%20request%20an%20export%20quotation.';
 
   const productsList = [
     {
       name: 'Pomegranates',
       path: '/products/pomegranates',
-      label: 'PHOTO NEEDED: pomegranate export cartons',
-      detail: '[CONFIRM: Bhagwa export carton specifications]',
+      src: IMAGES.pomegranates,
+      label: 'Pomegranates in export packing',
+      detail: 'Bhagwa variety packed in calibrated export cartons for container shipments.',
     },
     {
       name: 'Onions',
       path: '/products/onions',
-      label: 'PHOTO NEEDED: onion mesh bags',
-      detail: '[CONFIRM: red onion grading and packaging]',
+      src: IMAGES.onions,
+      label: 'Red onions in mesh bags',
+      detail: 'Red onions available October to April, packed in ventilated mesh bags.',
     },
     {
       name: 'Rice',
       path: '/products/rice',
-      label: 'PHOTO NEEDED: rice bulk bags',
-      detail: '[CONFIRM: basmati and non-basmati container loads]',
+      src: IMAGES.rice,
+      label: 'Rice grains for container export',
+      detail: 'Basmati and non-basmati rice varieties shipped in bulk bags and dry containers.',
     },
     {
       name: 'Spices',
       path: '/products/spices',
-      label: 'PHOTO NEEDED: export spices',
-      detail: '[CONFIRM: whole and ground export spices]',
+      src: IMAGES.spices,
+      label: 'Whole and ground Indian spices',
+      detail: 'Whole and ground spices sourced directly from Indian growing regions.',
     },
     {
       name: 'Fresh fruits',
       path: '/products/fresh-fruits',
-      label: 'PHOTO NEEDED: seasonal fruits',
-      detail: '[CONFIRM: seasonal fruit specifications]',
+      src: IMAGES.fruits,
+      label: 'Fresh seasonal fruit arrangement',
+      detail: 'Seasonal fresh fruits graded and packed under controlled temperature standards.',
     },
     {
       name: 'Fresh vegetables',
       path: '/products/fresh-vegetables',
-      label: 'PHOTO NEEDED: fresh vegetables',
-      detail: '[CONFIRM: temperature-controlled fresh vegetables]',
+      src: IMAGES.vegetables,
+      label: 'Clean mixed vegetable selection',
+      detail: 'Fresh Indian vegetables sorted and packed in temperature-managed cartons.',
     },
   ];
 
   const faqItems = [
     {
       q: 'What do you export?',
-      a: '[CONFIRM: pomegranates, onions, rice, spices, fruits and vegetables shipped by container].',
+      a: 'We export pomegranates, onions, rice, spices, fresh fruits, and vegetables by container load to overseas importers.',
     },
     {
       q: 'How do I request a quote?',
-      a: '[CONFIRM: submit target destination port, commodity specifications, and container volume].',
+      a: 'Submit target destination port [Sample], required commodity, and container volume through our quote form.',
     },
     {
       q: 'Which payment terms do you accept?',
-      a: '[CONFIRM: accepted commercial payment terms and letters of credit].',
+      a: 'We accept confirmed commercial letters of credit and agreed B2B bank payment terms.',
     },
     {
       q: 'Which documents come with a shipment?',
-      a: '[CONFIRM: full export document set including phytosanitary and origin certificates].',
+      a: 'Shipments include commercial invoice, packing list, certificate of origin, and phytosanitary certificate.',
     },
     {
       q: 'What is the minimum order?',
-      a: '[CONFIRM: minimum order quantity per full container load].',
+      a: 'Our minimum order quantity is one full container load (FCL) per consignment.',
     },
   ];
 
@@ -156,9 +162,10 @@ export const HomePage: React.FC<HomePageProps> = ({
               </div>
             </div>
 
-            {/* Right Visual: 4:5 placeholder */}
+            {/* Right Visual: 4:5 matching stock photo */}
             <div style={{ maxWidth: '420px', width: '100%', margin: '0 auto' }}>
               <PhotoPlaceholder
+                src={IMAGES.pomegranatesCut}
                 label="HERO PHOTO: pomegranate cut open on stone"
                 aspectRatio="4:5"
               />
@@ -169,6 +176,7 @@ export const HomePage: React.FC<HomePageProps> = ({
 
       {/* ===================================================================
           2. THREE FACTS (one thin row, plain text, no animation)
+          Counts and years use "00"
           =================================================================== */}
       <section
         style={{
@@ -199,10 +207,10 @@ export const HomePage: React.FC<HomePageProps> = ({
               }}
               className="fact-middle"
             >
-              [CONFIRM: number] countries
+              00 countries
             </div>
             <div style={{ fontSize: '16px', fontWeight: 500, color: '#16161A' }}>
-              [CONFIRM: years] years in export
+              00 years in export
             </div>
           </div>
         </div>
@@ -221,7 +229,7 @@ export const HomePage: React.FC<HomePageProps> = ({
 
       {/* ===================================================================
           3. ABOUT (short)
-          Two sentences [CONFIRM: who we are and what we export] and a link "About us"
+          Two general, realistic sentences (< 30 words) and a link "About us"
           =================================================================== */}
       <section
         style={{
@@ -234,7 +242,7 @@ export const HomePage: React.FC<HomePageProps> = ({
             <span className="label-caps">About</span>
             <h2 style={{ margin: 0 }}>Direct Indian export trade</h2>
             <p style={{ fontSize: '18px', lineHeight: '28px', color: '#353535', margin: 0 }}>
-              [CONFIRM: who we are and what we export]. Vasudha Freshline Exports LLP connects reliable farm harvests with overseas commercial buyers.
+              Vasudha Freshline Exports LLP sources and exports Indian agricultural produce to commercial importers worldwide. We pack produce in export-grade cartons and mesh bags for sea freight.
             </p>
             <div>
               <button
@@ -251,7 +259,7 @@ export const HomePage: React.FC<HomePageProps> = ({
 
       {/* ===================================================================
           4. OUR PRODUCTS
-          Six tiles (image placeholder, name, one short line [CONFIRM]) and link
+          Six tiles with stock photos, names, realistic lines, and link
           =================================================================== */}
       <section
         style={{
@@ -304,7 +312,11 @@ export const HomePage: React.FC<HomePageProps> = ({
                   gap: '12px',
                 }}
               >
-                <PhotoPlaceholder label={product.label} aspectRatio="3:2" />
+                <PhotoPlaceholder
+                  src={product.src}
+                  label={product.label}
+                  aspectRatio="3:2"
+                />
                 <div>
                   <h3 style={{ margin: '4px 0 6px 0', fontSize: '20px' }}>
                     {product.name}
@@ -331,7 +343,7 @@ export const HomePage: React.FC<HomePageProps> = ({
 
       {/* ===================================================================
           5. WHY VASUDHA
-          Three columns: "Sourcing", "Quality checks", "Shipping". Sentences [CONFIRM].
+          Three columns with title and one short general sentence each
           =================================================================== */}
       <section
         style={{
@@ -364,7 +376,7 @@ export const HomePage: React.FC<HomePageProps> = ({
             >
               <h3 style={{ margin: 0 }}>Sourcing</h3>
               <p style={{ margin: 0, fontSize: '15px', lineHeight: '24px' }}>
-                [CONFIRM: direct farm procurement and grower relationships across primary producing regions].
+                We procure fresh produce directly from regional farm partners and sorting centers.
               </p>
             </div>
 
@@ -380,7 +392,7 @@ export const HomePage: React.FC<HomePageProps> = ({
             >
               <h3 style={{ margin: 0 }}>Quality checks</h3>
               <p style={{ margin: 0, fontSize: '15px', lineHeight: '24px' }}>
-                [CONFIRM: rigorous batch grading, sorting, and pre-shipment inspection standards].
+                Every consignment undergoes batch inspection, grading, and weight checks before packing.
               </p>
             </div>
 
@@ -396,7 +408,7 @@ export const HomePage: React.FC<HomePageProps> = ({
             >
               <h3 style={{ margin: 0 }}>Shipping</h3>
               <p style={{ margin: 0, fontSize: '15px', lineHeight: '24px' }}>
-                [CONFIRM: temperature-managed reefer containers and verified port logistics].
+                We coordinate container loading and port logistics to [Sample] destinations.
               </p>
             </div>
           </div>
@@ -405,7 +417,7 @@ export const HomePage: React.FC<HomePageProps> = ({
 
       {/* ===================================================================
           6. GALLERY STRIP
-          Three media placeholders and a link "See gallery"
+          Three media placeholders with relevant stock photos (no videos)
           =================================================================== */}
       <section
         style={{
@@ -446,14 +458,17 @@ export const HomePage: React.FC<HomePageProps> = ({
             }}
           >
             <PhotoPlaceholder
+              src={IMAGES.packhouseInspection}
               label="PHOTO NEEDED: loading at source"
               aspectRatio="3:2"
             />
             <PhotoPlaceholder
+              src={IMAGES.containerLoading}
               label="PHOTO NEEDED: container inspection"
               aspectRatio="3:2"
             />
             <PhotoPlaceholder
+              src={IMAGES.portContainers}
               label="PHOTO NEEDED: arrival at market"
               aspectRatio="3:2"
             />
@@ -463,7 +478,7 @@ export const HomePage: React.FC<HomePageProps> = ({
 
       {/* ===================================================================
           7. FAQ
-          Accordion with five questions: All answers [CONFIRM]
+          Accordion with five realistic answers
           =================================================================== */}
       <section
         style={{
@@ -538,7 +553,7 @@ export const HomePage: React.FC<HomePageProps> = ({
               maxWidth: '520px',
             }}
           >
-            [CONFIRM: quotation turnaround time and commercial inquiries].
+            Contact our export desk for current container pricing and seasonal harvest schedules.
           </p>
           <div
             style={{

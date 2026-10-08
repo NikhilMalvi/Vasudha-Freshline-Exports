@@ -19,7 +19,7 @@ const WhatsAppLineIcon: React.FC<{ size?: number; color?: string }> = ({ size = 
 export const WhatsAppFloating: React.FC = () => {
   const [showTooltip, setShowTooltip] = useState(false);
 
-  const whatsappUrl = 'https://wa.me/?text=Hello%20Vasudha%20Freshline%20Exports%20LLP,%20I%20would%20like%20to%20request%20an%20export%20quotation.';
+  const whatsappUrl = 'https://wa.me/910000000000?text=Hello%20Vasudha%20Freshline%20Exports%20LLP,%20I%20would%20like%20to%20request%20an%20export%20quotation.';
 
   return (
     <div

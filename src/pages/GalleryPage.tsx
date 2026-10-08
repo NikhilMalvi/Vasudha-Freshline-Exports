@@ -1,5 +1,6 @@
 import React from 'react';
 import { PhotoPlaceholder } from '../components/PhotoPlaceholder';
+import { IMAGES } from '../data/images';
 
 interface GalleryPageProps {
   onNavigate: (path: string) => void;
@@ -11,7 +12,7 @@ export const GalleryPage: React.FC<GalleryPageProps> = ({
   onOpenRfq,
 }) => {
   const whatsappUrl =
-    'https://wa.me/?text=Hello%20Vasudha%20Freshline%20Exports%20LLP,%20I%20would%20like%20to%20request%20an%20export%20quotation.';
+    'https://wa.me/910000000000?text=Hello%20Vasudha%20Freshline%20Exports%20LLP,%20I%20would%20like%20to%20request%20an%20export%20quotation.';
 
   return (
     <main style={{ backgroundColor: '#F7F5EF', color: '#353535' }}>
@@ -46,9 +47,21 @@ export const GalleryPage: React.FC<GalleryPageProps> = ({
               gap: '24px',
             }}
           >
-            <PhotoPlaceholder label="PHOTO NEEDED: farm harvest collection" aspectRatio="3:2" />
-            <PhotoPlaceholder label="PHOTO NEEDED: manual grading and sorting line" aspectRatio="3:2" />
-            <PhotoPlaceholder label="PHOTO NEEDED: export carton packing" aspectRatio="3:2" />
+            <PhotoPlaceholder
+              src="https://images.unsplash.com/photo-1500937386664-56d1dfef3854?auto=format&fit=crop&w=1200&q=80"
+              label="PHOTO NEEDED: farm harvest collection"
+              aspectRatio="3:2"
+            />
+            <PhotoPlaceholder
+              src={IMAGES.packhouseInspection}
+              label="PHOTO NEEDED: manual grading and sorting line"
+              aspectRatio="3:2"
+            />
+            <PhotoPlaceholder
+              src="https://images.unsplash.com/photo-1587293852726-70cdb56c2866?auto=format&fit=crop&w=1200&q=80"
+              label="PHOTO NEEDED: export carton packing"
+              aspectRatio="3:2"
+            />
           </div>
         </div>
       </section>
@@ -70,21 +83,33 @@ export const GalleryPage: React.FC<GalleryPageProps> = ({
               gap: '24px',
             }}
           >
-            <PhotoPlaceholder label="PHOTO NEEDED: container loading at packhouse" aspectRatio="3:2" />
-            <PhotoPlaceholder label="PHOTO NEEDED: temperature logger placement" aspectRatio="3:2" />
-            <PhotoPlaceholder label="PHOTO NEEDED: customs container bolt sealing" aspectRatio="3:2" />
+            <PhotoPlaceholder
+              src={IMAGES.containerLoading}
+              label="PHOTO NEEDED: container loading at packhouse"
+              aspectRatio="3:2"
+            />
+            <PhotoPlaceholder
+              src={IMAGES.portContainers}
+              label="PHOTO NEEDED: temperature logger placement"
+              aspectRatio="3:2"
+            />
+            <PhotoPlaceholder
+              src={IMAGES.oceanVessel}
+              label="PHOTO NEEDED: customs container bolt sealing"
+              aspectRatio="3:2"
+            />
           </div>
         </div>
       </section>
 
-      {/* 4. VIDEO DOCUMENTATION */}
+      {/* 4. DISPATCH TO PORTS (STOCK PHOTOS ONLY - NO VIDEOS, NO PLAY BUTTONS) */}
       <section style={{ padding: '64px 0', backgroundColor: '#ECE8DC', borderBottom: '1px solid #D9D5C8' }}>
         <div className="container">
           <div style={{ marginBottom: '32px' }}>
             <span className="label-caps">Step 3</span>
-            <h2 style={{ margin: '4px 0 8px 0' }}>Video records</h2>
+            <h2 style={{ margin: '4px 0 8px 0' }}>Port dispatch & ocean transit</h2>
             <p style={{ margin: 0, fontSize: '16px', color: '#5F5D55' }}>
-              Packhouse sorting and loading clips recorded on site.
+              Coordinated container transport to [Sample] ocean loading terminals.
             </p>
           </div>
           <div
@@ -94,51 +119,16 @@ export const GalleryPage: React.FC<GalleryPageProps> = ({
               gap: '28px',
             }}
           >
-            <div>
-              <div
-                style={{
-                  border: '1px solid #D9D5C8',
-                  borderRadius: 'var(--radius)',
-                  overflow: 'hidden',
-                  backgroundColor: '#000',
-                  aspectRatio: '16/9',
-                }}
-              >
-                <video
-                  controls
-                  preload="metadata"
-                  style={{ width: '100%', height: '100%', display: 'block', objectFit: 'contain' }}
-                >
-                  <source src="/videos/IMG_9085.MP4" type="video/mp4" />
-                </video>
-              </div>
-              <p className="photo-placeholder-caption" style={{ marginTop: '8px' }}>
-                VIDEO RECORD: produce sorting line
-              </p>
-            </div>
-
-            <div>
-              <div
-                style={{
-                  border: '1px solid #D9D5C8',
-                  borderRadius: 'var(--radius)',
-                  overflow: 'hidden',
-                  backgroundColor: '#000',
-                  aspectRatio: '16/9',
-                }}
-              >
-                <video
-                  controls
-                  preload="metadata"
-                  style={{ width: '100%', height: '100%', display: 'block', objectFit: 'contain' }}
-                >
-                  <source src="/videos/IMG_9078.MP4" type="video/mp4" />
-                </video>
-              </div>
-              <p className="photo-placeholder-caption" style={{ marginTop: '8px' }}>
-                VIDEO RECORD: container inspection
-              </p>
-            </div>
+            <PhotoPlaceholder
+              src="https://images.unsplash.com/photo-1553413077-190dd305871c?auto=format&fit=crop&w=1200&q=80"
+              label="PHOTO NEEDED: cargo staging at terminal"
+              aspectRatio="16:9"
+            />
+            <PhotoPlaceholder
+              src={IMAGES.oceanVessel}
+              label="PHOTO NEEDED: vessel departure to destination port"
+              aspectRatio="16:9"
+            />
           </div>
         </div>
       </section>

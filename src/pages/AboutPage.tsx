@@ -1,5 +1,6 @@
 import React from 'react';
 import { PhotoPlaceholder } from '../components/PhotoPlaceholder';
+import { IMAGES } from '../data/images';
 
 interface AboutPageProps {
   onNavigate: (path: string) => void;
@@ -11,7 +12,7 @@ export const AboutPage: React.FC<AboutPageProps> = ({
   onOpenRfq,
 }) => {
   const whatsappUrl =
-    'https://wa.me/?text=Hello%20Vasudha%20Freshline%20Exports%20LLP,%20I%20would%20like%20to%20learn%20more%20about%20your%20company.';
+    'https://wa.me/910000000000?text=Hello%20Vasudha%20Freshline%20Exports%20LLP,%20I%20would%20like%20to%20learn%20more%20about%20your%20company.';
 
   return (
     <main style={{ backgroundColor: '#F7F5EF', color: '#353535' }}>
@@ -37,7 +38,11 @@ export const AboutPage: React.FC<AboutPageProps> = ({
               </button>
             </div>
             <div style={{ maxWidth: '400px', width: '100%', margin: '0 auto' }}>
-              <PhotoPlaceholder label="PHOTO NEEDED: packhouse operations" aspectRatio="4:5" />
+              <PhotoPlaceholder
+                src={IMAGES.packhouseInspection}
+                label="PHOTO NEEDED: packing scene with hands only"
+                aspectRatio="4:5"
+              />
             </div>
           </div>
         </div>
@@ -68,7 +73,7 @@ export const AboutPage: React.FC<AboutPageProps> = ({
             </div>
             <div style={{ backgroundColor: '#F7F5EF', border: '1px solid #D9D5C8', padding: '16px', borderRadius: 'var(--radius)' }}>
               <span style={{ fontSize: '12px', color: '#5F5D55', textTransform: 'uppercase', display: 'block' }}>Commercial terms</span>
-              <strong style={{ fontSize: '15px', color: '#16161A', display: 'block', marginTop: '4px' }}>[CONFIRM: trade terms]</strong>
+              <strong style={{ fontSize: '15px', color: '#16161A', display: 'block', marginTop: '4px' }}>FOB / CFR / CIF [Sample]</strong>
             </div>
           </div>
         </div>
@@ -89,11 +94,15 @@ export const AboutPage: React.FC<AboutPageProps> = ({
               <span className="label-caps">Procurement</span>
               <h2 style={{ margin: '4px 0 12px 0' }}>Direct farm sourcing</h2>
               <p style={{ fontSize: '16px', lineHeight: '26px', color: '#353535', margin: 0 }}>
-                [CONFIRM: sourcing partnerships across primary Indian growing regions]. Produce is harvested and moved directly to local packing facilities.
+                We work directly with agricultural growers across primary Indian belts. Produce is harvested and moved directly to local packing facilities.
               </p>
             </div>
             <div>
-              <PhotoPlaceholder label="PHOTO NEEDED: farm harvest collection" aspectRatio="3:2" />
+              <PhotoPlaceholder
+                src="https://images.unsplash.com/photo-1500937386664-56d1dfef3854?auto=format&fit=crop&w=1200&q=80"
+                label="PHOTO NEEDED: farm harvest collection"
+                aspectRatio="3:2"
+              />
             </div>
           </div>
         </div>
@@ -111,13 +120,17 @@ export const AboutPage: React.FC<AboutPageProps> = ({
             }}
           >
             <div>
-              <PhotoPlaceholder label="PHOTO NEEDED: produce inspection before loading" aspectRatio="3:2" />
+              <PhotoPlaceholder
+                src={IMAGES.containerLoading}
+                label="PHOTO NEEDED: produce inspection before loading"
+                aspectRatio="3:2"
+              />
             </div>
             <div>
               <span className="label-caps">Operations</span>
               <h2 style={{ margin: '4px 0 12px 0' }}>Inspection & documentation</h2>
               <p style={{ fontSize: '16px', lineHeight: '26px', color: '#353535', margin: 0 }}>
-                Every consignment is inspected for size, grading, and packaging integrity. Shipments travel with complete statutory documentation [CONFIRM].
+                Every consignment is inspected for size, grading, and packaging integrity. Shipments travel with complete statutory documentation and certificates.
               </p>
             </div>
           </div>

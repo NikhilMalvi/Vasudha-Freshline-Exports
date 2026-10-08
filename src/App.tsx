@@ -13,6 +13,7 @@ import { ProductDetailPage } from './pages/ProductDetailPage';
 import { AboutPage } from './pages/AboutPage';
 import { CertificatesPage } from './pages/CertificatesPage';
 import { GalleryPage } from './pages/GalleryPage';
+import { BlogPage } from './pages/BlogPage';
 import { QuotePage } from './pages/QuotePage';
 import { LegalPage } from './pages/LegalPage';
 import { NotFoundPage } from './pages/NotFoundPage';
@@ -96,8 +97,12 @@ export function App() {
     }
 
     if (currentPath === '/blog') {
-      // Blog / Market Insights route
-      return <AboutPage onNavigate={navigateTo} onOpenRfq={handleOpenRfq} />;
+      return <BlogPage onNavigate={navigateTo} onOpenRfq={handleOpenRfq} />;
+    }
+
+    if (currentPath.startsWith('/blog/')) {
+      const articleSlug = currentPath.replace('/blog/', '');
+      return <BlogPage articleSlug={articleSlug} onNavigate={navigateTo} onOpenRfq={handleOpenRfq} />;
     }
 
     if (currentPath === '/export') {

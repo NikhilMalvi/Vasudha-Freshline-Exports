@@ -593,7 +593,7 @@ export const QuotePage: React.FC<QuotePageProps> = ({
                   </div>
                   <div style={{ display: 'flex', alignItems: 'flex-start', gap: '12px' }}>
                     <Clock size={18} style={{ color: 'var(--olive)', flexShrink: 0, marginTop: '2px' }} />
-                    <span style={{ color: 'var(--charcoal)' }}>[Sample] hours</span>
+                    <span style={{ color: 'var(--charcoal)' }}>Mon &ndash; Sat: 9:00 AM &ndash; 6:00 PM IST</span>
                   </div>
                 </div>
               </div>

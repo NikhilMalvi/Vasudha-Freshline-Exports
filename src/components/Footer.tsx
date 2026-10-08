@@ -336,7 +336,7 @@ export const Footer: React.FC<FooterProps> = ({ onNavigate = () => {} }) => {
               </div>
               <div style={{ display: 'flex', alignItems: 'flex-start', gap: '10px' }}>
                 <Clock size={16} style={{ color: 'var(--olive-light)', flexShrink: 0, marginTop: '2px' }} />
-                <span>[Sample] hours</span>
+                <span>Mon &ndash; Sat: 9:00 AM &ndash; 6:00 PM IST</span>
               </div>
             </div>
           </div>

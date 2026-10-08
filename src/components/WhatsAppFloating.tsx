@@ -1,24 +1,20 @@
 import React, { useState } from 'react';
 
-const WhatsAppLineIcon: React.FC<{ size?: number; color?: string }> = ({ size = 26, color = '#FFFFFF' }) => (
+const WhatsAppBrandIcon: React.FC<{ size?: number; color?: string }> = ({ size = 28, color = '#FFFFFF' }) => (
   <svg
     width={size}
     height={size}
     viewBox="0 0 24 24"
-    fill="none"
-    stroke={color}
-    strokeWidth="1.8"
-    strokeLinecap="round"
-    strokeLinejoin="round"
+    fill={color}
+    style={{ display: 'block' }}
   >
-    <path d="M21 11.5a8.38 8.38 0 0 1-.9 3.8 8.5 8.5 0 0 1-7.6 4.7 8.38 8.38 0 0 1-3.8-.9L3 21l1.9-5.7a8.38 8.38 0 0 1-.9-3.8 8.5 8.5 0 0 1 4.7-7.6 8.38 8.38 0 0 1 3.8-.9h.5a8.48 8.48 0 0 1 8 8v.5z" />
-    <path d="M9.5 9.5c.3-.5.7-.6 1-.6.2 0 .4.1.5.3l1.1 2.2c.1.3.1.5-.1.8l-.5.6c.4.8 1.1 1.5 1.9 1.9l.6-.5c.3-.2.5-.2.8-.1l2.2 1.1c.2.1.3.3.3.5 0 .3-.1.7-.6 1-.5.3-1.4.3-2.6-.3-1.6-.8-3.1-2.3-3.9-3.9-.6-1.2-.6-2.1-.3-2.6z" />
+    <path d="M12.04 2C6.58 2 2.13 6.45 2.13 11.91C2.13 13.66 2.59 15.36 3.45 16.86L2.05 22L7.3 20.62C8.75 21.41 10.38 21.83 12.04 21.83C17.5 21.83 21.95 17.38 21.95 11.92C21.95 9.27 20.92 6.78 19.05 4.91C17.18 3.03 14.69 2 12.04 2ZM12.05 3.67C14.25 3.67 16.31 4.53 17.87 6.09C19.42 7.65 20.28 9.72 20.28 11.92C20.28 16.46 16.59 20.15 12.04 20.15C10.66 20.15 9.3 19.8 8.1 19.14L7.81 18.97L4.69 19.79L5.52 16.75L5.33 16.45C4.6 15.29 4.22 13.93 4.22 11.91C4.22 7.37 7.51 3.67 12.05 3.67ZM8.94 7.42C8.74 7.42 8.54 7.43 8.36 7.74C8.18 8.05 7.67 8.53 7.67 9.51C7.67 10.49 8.38 11.43 8.48 11.57C8.58 11.71 9.87 13.7 11.87 14.56C13.53 15.28 13.87 15.13 14.23 15.1C14.59 15.06 15.39 14.62 15.55 14.16C15.71 13.7 15.71 13.31 15.66 13.23C15.61 13.15 15.48 13.1 15.28 13C15.08 12.9 14.09 12.41 13.91 12.34C13.73 12.27 13.6 12.24 13.47 12.44C13.34 12.64 12.96 13.1 12.84 13.23C12.72 13.36 12.6 13.38 12.4 13.28C12.2 13.18 11.56 12.97 10.8 12.3C10.21 11.78 9.81 11.13 9.69 10.93C9.57 10.73 9.68 10.62 9.78 10.52C9.87 10.43 9.98 10.29 10.08 10.17C10.18 10.05 10.22 9.96 10.29 9.83C10.36 9.7 10.32 9.58 10.27 9.48C10.22 9.38 9.73 8.18 9.53 7.68C9.33 7.2 9.13 7.26 8.97 7.25L8.94 7.42Z" />
   </svg>
 );
 
 /**
  * WhatsApp Floating Button
- * Rule 17: navy circle 56px, white icon, tooltip "Chat on WhatsApp" bottom-right.
+ * Dedicated WhatsApp brand green (#25D366) floating button with crisp icon & tooltip.
  */
 export const WhatsAppFloating: React.FC = () => {
   const [showTooltip, setShowTooltip] = useState(false);
@@ -31,7 +27,7 @@ export const WhatsAppFloating: React.FC = () => {
         position: 'fixed',
         bottom: '24px',
         right: '24px',
-        zIndex: 40,
+        zIndex: 50,
         display: 'flex',
         alignItems: 'center',
         flexDirection: 'column',
@@ -53,7 +49,8 @@ export const WhatsAppFloating: React.FC = () => {
             fontWeight: 500,
             whiteSpace: 'nowrap',
             pointerEvents: 'none',
-            boxShadow: 'var(--shadow-soft)',
+            boxShadow: 'var(--shadow-floating)',
+            border: '1px solid rgba(255, 255, 255, 0.1)',
           }}
         >
           Chat on WhatsApp
@@ -67,10 +64,12 @@ export const WhatsAppFloating: React.FC = () => {
         aria-label="Chat on WhatsApp"
         onMouseEnter={(e) => {
           setShowTooltip(true);
-          e.currentTarget.style.transform = 'scale(1.05)';
+          e.currentTarget.style.backgroundColor = '#20BA5A';
+          e.currentTarget.style.transform = 'scale(1.08)';
         }}
         onMouseLeave={(e) => {
           setShowTooltip(false);
+          e.currentTarget.style.backgroundColor = '#25D366';
           e.currentTarget.style.transform = 'scale(1)';
         }}
         onFocus={() => setShowTooltip(true)}
@@ -79,18 +78,18 @@ export const WhatsAppFloating: React.FC = () => {
           width: '56px',
           height: '56px',
           borderRadius: '50%',
-          backgroundColor: 'var(--navy)',
+          backgroundColor: '#25D366',
           display: 'flex',
           alignItems: 'center',
           justifyContent: 'center',
           cursor: 'pointer',
-          border: '1px solid var(--navy)',
-          boxShadow: 'var(--shadow-floating)',
-          transition: 'transform 200ms ease, background-color 200ms ease',
+          border: 'none',
+          boxShadow: '0 4px 16px rgba(0, 0, 0, 0.25), 0 2px 6px rgba(37, 211, 102, 0.4)',
+          transition: 'transform 200ms ease, background-color 200ms ease, box-shadow 200ms ease',
           textDecoration: 'none',
         }}
       >
-        <WhatsAppLineIcon size={26} color="#FFFFFF" />
+        <WhatsAppBrandIcon size={30} color="#FFFFFF" />
       </a>
     </div>
   );

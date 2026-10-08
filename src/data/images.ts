@@ -11,7 +11,7 @@ export const IMAGES = {
   pomegranatesCut: 'https://images.unsplash.com/photo-1615485290382-441e4d049cb5?auto=format&fit=crop&w=1200&q=80',
 
   // 02-pomegranates-crate (Pomegranates page, Gallery)
-  pomegranatesBox: 'https://images.unsplash.com/photo-1506084868230-bb9d95c24759?auto=format&fit=crop&w=1000&q=80',
+  pomegranatesBox: 'https://images.unsplash.com/photo-1615485290382-441e4d049cb5?auto=format&fit=crop&w=1000&q=80',
 
   // 03-red-onions-loose (Home hero, Products, Onions page)
   onions: 'https://images.unsplash.com/photo-1618512496248-a07fe83aa8cb?auto=format&fit=crop&w=1000&q=80',
@@ -60,7 +60,7 @@ export const IMAGES = {
   containerLoading: 'https://images.unsplash.com/photo-1578575437130-527eed3abbec?auto=format&fit=crop&w=1200&q=80',
 
   // 16-documents-desk (Certificates hero)
-  documentsDesk: 'https://images.unsplash.com/photo-1450133064473-71024230f91b?auto=format&fit=crop&w=1000&q=80',
+  documentsDesk: 'https://images.unsplash.com/photo-1454165804606-c3d57bc86b40?auto=format&fit=crop&w=1200&q=80',
 
   // Fallback commodity keys
   pomegranates: 'https://images.unsplash.com/photo-1615485290382-441e4d049cb5?auto=format&fit=crop&w=1000&q=80',

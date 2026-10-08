@@ -34,8 +34,8 @@ export const ScrollToTop: React.FC = () => {
       style={{
         position: 'fixed',
         bottom: '92px',
-        right: '28px',
-        zIndex: 40,
+        right: '30px',
+        zIndex: 50,
         width: '44px',
         height: '44px',
         borderRadius: '50%',

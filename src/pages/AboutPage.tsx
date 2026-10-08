@@ -200,9 +200,6 @@ export const AboutPage: React.FC<AboutPageProps> = ({ onNavigate, onOpenRfq }) =
                 <span style={{ fontSize: '13px', fontWeight: 600, color: 'var(--charcoal)', marginTop: '2px' }}>
                   Years in export
                 </span>
-                <span style={{ fontSize: '11px', color: 'var(--muted)', marginTop: '2px' }}>
-                  Sample figure
-                </span>
               </div>
             </div>
           </div>
@@ -423,18 +420,6 @@ export const AboutPage: React.FC<AboutPageProps> = ({ onNavigate, onOpenRfq }) =
               <div className="stat-label">Buyers</div>
             </div>
           </div>
-
-          <p
-            style={{
-              textAlign: 'center',
-              fontSize: '12px',
-              color: 'rgba(247, 245, 239, 0.65)',
-              marginTop: '36px',
-              marginBottom: 0,
-            }}
-          >
-            Sample figures
-          </p>
         </div>
       </section>
 

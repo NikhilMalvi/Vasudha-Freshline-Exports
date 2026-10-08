@@ -13,29 +13,6 @@ interface GalleryPageProps {
   onOpenRfq: (product?: string) => void;
 }
 
-// Sample Image Corner Tag
-const SampleImageTag: React.FC = () => (
-  <span
-    style={{
-      position: 'absolute',
-      bottom: '10px',
-      right: '10px',
-      backgroundColor: 'rgba(22, 22, 26, 0.6)',
-      color: '#FFFFFF',
-      fontSize: '10px',
-      fontWeight: 500,
-      padding: '2px 6px',
-      borderRadius: '4px',
-      letterSpacing: '0.04em',
-      pointerEvents: 'none',
-      zIndex: 3,
-      fontFamily: 'var(--font-sans)',
-    }}
-  >
-    SAMPLE IMAGE
-  </span>
-);
-
 interface GalleryItem {
   id: number;
   title: string;
@@ -300,7 +277,6 @@ export const GalleryPage: React.FC<GalleryPageProps> = ({
                     transition: 'transform 300ms var(--ease-calm)',
                   }}
                 />
-                <SampleImageTag />
 
                 {/* Hover Overlay Caption */}
                 <div
@@ -384,7 +360,6 @@ export const GalleryPage: React.FC<GalleryPageProps> = ({
                 alt="Container terminal dispatch operations"
                 style={{ width: '100%', height: '100%', objectFit: 'cover', display: 'block' }}
               />
-              <SampleImageTag />
               <div
                 style={{
                   position: 'absolute',
@@ -443,7 +418,6 @@ export const GalleryPage: React.FC<GalleryPageProps> = ({
                 alt="Vessel loading operations at container yard"
                 style={{ width: '100%', height: '100%', objectFit: 'cover', display: 'block' }}
               />
-              <SampleImageTag />
               <div
                 style={{
                   position: 'absolute',
@@ -650,7 +624,6 @@ export const GalleryPage: React.FC<GalleryPageProps> = ({
                   display: 'block',
                 }}
               />
-              <SampleImageTag />
             </div>
 
             <div style={{ textAlign: 'center', color: 'var(--ivory)' }}>

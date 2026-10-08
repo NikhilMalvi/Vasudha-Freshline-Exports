@@ -15,29 +15,6 @@ interface CertificatesPageProps {
   onOpenRfq: (product?: string) => void;
 }
 
-// Sample Image Corner Tag
-const SampleImageTag: React.FC = () => (
-  <span
-    style={{
-      position: 'absolute',
-      bottom: '10px',
-      right: '10px',
-      backgroundColor: 'rgba(22, 22, 26, 0.6)',
-      color: '#FFFFFF',
-      fontSize: '10px',
-      fontWeight: 500,
-      padding: '2px 6px',
-      borderRadius: '4px',
-      letterSpacing: '0.04em',
-      pointerEvents: 'none',
-      zIndex: 3,
-      fontFamily: 'var(--font-sans)',
-    }}
-  >
-    SAMPLE IMAGE
-  </span>
-);
-
 export const CertificatesPage: React.FC<CertificatesPageProps> = ({
   onNavigate,
   onOpenRfq,
@@ -204,7 +181,6 @@ export const CertificatesPage: React.FC<CertificatesPageProps> = ({
                   alt="Neatly stacked paper documents and a pen on a desk with no readable text"
                   style={{ width: '100%', height: '100%', objectFit: 'cover', display: 'block' }}
                 />
-                <SampleImageTag />
               </div>
             </div>
           </div>

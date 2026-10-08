@@ -471,11 +471,15 @@ p {
   flex-shrink: 0;
 }
 
-/* 13. .accordion: built with details/summary, styled: white rows, 1px lines, plus icon in an olive-tint circle that rotates to a minus */
+/* 13. .accordion: built with details/summary, styled: transparent rows, 1px lines, plus icon in an olive-tint circle that rotates to a minus */
 details.accordion {
-  background-color: var(--white);
+  background-color: transparent;
   border-bottom: 1px solid var(--line);
   padding: 24px 0;
+}
+
+details.accordion:first-of-type {
+  border-top: 1px solid var(--line);
 }
 
 details.accordion summary {

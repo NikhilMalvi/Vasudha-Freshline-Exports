@@ -13,29 +13,6 @@ interface AboutPageProps {
   onOpenRfq: (product?: string) => void;
 }
 
-// Sample Image Corner Tag
-const SampleImageTag: React.FC = () => (
-  <span
-    style={{
-      position: 'absolute',
-      bottom: '10px',
-      right: '10px',
-      backgroundColor: 'rgba(22, 22, 26, 0.6)',
-      color: '#FFFFFF',
-      fontSize: '10px',
-      fontWeight: 500,
-      padding: '2px 6px',
-      borderRadius: '4px',
-      letterSpacing: '0.04em',
-      pointerEvents: 'none',
-      zIndex: 3,
-      fontFamily: 'var(--font-sans)',
-    }}
-  >
-    SAMPLE IMAGE
-  </span>
-);
-
 // Inline LinkedIn Icon
 const LinkedInIcon: React.FC = () => (
   <svg
@@ -154,7 +131,7 @@ export const AboutPage: React.FC<AboutPageProps> = ({ onNavigate, onOpenRfq }) =
               <span className="eyebrow">ABOUT US</span>
 
               <h1 style={{ margin: 0 }}>
-                Exporting Indian produce to importers worldwide.
+                Indian produce, exported worldwide.
               </h1>
 
               <p style={{ margin: 0, fontSize: '18px', lineHeight: '30px', color: 'var(--charcoal)' }}>
@@ -195,7 +172,6 @@ export const AboutPage: React.FC<AboutPageProps> = ({ onNavigate, onOpenRfq }) =
                   alt="Hands packing fresh produce in export cartons"
                   style={{ width: '100%', height: '100%', objectFit: 'cover', display: 'block' }}
                 />
-                <SampleImageTag />
               </div>
 
               {/* Floating Badge Card Top-Left: "10+" / "Years in export" */}
@@ -282,7 +258,6 @@ export const AboutPage: React.FC<AboutPageProps> = ({ onNavigate, onOpenRfq }) =
                   alt="Stacked produce crates in clean warehouse"
                   style={{ width: '100%', height: '100%', objectFit: 'cover', display: 'block' }}
                 />
-                <SampleImageTag />
               </div>
 
               {/* Quote Card (no name) */}

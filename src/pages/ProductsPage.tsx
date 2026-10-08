@@ -7,29 +7,6 @@ interface ProductsPageProps {
   onOpenRfq: (product?: string) => void;
 }
 
-// Sample Image Corner Tag
-const SampleImageTag: React.FC = () => (
-  <span
-    style={{
-      position: 'absolute',
-      bottom: '10px',
-      right: '10px',
-      backgroundColor: 'rgba(22, 22, 26, 0.6)',
-      color: '#FFFFFF',
-      fontSize: '10px',
-      fontWeight: 500,
-      padding: '2px 6px',
-      borderRadius: '4px',
-      letterSpacing: '0.04em',
-      pointerEvents: 'none',
-      zIndex: 3,
-      fontFamily: 'var(--font-sans)',
-    }}
-  >
-    SAMPLE IMAGE
-  </span>
-);
-
 export const ProductsPage: React.FC<ProductsPageProps> = ({
   onNavigate,
   onOpenRfq,
@@ -217,7 +194,6 @@ export const ProductsPage: React.FC<ProductsPageProps> = ({
                     alt={p.name}
                     className="card-img"
                   />
-                  <SampleImageTag />
                   <button
                     type="button"
                     className="pill"

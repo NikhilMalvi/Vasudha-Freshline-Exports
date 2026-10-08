@@ -19,29 +19,6 @@ interface ProductDetailPageProps {
   onOpenBrochure?: () => void;
 }
 
-// Sample Image Corner Tag
-const SampleImageTag: React.FC = () => (
-  <span
-    style={{
-      position: 'absolute',
-      bottom: '10px',
-      right: '10px',
-      backgroundColor: 'rgba(22, 22, 26, 0.6)',
-      color: '#FFFFFF',
-      fontSize: '10px',
-      fontWeight: 500,
-      padding: '2px 6px',
-      borderRadius: '4px',
-      letterSpacing: '0.04em',
-      pointerEvents: 'none',
-      zIndex: 3,
-      fontFamily: 'var(--font-sans)',
-    }}
-  >
-    SAMPLE IMAGE
-  </span>
-);
-
 interface ProductConfig {
   id: string;
   name: string;
@@ -442,7 +419,6 @@ export const ProductDetailPage: React.FC<ProductDetailPageProps> = ({
                     transition: 'all 300ms ease',
                   }}
                 />
-                <SampleImageTag />
               </div>
 
               {/* Three Thumbnails */}
@@ -914,7 +890,6 @@ export const ProductDetailPage: React.FC<ProductDetailPageProps> = ({
                   alt="Carton and bag packing"
                   className="card-img"
                 />
-                <SampleImageTag />
               </div>
               <h3 style={{ margin: 0, fontSize: '18px', fontFamily: 'var(--font-sans)', fontWeight: 600 }}>
                 Packing
@@ -932,7 +907,6 @@ export const ProductDetailPage: React.FC<ProductDetailPageProps> = ({
                   alt="Palletised produce"
                   className="card-img"
                 />
-                <SampleImageTag />
               </div>
               <h3 style={{ margin: 0, fontSize: '18px', fontFamily: 'var(--font-sans)', fontWeight: 600 }}>
                 Palletising
@@ -950,7 +924,6 @@ export const ProductDetailPage: React.FC<ProductDetailPageProps> = ({
                   alt="Container loading"
                   className="card-img"
                 />
-                <SampleImageTag />
               </div>
               <h3 style={{ margin: 0, fontSize: '18px', fontFamily: 'var(--font-sans)', fontWeight: 600 }}>
                 Loading
@@ -1075,7 +1048,6 @@ export const ProductDetailPage: React.FC<ProductDetailPageProps> = ({
                     alt={rel.name}
                     className="card-img"
                   />
-                  <SampleImageTag />
                 </div>
                 <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between' }}>
                   <span className="pill">{rel.category}</span>

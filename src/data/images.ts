@@ -8,7 +8,7 @@
 
 export const IMAGES = {
   // 01-pomegranate-cut-open (Home hero, Products, Pomegranates page)
-  pomegranatesCut: 'https://images.unsplash.com/photo-1541344999736-83eca872f240?auto=format&fit=crop&w=1000&q=80',
+  pomegranatesCut: 'https://images.unsplash.com/photo-1615485290382-441e4d049cb5?auto=format&fit=crop&w=1200&q=80',
 
   // 02-pomegranates-crate (Pomegranates page, Gallery)
   pomegranatesBox: 'https://images.unsplash.com/photo-1506084868230-bb9d95c24759?auto=format&fit=crop&w=1000&q=80',
@@ -18,7 +18,7 @@ export const IMAGES = {
 
   // 04-red-onions-net-bag (Home hero, Onions page)
   onionsMesh: 'https://images.unsplash.com/photo-1580201092675-a0a6a6cafbb1?auto=format&fit=crop&w=1000&q=80',
-  onionsWhite: 'https://images.unsplash.com/photo-1587049352847-4a222e784d38?auto=format&fit=crop&w=1000&q=80',
+  onionsWhite: 'https://images.unsplash.com/photo-1580201092675-a0a6a6cafbb1?auto=format&fit=crop&w=1000&q=80',
 
   // 05-onions-sorting-hands (Onions page, Gallery)
   onionsSortingHands: 'https://images.unsplash.com/photo-1580201092675-a0a6a6cafbb1?auto=format&fit=crop&w=1000&q=80',
@@ -40,12 +40,12 @@ export const IMAGES = {
   fruitsBananas: 'https://images.unsplash.com/photo-1571771894821-ce9b6c11b08e?auto=format&fit=crop&w=1000&q=80',
 
   // 10-vegetable-crate-mixed (Products, Fresh Vegetables page)
-  vegetables: 'https://images.unsplash.com/photo-1588879460618-92444b02534f?auto=format&fit=crop&w=1000&q=80',
+  vegetables: 'https://images.unsplash.com/photo-1540420773420-3366772f4999?auto=format&fit=crop&w=1000&q=80',
   vegetablesOkra: 'https://images.unsplash.com/photo-1597362925123-77861d3fbac7?auto=format&fit=crop&w=1000&q=80',
-  vegetablesGinger: 'https://images.unsplash.com/photo-1615485290176-804d9c72e276?auto=format&fit=crop&w=1000&q=80',
+  vegetablesGinger: 'https://images.unsplash.com/photo-1566385101042-1a0aa0c1268c?auto=format&fit=crop&w=1000&q=80',
 
   // 11-hands-sorting-produce (About, Home about, Gallery)
-  packhouseInspection: 'https://images.unsplash.com/photo-1595246140625-573b715d11dc?auto=format&fit=crop&w=1200&q=80',
+  packhouseInspection: 'https://images.unsplash.com/photo-1580201092675-a0a6a6cafbb1?auto=format&fit=crop&w=1200&q=80',
 
   // 12-warehouse-crates-pallets (About, Gallery, Packing sections)
   portContainers: 'https://images.unsplash.com/photo-1586528116311-ad8dd3c8310d?auto=format&fit=crop&w=1200&q=80',
@@ -62,14 +62,11 @@ export const IMAGES = {
   // 16-documents-desk (Certificates hero)
   documentsDesk: 'https://images.unsplash.com/photo-1450133064473-71024230f91b?auto=format&fit=crop&w=1000&q=80',
 
-  // Additional Commodities fallback
+  // Fallback commodity keys
   pomegranates: 'https://images.unsplash.com/photo-1615485290382-441e4d049cb5?auto=format&fit=crop&w=1000&q=80',
   rice: 'https://images.unsplash.com/photo-1586201375761-83865001e31c?auto=format&fit=crop&w=1000&q=80',
 };
 
-/**
- * 16-Item Canonical Shopping List Mapping
- */
 export const SHOPPING_LIST_MAPPING: Record<string, { searchWords: string; usedOn: string; url: string }> = {
   '01-pomegranate-cut-open': {
     searchWords: 'pomegranate cut open',

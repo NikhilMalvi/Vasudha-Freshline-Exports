@@ -11,7 +11,7 @@ interface PhotoPlaceholderProps {
 
 /**
  * Image / Photo Component
- * Rule 4: Relevant stock photos with 10px white tag on #16161A at 60% opacity: "SAMPLE IMAGE".
+ * Relevant stock photos with clean display
  * Fallback: #ECE8DC placeholder with caption below.
  */
 export const PhotoPlaceholder: React.FC<PhotoPlaceholderProps> = ({
@@ -39,7 +39,7 @@ export const PhotoPlaceholder: React.FC<PhotoPlaceholderProps> = ({
       <div
         className={`photo-placeholder-box ${aspectClass}`}
         role="img"
-        aria-label={label || 'Sample image'}
+        aria-label={label || 'Produce presentation'}
         style={{
           backgroundColor: '#ECE8DC',
           border: '1px solid #D9D5C8',
@@ -66,27 +66,6 @@ export const PhotoPlaceholder: React.FC<PhotoPlaceholderProps> = ({
                 display: 'block',
               }}
             />
-            {/* Tag in the corner: 10px white text on #16161A at 60% opacity */}
-            <span
-              style={{
-                position: 'absolute',
-                bottom: '6px',
-                right: '6px',
-                backgroundColor: 'rgba(22, 22, 26, 0.60)',
-                color: '#FFFFFF',
-                fontSize: '10px',
-                lineHeight: '12px',
-                padding: '2px 6px',
-                borderRadius: '1px',
-                letterSpacing: '0.06em',
-                textTransform: 'uppercase',
-                fontFamily: 'var(--font-sans)',
-                fontWeight: 500,
-                pointerEvents: 'none',
-              }}
-            >
-              SAMPLE IMAGE
-            </span>
           </>
         ) : (
           <svg

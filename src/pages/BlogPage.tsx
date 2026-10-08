@@ -28,29 +28,6 @@ interface BlogPageProps {
   onOpenRfq: (product?: string) => void;
 }
 
-// Sample Image Corner Tag
-const SampleImageTag: React.FC = () => (
-  <span
-    style={{
-      position: 'absolute',
-      bottom: '10px',
-      right: '10px',
-      backgroundColor: 'rgba(22, 22, 26, 0.6)',
-      color: '#FFFFFF',
-      fontSize: '10px',
-      fontWeight: 500,
-      padding: '2px 6px',
-      borderRadius: '4px',
-      letterSpacing: '0.04em',
-      pointerEvents: 'none',
-      zIndex: 3,
-      fontFamily: 'var(--font-sans)',
-    }}
-  >
-    SAMPLE IMAGE
-  </span>
-);
-
 interface Article {
   id: string;
   title: string;
@@ -219,7 +196,6 @@ export const BlogPage: React.FC<BlogPageProps> = ({
                 alt="Onion harvest in India"
                 style={{ width: '100%', height: '100%', objectFit: 'cover', display: 'block' }}
               />
-              <SampleImageTag />
             </div>
           </div>
         </section>
@@ -374,7 +350,6 @@ export const BlogPage: React.FC<BlogPageProps> = ({
                 <div key={item.id} className="card" style={{ gap: '16px' }}>
                   <div style={{ position: 'relative', overflow: 'hidden', borderRadius: '12px' }}>
                     <img src={item.img} alt={item.title} className="card-img" />
-                    <SampleImageTag />
                   </div>
                   <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between' }}>
                     <span className="pill">{item.category}</span>
@@ -542,7 +517,6 @@ export const BlogPage: React.FC<BlogPageProps> = ({
                 alt={featuredArticle.title}
                 style={{ width: '100%', height: '100%', objectFit: 'cover', display: 'block' }}
               />
-              <SampleImageTag />
             </div>
 
             {/* Text Right */}
@@ -591,7 +565,6 @@ export const BlogPage: React.FC<BlogPageProps> = ({
               <div key={item.id} className="card" style={{ gap: '16px' }}>
                 <div style={{ position: 'relative', overflow: 'hidden', borderRadius: '12px' }}>
                   <img src={item.img} alt={item.title} className="card-img" />
-                  <SampleImageTag />
                 </div>
 
                 <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between' }}>

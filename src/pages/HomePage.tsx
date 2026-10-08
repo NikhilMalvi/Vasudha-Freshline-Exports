@@ -23,29 +23,6 @@ interface HomePageProps {
   onOpenBrochure?: () => void;
 }
 
-// Reusable Sample Image Corner Tag
-const SampleImageTag: React.FC = () => (
-  <span
-    style={{
-      position: 'absolute',
-      bottom: '10px',
-      right: '10px',
-      backgroundColor: 'rgba(22, 22, 26, 0.6)',
-      color: '#FFFFFF',
-      fontSize: '10px',
-      fontWeight: 500,
-      padding: '2px 6px',
-      borderRadius: '4px',
-      letterSpacing: '0.04em',
-      pointerEvents: 'none',
-      zIndex: 3,
-      fontFamily: 'var(--font-sans)',
-    }}
-  >
-    SAMPLE IMAGE
-  </span>
-);
-
 export const HomePage: React.FC<HomePageProps> = ({ onNavigate, onOpenRfq }) => {
   // Hero Slider State
   const [currentSlide, setCurrentSlide] = useState(0);
@@ -305,7 +282,6 @@ export const HomePage: React.FC<HomePageProps> = ({ onNavigate, onOpenRfq }) => 
                         display: 'block',
                       }}
                     />
-                    <SampleImageTag />
                   </div>
                 ))}
 
@@ -483,7 +459,6 @@ export const HomePage: React.FC<HomePageProps> = ({ onNavigate, onOpenRfq }) => 
                   alt="Hands sorting fresh produce in crates"
                   style={{ width: '100%', height: '100%', objectFit: 'cover', display: 'block' }}
                 />
-                <SampleImageTag />
               </div>
 
               {/* Smaller Rounded Image Overlapping Lower-Right Corner */}
@@ -506,7 +481,6 @@ export const HomePage: React.FC<HomePageProps> = ({ onNavigate, onOpenRfq }) => 
                   alt="Stacked produce crates in a clean warehouse"
                   style={{ width: '100%', height: '100%', objectFit: 'cover', display: 'block' }}
                 />
-                <SampleImageTag />
               </div>
 
               {/* Floating Badge Card Top-Left: "10+" and "Years in export" */}
@@ -676,7 +650,6 @@ export const HomePage: React.FC<HomePageProps> = ({ onNavigate, onOpenRfq }) => 
                   alt="Export pomegranates"
                   className="card-img"
                 />
-                <SampleImageTag />
                 <button
                   type="button"
                   className="pill"
@@ -721,7 +694,6 @@ export const HomePage: React.FC<HomePageProps> = ({ onNavigate, onOpenRfq }) => 
                   alt="Red onions"
                   className="card-img"
                 />
-                <SampleImageTag />
                 <button
                   type="button"
                   className="pill"
@@ -766,7 +738,6 @@ export const HomePage: React.FC<HomePageProps> = ({ onNavigate, onOpenRfq }) => 
                   alt="Rice grains"
                   className="card-img"
                 />
-                <SampleImageTag />
                 <button
                   type="button"
                   className="pill"
@@ -811,7 +782,6 @@ export const HomePage: React.FC<HomePageProps> = ({ onNavigate, onOpenRfq }) => 
                   alt="Indian spices"
                   className="card-img"
                 />
-                <SampleImageTag />
                 <button
                   type="button"
                   className="pill"
@@ -856,7 +826,6 @@ export const HomePage: React.FC<HomePageProps> = ({ onNavigate, onOpenRfq }) => 
                   alt="Fresh fruits"
                   className="card-img"
                 />
-                <SampleImageTag />
                 <button
                   type="button"
                   className="pill"
@@ -901,7 +870,6 @@ export const HomePage: React.FC<HomePageProps> = ({ onNavigate, onOpenRfq }) => 
                   alt="Fresh vegetables"
                   className="card-img"
                 />
-                <SampleImageTag />
                 <button
                   type="button"
                   className="pill"
@@ -1409,7 +1377,6 @@ export const HomePage: React.FC<HomePageProps> = ({ onNavigate, onOpenRfq }) => 
                 display: 'block',
               }}
             />
-            <SampleImageTag />
 
             {/* 30% Navy Overlay */}
             <div
@@ -1661,8 +1628,6 @@ export const HomePage: React.FC<HomePageProps> = ({ onNavigate, onOpenRfq }) => 
                       </div>
                     </div>
                   </div>
-
-                  <span className="pill">Sample testimonial</span>
                 </div>
               </div>
             ))}
@@ -1723,7 +1688,6 @@ export const HomePage: React.FC<HomePageProps> = ({ onNavigate, onOpenRfq }) => 
                 alt="Pomegranates in an export crate"
                 style={{ width: '100%', height: '100%', objectFit: 'cover', display: 'block' }}
               />
-              <SampleImageTag />
             </div>
 
             {/* 2. Red onions being sorted by hand (Span 5) */}
@@ -1742,7 +1706,6 @@ export const HomePage: React.FC<HomePageProps> = ({ onNavigate, onOpenRfq }) => 
                 alt="Red onions sorted in mesh bags"
                 style={{ width: '100%', height: '100%', objectFit: 'cover', display: 'block' }}
               />
-              <SampleImageTag />
             </div>
 
             {/* 3. Rice sacks (Span 4) */}
@@ -1761,7 +1724,6 @@ export const HomePage: React.FC<HomePageProps> = ({ onNavigate, onOpenRfq }) => 
                 alt="Rice sacks ready for container loading"
                 style={{ width: '100%', height: '100%', objectFit: 'cover', display: 'block' }}
               />
-              <SampleImageTag />
             </div>
 
             {/* 4. Spices in bowls (Span 4) */}
@@ -1780,7 +1742,6 @@ export const HomePage: React.FC<HomePageProps> = ({ onNavigate, onOpenRfq }) => 
                 alt="Spices in display bowls"
                 style={{ width: '100%', height: '100%', objectFit: 'cover', display: 'block' }}
               />
-              <SampleImageTag />
             </div>
 
             {/* 5. Container ship at port (Span 4) */}
@@ -1799,7 +1760,6 @@ export const HomePage: React.FC<HomePageProps> = ({ onNavigate, onOpenRfq }) => 
                 alt="Container ship at a port"
                 style={{ width: '100%', height: '100%', objectFit: 'cover', display: 'block' }}
               />
-              <SampleImageTag />
             </div>
           </div>
         </div>

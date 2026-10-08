@@ -1,14 +1,11 @@
 import React, { useState, useEffect, useRef } from 'react';
 import { Logo } from './Logo';
-import { Button } from './Button';
 import { Menu, X, ChevronDown } from 'lucide-react';
 
 interface HeaderProps {
   currentPath: string;
   onNavigate: (path: string) => void;
   onOpenRfq: (initialProduct?: string) => void;
-  onOpenBrochure?: () => void;
-  onOpenQuickContact?: () => void;
 }
 
 export const Header: React.FC<HeaderProps> = ({
@@ -40,13 +37,13 @@ export const Header: React.FC<HeaderProps> = ({
     return () => document.removeEventListener('mousedown', handleClickOutside);
   }, []);
 
-  const productNavItems = [
-    { name: 'Pomegranates (Bhagwa)', path: '/products/pomegranates', sub: 'Calibrated export cartons' },
-    { name: 'Fresh Onions (Red & White)', path: '/products/onions', sub: 'Nashik leno mesh bags' },
-    { name: 'Rice (Basmati & Non-Basmati)', path: '/products/rice', sub: '20ft dry container FCL' },
-    { name: 'Indian Spices', path: '/products/spices', sub: 'Cumin, Turmeric, Chilli' },
-    { name: 'Fresh Seasonal Fruits', path: '/products/fresh-fruits', sub: 'Table grapes, bananas' },
-    { name: 'Fresh Vegetables', path: '/products/fresh-vegetables', sub: 'Cold-chain green chillies, okra' },
+  const productCategories = [
+    { name: 'Pomegranates', path: '/products/pomegranates', sub: 'Calibrated export cartons' },
+    { name: 'Onions', path: '/products/onions', sub: 'Red & white mesh bags' },
+    { name: 'Rice', path: '/products/rice', sub: 'Basmati & non-basmati FCL' },
+    { name: 'Spices', path: '/products/spices', sub: 'Whole & ground export spice' },
+    { name: 'Fresh fruits', path: '/products/fresh-fruits', sub: 'Table grapes, bananas' },
+    { name: 'Fresh vegetables', path: '/products/fresh-vegetables', sub: 'Temperature-controlled green veg' },
   ];
 
   const isActive = (path: string) => {
@@ -55,21 +52,27 @@ export const Header: React.FC<HeaderProps> = ({
   };
 
   const navLinks = [
-    { label: 'Products', path: '/products', hasDropdown: true },
     { label: 'About', path: '/about' },
-    { label: 'Quality', path: '/quality' },
-    { label: 'Export', path: '/export' },
-    { label: 'Contact', path: '/quote' },
+    { label: 'Products', path: '/products', hasDropdown: true },
+    { label: 'Certificates', path: '/certificates' },
+    { label: 'Gallery', path: '/gallery' },
+    { label: 'Contact', path: '/contact' },
   ];
+
+  const handleLinkClick = (path: string) => {
+    onNavigate(path);
+    setMobileMenuOpen(false);
+    setProductsDropdownOpen(false);
+  };
 
   return (
     <header
       style={{
-        backgroundColor: '#10104F',
+        backgroundColor: '#F7F5EF',
         position: 'sticky',
         top: 0,
         zIndex: 50,
-        borderBottom: isScrolled ? '1px solid rgba(247, 245, 239, 0.20)' : '1px solid transparent',
+        borderBottom: isScrolled ? '1px solid #D9D5C8' : '1px solid transparent',
         transition: 'border-color 200ms ease',
       }}
     >
@@ -79,14 +82,14 @@ export const Header: React.FC<HeaderProps> = ({
           display: 'flex',
           alignItems: 'center',
           justifyContent: 'space-between',
-          height: '80px',
+          height: '76px',
         }}
       >
-        {/* Left: Brand Logo (Reversed for navy) */}
+        {/* Brand Logo (Original for light background) */}
         <div style={{ display: 'flex', alignItems: 'center' }}>
           <button
             type="button"
-            onClick={() => onNavigate('/')}
+            onClick={() => handleLinkClick('/')}
             style={{
               background: 'none',
               border: 'none',
@@ -97,21 +100,18 @@ export const Header: React.FC<HeaderProps> = ({
             }}
             aria-label="Vasudha Freshline Exports LLP Home"
           >
-            {/* Desktop and Tablet full logo */}
             <div className="header-logo-desktop">
-              <Logo variant="navy" width={220} />
+              <Logo variant="default" width={220} />
             </div>
-            {/* Below 480px: swoosh-only mark (vasudha-mark-light-for-navy.svg) plus the word Vasudha */}
             <div className="header-logo-mobile" style={{ display: 'none', alignItems: 'center', gap: '8px' }}>
-              <Logo variant="swoosh" width={34} />
+              <Logo variant="swoosh" width={32} />
               <span
                 style={{
                   fontFamily: 'var(--font-sans)',
-                  fontSize: '18px',
+                  fontSize: '17px',
                   fontWeight: 600,
-                  letterSpacing: '0.08em',
-                  color: '#F7F5EF',
-                  textTransform: 'uppercase',
+                  letterSpacing: '0.04em',
+                  color: '#16161A',
                 }}
               >
                 Vasudha
@@ -120,7 +120,7 @@ export const Header: React.FC<HeaderProps> = ({
           </button>
         </div>
 
-        {/* Center / Desktop Navigation */}
+        {/* Desktop Navigation */}
         <nav
           className="desktop-nav"
           style={{
@@ -147,106 +147,112 @@ export const Header: React.FC<HeaderProps> = ({
                       fontFamily: 'var(--font-sans)',
                       fontSize: '15px',
                       fontWeight: 500,
-                      color: active ? '#F7F5EF' : '#DAD8E8',
+                      color: active ? '#16161A' : '#353535',
                       display: 'inline-flex',
                       alignItems: 'center',
                       gap: '4px',
-                      borderBottom: active ? '1px solid #A9B070' : '1px solid transparent',
-                      paddingBottom: '4px',
-                      textUnderlineOffset: '6px',
+                      borderBottom: active ? '2px solid #687036' : '2px solid transparent',
+                      paddingBottom: '2px',
                     }}
                     aria-expanded={productsDropdownOpen}
                   >
                     <span>{link.label}</span>
-                    <ChevronDown size={14} strokeWidth={1.5} color="#B9B8D6" />
+                    <ChevronDown
+                      size={14}
+                      style={{
+                        transform: productsDropdownOpen ? 'rotate(180deg)' : 'none',
+                        transition: 'transform 180ms ease',
+                        color: '#5F5D55',
+                      }}
+                    />
                   </button>
 
-                  {/* Products 2-Column Dropdown */}
+                  {/* Dropdown Menu */}
                   {productsDropdownOpen && (
                     <div
-                      className="animate-fade-in"
                       style={{
                         position: 'absolute',
                         top: '100%',
                         left: '-20px',
-                        width: '520px',
-                        backgroundColor: '#0A0A38',
-                        border: '1px solid rgba(247, 245, 239, 0.20)',
+                        width: '280px',
+                        backgroundColor: '#F7F5EF',
+                        border: '1px solid #D9D5C8',
                         borderRadius: 'var(--radius)',
-                        padding: '16px',
-                        display: 'grid',
-                        gridTemplateColumns: '1fr 1fr',
-                        gap: '12px',
-                        zIndex: 60,
-                        boxShadow: 'none',
+                        padding: '8px 0',
+                        marginTop: '8px',
+                        zIndex: 100,
                       }}
                     >
-                      {productNavItems.map((prod, idx) => (
-                        <button
-                          key={prod.path}
-                          type="button"
-                          onClick={() => {
-                            setProductsDropdownOpen(false);
-                            onNavigate(prod.path);
-                          }}
-                          style={{
-                            background: 'none',
-                            border: 'none',
-                            textAlign: 'left',
-                            padding: '10px 12px',
-                            cursor: 'pointer',
-                            borderRadius: 'var(--radius)',
-                            borderBottom: idx < 4 ? '1px solid rgba(247, 245, 239, 0.15)' : 'none',
-                          }}
-                          onMouseEnter={(e) => {
-                            e.currentTarget.style.backgroundColor = '#1A1A66';
-                          }}
-                          onMouseLeave={(e) => {
-                            e.currentTarget.style.backgroundColor = 'transparent';
-                          }}
-                        >
-                          <span style={{ display: 'block', fontSize: '14px', fontWeight: 500, color: '#F7F5EF' }}>
-                            {prod.name}
-                          </span>
-                          <span style={{ display: 'block', fontSize: '12px', color: '#B9B8D6', marginTop: '2px' }}>
-                            {prod.sub}
-                          </span>
-                        </button>
-                      ))}
-
                       <div
                         style={{
-                          gridColumn: '1 / -1',
-                          borderTop: '1px solid rgba(247, 245, 239, 0.20)',
-                          paddingTop: '10px',
+                          padding: '8px 16px',
+                          borderBottom: '1px solid #D9D5C8',
                           display: 'flex',
                           justifyContent: 'space-between',
                           alignItems: 'center',
                         }}
                       >
+                        <span
+                          style={{
+                            fontFamily: 'var(--font-sans)',
+                            fontSize: '11px',
+                            fontWeight: 600,
+                            letterSpacing: '0.1em',
+                            textTransform: 'uppercase',
+                            color: '#5F5D55',
+                          }}
+                        >
+                          6 Export Categories
+                        </span>
                         <button
                           type="button"
-                          onClick={() => {
-                            setProductsDropdownOpen(false);
-                            onNavigate('/products');
-                          }}
+                          onClick={() => handleLinkClick('/products')}
                           style={{
                             background: 'none',
                             border: 'none',
-                            color: '#A9B070',
-                            fontSize: '13px',
-                            fontWeight: 500,
+                            color: '#687036',
+                            fontSize: '12px',
                             cursor: 'pointer',
                             textDecoration: 'underline',
-                            textUnderlineOffset: '3px',
+                            padding: 0,
                           }}
                         >
-                          View complete products index
+                          All &rarr;
                         </button>
-                        <span style={{ fontSize: '12px', color: '#B9B8D6' }}>
-                          Sells exclusively by container
-                        </span>
                       </div>
+
+                      {productCategories.map((item) => (
+                        <button
+                          key={item.path}
+                          type="button"
+                          onClick={() => handleLinkClick(item.path)}
+                          style={{
+                            width: '100%',
+                            textAlign: 'left',
+                            background: 'none',
+                            border: 'none',
+                            padding: '10px 16px',
+                            cursor: 'pointer',
+                            display: 'flex',
+                            flexDirection: 'column',
+                            gap: '2px',
+                            transition: 'background-color 150ms ease',
+                          }}
+                          onMouseEnter={(e) => {
+                            e.currentTarget.style.backgroundColor = '#ECE8DC';
+                          }}
+                          onMouseLeave={(e) => {
+                            e.currentTarget.style.backgroundColor = 'transparent';
+                          }}
+                        >
+                          <span style={{ fontSize: '14px', fontWeight: 500, color: '#16161A' }}>
+                            {item.name}
+                          </span>
+                          <span style={{ fontSize: '12px', color: '#5F5D55' }}>
+                            {item.sub}
+                          </span>
+                        </button>
+                      ))}
                     </div>
                   )}
                 </div>
@@ -257,7 +263,7 @@ export const Header: React.FC<HeaderProps> = ({
               <button
                 key={link.path}
                 type="button"
-                onClick={() => onNavigate(link.path)}
+                onClick={() => handleLinkClick(link.path)}
                 style={{
                   background: 'none',
                   border: 'none',
@@ -266,11 +272,9 @@ export const Header: React.FC<HeaderProps> = ({
                   fontFamily: 'var(--font-sans)',
                   fontSize: '15px',
                   fontWeight: 500,
-                  color: active ? '#F7F5EF' : '#DAD8E8',
-                  borderBottom: active ? '1px solid #A9B070' : '1px solid transparent',
-                  paddingBottom: '4px',
-                  textUnderlineOffset: '6px',
-                  transition: 'color 150ms ease',
+                  color: active ? '#16161A' : '#353535',
+                  borderBottom: active ? '2px solid #687036' : '2px solid transparent',
+                  paddingBottom: '2px',
                 }}
               >
                 {link.label}
@@ -279,180 +283,226 @@ export const Header: React.FC<HeaderProps> = ({
           })}
         </nav>
 
-        {/* Far Right: Request a Quote CTA & Mobile Trigger (Removed Brochure & Phone buttons) */}
-        <div style={{ display: 'flex', alignItems: 'center', gap: '10px' }}>
-          {/* Request a Quote Button */}
-          <Button
-            variant="primary"
-            onClick={() => onOpenRfq()}
-            className="rfq-header-btn"
-          >
-            Request a quote
-          </Button>
-
-          {/* Mobile hamburger */}
+        {/* Right Desktop: Request a Quote Button */}
+        <div
+          className="desktop-actions"
+          style={{
+            display: 'none',
+            alignItems: 'center',
+            gap: '12px',
+          }}
+        >
           <button
             type="button"
-            className="mobile-toggle"
-            onClick={() => setMobileMenuOpen(true)}
-            aria-label="Open mobile navigation"
+            className="btn-primary"
+            onClick={() => onOpenRfq()}
+            style={{ height: '44px', padding: '0 20px', fontSize: '14px' }}
+          >
+            Request a quote
+          </button>
+        </div>
+
+        {/* Mobile Hamburger Toggle */}
+        <div className="mobile-toggle" style={{ display: 'flex', alignItems: 'center' }}>
+          <button
+            type="button"
+            onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
+            aria-label={mobileMenuOpen ? 'Close menu' : 'Open menu'}
+            aria-expanded={mobileMenuOpen}
             style={{
-              display: 'none',
+              background: 'none',
+              border: 'none',
+              color: '#16161A',
+              padding: '8px',
+              cursor: 'pointer',
+              display: 'flex',
               alignItems: 'center',
               justifyContent: 'center',
-              width: '44px',
-              height: '44px',
-              background: 'transparent',
-              border: '1px solid rgba(247, 245, 239, 0.20)',
-              borderRadius: 'var(--radius)',
-              color: '#F7F5EF',
-              cursor: 'pointer',
             }}
           >
-            <Menu size={20} strokeWidth={1.5} />
+            {mobileMenuOpen ? <X size={24} /> : <Menu size={24} />}
           </button>
         </div>
       </div>
 
-      {/* Full-Screen Mobile Drawer (Navy panel with 26px Newsreader links) */}
+      {/* Mobile Drawer */}
       {mobileMenuOpen && (
         <div
-          role="dialog"
-          aria-modal="true"
-          className="animate-fade-in"
           style={{
             position: 'fixed',
-            inset: 0,
-            backgroundColor: '#10104F',
-            zIndex: 100,
+            top: '76px',
+            left: 0,
+            right: 0,
+            bottom: 0,
+            backgroundColor: '#F7F5EF',
+            borderTop: '1px solid #D9D5C8',
+            padding: '24px',
             display: 'flex',
             flexDirection: 'column',
-            padding: '24px',
+            justifyContent: 'space-between',
+            zIndex: 99,
             overflowY: 'auto',
           }}
         >
-          {/* Mobile Drawer Top */}
-          <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: '28px' }}>
-            <Logo variant="navy" width={180} />
+          <div style={{ display: 'flex', flexDirection: 'column', gap: '8px' }}>
+            <span
+              style={{
+                fontFamily: 'var(--font-sans)',
+                fontSize: '11px',
+                letterSpacing: '0.12em',
+                textTransform: 'uppercase',
+                color: '#5F5D55',
+                marginBottom: '8px',
+                fontWeight: 600,
+              }}
+            >
+              Navigation
+            </span>
+
             <button
               type="button"
-              onClick={() => setMobileMenuOpen(false)}
-              aria-label="Close navigation"
+              onClick={() => handleLinkClick('/about')}
               style={{
-                width: '44px',
-                height: '44px',
-                border: '1px solid rgba(247, 245, 239, 0.20)',
-                borderRadius: 'var(--radius)',
-                backgroundColor: 'transparent',
-                color: '#F7F5EF',
-                display: 'flex',
-                alignItems: 'center',
-                justifyContent: 'center',
+                background: 'none',
+                border: 'none',
+                textAlign: 'left',
+                padding: '12px 0',
+                fontSize: '18px',
+                fontFamily: 'var(--font-serif)',
+                color: '#16161A',
+                borderBottom: '1px solid #D9D5C8',
                 cursor: 'pointer',
               }}
             >
-              <X size={20} strokeWidth={1.5} />
+              About
             </button>
-          </div>
 
-          {/* Large Newsreader Links */}
-          <div style={{ display: 'flex', flexDirection: 'column', gap: '16px', flexGrow: 1 }}>
-            {[
-              { label: 'Home', path: '/' },
-              { label: 'Products & Commodities', path: '/products' },
-              { label: 'About Vasudha', path: '/about' },
-              { label: 'Quality & Compliance', path: '/quality' },
-              { label: 'Export & Logistics', path: '/export' },
-              { label: 'Contact & Trade Desk', path: '/quote' },
-            ].map((item) => (
+            {/* Products Sub-list */}
+            <div style={{ borderBottom: '1px solid #D9D5C8', paddingBottom: '12px' }}>
               <button
-                key={item.path}
                 type="button"
-                onClick={() => {
-                  setMobileMenuOpen(false);
-                  onNavigate(item.path);
-                }}
+                onClick={() => handleLinkClick('/products')}
                 style={{
                   background: 'none',
                   border: 'none',
                   textAlign: 'left',
+                  padding: '12px 0 6px 0',
+                  fontSize: '18px',
                   fontFamily: 'var(--font-serif)',
-                  fontSize: '26px',
-                  fontWeight: 300,
-                  color: '#F7F5EF',
+                  color: '#16161A',
                   cursor: 'pointer',
-                  padding: '8px 0',
-                  borderBottom: '1px solid rgba(247, 245, 239, 0.20)',
+                  width: '100%',
+                  display: 'flex',
+                  justifyContent: 'space-between',
+                  alignItems: 'center',
                 }}
               >
-                {item.label}
+                <span>Products</span>
+                <span style={{ fontSize: '13px', color: '#687036', fontFamily: 'var(--font-sans)' }}>View all &rarr;</span>
               </button>
-            ))}
+              <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '8px', paddingTop: '8px' }}>
+                {productCategories.map((item) => (
+                  <button
+                    key={item.path}
+                    type="button"
+                    onClick={() => handleLinkClick(item.path)}
+                    style={{
+                      background: 'none',
+                      border: 'none',
+                      textAlign: 'left',
+                      fontSize: '14px',
+                      color: '#353535',
+                      padding: '4px 0',
+                      cursor: 'pointer',
+                    }}
+                  >
+                    {item.name}
+                  </button>
+                ))}
+              </div>
+            </div>
+
+            <button
+              type="button"
+              onClick={() => handleLinkClick('/certificates')}
+              style={{
+                background: 'none',
+                border: 'none',
+                textAlign: 'left',
+                padding: '12px 0',
+                fontSize: '18px',
+                fontFamily: 'var(--font-serif)',
+                color: '#16161A',
+                borderBottom: '1px solid #D9D5C8',
+                cursor: 'pointer',
+              }}
+            >
+              Certificates
+            </button>
+
+            <button
+              type="button"
+              onClick={() => handleLinkClick('/gallery')}
+              style={{
+                background: 'none',
+                border: 'none',
+                textAlign: 'left',
+                padding: '12px 0',
+                fontSize: '18px',
+                fontFamily: 'var(--font-serif)',
+                color: '#16161A',
+                borderBottom: '1px solid #D9D5C8',
+                cursor: 'pointer',
+              }}
+            >
+              Gallery
+            </button>
+
+            <button
+              type="button"
+              onClick={() => handleLinkClick('/contact')}
+              style={{
+                background: 'none',
+                border: 'none',
+                textAlign: 'left',
+                padding: '12px 0',
+                fontSize: '18px',
+                fontFamily: 'var(--font-serif)',
+                color: '#16161A',
+                borderBottom: '1px solid #D9D5C8',
+                cursor: 'pointer',
+              }}
+            >
+              Contact
+            </button>
           </div>
 
-          {/* Drawer Bottom Actions */}
-          <div style={{ display: 'flex', flexDirection: 'column', gap: '12px', paddingTop: '20px' }}>
-            <Button
-              variant="primary"
+          <div style={{ paddingTop: '24px', display: 'flex', flexDirection: 'column', gap: '12px' }}>
+            <button
+              type="button"
+              className="btn-primary"
+              style={{ width: '100%' }}
               onClick={() => {
                 setMobileMenuOpen(false);
                 onOpenRfq();
               }}
-              style={{ width: '100%' }}
             >
               Request a quote
-            </Button>
-
-            <a
-              href="https://wa.me/?text=Hello%20Vasudha%20Freshline%20Exports%20LLP,%20I%20am%20inquiring%20about%20container%20exports."
-              target="_blank"
-              rel="noopener noreferrer"
-              className="btn-secondary"
-              style={{ width: '100%', textAlign: 'center', textDecoration: 'none', justifyContent: 'center' }}
-            >
-              Chat on WhatsApp
-            </a>
+            </button>
           </div>
         </div>
       )}
 
+      {/* Media Queries for Desktop vs Mobile Header */}
       <style>{`
-        @media (min-width: 992px) {
-          .desktop-nav {
-            display: flex !important;
-          }
-          .mobile-toggle {
-            display: none !important;
-          }
-        }
-        @media (max-width: 991px) {
-          .desktop-nav {
-            display: none !important;
-          }
-          .mobile-toggle {
-            display: inline-flex !important;
-          }
-          .brochure-header-btn {
-            display: none !important;
-          }
-        }
-        @media (max-width: 580px) {
-          .trade-desk-header-btn {
-            display: none !important;
-          }
-          .rfq-header-btn {
-            height: 44px !important;
-            padding: 0 16px !important;
-            font-size: 13px !important;
-          }
+        @media (min-width: 900px) {
+          .desktop-nav { display: flex !important; }
+          .desktop-actions { display: flex !important; }
+          .mobile-toggle { display: none !important; }
         }
         @media (max-width: 480px) {
-          .header-logo-desktop {
-            display: none !important;
-          }
-          .header-logo-mobile {
-            display: flex !important;
-          }
+          .header-logo-desktop { display: none !important; }
+          .header-logo-mobile { display: flex !important; }
         }
       `}</style>
     </header>

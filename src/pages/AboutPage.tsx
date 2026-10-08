@@ -1,373 +1,146 @@
-import React, { useEffect } from 'react';
+import React from 'react';
 import { PhotoPlaceholder } from '../components/PhotoPlaceholder';
-import { IMAGES } from '../data/images';
 
 interface AboutPageProps {
-  onNavigate?: (path: string) => void;
+  onNavigate: (path: string) => void;
   onOpenRfq: (product?: string) => void;
 }
 
-export const AboutPage: React.FC<AboutPageProps> = ({ onOpenRfq }) => {
-  useEffect(() => {
-    const observer = new IntersectionObserver(
-      (entries) => {
-        entries.forEach((entry) => {
-          if (entry.isIntersecting) {
-            entry.target.classList.add('revealed');
-          }
-        });
-      },
-      { threshold: 0.08, rootMargin: '0px 0px -30px 0px' }
-    );
-
-    const elements = document.querySelectorAll('.reveal');
-    elements.forEach((el) => observer.observe(el));
-
-    return () => observer.disconnect();
-  }, []);
+export const AboutPage: React.FC<AboutPageProps> = ({
+  onNavigate: _onNavigate,
+  onOpenRfq,
+}) => {
+  const whatsappUrl =
+    'https://wa.me/?text=Hello%20Vasudha%20Freshline%20Exports%20LLP,%20I%20would%20like%20to%20learn%20more%20about%20your%20company.';
 
   return (
-    <main>
-      {/* Page Intro */}
-      <section className="hairline-b" style={{ backgroundColor: 'var(--ivory)', paddingTop: '64px', paddingBottom: '56px' }}>
+    <main style={{ backgroundColor: '#F7F5EF', color: '#353535' }}>
+      {/* 1. HERO */}
+      <section style={{ padding: '64px 0', borderBottom: '1px solid #D9D5C8' }}>
         <div className="container">
-          <div style={{ maxWidth: '680px' }} className="reveal">
-            <span className="label-caps" style={{ display: 'block', marginBottom: '12px' }}>
-              About
-            </span>
-            <h1 style={{ marginBottom: '24px' }}>
-              Exporting Indian produce since 2018.
-            </h1>
-            <p style={{ fontSize: '19px', lineHeight: '30px', color: 'var(--charcoal)' }}>
-              Vasudha Freshline Exports LLP was established to supply international wholesale importers and packaging distributors with verified agricultural commodities from India. We export container-load consignments of pomegranates, onions, rice, spices, fresh fruits and fresh vegetables from Maharashtra, Gujarat and primary growing regions. Every shipment is inspected, graded and documented from farm to port.
-            </p>
-          </div>
-        </div>
-      </section>
-
-      {/* What We Do (3 Columns separated by 1px lines) */}
-      <section className="section-padding hairline-b" style={{ backgroundColor: 'var(--bone)' }}>
-        <div className="container">
-          <div style={{ maxWidth: '640px', marginBottom: '48px' }} className="reveal">
-            <span className="label-caps" style={{ display: 'block', marginBottom: '8px' }}>
-              Core Operations
-            </span>
-            <h2>What we do</h2>
-          </div>
-
           <div
             style={{
               display: 'grid',
-              gridTemplateColumns: 'repeat(3, 1fr)',
-              borderTop: '1px solid var(--line)',
-              borderLeft: '1px solid var(--line)',
+              gridTemplateColumns: 'repeat(auto-fit, minmax(min(100%, 440px), 1fr))',
+              gap: '40px',
+              alignItems: 'center',
             }}
-            className="about-what-we-do-grid"
           >
-            <div className="reveal" style={{ borderRight: '1px solid var(--line)', borderBottom: '1px solid var(--line)', padding: '32px 24px', backgroundColor: 'var(--ivory)' }}>
-              <span className="label-caps" style={{ color: 'var(--olive)', display: 'block', marginBottom: '8px' }}>
-                01 · Sourcing
-              </span>
-              <h3 style={{ fontSize: '22px', marginBottom: '12px' }}>Source</h3>
-              <p style={{ fontSize: '15px', lineHeight: '24px', color: 'var(--charcoal)', margin: 0 }}>
-                We procure directly from certified farm clusters, agricultural APMC consolidation hubs, and modern sortex grain mills across Maharashtra, Gujarat and northern agricultural belts. Produce is selected based on maturity, dry matter, and freedom from blemishes.
+            <div>
+              <span className="label-caps">Company</span>
+              <h1 style={{ margin: '8px 0 16px 0' }}>About Vasudha Freshline Exports</h1>
+              <p style={{ fontSize: '18px', lineHeight: '28px', color: '#353535', margin: '0 0 24px 0' }}>
+                Vasudha Freshline Exports LLP is an Indian agricultural export partnership shipping produce by container. We supply commercial importers and wholesalers worldwide.
               </p>
-            </div>
-
-            <div className="reveal reveal-delay-1" style={{ borderRight: '1px solid var(--line)', borderBottom: '1px solid var(--line)', padding: '32px 24px', backgroundColor: 'var(--ivory)' }}>
-              <span className="label-caps" style={{ color: 'var(--olive)', display: 'block', marginBottom: '8px' }}>
-                02 · Conditioning
-              </span>
-              <h3 style={{ fontSize: '22px', marginBottom: '12px' }}>Pack</h3>
-              <p style={{ fontSize: '15px', lineHeight: '24px', color: 'var(--charcoal)', margin: 0 }}>
-                Sorting, mechanical calibration and forced-air pre-cooling take place in temperature-controlled packhouses. Cargo is packed into export-grade corrugated telescopic boxes, leno mesh bags or multiwall laminated sacks with lot-traceable barcodes.
-              </p>
-            </div>
-
-            <div className="reveal reveal-delay-2" style={{ borderRight: '1px solid var(--line)', borderBottom: '1px solid var(--line)', padding: '32px 24px', backgroundColor: 'var(--ivory)' }}>
-              <span className="label-caps" style={{ color: 'var(--olive)', display: 'block', marginBottom: '8px' }}>
-                03 · Logistics
-              </span>
-              <h3 style={{ fontSize: '22px', marginBottom: '12px' }}>Ship</h3>
-              <p style={{ fontSize: '15px', lineHeight: '24px', color: 'var(--charcoal)', margin: 0 }}>
-                Containers are stuffed under strict supervision at JNPT / Nhava Sheva cold staging yards. Phytosanitary inspection, customs clearance, and temperature logger placement are finalized before container doors are bolted and sealed.
-              </p>
-            </div>
-          </div>
-        </div>
-      </section>
-
-      {/* How We Work (4 Commitments in 2x2 grid with 1px lines) */}
-      <section className="section-padding hairline-b" style={{ backgroundColor: 'var(--ivory)' }}>
-        <div className="container">
-          <div style={{ maxWidth: '640px', marginBottom: '48px' }} className="reveal">
-            <span className="label-caps" style={{ display: 'block', marginBottom: '8px' }}>
-              Operational Standard
-            </span>
-            <h2>How we work</h2>
-          </div>
-
-          <div
-            style={{
-              display: 'grid',
-              gridTemplateColumns: 'repeat(2, 1fr)',
-              borderTop: '1px solid var(--line)',
-              borderLeft: '1px solid var(--line)',
-            }}
-            className="about-commitments-grid"
-          >
-            <div className="reveal" style={{ borderRight: '1px solid var(--line)', borderBottom: '1px solid var(--line)', padding: '32px 28px' }}>
-              <h3 style={{ fontSize: '20px', lineHeight: '26px', marginBottom: '10px' }}>
-                One point of contact from enquiry to arrival.
-              </h3>
-              <p style={{ fontSize: '15px', lineHeight: '24px', color: 'var(--muted)', margin: 0 }}>
-                You speak directly with an authorized export manager who knows your contract parameters, loading schedule, and vessel coordinates. No call centers, no departmental handoffs.
-              </p>
-            </div>
-
-            <div className="reveal reveal-delay-1" style={{ borderRight: '1px solid var(--line)', borderBottom: '1px solid var(--line)', padding: '32px 28px' }}>
-              <h3 style={{ fontSize: '20px', lineHeight: '26px', marginBottom: '10px' }}>
-                Specifications agreed in writing before loading.
-              </h3>
-              <p style={{ fontSize: '15px', lineHeight: '24px', color: 'var(--muted)', margin: 0 }}>
-                Sizing calibres, tolerance percentages, carton tare weights, and reefer holding temperatures are formally signed off in proforma specifications prior to packhouse harvesting.
-              </p>
-            </div>
-
-            <div className="reveal" style={{ borderRight: '1px solid var(--line)', borderBottom: '1px solid var(--line)', padding: '32px 28px' }}>
-              <h3 style={{ fontSize: '20px', lineHeight: '26px', marginBottom: '10px' }}>
-                Documents checked before the container leaves.
-              </h3>
-              <p style={{ fontSize: '15px', lineHeight: '24px', color: 'var(--muted)', margin: 0 }}>
-                Draft Bill of Lading, Phytosanitary certificate, invoice HS codes and Certificate of Origin are audited against importer LC terms prior to vessel departure to avoid customs delays.
-              </p>
-            </div>
-
-            <div className="reveal reveal-delay-1" style={{ borderRight: '1px solid var(--line)', borderBottom: '1px solid var(--line)', padding: '32px 28px' }}>
-              <h3 style={{ fontSize: '20px', lineHeight: '26px', marginBottom: '10px' }}>
-                Honest updates, including delays.
-              </h3>
-              <p style={{ fontSize: '15px', lineHeight: '24px', color: 'var(--muted)', margin: 0 }}>
-                If monsoon weather, terminal congestion or shipping line blank sailings impact schedules, we communicate verified facts immediately alongside mitigation plans.
-              </p>
-            </div>
-          </div>
-        </div>
-      </section>
-
-      {/* Operations Photo Strip (3 3:2 photos with Real Imagery) */}
-      <section className="section-padding hairline-b" style={{ backgroundColor: 'var(--bone)' }}>
-        <div className="container">
-          <div style={{ maxWidth: '640px', marginBottom: '40px' }} className="reveal">
-            <span className="label-caps" style={{ display: 'block', marginBottom: '8px' }}>
-              Documentary Proof
-            </span>
-            <h2>On-site operations</h2>
-          </div>
-
-          <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(min(100%, 280px), 1fr))', gap: '24px' }}>
-            <div className="reveal">
-              <PhotoPlaceholder
-                label="Produce grading table: manual inspection and sizing check at packhouse"
-                subtext="Documentary photograph · Natural daylight · 3:2"
-                aspectRatio="3:2"
-                src={IMAGES.packhouseInspection}
-              />
-            </div>
-            <div className="reveal reveal-delay-1">
-              <PhotoPlaceholder
-                label="Pre-trip inspection and reefer container staging at JNPT port terminal"
-                subtext="Documentary photograph · Clean logistics yard · 3:2"
-                aspectRatio="3:2"
-                src={IMAGES.portContainers}
-              />
-            </div>
-            <div className="reveal reveal-delay-2">
-              <PhotoPlaceholder
-                label="Container stuffing: export cargo secured with corner boards"
-                subtext="Documentary photograph · Port terminal dock · 3:2"
-                aspectRatio="3:2"
-                src={IMAGES.containerLoading}
-              />
-            </div>
-          </div>
-        </div>
-      </section>
-
-      {/* Team */}
-      <section className="section-padding hairline-b" style={{ backgroundColor: 'var(--ivory)' }}>
-        <div className="container">
-          <div style={{ maxWidth: '640px', marginBottom: '40px' }} className="reveal">
-            <span className="label-caps" style={{ display: 'block', marginBottom: '8px' }}>
-              Management
-            </span>
-            <h2>The team</h2>
-            <p style={{ color: 'var(--muted)', fontSize: '15px' }}>
-              Partners and operations directors responsible for export fulfillment.
-            </p>
-          </div>
-
-          <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(min(100%, 260px), 1fr))', gap: '24px' }}>
-            <div className="reveal" style={{ border: '1px solid var(--line)', padding: '24px', backgroundColor: 'var(--bone)' }}>
-              <div style={{ marginBottom: '16px' }}>
-                <PhotoPlaceholder
-                  label="Portrait: Designated Partner & Commercial Director"
-                  subtext="Documentary portrait · Neutral background · 4:5"
-                  aspectRatio="4:5"
-                />
-              </div>
-              <h3 style={{ fontSize: '18px', marginBottom: '4px' }}>Sunil M. Jadhav</h3>
-              <span className="label-caps" style={{ color: 'var(--olive)', display: 'block', marginBottom: '8px' }}>
-                Managing Partner · Commercial Desk
-              </span>
-              <p style={{ fontSize: '13px', color: 'var(--charcoal)', margin: 0 }}>
-                Oversees overseas importer relationships, contract negotiation and banking instruments.
-              </p>
-            </div>
-
-            <div className="reveal reveal-delay-1" style={{ border: '1px solid var(--line)', padding: '24px', backgroundColor: 'var(--bone)' }}>
-              <div style={{ marginBottom: '16px' }}>
-                <PhotoPlaceholder
-                  label="Portrait: Operations & Packhouse Quality Head"
-                  subtext="Documentary portrait · Neutral background · 4:5"
-                  aspectRatio="4:5"
-                />
-              </div>
-              <h3 style={{ fontSize: '18px', marginBottom: '4px' }}>Rajesh S. Kulkarni</h3>
-              <span className="label-caps" style={{ color: 'var(--olive)', display: 'block', marginBottom: '8px' }}>
-                Operations & Quality Director
-              </span>
-              <p style={{ fontSize: '13px', color: 'var(--charcoal)', margin: 0 }}>
-                Manages agricultural procurement, sorting calibration, pre-cooling and JNPT port stuffing.
-              </p>
-            </div>
-          </div>
-        </div>
-      </section>
-
-      {/* Company Details (2-Column Table with hairline rows) */}
-      <section className="section-padding hairline-b" style={{ backgroundColor: 'var(--bone)' }}>
-        <div className="container">
-          <div style={{ display: 'grid', gridTemplateColumns: '7fr 5fr', gap: '48px', alignItems: 'start' }} className="about-details-grid">
-            <div className="reveal">
-              <span className="label-caps" style={{ display: 'block', marginBottom: '8px' }}>
-                Entity Transparency
-              </span>
-              <h2 style={{ marginBottom: '24px' }}>Company details</h2>
-
-              <div style={{ border: '1px solid var(--line)', backgroundColor: '#FFFFFF', borderRadius: 'var(--radius)', overflowX: 'auto' }}>
-                <table className="spec-table" style={{ width: '100%', borderCollapse: 'collapse' }}>
-                  <tbody>
-                    <tr>
-                      <td style={{ paddingLeft: '20px', width: '35%', fontWeight: 500, color: 'var(--muted)' }}>Legal Entity</td>
-                      <td style={{ color: 'var(--ink)', fontWeight: 600 }}>Vasudha Freshline Exports LLP</td>
-                    </tr>
-                    <tr>
-                      <td style={{ paddingLeft: '20px', fontWeight: 500, color: 'var(--muted)' }}>Constitution</td>
-                      <td>Limited Liability Partnership (Republic of India)</td>
-                    </tr>
-                    <tr>
-                      <td style={{ paddingLeft: '20px', fontWeight: 500, color: 'var(--muted)' }}>LLPIN</td>
-                      <td style={{ fontWeight: 600, color: 'var(--ink)' }}>AAZ-8492</td>
-                    </tr>
-                    <tr>
-                      <td style={{ paddingLeft: '20px', fontWeight: 500, color: 'var(--muted)' }}>IEC (Import Export Code)</td>
-                      <td style={{ fontWeight: 600, color: 'var(--ink)' }}>0324089121</td>
-                    </tr>
-                    <tr>
-                      <td style={{ paddingLeft: '20px', fontWeight: 500, color: 'var(--muted)' }}>GST Identification</td>
-                      <td style={{ fontWeight: 600, color: 'var(--ink)' }}>27AAHFV5921Q1ZP</td>
-                    </tr>
-                    <tr>
-                      <td style={{ paddingLeft: '20px', fontWeight: 500, color: 'var(--muted)' }}>APEDA RCMC</td>
-                      <td style={{ fontWeight: 600, color: 'var(--ink)' }}>APEDA/RCMC/MUM/2024/09182</td>
-                    </tr>
-                    <tr>
-                      <td style={{ paddingLeft: '20px', fontWeight: 500, color: 'var(--muted)' }}>FSSAI Central License</td>
-                      <td style={{ fontWeight: 600, color: 'var(--ink)' }}>11524998000341</td>
-                    </tr>
-                    <tr>
-                      <td style={{ paddingLeft: '20px', fontWeight: 500, color: 'var(--muted)' }}>Registered Office</td>
-                      <td style={{ color: 'var(--charcoal)' }}>Plot No. 42-B, Agro-Processing Zone, Vinchur Food Park, Niphad, Nashik - 422209, Maharashtra, India</td>
-                    </tr>
-                    <tr>
-                      <td style={{ paddingLeft: '20px', fontWeight: 500, color: 'var(--muted)' }}>Commercial Desk Telephone</td>
-                      <td style={{ color: 'var(--charcoal)' }}>+91 98230 45812 / +91 253 257 8941</td>
-                    </tr>
-                    <tr>
-                      <td style={{ paddingLeft: '20px', fontWeight: 500, color: 'var(--muted)' }}>Official Email</td>
-                      <td><a href="mailto:trade@vasudhafreshline.com" style={{ color: 'var(--olive)', textDecoration: 'underline' }}>trade@vasudhafreshline.com</a></td>
-                    </tr>
-                  </tbody>
-                </table>
-              </div>
-            </div>
-
-            <div className="reveal reveal-delay-1" style={{ backgroundColor: 'var(--ivory)', border: '1px solid var(--line)', padding: '32px', borderRadius: 'var(--radius)' }}>
-              <h3 style={{ fontSize: '20px', marginBottom: '12px' }}>
-                Need statutory proof for due diligence?
-              </h3>
-              <p style={{ fontSize: '15px', lineHeight: '24px', color: 'var(--charcoal)', marginBottom: '24px' }}>
-                Commercial banks, trade credit insurers and international compliance teams frequently request certified copies of our GST, IEC, LLP deed, and APEDA certificates. We transmit scanned copies within 12 business hours.
-              </p>
-              <button
-                type="button"
-                onClick={() => onOpenRfq('Corporate Due Diligence Request')}
-                className="btn-secondary"
-                style={{ width: '100%' }}
-              >
-                Ask us for official documentation
-              </button>
-            </div>
-          </div>
-        </div>
-      </section>
-
-      {/* Closing CTA */}
-      <section className="dark-section" style={{ backgroundColor: 'var(--navy)', color: 'var(--ivory)', padding: '80px 0' }}>
-        <div className="container">
-          <div style={{ display: 'flex', flexWrap: 'wrap', justifyContent: 'space-between', alignItems: 'center', gap: '24px' }} className="reveal">
-            <div style={{ maxWidth: '600px' }}>
-              <h2 style={{ color: 'var(--ivory)', marginBottom: '12px' }}>
-                Ready to review a container quotation?
-              </h2>
-              <p style={{ color: 'var(--bone)', fontSize: '16px', margin: 0 }}>
-                Direct communication with the team responsible for container stuffing and quality execution.
-              </p>
-            </div>
-            <div style={{ display: 'flex', gap: '16px' }}>
-              <button
-                type="button"
-                onClick={() => onOpenRfq()}
-                style={{
-                  height: '52px',
-                  padding: '0 28px',
-                  backgroundColor: 'var(--ivory)',
-                  color: 'var(--navy)',
-                  borderRadius: 'var(--radius)',
-                  fontWeight: 500,
-                  fontSize: '15px',
-                  border: '1px solid var(--ivory)',
-                  cursor: 'pointer',
-                }}
-              >
+              <button type="button" className="btn-primary" onClick={() => onOpenRfq()}>
                 Request a quote
               </button>
             </div>
+            <div style={{ maxWidth: '400px', width: '100%', margin: '0 auto' }}>
+              <PhotoPlaceholder label="PHOTO NEEDED: packhouse operations" aspectRatio="4:5" />
+            </div>
           </div>
         </div>
       </section>
 
-      <style>{`
-        @media (max-width: 900px) {
-          .about-what-we-do-grid, .about-commitments-grid {
-            grid-template-columns: 1fr !important;
-          }
-          .about-details-grid {
-            grid-template-columns: 1fr !important;
-          }
-        }
-      `}</style>
+      {/* 2. CONSTITUTION & GOVERNANCE */}
+      <section style={{ padding: '64px 0', backgroundColor: '#ECE8DC', borderBottom: '1px solid #D9D5C8' }}>
+        <div className="container" style={{ maxWidth: '820px' }}>
+          <span className="label-caps">Structure</span>
+          <h2 style={{ margin: '4px 0 12px 0' }}>Constitution & trade model</h2>
+          <p style={{ fontSize: '16px', lineHeight: '26px', color: '#353535', margin: '0 0 24px 0' }}>
+            Registered as a Limited Liability Partnership under Indian law. We operate on direct commercial container contracts with established international buyers.
+          </p>
+          <div
+            style={{
+              display: 'grid',
+              gridTemplateColumns: 'repeat(auto-fit, minmax(200px, 1fr))',
+              gap: '16px',
+            }}
+          >
+            <div style={{ backgroundColor: '#F7F5EF', border: '1px solid #D9D5C8', padding: '16px', borderRadius: 'var(--radius)' }}>
+              <span style={{ fontSize: '12px', color: '#5F5D55', textTransform: 'uppercase', display: 'block' }}>Legal name</span>
+              <strong style={{ fontSize: '15px', color: '#16161A', display: 'block', marginTop: '4px' }}>Vasudha Freshline Exports LLP</strong>
+            </div>
+            <div style={{ backgroundColor: '#F7F5EF', border: '1px solid #D9D5C8', padding: '16px', borderRadius: 'var(--radius)' }}>
+              <span style={{ fontSize: '12px', color: '#5F5D55', textTransform: 'uppercase', display: 'block' }}>Export model</span>
+              <strong style={{ fontSize: '15px', color: '#16161A', display: 'block', marginTop: '4px' }}>Container loads (FCL)</strong>
+            </div>
+            <div style={{ backgroundColor: '#F7F5EF', border: '1px solid #D9D5C8', padding: '16px', borderRadius: 'var(--radius)' }}>
+              <span style={{ fontSize: '12px', color: '#5F5D55', textTransform: 'uppercase', display: 'block' }}>Commercial terms</span>
+              <strong style={{ fontSize: '15px', color: '#16161A', display: 'block', marginTop: '4px' }}>[CONFIRM: trade terms]</strong>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* 3. FARM SOURCING */}
+      <section style={{ padding: '64px 0', borderBottom: '1px solid #D9D5C8' }}>
+        <div className="container">
+          <div
+            style={{
+              display: 'grid',
+              gridTemplateColumns: 'repeat(auto-fit, minmax(min(100%, 420px), 1fr))',
+              gap: '36px',
+              alignItems: 'center',
+            }}
+          >
+            <div>
+              <span className="label-caps">Procurement</span>
+              <h2 style={{ margin: '4px 0 12px 0' }}>Direct farm sourcing</h2>
+              <p style={{ fontSize: '16px', lineHeight: '26px', color: '#353535', margin: 0 }}>
+                [CONFIRM: sourcing partnerships across primary Indian growing regions]. Produce is harvested and moved directly to local packing facilities.
+              </p>
+            </div>
+            <div>
+              <PhotoPlaceholder label="PHOTO NEEDED: farm harvest collection" aspectRatio="3:2" />
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* 4. INSPECTION & QUALITY CHECKS */}
+      <section style={{ padding: '64px 0', backgroundColor: '#ECE8DC', borderBottom: '1px solid #D9D5C8' }}>
+        <div className="container">
+          <div
+            style={{
+              display: 'grid',
+              gridTemplateColumns: 'repeat(auto-fit, minmax(min(100%, 420px), 1fr))',
+              gap: '36px',
+              alignItems: 'center',
+            }}
+          >
+            <div>
+              <PhotoPlaceholder label="PHOTO NEEDED: produce inspection before loading" aspectRatio="3:2" />
+            </div>
+            <div>
+              <span className="label-caps">Operations</span>
+              <h2 style={{ margin: '4px 0 12px 0' }}>Inspection & documentation</h2>
+              <p style={{ fontSize: '16px', lineHeight: '26px', color: '#353535', margin: 0 }}>
+                Every consignment is inspected for size, grading, and packaging integrity. Shipments travel with complete statutory documentation [CONFIRM].
+              </p>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* 5. CLOSING BAND (navy #10104F) */}
+      <section style={{ backgroundColor: '#10104F', color: '#F7F5EF', padding: '72px 0' }} className="dark-section">
+        <div className="container" style={{ textAlign: 'center', maxWidth: '640px' }}>
+          <h2 style={{ color: '#F7F5EF', margin: '0 0 16px 0' }}>Tell us what you need.</h2>
+          <p style={{ fontSize: '16px', lineHeight: '26px', color: '#DAD8E8', margin: '0 auto 32px auto' }}>
+            Speak directly with our trade desk regarding supply capabilities and container schedules.
+          </p>
+          <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'center', gap: '16px', flexWrap: 'wrap' }}>
+            <button type="button" className="btn-primary" onClick={() => onOpenRfq()}>
+              Request a quote
+            </button>
+            <a href={whatsappUrl} target="_blank" rel="noopener noreferrer" className="btn-secondary">
+              Chat on WhatsApp
+            </a>
+          </div>
+        </div>
+      </section>
     </main>
   );
 };

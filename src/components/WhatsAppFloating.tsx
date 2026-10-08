@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 
-const WhatsAppLineIcon: React.FC<{ size?: number; color?: string }> = ({ size = 24, color = '#10104F' }) => (
+const WhatsAppLineIcon: React.FC<{ size?: number; color?: string }> = ({ size = 24, color = '#F7F5EF' }) => (
   <svg
     width={size}
     height={size}
@@ -37,12 +37,11 @@ export const WhatsAppFloating: React.FC = () => {
       {showTooltip && (
         <div
           role="tooltip"
-          className="animate-fade-in"
           style={{
             position: 'absolute',
             bottom: '62px',
             right: '0',
-            backgroundColor: '#1A1A66',
+            backgroundColor: '#10104F',
             color: '#F7F5EF',
             padding: '6px 12px',
             borderRadius: 'var(--radius)',
@@ -50,7 +49,6 @@ export const WhatsAppFloating: React.FC = () => {
             whiteSpace: 'nowrap',
             pointerEvents: 'none',
             border: '1px solid rgba(247, 245, 239, 0.20)',
-            boxShadow: 'none',
           }}
         >
           Chat on WhatsApp
@@ -70,27 +68,18 @@ export const WhatsAppFloating: React.FC = () => {
           width: '52px',
           height: '52px',
           borderRadius: '50%',
-          backgroundColor: '#F7F5EF',
+          backgroundColor: '#10104F',
           display: 'flex',
           alignItems: 'center',
           justifyContent: 'center',
-          border: '1px solid #DAD8E8',
+          cursor: 'pointer',
+          border: '1px solid #10104F',
+          transition: 'all 180ms ease',
           textDecoration: 'none',
-          transition: 'transform 180ms ease, background-color 180ms ease',
-          boxShadow: 'none',
         }}
       >
-        <WhatsAppLineIcon size={24} color="#10104F" />
+        <WhatsAppLineIcon size={24} color="#F7F5EF" />
       </a>
-
-      <style>{`
-        @media (max-width: 480px) {
-          .whatsapp-floating-wrapper {
-            bottom: 84px !important;
-            right: 16px !important;
-          }
-        }
-      `}</style>
     </div>
   );
 };

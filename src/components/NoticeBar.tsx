@@ -15,11 +15,11 @@ export const NoticeBar: React.FC<NoticeBarProps> = ({ onNavigateToQuote }) => {
       role="region"
       aria-label="Shipping notice"
       style={{
-        backgroundColor: '#0A0A38',
-        color: '#DAD8E8',
-        borderBottom: '1px solid rgba(247, 245, 239, 0.20)',
+        backgroundColor: '#ECE8DC',
+        color: '#353535',
+        borderBottom: '1px solid #D9D5C8',
         minHeight: '38px',
-        fontSize: '12px',
+        fontSize: '13px',
         display: 'flex',
         alignItems: 'center',
         justifyContent: 'center',
@@ -29,7 +29,6 @@ export const NoticeBar: React.FC<NoticeBarProps> = ({ onNavigateToQuote }) => {
         width: '100%',
         maxWidth: '100%',
         boxSizing: 'border-box',
-        overflow: 'hidden',
       }}
     >
       <div
@@ -44,7 +43,7 @@ export const NoticeBar: React.FC<NoticeBarProps> = ({ onNavigateToQuote }) => {
         }}
       >
         <span style={{ overflow: 'hidden', textOverflow: 'ellipsis', whiteSpace: 'nowrap' }}>
-          <strong style={{ color: '#F7F5EF', fontWeight: 500 }}>Shipping notice:</strong>{' '}
+          <strong style={{ color: '#16161A', fontWeight: 600 }}>Shipping notice:</strong>{' '}
           [CONFIRM: short note about freight or schedules].{' '}
           {onNavigateToQuote ? (
             <button
@@ -53,11 +52,12 @@ export const NoticeBar: React.FC<NoticeBarProps> = ({ onNavigateToQuote }) => {
               style={{
                 background: 'none',
                 border: 'none',
-                color: '#A9B070',
+                color: '#687036',
                 cursor: 'pointer',
                 textDecoration: 'underline',
                 textUnderlineOffset: '3px',
-                fontSize: '12px',
+                fontSize: '13px',
+                fontWeight: 500,
                 fontFamily: 'inherit',
                 padding: 0,
                 display: 'inline',
@@ -66,7 +66,7 @@ export const NoticeBar: React.FC<NoticeBarProps> = ({ onNavigateToQuote }) => {
               Ask for a current quote.
             </button>
           ) : (
-            <span style={{ color: '#A9B070' }}>Ask for a current quote.</span>
+            <span style={{ color: '#687036' }}>Ask for a current quote.</span>
           )}
         </span>
       </div>
@@ -78,17 +78,19 @@ export const NoticeBar: React.FC<NoticeBarProps> = ({ onNavigateToQuote }) => {
         style={{
           position: 'absolute',
           right: '12px',
+          top: '50%',
+          transform: 'translateY(-50%)',
           background: 'none',
           border: 'none',
-          color: '#B9B8D6',
+          color: '#5F5D55',
           cursor: 'pointer',
+          padding: '4px',
           display: 'flex',
           alignItems: 'center',
           justifyContent: 'center',
-          padding: '4px',
         }}
       >
-        <X size={14} strokeWidth={1.5} />
+        <X size={14} />
       </button>
     </div>
   );

@@ -1,6 +1,5 @@
 import React, { useState } from 'react';
-import { Button } from './Button';
-import { X, Check, MessageSquare } from 'lucide-react';
+import { X, Check } from 'lucide-react';
 
 interface RfqModalProps {
   isOpen: boolean;
@@ -10,8 +9,8 @@ interface RfqModalProps {
 
 export const RfqModal: React.FC<RfqModalProps> = ({ isOpen, onClose, initialProduct = '' }) => {
   const [formData, setFormData] = useState({
-    product: initialProduct || 'Pomegranates (Bhagwa)',
-    volumeContainers: '1 FCL (40ft Reefer)',
+    product: initialProduct || 'Pomegranates',
+    volumeContainers: '1 container',
     destinationPort: '',
     country: '',
     incoterm: 'CIF',
@@ -69,7 +68,7 @@ export const RfqModal: React.FC<RfqModalProps> = ({ isOpen, onClose, initialProd
         left: 0,
         right: 0,
         bottom: 0,
-        backgroundColor: 'rgba(21, 28, 23, 0.65)',
+        backgroundColor: 'rgba(16, 16, 79, 0.45)',
         display: 'flex',
         alignItems: 'center',
         justifyContent: 'center',
@@ -82,16 +81,16 @@ export const RfqModal: React.FC<RfqModalProps> = ({ isOpen, onClose, initialProd
       }}
     >
       <div
-        className="animate-fade-in rfq-modal-card"
+        className="rfq-modal-card"
         style={{
-          backgroundColor: 'var(--ivory)',
-          border: '1px solid var(--line)',
+          backgroundColor: '#F7F5EF',
+          border: '1px solid #D9D5C8',
           borderRadius: 'var(--radius)',
           maxWidth: '680px',
           width: '100%',
           maxHeight: '92vh',
           overflowY: 'auto',
-          padding: '40px',
+          padding: '36px',
           position: 'relative',
         }}
       >
@@ -102,13 +101,13 @@ export const RfqModal: React.FC<RfqModalProps> = ({ isOpen, onClose, initialProd
           aria-label="Close quote request modal"
           style={{
             position: 'absolute',
-            top: '24px',
-            right: '24px',
+            top: '20px',
+            right: '20px',
             background: 'none',
             border: 'none',
             cursor: 'pointer',
             padding: '8px',
-            color: 'var(--muted)',
+            color: '#5F5D55',
             display: 'flex',
             alignItems: 'center',
             justifyContent: 'center',
@@ -124,272 +123,183 @@ export const RfqModal: React.FC<RfqModalProps> = ({ isOpen, onClose, initialProd
                 width: '56px',
                 height: '56px',
                 margin: '0 auto 20px',
-                border: '1px solid var(--olive)',
+                border: '1px solid #687036',
                 borderRadius: '50%',
                 display: 'flex',
                 alignItems: 'center',
                 justifyContent: 'center',
-                color: 'var(--olive)',
+                color: '#687036',
               }}
             >
               <Check size={28} strokeWidth={1.5} />
             </div>
             <h3 style={{ marginBottom: '12px' }}>Request for quote received</h3>
-            <p style={{ maxWidth: '440px', margin: '0 auto 24px', color: 'var(--charcoal)', fontSize: '15px' }}>
-              Your inquiry has been logged on the export desk. Our trade officer will review shipment availability from JNPT and supply an official proforma quote within 12 business hours.
+            <p style={{ maxWidth: '440px', margin: '0 auto 24px', color: '#353535', fontSize: '15px' }}>
+              Your inquiry has been logged. Our export trade desk will review specifications and respond [CONFIRM: response turnaround time].
             </p>
-            <div style={{ display: 'flex', gap: '12px', justifyContent: 'center' }}>
-              <Button variant="secondary" onClick={handleWhatsAppDirect}>
-                <MessageSquare size={16} strokeWidth={1.5} />
-                <span>Forward details to WhatsApp</span>
-              </Button>
-              <Button variant="primary" onClick={onClose}>
-                Return to website
-              </Button>
+            <div style={{ display: 'flex', gap: '16px', justifyContent: 'center', flexWrap: 'wrap' }}>
+              <button
+                type="button"
+                className="btn-primary"
+                onClick={onClose}
+              >
+                Close window
+              </button>
+              <button
+                type="button"
+                className="btn-secondary"
+                onClick={handleWhatsAppDirect}
+              >
+                Send via WhatsApp
+              </button>
             </div>
           </div>
         ) : (
-          <div>
-            <div style={{ marginBottom: '28px', borderBottom: '1px solid var(--line)', paddingBottom: '20px' }}>
-              <span className="label-caps" style={{ display: 'block', marginBottom: '8px' }}>
-                Commercial Trade Desk
+          <form onSubmit={handleSubmit}>
+            <div style={{ marginBottom: '24px' }}>
+              <span className="label-caps" style={{ display: 'block', marginBottom: '6px' }}>
+                Direct Export Desk
               </span>
-              <h2 id="rfq-dialog-title" style={{ fontSize: '32px', lineHeight: '38px', marginBottom: '8px' }}>
-                Request for quote (RFQ)
+              <h2 id="rfq-dialog-title" style={{ fontSize: '26px', margin: 0 }}>
+                Request a container quote
               </h2>
-              <p style={{ fontSize: '15px', color: 'var(--muted)', margin: 0 }}>
-                Wholesale container shipments only. Complete the specification below or message us directly on WhatsApp.
+              <p style={{ fontSize: '14px', color: '#5F5D55', marginTop: '6px' }}>
+                All shipments sold by container. Fill details for formal proforma pricing.
               </p>
             </div>
 
-            <form onSubmit={handleSubmit}>
-              {/* Product and Quantity */}
-              <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '16px' }} className="rfq-grid-2col">
-                <div className="form-group">
-                  <label className="form-label" htmlFor="rfq-product">
-                    Product commodity
-                  </label>
-                  <select
-                    id="rfq-product"
-                    className="form-select"
-                    value={formData.product}
-                    onChange={(e) => setFormData({ ...formData, product: e.target.value })}
-                  >
-                    <option value="Pomegranates (Bhagwa)">Pomegranates (Bhagwa Variety)</option>
-                    <option value="Fresh Red Onions">Fresh Red Onions (Medium / Large)</option>
-                    <option value="Fresh White Onions">Fresh White Onions</option>
-                    <option value="Milled Rice (Non-Basmati)">Milled Rice (Non-Basmati)</option>
-                    <option value="Basmati Rice">Basmati Rice (Export Grade)</option>
-                    <option value="Export Spices">Indian Spices (Whole / Ground)</option>
-                    <option value="Fresh Seasonal Fruits">Fresh Seasonal Fruits</option>
-                    <option value="Fresh Vegetables">Fresh Vegetables (Cold-Chain)</option>
-                  </select>
-                </div>
-
-                <div className="form-group">
-                  <label className="form-label" htmlFor="rfq-volume">
-                    Order volume (Containers)
-                  </label>
-                  <select
-                    id="rfq-volume"
-                    className="form-select"
-                    value={formData.volumeContainers}
-                    onChange={(e) => setFormData({ ...formData, volumeContainers: e.target.value })}
-                  >
-                    <option value="1 FCL (40ft Reefer / Dry)">1 FCL (Trial Container)</option>
-                    <option value="2-5 FCL per month">2 – 5 FCL per month</option>
-                    <option value="6-10 FCL per month">6 – 10 FCL per month</option>
-                    <option value="Spot Container Program">Spot Container Program</option>
-                    <option value="Annual Supply Contract">Annual Supply Contract</option>
-                  </select>
-                </div>
-              </div>
-
-              {/* Destination Port & Country */}
-              <div style={{ display: 'grid', gridTemplateColumns: '1.2fr 1fr 0.8fr', gap: '16px' }} className="rfq-grid-3col">
-                <div className="form-group">
-                  <label className="form-label" htmlFor="rfq-port">
-                    Discharge port
-                  </label>
-                  <input
-                    id="rfq-port"
-                    type="text"
-                    placeholder="e.g. Jebel Ali, Rotterdam, Dammam"
-                    className={`form-input ${errors.destinationPort ? 'has-error' : ''}`}
-                    value={formData.destinationPort}
-                    onChange={(e) => setFormData({ ...formData, destinationPort: e.target.value })}
-                  />
-                  {errors.destinationPort && <span className="form-error">{errors.destinationPort}</span>}
-                </div>
-
-                <div className="form-group">
-                  <label className="form-label" htmlFor="rfq-country">
-                    Destination country
-                  </label>
-                  <input
-                    id="rfq-country"
-                    type="text"
-                    placeholder="e.g. UAE, Netherlands, Saudi Arabia"
-                    className={`form-input ${errors.country ? 'has-error' : ''}`}
-                    value={formData.country}
-                    onChange={(e) => setFormData({ ...formData, country: e.target.value })}
-                  />
-                  {errors.country && <span className="form-error">{errors.country}</span>}
-                </div>
-
-                <div className="form-group">
-                  <label className="form-label" htmlFor="rfq-incoterm">
-                    Incoterm
-                  </label>
-                  <select
-                    id="rfq-incoterm"
-                    className="form-select"
-                    value={formData.incoterm}
-                    onChange={(e) => setFormData({ ...formData, incoterm: e.target.value })}
-                  >
-                    <option value="CIF">CIF</option>
-                    <option value="FOB">FOB (JNPT)</option>
-                    <option value="CFR">CFR</option>
-                  </select>
-                </div>
-              </div>
-
-              {/* Buyer Company & Contact */}
-              <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '16px' }} className="rfq-grid-2col">
-                <div className="form-group">
-                  <label className="form-label" htmlFor="rfq-company">
-                    Company name
-                  </label>
-                  <input
-                    id="rfq-company"
-                    type="text"
-                    placeholder="Importer / Distribution entity"
-                    className={`form-input ${errors.companyName ? 'has-error' : ''}`}
-                    value={formData.companyName}
-                    onChange={(e) => setFormData({ ...formData, companyName: e.target.value })}
-                  />
-                  {errors.companyName && <span className="form-error">{errors.companyName}</span>}
-                </div>
-
-                <div className="form-group">
-                  <label className="form-label" htmlFor="rfq-name">
-                    Authorized contact
-                  </label>
-                  <input
-                    id="rfq-name"
-                    type="text"
-                    placeholder="Full name & title"
-                    className={`form-input ${errors.contactName ? 'has-error' : ''}`}
-                    value={formData.contactName}
-                    onChange={(e) => setFormData({ ...formData, contactName: e.target.value })}
-                  />
-                  {errors.contactName && <span className="form-error">{errors.contactName}</span>}
-                </div>
-              </div>
-
-              {/* Email & Phone */}
-              <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '16px' }} className="rfq-grid-2col">
-                <div className="form-group">
-                  <label className="form-label" htmlFor="rfq-email">
-                    Corporate email
-                  </label>
-                  <input
-                    id="rfq-email"
-                    type="email"
-                    placeholder="buyer@importcompany.com"
-                    className={`form-input ${errors.email ? 'has-error' : ''}`}
-                    value={formData.email}
-                    onChange={(e) => setFormData({ ...formData, email: e.target.value })}
-                  />
-                  {errors.email && <span className="form-error">{errors.email}</span>}
-                </div>
-
-                <div className="form-group">
-                  <label className="form-label" htmlFor="rfq-phone">
-                    Phone / WhatsApp number
-                  </label>
-                  <input
-                    id="rfq-phone"
-                    type="tel"
-                    placeholder="+Country code & number"
-                    className="form-input"
-                    value={formData.phone}
-                    onChange={(e) => setFormData({ ...formData, phone: e.target.value })}
-                  />
-                </div>
-              </div>
-
-              {/* Specific packing / grading requirements */}
+            {/* Commodity & Volume */}
+            <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(240px, 1fr))', gap: '16px' }}>
               <div className="form-group">
-                <label className="form-label" htmlFor="rfq-notes">
-                  Grading, packaging or temperature requirements (Optional)
-                </label>
-                <textarea
-                  id="rfq-notes"
-                  className="form-textarea"
-                  placeholder="Specify carton sizes (e.g. 3.5kg / 5kg net), fruit count, sizing calibration, or target shipping window."
-                  value={formData.packagingNotes}
-                  onChange={(e) => setFormData({ ...formData, packagingNotes: e.target.value })}
-                  style={{ minHeight: '80px' }}
+                <label className="form-label">Commodity</label>
+                <select
+                  className="form-select"
+                  value={formData.product}
+                  onChange={(e) => setFormData({ ...formData, product: e.target.value })}
+                >
+                  <option value="Pomegranates">Pomegranates (Bhagwa)</option>
+                  <option value="Onions">Fresh Onions (Red & White)</option>
+                  <option value="Rice">Rice (Basmati & Non-Basmati)</option>
+                  <option value="Spices">Indian Spices</option>
+                  <option value="Fresh fruits">Fresh Seasonal Fruits</option>
+                  <option value="Fresh vegetables">Fresh Vegetables</option>
+                </select>
+              </div>
+
+              <div className="form-group">
+                <label className="form-label">Volume (Containers)</label>
+                <select
+                  className="form-select"
+                  value={formData.volumeContainers}
+                  onChange={(e) => setFormData({ ...formData, volumeContainers: e.target.value })}
+                >
+                  <option value="1 container">1 FCL</option>
+                  <option value="2-5 containers">2 – 5 FCL</option>
+                  <option value="5+ containers">5+ FCL</option>
+                </select>
+              </div>
+            </div>
+
+            {/* Destination */}
+            <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(240px, 1fr))', gap: '16px' }}>
+              <div className="form-group">
+                <label className="form-label">Destination Port</label>
+                <input
+                  type="text"
+                  className={`form-input ${errors.destinationPort ? 'has-error' : ''}`}
+                  placeholder="e.g. Jebel Ali, Rotterdam"
+                  value={formData.destinationPort}
+                  onChange={(e) => setFormData({ ...formData, destinationPort: e.target.value })}
+                />
+                {errors.destinationPort && <span className="form-error">{errors.destinationPort}</span>}
+              </div>
+
+              <div className="form-group">
+                <label className="form-label">Destination Country</label>
+                <input
+                  type="text"
+                  className={`form-input ${errors.country ? 'has-error' : ''}`}
+                  placeholder="e.g. UAE, Netherlands"
+                  value={formData.country}
+                  onChange={(e) => setFormData({ ...formData, country: e.target.value })}
+                />
+                {errors.country && <span className="form-error">{errors.country}</span>}
+              </div>
+            </div>
+
+            {/* Company & Contact */}
+            <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(240px, 1fr))', gap: '16px' }}>
+              <div className="form-group">
+                <label className="form-label">Company Name</label>
+                <input
+                  type="text"
+                  className={`form-input ${errors.companyName ? 'has-error' : ''}`}
+                  placeholder="Importing entity"
+                  value={formData.companyName}
+                  onChange={(e) => setFormData({ ...formData, companyName: e.target.value })}
+                />
+                {errors.companyName && <span className="form-error">{errors.companyName}</span>}
+              </div>
+
+              <div className="form-group">
+                <label className="form-label">Contact Person</label>
+                <input
+                  type="text"
+                  className={`form-input ${errors.contactName ? 'has-error' : ''}`}
+                  placeholder="Your full name"
+                  value={formData.contactName}
+                  onChange={(e) => setFormData({ ...formData, contactName: e.target.value })}
+                />
+                {errors.contactName && <span className="form-error">{errors.contactName}</span>}
+              </div>
+            </div>
+
+            {/* Email & Phone */}
+            <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(240px, 1fr))', gap: '16px' }}>
+              <div className="form-group">
+                <label className="form-label">Commercial Email</label>
+                <input
+                  type="email"
+                  className={`form-input ${errors.email ? 'has-error' : ''}`}
+                  placeholder="buyer@company.com"
+                  value={formData.email}
+                  onChange={(e) => setFormData({ ...formData, email: e.target.value })}
+                />
+                {errors.email && <span className="form-error">{errors.email}</span>}
+              </div>
+
+              <div className="form-group">
+                <label className="form-label">Phone / WhatsApp</label>
+                <input
+                  type="tel"
+                  className="form-input"
+                  placeholder="+Country code & number"
+                  value={formData.phone}
+                  onChange={(e) => setFormData({ ...formData, phone: e.target.value })}
                 />
               </div>
+            </div>
 
-              {/* Actions */}
-              <div
-                style={{
-                  display: 'flex',
-                  alignItems: 'center',
-                  justifyContent: 'space-between',
-                  paddingTop: '16px',
-                  borderTop: '1px solid var(--line)',
-                  flexWrap: 'wrap',
-                  gap: '12px',
-                }}
+            {/* Buttons */}
+            <div style={{ display: 'flex', gap: '16px', alignItems: 'center', marginTop: '12px', flexWrap: 'wrap' }}>
+              <button
+                type="submit"
+                className="btn-primary"
+                style={{ flexGrow: 1, minWidth: '180px' }}
               >
-                <button
-                  type="button"
-                  onClick={handleWhatsAppDirect}
-                  style={{
-                    background: 'none',
-                    border: 'none',
-                    display: 'inline-flex',
-                    alignItems: 'center',
-                    gap: '6px',
-                    color: 'var(--olive)',
-                    fontSize: '14px',
-                    cursor: 'pointer',
-                    textDecoration: 'underline',
-                    textUnderlineOffset: '4px',
-                  }}
-                >
-                  <MessageSquare size={16} strokeWidth={1.5} />
-                  <span>Send direct via WhatsApp</span>
-                </button>
-
-                <div style={{ display: 'flex', gap: '12px' }}>
-                  <Button variant="secondary" type="button" onClick={onClose}>
-                    Cancel
-                  </Button>
-                  <Button variant="primary" type="submit">
-                    Submit quote request
-                  </Button>
-                </div>
-              </div>
-            </form>
-          </div>
+                Submit formal RFQ
+              </button>
+              <button
+                type="button"
+                className="btn-secondary"
+                onClick={handleWhatsAppDirect}
+              >
+                Send via WhatsApp
+              </button>
+            </div>
+          </form>
         )}
       </div>
-
-      <style>{`
-        @media (max-width: 600px) {
-          .rfq-modal-card {
-            padding: 24px 16px !important;
-          }
-          .rfq-grid-2col, .rfq-grid-3col {
-            grid-template-columns: 1fr !important;
-          }
-        }
-      `}</style>
     </div>
   );
 };

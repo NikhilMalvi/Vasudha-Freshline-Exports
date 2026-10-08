@@ -5,22 +5,19 @@ import { Footer } from './components/Footer';
 import { WhatsAppFloating } from './components/WhatsAppFloating';
 import { ScrollToTop } from './components/ScrollToTop';
 import { RfqModal } from './components/RfqModal';
-import { BrochureModal } from './components/BrochureModal';
-import { QuickContactDrawer } from './components/QuickContactDrawer';
 
 // Pages
 import { HomePage } from './pages/HomePage';
 import { ProductsPage } from './pages/ProductsPage';
 import { ProductDetailPage } from './pages/ProductDetailPage';
 import { AboutPage } from './pages/AboutPage';
-import { QualityPage } from './pages/QualityPage';
-import { ExportPage } from './pages/ExportPage';
+import { CertificatesPage } from './pages/CertificatesPage';
+import { GalleryPage } from './pages/GalleryPage';
 import { QuotePage } from './pages/QuotePage';
 import { LegalPage } from './pages/LegalPage';
 import { NotFoundPage } from './pages/NotFoundPage';
 
 export function App() {
-  // Hash-based routing to work seamlessly on any static/server host
   const getInitialPath = () => {
     const hash = window.location.hash.replace(/^#/, '');
     return hash || '/';
@@ -28,11 +25,8 @@ export function App() {
 
   const [currentPath, setCurrentPath] = useState<string>(getInitialPath);
   const [isRfqModalOpen, setIsRfqModalOpen] = useState<boolean>(false);
-  const [isBrochureOpen, setIsBrochureOpen] = useState<boolean>(false);
-  const [isQuickContactOpen, setIsQuickContactOpen] = useState<boolean>(false);
-  const [selectedProduct, setSelectedProduct] = useState<string>('Pomegranates (Bhagwa)');
+  const [selectedProduct, setSelectedProduct] = useState<string>('Pomegranates');
 
-  // Sync route on hash changes (back/forward buttons)
   useEffect(() => {
     const handleHashChange = () => {
       const hash = window.location.hash.replace(/^#/, '');
@@ -57,22 +51,12 @@ export function App() {
     setIsRfqModalOpen(true);
   };
 
-  const handleOpenBrochure = () => {
-    setIsBrochureOpen(true);
-  };
-
-  const handleOpenQuickContact = () => {
-    setIsQuickContactOpen(true);
-  };
-
-  // Determine active view based on currentPath
   const renderCurrentPage = () => {
     if (currentPath === '/' || currentPath === '') {
       return (
         <HomePage
           onNavigate={navigateTo}
           onOpenRfq={handleOpenRfq}
-          onOpenBrochure={handleOpenBrochure}
         />
       );
     }
@@ -88,7 +72,6 @@ export function App() {
           slug={slug}
           onNavigate={navigateTo}
           onOpenRfq={handleOpenRfq}
-          onOpenBrochure={handleOpenBrochure}
         />
       );
     }
@@ -97,12 +80,16 @@ export function App() {
       return <AboutPage onNavigate={navigateTo} onOpenRfq={handleOpenRfq} />;
     }
 
-    if (currentPath === '/quality') {
-      return <QualityPage onNavigate={navigateTo} onOpenRfq={handleOpenRfq} />;
+    if (currentPath === '/certificates' || currentPath === '/quality') {
+      return <CertificatesPage onNavigate={navigateTo} onOpenRfq={handleOpenRfq} />;
+    }
+
+    if (currentPath === '/gallery') {
+      return <GalleryPage onNavigate={navigateTo} onOpenRfq={handleOpenRfq} />;
     }
 
     if (currentPath === '/export') {
-      return <ExportPage onNavigate={navigateTo} onOpenRfq={handleOpenRfq} />;
+      return <ProductsPage onNavigate={navigateTo} onOpenRfq={handleOpenRfq} />;
     }
 
     if (currentPath === '/quote' || currentPath === '/contact') {
@@ -121,17 +108,15 @@ export function App() {
   };
 
   return (
-    <div className="site-wrapper" style={{ minHeight: '100vh', display: 'flex', flexDirection: 'column' }}>
-      {/* 1. Global Dismissible Notice Bar */}
-      <NoticeBar onNavigateToQuote={() => navigateTo('/quote')} />
+    <div className="site-wrapper" style={{ minHeight: '100vh', display: 'flex', flexDirection: 'column', backgroundColor: '#F7F5EF' }}>
+      {/* 1. Global Notice Bar */}
+      <NoticeBar onNavigateToQuote={() => navigateTo('/contact')} />
 
       {/* 2. Global Sticky Header */}
       <Header
         currentPath={currentPath}
         onNavigate={navigateTo}
         onOpenRfq={handleOpenRfq}
-        onOpenBrochure={handleOpenBrochure}
-        onOpenQuickContact={handleOpenQuickContact}
       />
 
       {/* 3. Main Page Content */}
@@ -151,22 +136,6 @@ export function App() {
         isOpen={isRfqModalOpen}
         onClose={() => setIsRfqModalOpen(false)}
         initialProduct={selectedProduct}
-      />
-
-      {/* 7. Official Export Profile & Brochure Modal (like Horizon Exim) */}
-      <BrochureModal
-        isOpen={isBrochureOpen}
-        onClose={() => setIsBrochureOpen(false)}
-        onOpenRfq={handleOpenRfq}
-      />
-
-      {/* 8. Quick Contact & Direct Trade Desk Slideout Drawer (like Horizon Exim extra-wrap) */}
-      <QuickContactDrawer
-        isOpen={isQuickContactOpen}
-        onClose={() => setIsQuickContactOpen(false)}
-        onOpenRfq={handleOpenRfq}
-        onOpenBrochure={handleOpenBrochure}
-        onNavigate={navigateTo}
       />
     </div>
   );

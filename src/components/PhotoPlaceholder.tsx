@@ -1,97 +1,82 @@
-import React, { useState } from 'react';
+import React from 'react';
 
 interface PhotoPlaceholderProps {
   label: string;
   subtext?: string;
-  aspectRatio?: '4:5' | '3:2' | '16:9';
+  aspectRatio?: '4:5' | '3:2' | '16:9' | '1:1';
   src?: string;
   className?: string;
   showCaption?: boolean;
 }
 
+/**
+ * Photo Placeholder Component
+ * Rule 7: Use #ECE8DC placeholders with caption BELOW. No stock photos.
+ */
 export const PhotoPlaceholder: React.FC<PhotoPlaceholderProps> = ({
   label,
-  subtext,
   aspectRatio = '3:2',
-  src,
   className = '',
-  showCaption: _showCaption = true,
+  showCaption = true,
 }) => {
-  const [imageError, setImageError] = useState(false);
-
   const aspectClass =
     aspectRatio === '4:5'
       ? 'aspect-4-5'
       : aspectRatio === '16:9'
       ? 'aspect-16-9'
+      : aspectRatio === '1:1'
+      ? 'aspect-1-1'
       : 'aspect-3-2';
 
-  // If a real image source is available and didn't fail
-  if (src && !imageError) {
-    return (
+  return (
+    <div className={className} style={{ width: '100%' }}>
       <div
-        className={`${aspectClass} ${className}`}
+        className={`photo-placeholder-box ${aspectClass}`}
+        role="img"
+        aria-label={label}
         style={{
-          border: '1px solid rgba(247, 245, 239, 0.20)',
+          backgroundColor: '#ECE8DC',
+          border: '1px solid #D9D5C8',
           borderRadius: 'var(--radius)',
+          display: 'flex',
+          alignItems: 'center',
+          justifyContent: 'center',
           position: 'relative',
           overflow: 'hidden',
-          backgroundColor: '#1A1A66',
+          width: '100%',
         }}
       >
-        <img
-          src={src}
-          alt={label}
-          loading="lazy"
-          onError={() => setImageError(true)}
-          style={{
-            display: 'block',
-            width: '100%',
-            height: '100%',
-            objectFit: 'cover',
-          }}
-        />
+        <svg
+          width="24"
+          height="24"
+          viewBox="0 0 24 24"
+          fill="none"
+          stroke="#5F5D55"
+          strokeWidth="1.5"
+          strokeLinecap="round"
+          strokeLinejoin="round"
+          aria-hidden="true"
+        >
+          <rect x="3" y="3" width="18" height="18" rx="2" ry="2" />
+          <circle cx="8.5" cy="8.5" r="1.5" />
+          <polyline points="21 15 16 10 5 21" />
+        </svg>
       </div>
-    );
-  }
 
-  // Placeholder block: #1A1A66, 1px hairline border, #F7F5EF text, #B9B8D6 caption
-  return (
-    <div
-      className={`photo-placeholder ${aspectClass} ${className}`}
-      role="img"
-      aria-label={label}
-      style={{
-        backgroundColor: '#1A1A66',
-        border: '1px solid rgba(247, 245, 239, 0.20)',
-        borderRadius: 'var(--radius)',
-      }}
-    >
-      <div style={{ maxWidth: '320px', margin: 'auto' }}>
+      {showCaption && label && (
         <p
+          className="photo-placeholder-caption"
           style={{
-            fontFamily: 'var(--font-sans)',
             fontSize: '13px',
             lineHeight: '18px',
-            fontWeight: 500,
-            color: '#F7F5EF',
-            marginBottom: '4px',
+            color: '#5F5D55',
+            marginTop: '8px',
+            fontFamily: 'var(--font-sans)',
           }}
         >
           {label}
         </p>
-        <span
-          style={{
-            fontFamily: 'var(--font-sans)',
-            fontSize: '11px',
-            lineHeight: '15px',
-            color: '#B9B8D6',
-            display: 'block',
-          }}
-        >
-          {subtext || `Documentary photograph · Natural light · Neutral surface · ${aspectRatio}`}
-        </span>
-      </div>
+      )}
     </div>
   );
 };

@@ -10,24 +10,27 @@ interface LogoProps {
 /**
  * Brand Logo Component for Vasudha Freshline Exports LLP
  * Rules:
- * - Wordmark + swoosh placed ONLY on ivory or white (variant="default")
- * - On navy backgrounds: white wordmark with swoosh in #A9B070 (variant="navy")
- * - Clear space around logo equals height of letter V (applied via padding)
- * - Minimum width 140px; below that use the swoosh mark only
+ * - Wordmark + swoosh placed on light/ivory background (variant="default")
+ * - On navy backgrounds: white wordmark with light swoosh (variant="navy")
+ * - Mobile swoosh mark: olive mark on light, white/light mark on navy
+ * - Never redraw or retype the logo.
  */
 export const Logo: React.FC<LogoProps> = ({
-  variant = 'navy',
+  variant = 'default',
   width = 240,
   className = '',
-  alt = 'Vasudha Freshline Exports LLP'
+  alt = 'Vasudha Freshline Exports LLP',
 }) => {
-  // If width is below 140px or swoosh specified, use swoosh mark
   const isBelowMinimum = width < 140 || variant === 'swoosh';
 
   if (isBelowMinimum) {
+    const markSrc = variant === 'navy'
+      ? '/vasudha-mark-light-for-navy.svg'
+      : '/vasudha-mark-olive.svg';
+
     return (
       <img
-        src="/vasudha-mark-light-for-navy.svg"
+        src={markSrc}
         alt={`${alt} Mark`}
         width={width}
         height={width}
@@ -37,18 +40,17 @@ export const Logo: React.FC<LogoProps> = ({
     );
   }
 
-  // Full Wordmark + Swoosh reversed for navy background
-  const logoSrc = variant === 'default'
-    ? '/logos/logo-original.svg'
-    : '/vasudha-logo-reversed-for-navy.svg';
+  // Full Wordmark + Swoosh
+  const logoSrc = variant === 'navy'
+    ? '/vasudha-logo-reversed-for-navy.svg'
+    : '/vasudha-logo-original.svg';
 
-  // Calculate clear space roughly proportional to letter V height (~16% of height)
   return (
     <div
       style={{
         display: 'inline-flex',
         alignItems: 'center',
-        padding: '6px 0',
+        padding: '4px 0',
       }}
       className={className}
     >

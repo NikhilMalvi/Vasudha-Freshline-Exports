@@ -23,11 +23,15 @@ export const Logo: React.FC<LogoProps> = ({
 }) => {
   const isBelowMinimum = width < 140 || variant === 'swoosh';
 
-  if (isBelowMinimum) {
-    const markSrc = variant === 'navy'
-      ? '/vasudha-mark-light-for-navy.svg'
-      : '/vasudha-mark-olive.svg';
+  const markSrc = variant === 'navy'
+    ? '/vasudha-mark-light-for-navy.svg'
+    : '/vasudha-mark-olive.svg';
 
+  const fullLogoSrc = variant === 'navy'
+    ? '/vasudha-logo-reversed-for-navy.svg'
+    : '/vasudha-logo-original.svg';
+
+  if (isBelowMinimum) {
     return (
       <img
         src={markSrc}
@@ -40,11 +44,6 @@ export const Logo: React.FC<LogoProps> = ({
     );
   }
 
-  // Full Wordmark + Swoosh
-  const logoSrc = variant === 'navy'
-    ? '/vasudha-logo-reversed-for-navy.svg'
-    : '/vasudha-logo-original.svg';
-
   return (
     <div
       style={{
@@ -54,18 +53,21 @@ export const Logo: React.FC<LogoProps> = ({
       }}
       className={className}
     >
-      <img
-        src={logoSrc}
-        alt={alt}
-        width={width}
-        height={Math.round(width * (180.47 / 743.11))}
-        style={{
-          display: 'block',
-          width: `${width}px`,
-          height: 'auto',
-          maxWidth: '100%',
-        }}
-      />
+      <picture style={{ display: 'flex', alignItems: 'center' }}>
+        <source media="(max-width: 479px)" srcSet={markSrc} />
+        <img
+          src={fullLogoSrc}
+          alt={alt}
+          width={width}
+          height={Math.round(width * (180.47 / 743.11))}
+          style={{
+            display: 'block',
+            width: `${width}px`,
+            height: 'auto',
+            maxWidth: '100%',
+          }}
+        />
+      </picture>
     </div>
   );
 };

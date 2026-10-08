@@ -1,6 +1,6 @@
 /* ==========================================================================
-   VASUDHA FRESHLINE EXPORTS LLP — MASTER DESIGN SYSTEM (VERSION 2: RICH BUT CALM)
-   A trustworthy, editorial, modern Indian agri-export brand design.
+   VASUDHA FRESHLINE EXPORTS LLP — MASTER DESIGN SYSTEM (LITE)
+   One shared stylesheet defining all classes once for the entire project.
    ========================================================================== */
 
 @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Newsreader:ital,opsz,wght@0,6..72,400;0,6..72,500;1,6..72,400&display=swap');
@@ -91,7 +91,7 @@ img, video, iframe {
   }
 }
 
-/* Keyboard Focus */
+/* Keyboard Focus (WCAG 2.1 AA) */
 :focus-visible {
   outline: 2px solid var(--navy);
   outline-offset: 2px;
@@ -129,6 +129,10 @@ h3 {
     font-size: 30px;
     line-height: 38px;
   }
+  h3 {
+    font-size: 22px;
+    line-height: 30px;
+  }
 }
 
 p {
@@ -151,7 +155,11 @@ p {
   color: var(--muted);
 }
 
-/* Eyebrow Label: Inter 12px, uppercase, letter-spacing 0.12em, weight 600, colour --olive-deep, with a short 24px olive line before it */
+/* ==========================================================================
+   CLASSES (define once, use everywhere)
+   ========================================================================== */
+
+/* 1. .eyebrow: Inter 12px, UPPERCASE, letter-spacing 0.12em, weight 600, colour --olive-deep, with a 24px olive line before it */
 .eyebrow {
   display: inline-flex;
   align-items: center;
@@ -174,75 +182,17 @@ p {
   flex-shrink: 0;
 }
 
-.dark-section .eyebrow {
+.dark-section .eyebrow,
+.band-navy .eyebrow {
   color: var(--olive-light);
 }
 
-.dark-section .eyebrow::before {
+.dark-section .eyebrow::before,
+.band-navy .eyebrow::before {
   background-color: var(--olive-light);
 }
 
-/* Container & Layout */
-.container {
-  width: 100%;
-  max-width: var(--max-width);
-  margin-left: auto;
-  margin-right: auto;
-  padding-left: var(--gutter);
-  padding-right: var(--gutter);
-}
-
-.section-padding {
-  padding-top: 112px;
-  padding-bottom: 112px;
-}
-
-@media (max-width: 768px) {
-  .section-padding {
-    padding-top: 72px;
-    padding-bottom: 72px;
-  }
-}
-
-/* Section Background Rhythm */
-.bg-ivory {
-  background-color: var(--ivory);
-}
-
-.bg-white {
-  background-color: var(--white);
-}
-
-.bg-bone {
-  background-color: var(--bone);
-}
-
-.bg-navy {
-  background-color: var(--navy);
-  color: var(--ivory);
-}
-
-/* Section Heading Block */
-.section-heading-block {
-  margin-bottom: 48px;
-  display: flex;
-  flex-direction: column;
-  gap: 12px;
-}
-
-.section-heading-block h2 {
-  margin: 0;
-}
-
-.section-heading-block p {
-  color: var(--muted);
-  font-size: 18px;
-  line-height: 28px;
-  margin: 0;
-}
-
-/* Buttons */
-/* Primary: navy fill, white text, 52px high, radius 10px, arrow icon on right */
+/* 2. .btn-primary: navy fill, white text, 52px high, arrow icon, hover lifts 2px */
 .btn-primary {
   display: inline-flex;
   align-items: center;
@@ -276,7 +226,7 @@ p {
   transform: translateY(0);
 }
 
-/* Secondary: 1px navy outline */
+/* 3. .btn-secondary: 1px navy outline, same size */
 .btn-secondary {
   display: inline-flex;
   align-items: center;
@@ -308,38 +258,29 @@ p {
   transform: translateY(0);
 }
 
-/* Ghost button "Brochure": download icon, 1px navy outline */
-.btn-ghost-brochure {
+/* 4. .btn-light: white fill, navy text (used on navy bands) */
+.btn-light {
   display: inline-flex;
   align-items: center;
   justify-content: center;
-  gap: 8px;
-  height: 44px;
-  padding: 0 18px;
-  background-color: transparent;
-  color: var(--navy);
-  font-family: var(--font-sans);
-  font-size: 14px;
-  font-weight: 500;
-  text-decoration: none;
-  border: 1px solid var(--navy);
-  border-radius: var(--radius-btn);
-  cursor: pointer;
-  transition: all 180ms ease;
-}
-
-.btn-ghost-brochure:hover {
-  background-color: rgba(16, 16, 79, 0.05);
-}
-
-/* Navy bands: primary button is white with navy text */
-.dark-section .btn-primary {
+  gap: 10px;
+  height: 52px;
+  padding: 0 28px;
   background-color: var(--white);
   color: var(--navy);
-  border-color: var(--white);
+  font-family: var(--font-sans);
+  font-size: 15px;
+  font-weight: 500;
+  text-decoration: none;
+  border: 1px solid var(--white);
+  border-radius: var(--radius-btn);
+  cursor: pointer;
+  transition: transform 200ms var(--ease-calm), background-color 200ms ease, box-shadow 200ms ease;
+  min-height: 44px;
+  white-space: nowrap;
 }
 
-.dark-section .btn-primary:hover {
+.btn-light:hover {
   background-color: var(--bone);
   border-color: var(--bone);
   color: var(--navy);
@@ -347,19 +288,8 @@ p {
   box-shadow: 0 12px 32px rgba(0, 0, 0, 0.25);
 }
 
-.dark-section .btn-secondary {
-  border-color: rgba(247, 245, 239, 0.35);
-  color: var(--ivory);
-}
-
-.dark-section .btn-secondary:hover {
-  background-color: rgba(255, 255, 255, 0.1);
-  border-color: var(--ivory);
-  color: var(--white);
-}
-
-/* Text link: underline that slides in on hover */
-.text-link {
+/* 5. .link: text link with an underline that slides in on hover */
+.link, .text-link {
   display: inline-flex;
   align-items: center;
   gap: 6px;
@@ -376,7 +306,7 @@ p {
   transition: color 200ms ease;
 }
 
-.text-link::after {
+.link::after, .text-link::after {
   content: '';
   position: absolute;
   left: 0;
@@ -387,24 +317,54 @@ p {
   transition: width 240ms var(--ease-calm);
 }
 
-.text-link:hover {
+.link:hover, .text-link:hover {
   color: var(--olive);
 }
 
-.text-link:hover::after {
+.link:hover::after, .text-link:hover::after {
   width: 100%;
 }
 
-.dark-section .text-link {
+.band-navy .link, .dark-section .link,
+.band-navy .text-link, .dark-section .text-link {
   color: var(--olive-light);
 }
 
-.dark-section .text-link::after {
+.band-navy .link::after, .dark-section .link::after,
+.band-navy .text-link::after, .dark-section .text-link::after {
   background-color: var(--olive-light);
 }
 
-/* Pill Tag */
-.pill-tag {
+/* 6. .card: white, 1px --line border, radius 16px, hover: lift 6px + shadow 0 12px 32px rgba(16,16,79,0.08) */
+.card {
+  background-color: var(--white);
+  border: 1px solid var(--line);
+  border-radius: var(--radius-card);
+  padding: 24px;
+  display: flex;
+  flex-direction: column;
+  transition: transform 300ms var(--ease-calm), box-shadow 300ms var(--ease-calm), border-color 200ms ease;
+}
+
+.card:hover {
+  transform: translateY(-6px);
+  box-shadow: var(--shadow-soft);
+  border-color: #D3CEBF;
+}
+
+/* 7. .card-img: fixed aspect ratio 4:3, object-fit cover, radius 12px (images NEVER stretch their card) */
+.card-img {
+  width: 100%;
+  aspect-ratio: 4 / 3;
+  object-fit: cover;
+  border-radius: 12px;
+  display: block;
+  flex-shrink: 0;
+  background-color: var(--bone);
+}
+
+/* 8. .pill: small olive-tint tag with --olive-deep text */
+.pill, .pill-tag {
   display: inline-flex;
   align-items: center;
   padding: 4px 12px;
@@ -418,86 +378,8 @@ p {
   text-transform: uppercase;
 }
 
-/* Product Card */
-.product-card {
-  background-color: var(--white);
-  border: 1px solid var(--line);
-  border-radius: var(--radius-card);
-  padding: 16px;
-  display: flex;
-  flex-direction: column;
-  gap: 16px;
-  transition: transform 300ms var(--ease-calm), box-shadow 300ms var(--ease-calm), border-color 200ms ease;
-  position: relative;
-  overflow: hidden;
-}
-
-.product-card:hover {
-  transform: translateY(-6px);
-  box-shadow: var(--shadow-soft);
-  border-color: #D3CEBF;
-}
-
-.product-card .card-image-box {
-  border-radius: 12px;
-  overflow: hidden;
-  position: relative;
-  aspect-ratio: 4 / 3;
-  background-color: var(--bone);
-}
-
-.product-card .card-image-box img {
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
-  display: block;
-  transition: transform 400ms var(--ease-calm);
-}
-
-.product-card:hover .card-image-box img {
-  transform: scale(1.05);
-}
-
-.product-card .card-hover-pill {
-  position: absolute;
-  top: 12px;
-  right: 12px;
-  background-color: var(--navy);
-  color: var(--white);
-  padding: 4px 12px;
-  border-radius: var(--radius-pill);
-  font-size: 11px;
-  font-weight: 600;
-  letter-spacing: 0.04em;
-  opacity: 0;
-  transform: translateY(-4px);
-  transition: opacity 240ms ease, transform 240ms ease;
-  pointer-events: none;
-}
-
-.product-card:hover .card-hover-pill {
-  opacity: 1;
-  transform: translateY(0);
-}
-
-/* Feature Card */
-.feature-card {
-  background-color: var(--white);
-  border: 1px solid var(--line);
-  border-radius: var(--radius-card);
-  padding: 32px;
-  display: flex;
-  flex-direction: column;
-  gap: 16px;
-  transition: transform 300ms var(--ease-calm), box-shadow 300ms var(--ease-calm);
-}
-
-.feature-card:hover {
-  transform: translateY(-4px);
-  box-shadow: var(--shadow-soft);
-}
-
-.icon-circle-olive {
+/* 9. .icon-circle: 56px circle, olive-tint, 1.5px line icon in --olive-deep */
+.icon-circle {
   width: 56px;
   height: 56px;
   border-radius: 50%;
@@ -509,73 +391,154 @@ p {
   flex-shrink: 0;
 }
 
-/* Badge Card (floating overlapping card) */
-.badge-card {
-  position: absolute;
+/* 10. .section (ivory) / .section-white / .section-bone / .band-navy (navy, ivory text) */
+.section {
+  background-color: var(--ivory);
+  padding-top: 112px;
+  padding-bottom: 112px;
+}
+
+.section-white {
   background-color: var(--white);
-  border: 1px solid var(--line);
-  border-radius: 12px;
-  padding: 16px 20px;
-  box-shadow: var(--shadow-floating);
+  padding-top: 112px;
+  padding-bottom: 112px;
+}
+
+.section-bone {
+  background-color: var(--bone);
+  padding-top: 112px;
+  padding-bottom: 112px;
+}
+
+.band-navy {
+  background-color: var(--navy);
+  color: var(--ivory);
+  padding-top: 112px;
+  padding-bottom: 112px;
+}
+
+@media (max-width: 768px) {
+  .section, .section-white, .section-bone, .band-navy {
+    padding-top: 72px;
+    padding-bottom: 72px;
+  }
+}
+
+/* 11. .stat: big Newsreader number with a "+" in --olive-light, small label, thin line icon */
+.stat {
   display: flex;
-  align-items: center;
-  gap: 12px;
-  z-index: 10;
+  flex-direction: column;
+  gap: 8px;
 }
 
-/* Video Poster */
-.video-poster-wrapper {
-  position: relative;
-  border-radius: var(--radius-card);
-  overflow: hidden;
-  cursor: pointer;
-  aspect-ratio: 16 / 9;
+.stat .stat-number {
+  font-family: var(--font-serif);
+  font-size: 56px;
+  line-height: 60px;
+  color: var(--white);
+  font-weight: 400;
 }
 
-.video-poster-wrapper img {
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
-  display: block;
-  transition: transform 500ms var(--ease-calm);
+.stat .stat-plus {
+  color: var(--olive-light);
 }
 
-.video-poster-wrapper:hover img {
-  transform: scale(1.03);
+.stat .stat-label {
+  font-size: 14px;
+  line-height: 20px;
+  color: rgba(247, 245, 239, 0.85);
 }
 
-.video-poster-overlay {
-  position: absolute;
-  inset: 0;
-  background-color: rgba(16, 16, 79, 0.30);
+/* 12. .step: numbered circle with an olive outline, title, one line */
+.step {
   display: flex;
-  align-items: center;
-  justify-content: center;
-  transition: background-color 200ms ease;
+  align-items: flex-start;
+  gap: 16px;
 }
 
-.video-poster-wrapper:hover .video-poster-overlay {
-  background-color: rgba(16, 16, 79, 0.20);
-}
-
-.play-button-circle {
-  width: 80px;
-  height: 80px;
+.step .step-number {
+  width: 44px;
+  height: 44px;
   border-radius: 50%;
-  background-color: var(--white);
-  color: var(--navy);
+  border: 1.5px solid var(--olive);
+  color: var(--olive-deep);
   display: flex;
   align-items: center;
   justify-content: center;
-  box-shadow: 0 12px 32px rgba(16, 16, 79, 0.24);
-  transition: transform 200ms var(--ease-calm);
+  font-family: var(--font-sans);
+  font-weight: 600;
+  font-size: 16px;
+  flex-shrink: 0;
 }
 
-.video-poster-wrapper:hover .play-button-circle {
-  transform: scale(1.08);
+/* 13. .accordion: built with details/summary, styled: white rows, 1px lines, plus icon in an olive-tint circle that rotates to a minus */
+details.accordion {
+  background-color: var(--white);
+  border-bottom: 1px solid var(--line);
+  padding: 24px 0;
 }
 
-/* Forms */
+details.accordion summary {
+  list-style: none;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  cursor: pointer;
+  font-family: var(--font-sans);
+  font-size: 18px;
+  font-weight: 500;
+  color: var(--ink);
+}
+
+details.accordion summary::-webkit-details-marker {
+  display: none;
+}
+
+details.accordion summary::after {
+  content: '+';
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 32px;
+  height: 32px;
+  border-radius: 50%;
+  background-color: var(--olive-tint);
+  color: var(--olive-deep);
+  font-size: 18px;
+  font-weight: 600;
+  transition: transform 250ms ease;
+  flex-shrink: 0;
+}
+
+details.accordion[open] summary::after {
+  content: '−';
+  transform: rotate(180deg);
+}
+
+details.accordion .accordion-body {
+  padding-top: 16px;
+  font-size: 16px;
+  line-height: 26px;
+  color: var(--charcoal);
+}
+
+/* All grids use equal-height cards (CSS grid, align-items stretch) */
+.grid-stretch, .grid-cards {
+  display: grid;
+  align-items: stretch;
+}
+
+/* Container */
+.container {
+  width: 100%;
+  max-width: var(--max-width);
+  margin-left: auto;
+  margin-right: auto;
+  padding-left: var(--gutter);
+  padding-right: var(--gutter);
+}
+
+/* Controls & Inputs */
 .form-input, .form-select, .form-textarea {
   width: 100%;
   font-family: var(--font-sans);
@@ -614,7 +577,7 @@ p {
   margin-top: 4px;
 }
 
-/* Image corner sample tag */
+/* Corner Sample Tag */
 .sample-img-tag {
   position: absolute;
   bottom: 8px;
@@ -633,21 +596,7 @@ p {
   z-index: 5;
 }
 
-/* Swoosh Watermark Background (subtle decoration) */
-.swoosh-watermark {
-  position: absolute;
-  pointer-events: none;
-  opacity: 0.06;
-  z-index: 0;
-}
-
-@media (max-width: 768px) {
-  .swoosh-watermark {
-    display: none !important;
-  }
-}
-
-/* Scroll reveal animations */
+/* Motion */
 .reveal {
   opacity: 0;
   transform: translateY(24px);

@@ -7,8 +7,8 @@ import { ScrollToTop } from './components/ScrollToTop';
 import { RfqModal } from './components/RfqModal';
 import { BrochureModal } from './components/BrochureModal';
 
-// Pages
-import { HomePage } from './pages/HomePage';
+import { EmptyPage } from './pages/EmptyPage';
+// import { HomePage } from './pages/HomePage';
 import { ProductsPage } from './pages/ProductsPage';
 import { ProductDetailPage } from './pages/ProductDetailPage';
 import { AboutPage } from './pages/AboutPage';
@@ -59,13 +59,7 @@ export function App() {
 
   const renderCurrentPage = () => {
     if (currentPath === '/' || currentPath === '') {
-      return (
-        <HomePage
-          onNavigate={navigateTo}
-          onOpenRfq={handleOpenRfq}
-          onOpenBrochure={handleOpenBrochure}
-        />
-      );
+      return <EmptyPage />;
     }
 
     if (currentPath === '/products') {

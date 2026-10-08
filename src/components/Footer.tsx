@@ -357,15 +357,11 @@ export const Footer: React.FC<FooterProps> = ({ onNavigate = () => {} }) => {
           }}
         >
           <div>
-            <span>Brochure: </span>
-            <span style={{ color: 'var(--ivory)' }}>Available upon request (PDF)</span>
-          </div>
-          <div>
-            <span>Statutory: LLPIN: AAA-0000 · IEC: 0000000000 · APEDA: AAA-0000 · GST: 0000000000</span>
+            Vasudha Freshline Exports LLP · LLPIN: AAA-0000 · IEC: 0000000000 · APEDA: AAA-0000 · GST: 0000000000
           </div>
         </div>
 
-        {/* Bottom Bar */}
+        {/* Bottom Copyright & Legal Links */}
         <div
           style={{
             paddingTop: '20px',
@@ -381,9 +377,22 @@ export const Footer: React.FC<FooterProps> = ({ onNavigate = () => {} }) => {
           <span>
             &copy; {new Date().getFullYear()} Vasudha Freshline Exports LLP. All rights reserved.
           </span>
-          <span>
-            Registered in India · Agricultural produce export by container
-          </span>
+          <div style={{ display: 'flex', gap: '16px' }}>
+            <button
+              type="button"
+              onClick={() => onNavigate('/privacy')}
+              style={{ background: 'none', border: 'none', color: 'inherit', cursor: 'pointer', padding: 0, font: 'inherit', textDecoration: 'underline' }}
+            >
+              Privacy Policy
+            </button>
+            <button
+              type="button"
+              onClick={() => onNavigate('/terms')}
+              style={{ background: 'none', border: 'none', color: 'inherit', cursor: 'pointer', padding: 0, font: 'inherit', textDecoration: 'underline' }}
+            >
+              Terms of Trade
+            </button>
+          </div>
         </div>
       </div>
     </footer>

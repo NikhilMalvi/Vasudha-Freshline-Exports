@@ -106,23 +106,7 @@ export const Header: React.FC<HeaderProps> = ({
             }}
             aria-label="Vasudha Freshline Exports LLP Home"
           >
-            <div className="header-logo-desktop">
-              <Logo variant="default" width={220} />
-            </div>
-            <div className="header-logo-mobile" style={{ display: 'none', alignItems: 'center', gap: '8px' }}>
-              <Logo variant="swoosh" width={34} />
-              <span
-                style={{
-                  fontFamily: 'var(--font-sans)',
-                  fontSize: '17px',
-                  fontWeight: 600,
-                  letterSpacing: '0.04em',
-                  color: 'var(--ink)',
-                }}
-              >
-                Vasudha
-              </span>
-            </div>
+            <Logo variant="default" width={210} />
           </button>
         </div>
 
@@ -319,8 +303,9 @@ export const Header: React.FC<HeaderProps> = ({
         >
           <button
             type="button"
-            className="btn-ghost-brochure"
+            className="btn-secondary"
             onClick={onOpenBrochure}
+            style={{ height: '48px', padding: '0 20px', fontSize: '14px' }}
             title="Download company profile"
           >
             <Download size={15} />

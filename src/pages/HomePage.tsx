@@ -291,9 +291,9 @@ export const HomePage: React.FC<HomePageProps> = ({ onNavigate, onOpenRfq }) => 
 
               <h1
                 style={{
-                  fontSize: 'clamp(36px, 5.2vw, 60px)',
+                  fontSize: 'clamp(28px, 3.4vw, 42px)',
                   fontWeight: 800,
-                  lineHeight: '1.14',
+                  lineHeight: '1.22',
                   color: '#FFFFFF',
                   margin: 0,
                   transition: 'opacity 300ms ease',
@@ -641,7 +641,7 @@ export const HomePage: React.FC<HomePageProps> = ({ onNavigate, onOpenRfq }) => 
                   <Sparkles size={22} />
                 </div>
               </div>
-              <div style={{ marginTop: '28px', display: 'flex', flexDirection: 'column', gap: '8px', flexGrow: 1 }}>
+              <div style={{ marginTop: '18px', display: 'flex', flexDirection: 'column', gap: '8px', flexGrow: 1 }}>
                 <div>
                   <span className="eyebrow" style={{ fontSize: '11px', padding: '4px 10px' }}>
                     Fresh fruit
@@ -673,7 +673,7 @@ export const HomePage: React.FC<HomePageProps> = ({ onNavigate, onOpenRfq }) => 
                   <CircleDot size={22} />
                 </div>
               </div>
-              <div style={{ marginTop: '28px', display: 'flex', flexDirection: 'column', gap: '8px', flexGrow: 1 }}>
+              <div style={{ marginTop: '18px', display: 'flex', flexDirection: 'column', gap: '8px', flexGrow: 1 }}>
                 <div>
                   <span className="eyebrow" style={{ fontSize: '11px', padding: '4px 10px' }}>
                     Fresh vegetable
@@ -705,7 +705,7 @@ export const HomePage: React.FC<HomePageProps> = ({ onNavigate, onOpenRfq }) => 
                   <Layers size={22} />
                 </div>
               </div>
-              <div style={{ marginTop: '28px', display: 'flex', flexDirection: 'column', gap: '8px', flexGrow: 1 }}>
+              <div style={{ marginTop: '18px', display: 'flex', flexDirection: 'column', gap: '8px', flexGrow: 1 }}>
                 <div>
                   <span className="eyebrow" style={{ fontSize: '11px', padding: '4px 10px' }}>
                     Grain
@@ -737,7 +737,7 @@ export const HomePage: React.FC<HomePageProps> = ({ onNavigate, onOpenRfq }) => 
                   <Package size={22} />
                 </div>
               </div>
-              <div style={{ marginTop: '28px', display: 'flex', flexDirection: 'column', gap: '8px', flexGrow: 1 }}>
+              <div style={{ marginTop: '18px', display: 'flex', flexDirection: 'column', gap: '8px', flexGrow: 1 }}>
                 <div>
                   <span className="eyebrow" style={{ fontSize: '11px', padding: '4px 10px' }}>
                     Spice
@@ -769,7 +769,7 @@ export const HomePage: React.FC<HomePageProps> = ({ onNavigate, onOpenRfq }) => 
                   <Apple size={22} />
                 </div>
               </div>
-              <div style={{ marginTop: '28px', display: 'flex', flexDirection: 'column', gap: '8px', flexGrow: 1 }}>
+              <div style={{ marginTop: '18px', display: 'flex', flexDirection: 'column', gap: '8px', flexGrow: 1 }}>
                 <div>
                   <span className="eyebrow" style={{ fontSize: '11px', padding: '4px 10px' }}>
                     Fresh fruit
@@ -801,7 +801,7 @@ export const HomePage: React.FC<HomePageProps> = ({ onNavigate, onOpenRfq }) => 
                   <Carrot size={22} />
                 </div>
               </div>
-              <div style={{ marginTop: '28px', display: 'flex', flexDirection: 'column', gap: '8px', flexGrow: 1 }}>
+              <div style={{ marginTop: '18px', display: 'flex', flexDirection: 'column', gap: '8px', flexGrow: 1 }}>
                 <div>
                   <span className="eyebrow" style={{ fontSize: '11px', padding: '4px 10px' }}>
                     Fresh vegetable
@@ -844,53 +844,59 @@ export const HomePage: React.FC<HomePageProps> = ({ onNavigate, onOpenRfq }) => 
             <p className="sub-line">Consistent export standards from Indian packhouses to your port.</p>
           </div>
 
-          {/* Desktop Route Diagram (Horizontal curved zig-zag with animated drawing line) */}
+          {/* Desktop Route Diagram (Horizontal route timeline with animated drawing line) */}
           <div
             className="route-diagram-desktop"
             style={{
               position: 'relative',
               marginTop: '64px',
-              padding: '60px 0',
+              padding: '40px 0',
               display: 'block',
             }}
           >
-            {/* SVG Curved Shipping Route Line */}
+            {/* SVG Horizontal Shipping Route Line */}
             <svg
-              viewBox="0 0 1000 240"
+              viewBox="0 0 1000 248"
               fill="none"
               style={{
                 position: 'absolute',
-                top: 0,
+                top: '40px',
                 left: 0,
                 width: '100%',
-                height: '100%',
+                height: '248px',
                 overflow: 'visible',
                 pointerEvents: 'none',
                 zIndex: 0,
               }}
             >
               {/* Background faint guide track */}
-              <path
-                d="M 60 120 C 180 30, 240 210, 360 120 C 480 30, 540 210, 660 120 C 760 40, 840 200, 940 120"
+              <line
+                x1="40"
+                y1="124"
+                x2="960"
+                y2="124"
                 stroke="var(--line)"
                 strokeWidth="2.5"
                 strokeDasharray="6 6"
               />
               {/* Foreground animated route path */}
-              <path
-                d="M 60 120 C 180 30, 240 210, 360 120 C 480 30, 540 210, 660 120 C 760 40, 840 200, 940 120"
+              <line
+                x1="40"
+                y1="124"
+                x2="960"
+                y2="124"
                 stroke="var(--leaf)"
                 strokeWidth="3"
                 strokeDasharray="8 8"
                 style={{
-                  strokeDashoffset: (1 - routeProgress) * 600,
+                  strokeDashoffset: (1 - routeProgress) * 920,
                   transition: 'stroke-dashoffset 0.2s ease-out',
                 }}
               />
               {/* Start Pin */}
-              <circle cx="60" cy="120" r="6" fill="var(--leaf)" />
+              <circle cx="40" cy="124" r="6" fill="var(--leaf)" />
               {/* End Pin */}
-              <circle cx="940" cy="120" r="6" fill="var(--plum)" />
+              <circle cx="960" cy="124" r="6" fill="var(--plum)" />
             </svg>
 
             {/* Five Route Items Placed in Grid */}
@@ -905,7 +911,7 @@ export const HomePage: React.FC<HomePageProps> = ({ onNavigate, onOpenRfq }) => 
             >
               {/* Item 1: Leaf (Above) */}
               <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', textAlign: 'center' }}>
-                <div style={{ minHeight: '80px', marginBottom: '16px' }}>
+                <div style={{ height: '76px', display: 'flex', flexDirection: 'column', justifyContent: 'flex-end', alignItems: 'center', marginBottom: '16px' }}>
                   <h3 style={{ fontSize: '17px', margin: '0 0 4px 0' }}>One point of contact</h3>
                   <p style={{ fontSize: '13px', color: 'var(--muted)', margin: 0, maxWidth: '170px' }}>
                     Direct communication with experienced trade managers.
@@ -923,16 +929,19 @@ export const HomePage: React.FC<HomePageProps> = ({ onNavigate, onOpenRfq }) => 
                     justifyContent: 'center',
                     border: '3px solid #FFFFFF',
                     boxShadow: 'var(--shadow-md)',
+                    position: 'relative',
+                    zIndex: 2,
+                    flexShrink: 0,
                   }}
                 >
                   <UserCheck size={28} />
                 </div>
-                <div style={{ minHeight: '80px', marginTop: '16px' }} />
+                <div style={{ height: '76px', marginTop: '16px' }} />
               </div>
 
               {/* Item 2: Blue (Below) */}
               <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', textAlign: 'center' }}>
-                <div style={{ minHeight: '80px', marginBottom: '16px' }} />
+                <div style={{ height: '76px', marginBottom: '16px' }} />
                 <div
                   style={{
                     width: '64px',
@@ -945,11 +954,14 @@ export const HomePage: React.FC<HomePageProps> = ({ onNavigate, onOpenRfq }) => 
                     justifyContent: 'center',
                     border: '3px solid #FFFFFF',
                     boxShadow: 'var(--shadow-md)',
+                    position: 'relative',
+                    zIndex: 2,
+                    flexShrink: 0,
                   }}
                 >
                   <ShieldCheck size={28} />
                 </div>
-                <div style={{ minHeight: '80px', marginTop: '16px' }}>
+                <div style={{ height: '76px', display: 'flex', flexDirection: 'column', justifyContent: 'flex-start', alignItems: 'center', marginTop: '16px' }}>
                   <h3 style={{ fontSize: '17px', margin: '0 0 4px 0' }}>Clear specifications</h3>
                   <p style={{ fontSize: '13px', color: 'var(--muted)', margin: 0, maxWidth: '170px' }}>
                     Accurate size, grade and tolerance parameters upfront.
@@ -959,7 +971,7 @@ export const HomePage: React.FC<HomePageProps> = ({ onNavigate, onOpenRfq }) => 
 
               {/* Item 3: Teal (Above) */}
               <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', textAlign: 'center' }}>
-                <div style={{ minHeight: '80px', marginBottom: '16px' }}>
+                <div style={{ height: '76px', display: 'flex', flexDirection: 'column', justifyContent: 'flex-end', alignItems: 'center', marginBottom: '16px' }}>
                   <h3 style={{ fontSize: '17px', margin: '0 0 4px 0' }}>Documents in order</h3>
                   <p style={{ fontSize: '13px', color: 'var(--muted)', margin: 0, maxWidth: '170px' }}>
                     Draft phytosanitary and BL sent before vessel sails.
@@ -977,16 +989,19 @@ export const HomePage: React.FC<HomePageProps> = ({ onNavigate, onOpenRfq }) => 
                     justifyContent: 'center',
                     border: '3px solid #FFFFFF',
                     boxShadow: 'var(--shadow-md)',
+                    position: 'relative',
+                    zIndex: 2,
+                    flexShrink: 0,
                   }}
                 >
                   <FileCheck size={28} />
                 </div>
-                <div style={{ minHeight: '80px', marginTop: '16px' }} />
+                <div style={{ height: '76px', marginTop: '16px' }} />
               </div>
 
               {/* Item 4: Saffron (Below) */}
               <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', textAlign: 'center' }}>
-                <div style={{ minHeight: '80px', marginBottom: '16px' }} />
+                <div style={{ height: '76px', marginBottom: '16px' }} />
                 <div
                   style={{
                     width: '64px',
@@ -999,11 +1014,14 @@ export const HomePage: React.FC<HomePageProps> = ({ onNavigate, onOpenRfq }) => 
                     justifyContent: 'center',
                     border: '3px solid #FFFFFF',
                     boxShadow: 'var(--shadow-md)',
+                    position: 'relative',
+                    zIndex: 2,
+                    flexShrink: 0,
                   }}
                 >
                   <Boxes size={28} />
                 </div>
-                <div style={{ minHeight: '80px', marginTop: '16px' }}>
+                <div style={{ height: '76px', display: 'flex', flexDirection: 'column', justifyContent: 'flex-start', alignItems: 'center', marginTop: '16px' }}>
                   <h3 style={{ fontSize: '17px', margin: '0 0 4px 0' }}>Careful packing</h3>
                   <p style={{ fontSize: '13px', color: 'var(--muted)', margin: 0, maxWidth: '170px' }}>
                     Calibrated sorting and export-grade protective cartons.
@@ -1013,7 +1031,7 @@ export const HomePage: React.FC<HomePageProps> = ({ onNavigate, onOpenRfq }) => 
 
               {/* Item 5: Plum (Above) */}
               <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', textAlign: 'center' }}>
-                <div style={{ minHeight: '80px', marginBottom: '16px' }}>
+                <div style={{ height: '76px', display: 'flex', flexDirection: 'column', justifyContent: 'flex-end', alignItems: 'center', marginBottom: '16px' }}>
                   <h3 style={{ fontSize: '17px', margin: '0 0 4px 0' }}>Private dealings</h3>
                   <p style={{ fontSize: '13px', color: 'var(--muted)', margin: 0, maxWidth: '170px' }}>
                     Confidential commercial trade and KYC compliance.
@@ -1031,11 +1049,14 @@ export const HomePage: React.FC<HomePageProps> = ({ onNavigate, onOpenRfq }) => 
                     justifyContent: 'center',
                     border: '3px solid #FFFFFF',
                     boxShadow: 'var(--shadow-md)',
+                    position: 'relative',
+                    zIndex: 2,
+                    flexShrink: 0,
                   }}
                 >
                   <KeyRound size={28} />
                 </div>
-                <div style={{ minHeight: '80px', marginTop: '16px' }} />
+                <div style={{ height: '76px', marginTop: '16px' }} />
               </div>
             </div>
           </div>
@@ -1518,10 +1539,6 @@ export const HomePage: React.FC<HomePageProps> = ({ onNavigate, onOpenRfq }) => 
                       <div style={{ fontSize: '13px', color: 'var(--muted)' }}>{item.role}, {item.location}</div>
                     </div>
                   </div>
-
-                  <span className="eyebrow" style={{ fontSize: '11px', padding: '3px 8px' }}>
-                    Verified Buyer
-                  </span>
                 </div>
               </div>
             ))}
@@ -1926,25 +1943,28 @@ export const HomePage: React.FC<HomePageProps> = ({ onNavigate, onOpenRfq }) => 
             <div style={{ display: 'flex', flexDirection: 'column', gap: '18px' }}>
               {/* WhatsApp in leaf */}
               <div
-                className="card"
+                className="card contact-channel-card"
                 style={{
                   display: 'flex',
+                  flexDirection: 'row',
                   alignItems: 'center',
                   justifyContent: 'space-between',
                   padding: '24px 28px',
+                  gap: '20px',
                 }}
               >
-                <div style={{ display: 'flex', alignItems: 'center', gap: '18px' }}>
+                <div style={{ display: 'flex', alignItems: 'center', gap: '18px', flex: 1, minWidth: 0 }}>
                   <div
                     className="icon-circle"
                     style={{
                       backgroundColor: 'var(--leaf-tint)',
                       color: 'var(--leaf)',
+                      flexShrink: 0,
                     }}
                   >
                     <WhatsAppInlineIcon size={22} color="var(--leaf)" />
                   </div>
-                  <div>
+                  <div style={{ minWidth: 0, flex: 1 }}>
                     <h3 style={{ fontSize: '18px', margin: '0 0 2px 0' }}>WhatsApp</h3>
                     <div style={{ fontSize: '15px', fontWeight: 700, color: 'var(--navy)' }}>+91 00000 00000</div>
                     <div style={{ fontSize: '13px', color: 'var(--muted)' }}>Typically replies in 15 minutes</div>
@@ -1956,7 +1976,7 @@ export const HomePage: React.FC<HomePageProps> = ({ onNavigate, onOpenRfq }) => 
                   target="_blank"
                   rel="noopener noreferrer"
                   className="btn-whatsapp"
-                  style={{ height: '42px', minHeight: '42px', padding: '0 18px', fontSize: '14px' }}
+                  style={{ height: '42px', minHeight: '42px', padding: '0 20px', fontSize: '14px', flexShrink: 0 }}
                 >
                   <span>Chat</span>
                   <ArrowRight size={14} />
@@ -1965,25 +1985,28 @@ export const HomePage: React.FC<HomePageProps> = ({ onNavigate, onOpenRfq }) => 
 
               {/* Call us in blue */}
               <div
-                className="card"
+                className="card contact-channel-card"
                 style={{
                   display: 'flex',
+                  flexDirection: 'row',
                   alignItems: 'center',
                   justifyContent: 'space-between',
                   padding: '24px 28px',
+                  gap: '20px',
                 }}
               >
-                <div style={{ display: 'flex', alignItems: 'center', gap: '18px' }}>
+                <div style={{ display: 'flex', alignItems: 'center', gap: '18px', flex: 1, minWidth: 0 }}>
                   <div
                     className="icon-circle"
                     style={{
                       backgroundColor: 'var(--blue-tint)',
                       color: 'var(--blue)',
+                      flexShrink: 0,
                     }}
                   >
                     <Phone size={22} />
                   </div>
-                  <div>
+                  <div style={{ minWidth: 0, flex: 1 }}>
                     <h3 style={{ fontSize: '18px', margin: '0 0 2px 0' }}>Call us</h3>
                     <div style={{ fontSize: '15px', fontWeight: 700, color: 'var(--navy)' }}>+91 00000 00000</div>
                     <div style={{ fontSize: '13px', color: 'var(--muted)' }}>Mon – Sat: 9 AM – 7 PM IST</div>
@@ -1993,7 +2016,7 @@ export const HomePage: React.FC<HomePageProps> = ({ onNavigate, onOpenRfq }) => 
                 <a
                   href="tel:+910000000000"
                   className="btn-secondary"
-                  style={{ height: '42px', minHeight: '42px', padding: '0 18px', fontSize: '14px' }}
+                  style={{ height: '42px', minHeight: '42px', padding: '0 20px', fontSize: '14px', flexShrink: 0 }}
                 >
                   <span>Call</span>
                   <ArrowRight size={14} />
@@ -2002,25 +2025,28 @@ export const HomePage: React.FC<HomePageProps> = ({ onNavigate, onOpenRfq }) => 
 
               {/* Email in plum */}
               <div
-                className="card"
+                className="card contact-channel-card"
                 style={{
                   display: 'flex',
+                  flexDirection: 'row',
                   alignItems: 'center',
                   justifyContent: 'space-between',
                   padding: '24px 28px',
+                  gap: '20px',
                 }}
               >
-                <div style={{ display: 'flex', alignItems: 'center', gap: '18px' }}>
+                <div style={{ display: 'flex', alignItems: 'center', gap: '18px', flex: 1, minWidth: 0 }}>
                   <div
                     className="icon-circle"
                     style={{
                       backgroundColor: 'var(--plum-tint)',
                       color: 'var(--plum)',
+                      flexShrink: 0,
                     }}
                   >
                     <Mail size={22} />
                   </div>
-                  <div>
+                  <div style={{ minWidth: 0, flex: 1 }}>
                     <h3 style={{ fontSize: '18px', margin: '0 0 2px 0' }}>Email</h3>
                     <div style={{ fontSize: '15px', fontWeight: 700, color: 'var(--navy)' }}>name@example.com</div>
                     <div style={{ fontSize: '13px', color: 'var(--muted)' }}>Reply within 4 hours</div>
@@ -2030,7 +2056,7 @@ export const HomePage: React.FC<HomePageProps> = ({ onNavigate, onOpenRfq }) => 
                 <a
                   href="mailto:name@example.com"
                   className="btn-secondary"
-                  style={{ height: '42px', minHeight: '42px', padding: '0 18px', fontSize: '14px' }}
+                  style={{ height: '42px', minHeight: '42px', padding: '0 20px', fontSize: '14px', flexShrink: 0 }}
                 >
                   <span>Email</span>
                   <ArrowRight size={14} />

@@ -13,8 +13,8 @@ export const IMAGES: Record<string, string> = {
   // ---------------------------------------------------------------------------
 
   // 01-pomegranate-cut-open (Home hero, Products, Pomegranates page)
-  pomegranatesCut: 'https://images.unsplash.com/photo-1615485290382-441e4d049cb5?auto=format&fit=crop&w=1200&q=80',
-  '01-pomegranate-cut-open': 'https://images.unsplash.com/photo-1615485290382-441e4d049cb5?auto=format&fit=crop&w=1200&q=80',
+  pomegranatesCut: 'https://images.unsplash.com/photo-1606923829579-0cb981a83e2e?auto=format&fit=crop&w=1200&q=80',
+  '01-pomegranate-cut-open': 'https://images.unsplash.com/photo-1606923829579-0cb981a83e2e?auto=format&fit=crop&w=1200&q=80',
 
   // 02-pomegranates-crate (Pomegranates page, Gallery)
   pomegranatesBox: 'https://images.unsplash.com/photo-1541344999736-83eca272f6fc?auto=format&fit=crop&w=1200&q=80',
@@ -86,8 +86,8 @@ export const IMAGES: Record<string, string> = {
   // ---------------------------------------------------------------------------
   // EXTRA: WIDE HERO PHOTOS (Landscape >=2000px, calm left 40%)
   // ---------------------------------------------------------------------------
-  heroPomegranateWide: 'https://images.unsplash.com/photo-1615485290382-441e4d049cb5?auto=format&fit=crop&w=2000&q=85',
-  'H1-hero-pomegranate-wide': 'https://images.unsplash.com/photo-1615485290382-441e4d049cb5?auto=format&fit=crop&w=2000&q=85',
+  heroPomegranateWide: 'https://images.unsplash.com/photo-1541344999736-83eca272f6fc?auto=format&fit=crop&w=2000&q=85',
+  'H1-hero-pomegranate-wide': 'https://images.unsplash.com/photo-1541344999736-83eca272f6fc?auto=format&fit=crop&w=2000&q=85',
 
   heroOnionsWide: 'https://images.unsplash.com/photo-1618512496248-a07fe83aa8cb?auto=format&fit=crop&w=2000&q=85',
   'H2-hero-onions-wide': 'https://images.unsplash.com/photo-1618512496248-a07fe83aa8cb?auto=format&fit=crop&w=2000&q=85',

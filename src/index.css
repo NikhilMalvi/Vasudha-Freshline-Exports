@@ -671,17 +671,17 @@ small, .text-small {
    ------------------------------------------------------------------------- */
 .card-icon-badge {
   position: absolute;
-  bottom: -24px;
-  left: 20px;
-  width: 48px;
-  height: 48px;
+  top: 14px;
+  right: 14px;
+  width: 44px;
+  height: 44px;
   border-radius: 50%;
   display: flex;
   align-items: center;
   justify-content: center;
   color: #FFFFFF;
-  border: 3px solid #FFFFFF;
-  box-shadow: var(--shadow-md);
+  border: 2px solid rgba(255, 255, 255, 0.9);
+  box-shadow: 0 4px 14px rgba(0, 0, 0, 0.18);
   z-index: 3;
 }
 
@@ -1725,3 +1725,20 @@ body:has(.home-hero-fullbleed) .site-header:not(.scrolled) .brand-logo-img {
   }
 }
 
+/* Contact channel cards: strict horizontal flex */
+.contact-channel-card {
+  display: flex !important;
+  flex-direction: row !important;
+  align-items: center !important;
+  justify-content: space-between !important;
+  padding: 24px 28px !important;
+  gap: 20px !important;
+}
+
+@media (max-width: 580px) {
+  .contact-channel-card {
+    flex-direction: column !important;
+    align-items: flex-start !important;
+    gap: 16px !important;
+  }
+}

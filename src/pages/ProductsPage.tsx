@@ -183,7 +183,7 @@ export const ProductsPage: React.FC<ProductsPageProps> = ({
                       <IconComp />
                     </div>
                   </div>
-                  <div style={{ marginTop: '28px', display: 'flex', flexDirection: 'column', gap: '8px', flexGrow: 1 }}>
+                  <div style={{ marginTop: '18px', display: 'flex', flexDirection: 'column', gap: '8px', flexGrow: 1 }}>
                     <div>
                       <span className="eyebrow" style={{ fontSize: '11px', padding: '4px 10px' }}>
                         {prod.category}

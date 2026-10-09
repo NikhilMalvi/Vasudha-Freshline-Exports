@@ -699,7 +699,7 @@ export const QuotePage: React.FC<QuotePageProps> = ({
                 Map placeholder
               </div>
               <p style={{ fontSize: '14px', color: 'var(--muted)', maxWidth: '340px', margin: 0 }}>
-                Registered Office: Pune, Maharashtra, India [Sample coordinates]
+                Registered Office: Pune, Maharashtra, India
               </p>
             </div>
 
@@ -726,7 +726,7 @@ export const QuotePage: React.FC<QuotePageProps> = ({
                   <span>Visiting hours: Mon – Sat, 09:00 – 18:00 IST</span>
                 </div>
                 <div style={{ paddingTop: '8px', borderTop: '1px solid var(--line)', fontSize: '13px', color: 'var(--muted)' }}>
-                  LLPIN: AAA-0000 · GST: 0000000000 · IEC: 0000000000 [Sample]
+                  LLPIN: AAA-0000 · GST: 0000000000 · IEC: 0000000000
                 </div>
               </div>
             </div>

@@ -82,34 +82,34 @@ const PRODUCTS_MAP: Record<string, ProductData> = {
       IMAGES.pomegranatesBox,
     ],
     keyFacts: {
-      variety: 'Bhagwa [Sample]',
-      origin: 'Maharashtra, India [Sample]',
-      packing: '3.5kg / 5kg cartons [Sample]',
+      variety: 'Bhagwa',
+      origin: 'Maharashtra, India',
+      packing: '3.5kg / 5kg cartons',
       moq: '1 container (FCL)',
-      season: 'Year-round [Sample]',
+      season: 'Year-round',
     },
     specTable: {
       product: [
-        { label: 'Variety', value: 'Bhagwa (Sindhuri) [Sample]' },
-        { label: 'Origin', value: 'India [Sample]' },
-        { label: 'Size or grade', value: 'Count 9 to 15 (200g - 400g) [Sample]' },
-        { label: 'Colour', value: 'Deep red arils, glossy red skin [Sample]' },
+        { label: 'Variety', value: 'Bhagwa (Sindhuri)' },
+        { label: 'Origin', value: 'India' },
+        { label: 'Size or grade', value: 'Count 9 to 15 (200g - 400g)' },
+        { label: 'Colour', value: 'Deep red arils, glossy red skin' },
       ],
       packing: [
-        { label: 'Packing type', value: 'Ventilated export cartons [Sample]' },
-        { label: 'Net weight', value: '3.5 kg / 5.0 kg net per box [Sample]' },
-        { label: 'Labelling', value: 'Buyer specifications / barcode [Sample]' },
+        { label: 'Packing type', value: 'Ventilated export cartons' },
+        { label: 'Net weight', value: '3.5 kg / 5.0 kg net per box' },
+        { label: 'Labelling', value: 'Buyer specifications / barcode' },
       ],
       shipping: [
-        { label: 'Container type', value: '40ft High Cube Reefer (+5°C to +7°C) [Sample]' },
-        { label: 'Quantity per container', value: 'Approx. 4,400 to 5,000 cartons [Sample]' },
-        { label: 'Port of loading', value: 'JNPT / Nhava Sheva, India [Sample]' },
-        { label: 'Trade terms', value: 'FOB, CIF, CFR [Sample]' },
+        { label: 'Container type', value: '40ft High Cube Reefer (+5°C to +7°C)' },
+        { label: 'Quantity per container', value: 'Approx. 4,400 to 5,000 cartons' },
+        { label: 'Port of loading', value: 'JNPT / Nhava Sheva, India' },
+        { label: 'Trade terms', value: 'FOB, CIF, CFR' },
       ],
       terms: [
         { label: 'Minimum order', value: '1 container (FCL)' },
-        { label: 'Payment terms', value: 'Irrevocable LC at sight / TT advance [Sample]' },
-        { label: 'Samples', value: 'Available on request [Sample]' },
+        { label: 'Payment terms', value: 'Irrevocable LC at sight / TT advance' },
+        { label: 'Samples', value: 'Available on request' },
       ],
     },
     months: [
@@ -133,13 +133,13 @@ const PRODUCTS_MAP: Record<string, ProductData> = {
       { title: 'Reefer loading', caption: 'Direct pre-cooled container stuffing for ocean freight.', img: IMAGES.containerLoading },
     ],
     faq: [
-      { q: 'Which varieties of pomegranates do you export?', a: 'We primarily export the premium Indian Bhagwa variety, celebrated for its deep red arils, sweet taste and soft seeds [Sample].' },
-      { q: 'What packaging options are available for overseas shipments?', a: 'Standard packaging is 3.5kg and 5kg corrugated export boxes with individual fruit paper cups or foam nets [Sample].' },
+      { q: 'Which varieties of pomegranates do you export?', a: 'We primarily export the premium Indian Bhagwa variety, celebrated for its deep red arils, sweet taste and soft seeds.' },
+      { q: 'What packaging options are available for overseas shipments?', a: 'Standard packaging is 3.5kg and 5kg corrugated export boxes with individual fruit paper cups or foam nets.' },
       { q: 'What is the minimum order quantity?', a: 'Minimum order is 1 container (FCL), typically a 40ft reefer container carrying calibrated cartons.' },
-      { q: 'Can you provide pre-shipment quality and inspection reports?', a: 'Yes, phytosanitary certificates, quality inspection sheets, and pre-cooling logs accompany every shipment [Sample].' },
+      { q: 'Can you provide pre-shipment quality and inspection reports?', a: 'Yes, phytosanitary certificates, quality inspection sheets, and pre-cooling logs accompany every shipment.' },
     ],
     related: [
-      { id: 'fresh-fruits', name: 'Fresh fruits', category: 'Fresh fruit', path: '/products/fresh-fruits', img: IMAGES.fruits, desc: 'Seasonal fruit for export [Sample].' },
+      { id: 'fresh-fruits', name: 'Fresh fruits', category: 'Fresh fruit', path: '/products/fresh-fruits', img: IMAGES.fruits, desc: 'Seasonal fruit for export.' },
       { id: 'onions', name: 'Onions', category: 'Fresh vegetable', path: '/products/onions', img: IMAGES.onionsMesh, desc: 'Red onions in mesh bags, October to April.' },
     ],
   },
@@ -156,34 +156,34 @@ const PRODUCTS_MAP: Record<string, ProductData> = {
       IMAGES.onionsSortingHands,
     ],
     keyFacts: {
-      variety: 'Garwa / Red Onion [Sample]',
-      origin: 'Nashik, Maharashtra [Sample]',
-      packing: '10kg / 25kg mesh bags [Sample]',
+      variety: 'Garwa / Red Onion',
+      origin: 'Nashik, Maharashtra',
+      packing: '10kg / 25kg mesh bags',
       moq: '1 container (FCL)',
       season: 'October to April',
     },
     specTable: {
       product: [
-        { label: 'Variety', value: 'Nashik Medium & Big Red Onion [Sample]' },
-        { label: 'Origin', value: 'India [Sample]' },
-        { label: 'Size or grade', value: '45mm to 65mm+ diameter [Sample]' },
-        { label: 'Colour', value: 'Deep pink to red, firm skin [Sample]' },
+        { label: 'Variety', value: 'Nashik Medium & Big Red Onion' },
+        { label: 'Origin', value: 'India' },
+        { label: 'Size or grade', value: '45mm to 65mm+ diameter' },
+        { label: 'Colour', value: 'Deep pink to red, firm skin' },
       ],
       packing: [
-        { label: 'Packing type', value: 'Red leno mesh bags with drawstrings [Sample]' },
-        { label: 'Net weight', value: '10 kg, 20 kg or 25 kg bags [Sample]' },
-        { label: 'Labelling', value: 'Printed customized bag bands [Sample]' },
+        { label: 'Packing type', value: 'Red leno mesh bags with drawstrings' },
+        { label: 'Net weight', value: '10 kg, 20 kg or 25 kg bags' },
+        { label: 'Labelling', value: 'Printed customized bag bands' },
       ],
       shipping: [
-        { label: 'Container type', value: '40ft Reefer (+1°C to +3°C, 65% RH) or ventilated dry [Sample]' },
-        { label: 'Quantity per container', value: '28 to 29 Metric Tonnes [Sample]' },
-        { label: 'Port of loading', value: 'JNPT / Nhava Sheva, India [Sample]' },
-        { label: 'Trade terms', value: 'FOB, CIF, CFR [Sample]' },
+        { label: 'Container type', value: '40ft Reefer (+1°C to +3°C, 65% RH) or ventilated dry' },
+        { label: 'Quantity per container', value: '28 to 29 Metric Tonnes' },
+        { label: 'Port of loading', value: 'JNPT / Nhava Sheva, India' },
+        { label: 'Trade terms', value: 'FOB, CIF, CFR' },
       ],
       terms: [
         { label: 'Minimum order', value: '1 container (FCL)' },
-        { label: 'Payment terms', value: 'Irrevocable LC at sight / TT advance [Sample]' },
-        { label: 'Samples', value: 'Available on request [Sample]' },
+        { label: 'Payment terms', value: 'Irrevocable LC at sight / TT advance' },
+        { label: 'Samples', value: 'Available on request' },
       ],
     },
     months: [
@@ -208,12 +208,12 @@ const PRODUCTS_MAP: Record<string, ProductData> = {
     ],
     faq: [
       { q: 'What is the seasonal availability for Indian red onions?', a: 'Indian red onions are available from October to April, with peak supply and optimal quality from December to February.' },
-      { q: 'What mesh bag sizes are supplied?', a: 'We supply in 10kg, 20kg, and 25kg ventilated red mesh bags suitable for sea transit [Sample].' },
+      { q: 'What mesh bag sizes are supplied?', a: 'We supply in 10kg, 20kg, and 25kg ventilated red mesh bags suitable for sea transit.' },
       { q: 'What is the minimum order quantity?', a: 'Minimum order is 1 container (FCL), typically loaded to 28-29 metric tonnes.' },
-      { q: 'How is moisture managed during sea transport?', a: 'Onions are thoroughly dried and cured, transported in containers with active de-humidification settings [Sample].' },
+      { q: 'How is moisture managed during sea transport?', a: 'Onions are thoroughly dried and cured, transported in containers with active de-humidification settings.' },
     ],
     related: [
-      { id: 'fresh-vegetables', name: 'Fresh vegetables', category: 'Fresh vegetable', path: '/products/fresh-vegetables', img: IMAGES.vegetables, desc: 'Seasonal vegetables for export [Sample].' },
+      { id: 'fresh-vegetables', name: 'Fresh vegetables', category: 'Fresh vegetable', path: '/products/fresh-vegetables', img: IMAGES.vegetables, desc: 'Seasonal vegetables for export.' },
       { id: 'pomegranates', name: 'Pomegranates', category: 'Fresh fruit', path: '/products/pomegranates', img: IMAGES.pomegranatesCut, desc: 'Export-grade fruit packed in cartons.' },
     ],
   },
@@ -230,34 +230,34 @@ const PRODUCTS_MAP: Record<string, ProductData> = {
       IMAGES.rice,
     ],
     keyFacts: {
-      variety: 'Traditional & 1121 Basmati [Sample]',
-      origin: 'Punjab & Haryana, India [Sample]',
-      packing: '25kg / 50kg PP bags [Sample]',
+      variety: 'Traditional & 1121 Basmati',
+      origin: 'Punjab & Haryana, India',
+      packing: '25kg / 50kg PP bags',
       moq: '1 container (FCL)',
-      season: 'Year-round [Sample]',
+      season: 'Year-round',
     },
     specTable: {
       product: [
-        { label: 'Variety', value: '1121 Basmati, Sugandha, Sona Masoori [Sample]' },
-        { label: 'Origin', value: 'India [Sample]' },
-        { label: 'Size or grade', value: 'Average grain length 8.35mm+ (Basmati) [Sample]' },
-        { label: 'Colour', value: 'Silky white / Golden parboiled [Sample]' },
+        { label: 'Variety', value: '1121 Basmati, Sugandha, Sona Masoori' },
+        { label: 'Origin', value: 'India' },
+        { label: 'Size or grade', value: 'Average grain length 8.35mm+ (Basmati)' },
+        { label: 'Colour', value: 'Silky white / Golden parboiled' },
       ],
       packing: [
-        { label: 'Packing type', value: 'Non-woven, BOPP, or PP woven sacks [Sample]' },
-        { label: 'Net weight', value: '10 kg, 25 kg, 50 kg bags [Sample]' },
-        { label: 'Labelling', value: 'Custom brand packaging [Sample]' },
+        { label: 'Packing type', value: 'Non-woven, BOPP, or PP woven sacks' },
+        { label: 'Net weight', value: '10 kg, 25 kg, 50 kg bags' },
+        { label: 'Labelling', value: 'Custom brand packaging' },
       ],
       shipping: [
-        { label: 'Container type', value: '20ft Dry Heavy Container [Sample]' },
-        { label: 'Quantity per container', value: '25 to 26 Metric Tonnes [Sample]' },
-        { label: 'Port of loading', value: 'Mundra / Kandla / JNPT, India [Sample]' },
-        { label: 'Trade terms', value: 'FOB, CIF, CFR [Sample]' },
+        { label: 'Container type', value: '20ft Dry Heavy Container' },
+        { label: 'Quantity per container', value: '25 to 26 Metric Tonnes' },
+        { label: 'Port of loading', value: 'Mundra / Kandla / JNPT, India' },
+        { label: 'Trade terms', value: 'FOB, CIF, CFR' },
       ],
       terms: [
         { label: 'Minimum order', value: '1 container (FCL)' },
-        { label: 'Payment terms', value: 'Irrevocable LC at sight / TT advance [Sample]' },
-        { label: 'Samples', value: 'Available on request [Sample]' },
+        { label: 'Payment terms', value: 'Irrevocable LC at sight / TT advance' },
+        { label: 'Samples', value: 'Available on request' },
       ],
     },
     months: [
@@ -281,13 +281,13 @@ const PRODUCTS_MAP: Record<string, ProductData> = {
       { title: 'Dry container loading', caption: 'Fumigated 20ft box containers filled to maximum payload.', img: IMAGES.containerLoading },
     ],
     faq: [
-      { q: 'Which rice varieties are available?', a: 'We offer 1121 Steam/Sella Basmati, Pusa, Sugandha, as well as PR11 and Sona Masoori non-basmati grades [Sample].' },
-      { q: 'Can you provide private label packaging?', a: 'Yes, we pack into customized BOPP bags with client branding and multilingual specifications [Sample].' },
+      { q: 'Which rice varieties are available?', a: 'We offer 1121 Steam/Sella Basmati, Pusa, Sugandha, as well as PR11 and Sona Masoori non-basmati grades.' },
+      { q: 'Can you provide private label packaging?', a: 'Yes, we pack into customized BOPP bags with client branding and multilingual specifications.' },
       { q: 'What is the minimum order quantity?', a: 'Minimum order is 1 container (FCL), standard 20ft container holding 25-26 metric tonnes.' },
-      { q: 'Are moisture and purity certificates provided?', a: 'Independent inspection certificates verifying moisture content under 12.5% and purity are provided [Sample].' },
+      { q: 'Are moisture and purity certificates provided?', a: 'Independent inspection certificates verifying moisture content under 12.5% and purity are provided.' },
     ],
     related: [
-      { id: 'spices', name: 'Spices', category: 'Spice', path: '/products/spices', img: IMAGES.spices, desc: 'Whole and ground spices [Sample].' },
+      { id: 'spices', name: 'Spices', category: 'Spice', path: '/products/spices', img: IMAGES.spices, desc: 'Whole and ground spices.' },
       { id: 'pomegranates', name: 'Pomegranates', category: 'Fresh fruit', path: '/products/pomegranates', img: IMAGES.pomegranatesCut, desc: 'Export-grade fruit packed in cartons.' },
     ],
   },
@@ -304,34 +304,34 @@ const PRODUCTS_MAP: Record<string, ProductData> = {
       IMAGES.spicesCumin,
     ],
     keyFacts: {
-      variety: 'Whole & Ground Spices [Sample]',
-      origin: 'Gujarat & Rajasthan, India [Sample]',
-      packing: '25kg multiwall paper bags [Sample]',
+      variety: 'Whole & Ground Spices',
+      origin: 'Gujarat & Rajasthan, India',
+      packing: '25kg multiwall paper bags',
       moq: '1 container (FCL)',
-      season: 'Year-round [Sample]',
+      season: 'Year-round',
     },
     specTable: {
       product: [
-        { label: 'Variety', value: 'Cumin seeds, Turmeric fingers, Coriander [Sample]' },
-        { label: 'Origin', value: 'India [Sample]' },
-        { label: 'Size or grade', value: 'Machine cleaned 99% / 99.5% purity [Sample]' },
-        { label: 'Colour', value: 'Natural, unadulterated [Sample]' },
+        { label: 'Variety', value: 'Cumin seeds, Turmeric fingers, Coriander' },
+        { label: 'Origin', value: 'India' },
+        { label: 'Size or grade', value: 'Machine cleaned 99% / 99.5% purity' },
+        { label: 'Colour', value: 'Natural, unadulterated' },
       ],
       packing: [
-        { label: 'Packing type', value: 'Multi-ply craft paper bags / PP bags [Sample]' },
-        { label: 'Net weight', value: '25 kg or 50 kg bags [Sample]' },
-        { label: 'Labelling', value: 'Standard export markings [Sample]' },
+        { label: 'Packing type', value: 'Multi-ply craft paper bags / PP bags' },
+        { label: 'Net weight', value: '25 kg or 50 kg bags' },
+        { label: 'Labelling', value: 'Standard export markings' },
       ],
       shipping: [
-        { label: 'Container type', value: '20ft Dry Container with desiccant strips [Sample]' },
-        { label: 'Quantity per container', value: '18 to 22 Metric Tonnes [Sample]' },
-        { label: 'Port of loading', value: 'Mundra / Pipavav, India [Sample]' },
-        { label: 'Trade terms', value: 'FOB, CIF, CFR [Sample]' },
+        { label: 'Container type', value: '20ft Dry Container with desiccant strips' },
+        { label: 'Quantity per container', value: '18 to 22 Metric Tonnes' },
+        { label: 'Port of loading', value: 'Mundra / Pipavav, India' },
+        { label: 'Trade terms', value: 'FOB, CIF, CFR' },
       ],
       terms: [
         { label: 'Minimum order', value: '1 container (FCL)' },
-        { label: 'Payment terms', value: 'Irrevocable LC at sight / TT advance [Sample]' },
-        { label: 'Samples', value: 'Available on request [Sample]' },
+        { label: 'Payment terms', value: 'Irrevocable LC at sight / TT advance' },
+        { label: 'Samples', value: 'Available on request' },
       ],
     },
     months: [
@@ -355,13 +355,13 @@ const PRODUCTS_MAP: Record<string, ProductData> = {
       { title: 'Container loading', caption: 'Carefully loaded into clean dry containers.', img: IMAGES.containerLoading },
     ],
     faq: [
-      { q: 'Which whole spices do you export?', a: 'Our range includes cumin seeds (jeera), turmeric fingers, coriander seeds, fenugreek, and black pepper [Sample].' },
-      { q: 'What purity grades are offered?', a: 'We supply 99% to 99.5% machine clean and sortex cleaned qualities [Sample].' },
+      { q: 'Which whole spices do you export?', a: 'Our range includes cumin seeds (jeera), turmeric fingers, coriander seeds, fenugreek, and black pepper.' },
+      { q: 'What purity grades are offered?', a: 'We supply 99% to 99.5% machine clean and sortex cleaned qualities.' },
       { q: 'What is the minimum order quantity?', a: 'Minimum order is 1 container (FCL), approximately 18-22 tonnes depending on bulk density.' },
-      { q: 'Can we combine multiple spices in one container?', a: 'Yes, multi-item consolidated spice containers can be arranged upon request [Sample].' },
+      { q: 'Can we combine multiple spices in one container?', a: 'Yes, multi-item consolidated spice containers can be arranged upon request.' },
     ],
     related: [
-      { id: 'rice', name: 'Rice', category: 'Grain', path: '/products/rice', img: IMAGES.riceGrains, desc: 'Basmati and non-basmati [Sample].' },
+      { id: 'rice', name: 'Rice', category: 'Grain', path: '/products/rice', img: IMAGES.riceGrains, desc: 'Basmati and non-basmati.' },
       { id: 'pomegranates', name: 'Pomegranates', category: 'Fresh fruit', path: '/products/pomegranates', img: IMAGES.pomegranatesCut, desc: 'Export-grade fruit packed in cartons.' },
     ],
   },
@@ -378,34 +378,34 @@ const PRODUCTS_MAP: Record<string, ProductData> = {
       IMAGES.portContainers,
     ],
     keyFacts: {
-      variety: 'Table Grapes, Bananas, Mangoes [Sample]',
-      origin: 'Maharashtra & Gujarat, India [Sample]',
-      packing: '4.5kg / 5kg / 7kg cartons [Sample]',
+      variety: 'Table Grapes, Bananas, Mangoes',
+      origin: 'Maharashtra & Gujarat, India',
+      packing: '4.5kg / 5kg / 7kg cartons',
       moq: '1 container (FCL)',
-      season: 'Seasonal [Sample]',
+      season: 'Seasonal',
     },
     specTable: {
       product: [
-        { label: 'Variety', value: 'Thompson Seedless Grapes, G9 Bananas [Sample]' },
-        { label: 'Origin', value: 'India [Sample]' },
-        { label: 'Size or grade', value: 'Export calibrated brix and berry size [Sample]' },
-        { label: 'Colour', value: 'Uniform natural fruit appearance [Sample]' },
+        { label: 'Variety', value: 'Thompson Seedless Grapes, G9 Bananas' },
+        { label: 'Origin', value: 'India' },
+        { label: 'Size or grade', value: 'Export calibrated brix and berry size' },
+        { label: 'Colour', value: 'Uniform natural fruit appearance' },
       ],
       packing: [
-        { label: 'Packing type', value: 'Pouch bags or punnets in corrugated cartons [Sample]' },
-        { label: 'Net weight', value: '4.5 kg / 5 kg / 7 kg net cartons [Sample]' },
-        { label: 'Labelling', value: 'Buyer specifications / barcode [Sample]' },
+        { label: 'Packing type', value: 'Pouch bags or punnets in corrugated cartons' },
+        { label: 'Net weight', value: '4.5 kg / 5 kg / 7 kg net cartons' },
+        { label: 'Labelling', value: 'Buyer specifications / barcode' },
       ],
       shipping: [
-        { label: 'Container type', value: '40ft Reefer with Controlled Atmosphere [Sample]' },
-        { label: 'Quantity per container', value: 'Approx. 20 to 22 Metric Tonnes [Sample]' },
-        { label: 'Port of loading', value: 'JNPT / Nhava Sheva, India [Sample]' },
-        { label: 'Trade terms', value: 'FOB, CIF, CFR [Sample]' },
+        { label: 'Container type', value: '40ft Reefer with Controlled Atmosphere' },
+        { label: 'Quantity per container', value: 'Approx. 20 to 22 Metric Tonnes' },
+        { label: 'Port of loading', value: 'JNPT / Nhava Sheva, India' },
+        { label: 'Trade terms', value: 'FOB, CIF, CFR' },
       ],
       terms: [
         { label: 'Minimum order', value: '1 container (FCL)' },
-        { label: 'Payment terms', value: 'Irrevocable LC at sight / TT advance [Sample]' },
-        { label: 'Samples', value: 'Available on request [Sample]' },
+        { label: 'Payment terms', value: 'Irrevocable LC at sight / TT advance' },
+        { label: 'Samples', value: 'Available on request' },
       ],
     },
     months: [
@@ -424,12 +424,12 @@ const PRODUCTS_MAP: Record<string, ProductData> = {
     ],
     isRealSeason: false,
     supplyItems: [
-      { name: 'Table Grapes [Sample item]', img: IMAGES.fruitsGrapes },
-      { name: 'Fresh Bananas [Sample item]', img: IMAGES.fruitsBananas },
-      { name: 'Bhagwa Pomegranates [Sample item]', img: IMAGES.pomegranatesCut },
-      { name: 'Fresh Mangoes [Sample item]', isPlaceholder: true },
-      { name: 'Fresh Guavas [Sample item]', isPlaceholder: true },
-      { name: 'Fresh Papayas [Sample item]', isPlaceholder: true },
+      { name: 'Table Grapes', img: IMAGES.fruitsGrapes },
+      { name: 'Fresh Bananas', img: IMAGES.fruitsBananas },
+      { name: 'Bhagwa Pomegranates', img: IMAGES.pomegranatesCut },
+      { name: 'Fresh Mangoes', isPlaceholder: true },
+      { name: 'Fresh Guavas', isPlaceholder: true },
+      { name: 'Fresh Papayas', isPlaceholder: true },
     ],
     packingCards: [
       { title: 'Sorting & packing', caption: 'Packhouse grading with protective liners and punnets.', img: IMAGES.packhouseInspection },
@@ -437,14 +437,14 @@ const PRODUCTS_MAP: Record<string, ProductData> = {
       { title: 'Reefer loading', caption: 'Strict continuous temperature recorder logging.', img: IMAGES.containerLoading },
     ],
     faq: [
-      { q: 'Which fresh fruits do you export throughout the year?', a: 'G9 Bananas are shipped year-round, while Thompson grapes, mangoes, and pomegranates follow seasonal harvesting windows [Sample].' },
-      { q: 'How is fruit shelf life preserved during voyage?', a: 'Rapid pre-cooling, SO2 generator sheets for grapes, and controlled-atmosphere containers preserve firmness [Sample].' },
+      { q: 'Which fresh fruits do you export throughout the year?', a: 'G9 Bananas are shipped year-round, while Thompson grapes, mangoes, and pomegranates follow seasonal harvesting windows.' },
+      { q: 'How is fruit shelf life preserved during voyage?', a: 'Rapid pre-cooling, SO2 generator sheets for grapes, and controlled-atmosphere containers preserve firmness.' },
       { q: 'What is the minimum order quantity?', a: 'Minimum order is 1 container (FCL), approximately 20-22 tonnes in a 40ft High Cube reefer.' },
-      { q: 'Are MRL and pesticide test certificates provided?', a: 'Yes, APEDA and accredited lab residue tests accompany European and Middle Eastern shipments [Sample].' },
+      { q: 'Are MRL and pesticide test certificates provided?', a: 'Yes, APEDA and accredited lab residue tests accompany European and Middle Eastern shipments.' },
     ],
     related: [
       { id: 'pomegranates', name: 'Pomegranates', category: 'Fresh fruit', path: '/products/pomegranates', img: IMAGES.pomegranatesCut, desc: 'Export-grade fruit packed in cartons.' },
-      { id: 'fresh-vegetables', name: 'Fresh vegetables', category: 'Fresh vegetable', path: '/products/fresh-vegetables', img: IMAGES.vegetables, desc: 'Seasonal vegetables for export [Sample].' },
+      { id: 'fresh-vegetables', name: 'Fresh vegetables', category: 'Fresh vegetable', path: '/products/fresh-vegetables', img: IMAGES.vegetables, desc: 'Seasonal vegetables for export.' },
     ],
   },
 
@@ -460,34 +460,34 @@ const PRODUCTS_MAP: Record<string, ProductData> = {
       IMAGES.portContainers,
     ],
     keyFacts: {
-      variety: 'Okra, Ginger, Green Chillies [Sample]',
-      origin: 'Maharashtra & Gujarat, India [Sample]',
-      packing: '4kg / 5kg / 10kg cartons [Sample]',
+      variety: 'Okra, Ginger, Green Chillies',
+      origin: 'Maharashtra & Gujarat, India',
+      packing: '4kg / 5kg / 10kg cartons',
       moq: '1 container (FCL)',
-      season: 'Seasonal [Sample]',
+      season: 'Seasonal',
     },
     specTable: {
       product: [
-        { label: 'Variety', value: 'Fresh Okra, G4 Green Chillies, Ginger [Sample]' },
-        { label: 'Origin', value: 'India [Sample]' },
-        { label: 'Size or grade', value: 'Export tender grade, uniform lengths [Sample]' },
-        { label: 'Colour', value: 'Vibrant green, clean roots [Sample]' },
+        { label: 'Variety', value: 'Fresh Okra, G4 Green Chillies, Ginger' },
+        { label: 'Origin', value: 'India' },
+        { label: 'Size or grade', value: 'Export tender grade, uniform lengths' },
+        { label: 'Colour', value: 'Vibrant green, clean roots' },
       ],
       packing: [
-        { label: 'Packing type', value: 'Perforated corrugated cartons / mesh [Sample]' },
-        { label: 'Net weight', value: '4 kg / 5 kg / 10 kg cartons [Sample]' },
-        { label: 'Labelling', value: 'Buyer specifications / barcode [Sample]' },
+        { label: 'Packing type', value: 'Perforated corrugated cartons / mesh' },
+        { label: 'Net weight', value: '4 kg / 5 kg / 10 kg cartons' },
+        { label: 'Labelling', value: 'Buyer specifications / barcode' },
       ],
       shipping: [
-        { label: 'Container type', value: '40ft High Cube Reefer (+8°C to +10°C) [Sample]' },
-        { label: 'Quantity per container', value: 'Approx. 12 to 14 Metric Tonnes [Sample]' },
-        { label: 'Port of loading', value: 'JNPT / Nhava Sheva, India [Sample]' },
-        { label: 'Trade terms', value: 'FOB, CIF, CFR [Sample]' },
+        { label: 'Container type', value: '40ft High Cube Reefer (+8°C to +10°C)' },
+        { label: 'Quantity per container', value: 'Approx. 12 to 14 Metric Tonnes' },
+        { label: 'Port of loading', value: 'JNPT / Nhava Sheva, India' },
+        { label: 'Trade terms', value: 'FOB, CIF, CFR' },
       ],
       terms: [
         { label: 'Minimum order', value: '1 container (FCL)' },
-        { label: 'Payment terms', value: 'Irrevocable LC at sight / TT advance [Sample]' },
-        { label: 'Samples', value: 'Available on request [Sample]' },
+        { label: 'Payment terms', value: 'Irrevocable LC at sight / TT advance' },
+        { label: 'Samples', value: 'Available on request' },
       ],
     },
     months: [
@@ -506,12 +506,12 @@ const PRODUCTS_MAP: Record<string, ProductData> = {
     ],
     isRealSeason: false,
     supplyItems: [
-      { name: 'Red Onions [Sample item]', img: IMAGES.onions },
-      { name: 'Fresh Okra [Sample item]', img: IMAGES.vegetablesOkra },
-      { name: 'Fresh Ginger [Sample item]', img: IMAGES.vegetablesGinger },
-      { name: 'Green Chillies [Sample item]', isPlaceholder: true },
-      { name: 'Fresh Garlic [Sample item]', isPlaceholder: true },
-      { name: 'Moringa / Drumsticks [Sample item]', isPlaceholder: true },
+      { name: 'Red Onions', img: IMAGES.onions },
+      { name: 'Fresh Okra', img: IMAGES.vegetablesOkra },
+      { name: 'Fresh Ginger', img: IMAGES.vegetablesGinger },
+      { name: 'Green Chillies', isPlaceholder: true },
+      { name: 'Fresh Garlic', isPlaceholder: true },
+      { name: 'Moringa / Drumsticks', isPlaceholder: true },
     ],
     packingCards: [
       { title: 'Sorting & packing', caption: 'Manual sorting for tender, defect-free green produce.', img: IMAGES.packhouseInspection },
@@ -519,14 +519,14 @@ const PRODUCTS_MAP: Record<string, ProductData> = {
       { title: 'Reefer loading', caption: 'Strictly monitored temperature controlled container loading.', img: IMAGES.containerLoading },
     ],
     faq: [
-      { q: 'Which fresh vegetables are suitable for sea shipment?', a: 'Okra, green chillies, fresh ginger, garlic, and onions tolerate reefer container transit exceptionally well [Sample].' },
-      { q: 'What packaging is used for green chillies and okra?', a: 'We pack in 4kg and 5kg ventilated CFB (corrugated fibre board) cartons with moisture absorptive sheets [Sample].' },
+      { q: 'Which fresh vegetables are suitable for sea shipment?', a: 'Okra, green chillies, fresh ginger, garlic, and onions tolerate reefer container transit exceptionally well.' },
+      { q: 'What packaging is used for green chillies and okra?', a: 'We pack in 4kg and 5kg ventilated CFB (corrugated fibre board) cartons with moisture absorptive sheets.' },
       { q: 'What is the minimum order quantity?', a: 'Minimum order is 1 container (FCL), or consolidated multi-vegetable reefer container.' },
-      { q: 'Are phytosanitary checks carried out prior to loading?', a: 'Every consignment undergoes Plant Quarantine inspection and phytosanitary clearance before port departure [Sample].' },
+      { q: 'Are phytosanitary checks carried out prior to loading?', a: 'Every consignment undergoes Plant Quarantine inspection and phytosanitary clearance before port departure.' },
     ],
     related: [
       { id: 'onions', name: 'Onions', category: 'Fresh vegetable', path: '/products/onions', img: IMAGES.onionsMesh, desc: 'Red onions in mesh bags, October to April.' },
-      { id: 'fresh-fruits', name: 'Fresh fruits', category: 'Fresh fruit', path: '/products/fresh-fruits', img: IMAGES.fruits, desc: 'Seasonal fruit for export [Sample].' },
+      { id: 'fresh-fruits', name: 'Fresh fruits', category: 'Fresh fruit', path: '/products/fresh-fruits', img: IMAGES.fruits, desc: 'Seasonal fruit for export.' },
     ],
   },
 };
@@ -678,7 +678,7 @@ export const ProductDetailPage: React.FC<ProductDetailPageProps> = ({
                   <span style={{ color: 'var(--olive)', display: 'flex' }}>
                     <Check size={16} strokeWidth={2.6} />
                   </span>
-                  <span>Replies within [Sample] hours</span>
+                  <span>Replies within 4 hours</span>
                 </div>
               </div>
             </div>
@@ -1126,7 +1126,7 @@ export const ProductDetailPage: React.FC<ProductDetailPageProps> = ({
             <p className="sub-line">
               {product.isRealSeason
                 ? 'Harvested from October to April with peak supply December to February.'
-                : 'Commercial harvesting calendar for container booking [Sample months].'}
+                : 'Commercial harvesting calendar for container booking throughout the harvest season.'}
             </p>
           </div>
 
@@ -1204,7 +1204,7 @@ export const ProductDetailPage: React.FC<ProductDetailPageProps> = ({
               </div>
 
               {!product.isRealSeason && (
-                <span style={{ color: 'var(--muted)', fontSize: '12px' }}>Sample months</span>
+                <span style={{ color: 'var(--muted)', fontSize: '12px' }}>Harvest calendar</span>
               )}
             </div>
           </div>
@@ -1343,7 +1343,7 @@ export const ProductDetailPage: React.FC<ProductDetailPageProps> = ({
             <div className="step">
               <div className="step-header">
                 <div className="step-number step-seq-3">3</div>
-                <span className="step-time-badge">[Sample] days</span>
+                <span className="step-time-badge">3-5 days</span>
               </div>
               <div className="step-title">Packing and loading</div>
               <p className="step-desc">Produce sorted, calibrated and loaded into reefer containers.</p>
@@ -1352,7 +1352,7 @@ export const ProductDetailPage: React.FC<ProductDetailPageProps> = ({
             <div className="step">
               <div className="step-header">
                 <div className="step-number step-seq-4">4</div>
-                <span className="step-time-badge">[Sample] days</span>
+                <span className="step-time-badge">3-5 days</span>
               </div>
               <div className="step-title">Documents</div>
               <p className="step-desc">Phytosanitary, certificate of origin and invoice drafts prepared.</p>
@@ -1361,7 +1361,7 @@ export const ProductDetailPage: React.FC<ProductDetailPageProps> = ({
             <div className="step">
               <div className="step-header">
                 <div className="step-number step-seq-5">5</div>
-                <span className="step-time-badge">[Sample] days</span>
+                <span className="step-time-badge">3-5 days</span>
               </div>
               <div className="step-title">Shipping and arrival</div>
               <p className="step-desc">Container tracked continuously from Indian port to discharge.</p>

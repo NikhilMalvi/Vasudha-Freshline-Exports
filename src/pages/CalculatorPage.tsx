@@ -275,7 +275,7 @@ export const CalculatorPage: React.FC<CalculatorPageProps> = ({
                         40 ft High-cube / Reefer
                       </div>
                       <div style={{ fontSize: '13px', color: 'var(--muted)', marginTop: '2px' }}>
-                        Sample payload: 26 metric tonnes per container
+                        Standard payload: 26 metric tonnes per container
                       </div>
                     </div>
                     {containerType === '40ft' && (
@@ -317,7 +317,7 @@ export const CalculatorPage: React.FC<CalculatorPageProps> = ({
                         20 ft Standard Dry / Reefer
                       </div>
                       <div style={{ fontSize: '13px', color: 'var(--muted)', marginTop: '2px' }}>
-                        Sample payload: 20 metric tonnes per container
+                        Standard payload: 20 metric tonnes per container
                       </div>
                     </div>
                     {containerType === '20ft' && (
@@ -435,7 +435,7 @@ export const CalculatorPage: React.FC<CalculatorPageProps> = ({
                   fontStyle: 'italic',
                 }}
               >
-                Sample calculation. Final container payload depends on product grade, packing format, and port weight regulations.
+                Indicative calculation. Final container payload depends on product grade, packing format, and port weight regulations.
               </p>
 
               {/* Primary CTA */}

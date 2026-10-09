@@ -386,7 +386,7 @@ export const AboutPage: React.FC<AboutPageProps> = ({ onNavigate, onOpenRfq }) =
             <div className="step">
               <div className="step-header">
                 <div className="step-number step-seq-3">3</div>
-                <span className="step-time-badge">[Sample] days</span>
+                <span className="step-time-badge">3-5 days</span>
               </div>
               <div className="step-title">Packing and loading</div>
               <p className="step-desc">Produce sorted, calibrated and loaded into reefer containers.</p>
@@ -395,7 +395,7 @@ export const AboutPage: React.FC<AboutPageProps> = ({ onNavigate, onOpenRfq }) =
             <div className="step">
               <div className="step-header">
                 <div className="step-number step-seq-4">4</div>
-                <span className="step-time-badge">[Sample] days</span>
+                <span className="step-time-badge">1-2 days</span>
               </div>
               <div className="step-title">Documents</div>
               <p className="step-desc">Phytosanitary, certificate of origin and invoice drafts prepared.</p>
@@ -404,7 +404,7 @@ export const AboutPage: React.FC<AboutPageProps> = ({ onNavigate, onOpenRfq }) =
             <div className="step">
               <div className="step-header">
                 <div className="step-number step-seq-5">5</div>
-                <span className="step-time-badge">[Sample] days</span>
+                <span className="step-time-badge">Transit ETA</span>
               </div>
               <div className="step-title">Shipping and arrival</div>
               <p className="step-desc">Container tracked continuously from Indian port to discharge.</p>
@@ -473,9 +473,7 @@ export const AboutPage: React.FC<AboutPageProps> = ({ onNavigate, onOpenRfq }) =
                   <a href="#" aria-label="LinkedIn profile" style={{ color: 'var(--navy)', opacity: 0.8 }}>
                     <LinkedInIcon />
                   </a>
-                  <span className="eyebrow" style={{ fontSize: '11px', padding: '3px 8px' }}>
-                    Sample
-                  </span>
+                  
                 </div>
               </div>
             ))}

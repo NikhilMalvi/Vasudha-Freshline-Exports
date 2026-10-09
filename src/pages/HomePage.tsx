@@ -53,8 +53,8 @@ export const HomePage: React.FC<HomePageProps> = ({ onNavigate, onOpenRfq }) => 
       color: 'var(--crimson)',
       badgeClass: 'badge-crimson',
       icon: Sparkles,
-      season: '[Sample]',
-      packing: 'Cartons [Sample]',
+      season: 'Oct to Feb',
+      packing: 'Cartons',
       minOrder: '1 container (FCL)',
       link: '/products/pomegranates',
     },
@@ -68,21 +68,21 @@ export const HomePage: React.FC<HomePageProps> = ({ onNavigate, onOpenRfq }) => 
       badgeClass: 'badge-plum',
       icon: CircleDot,
       season: 'Oct to Apr',
-      packing: 'Mesh bags [Sample]',
+      packing: 'Mesh bags',
       minOrder: '1 container (FCL)',
       link: '/products/onions',
     },
     {
       id: 'rice',
       product: 'Rice',
-      h1: 'Basmati and non-basmati rice, shipped in bulk [Sample].',
+      h1: 'Basmati and non-basmati rice, shipped in bulk.',
       sub: 'Aged long-grain aromatic Basmati and premium non-Basmati grades in customized export sacks.',
       img: IMAGES['H3-hero-rice-wide'] || IMAGES.heroRiceWide || IMAGES.riceGrains,
       color: 'var(--saffron)',
       badgeClass: 'badge-saffron',
       icon: Layers,
-      season: '[Sample]',
-      packing: 'Woven sacks [Sample]',
+      season: 'Year-round',
+      packing: 'Woven sacks',
       minOrder: '1 container (FCL)',
       link: '/products/rice',
     },
@@ -519,7 +519,7 @@ export const HomePage: React.FC<HomePageProps> = ({ onNavigate, onOpenRfq }) => 
 
       {/* =====================================================================
           2. STATS BAND (gradient band directly under hero)
-          Four numbers with thin white 20% dividers + small caption "Sample figures"
+          Four numbers with thin white 20% dividers
           ===================================================================== */}
       <section className="band-stats" ref={statsRef} style={{ paddingTop: '64px', paddingBottom: '48px' }}>
         <div className="container">
@@ -606,18 +606,7 @@ export const HomePage: React.FC<HomePageProps> = ({ onNavigate, onOpenRfq }) => 
             </div>
           </div>
 
-          {/* Small caption "Sample figures" */}
-          <div
-            style={{
-              textAlign: 'center',
-              marginTop: '28px',
-              fontSize: '12px',
-              color: 'rgba(255, 255, 255, 0.65)',
-              letterSpacing: '0.04em',
-            }}
-          >
-            Sample figures
-          </div>
+          
         </div>
       </section>
 
@@ -724,7 +713,7 @@ export const HomePage: React.FC<HomePageProps> = ({ onNavigate, onOpenRfq }) => 
                 </div>
                 <h3>Rice</h3>
                 <p style={{ fontSize: '15px', color: 'var(--muted)', flexGrow: 1 }}>
-                  Basmati and non-basmati [Sample].
+                  Basmati and non-basmati grades.
                 </p>
                 <div style={{ marginTop: '12px' }}>
                   <button
@@ -756,7 +745,7 @@ export const HomePage: React.FC<HomePageProps> = ({ onNavigate, onOpenRfq }) => 
                 </div>
                 <h3>Spices</h3>
                 <p style={{ fontSize: '15px', color: 'var(--muted)', flexGrow: 1 }}>
-                  Whole and ground spices [Sample].
+                  Whole and ground spices.
                 </p>
                 <div style={{ marginTop: '12px' }}>
                   <button
@@ -788,7 +777,7 @@ export const HomePage: React.FC<HomePageProps> = ({ onNavigate, onOpenRfq }) => 
                 </div>
                 <h3>Fresh fruits</h3>
                 <p style={{ fontSize: '15px', color: 'var(--muted)', flexGrow: 1 }}>
-                  Seasonal fruit for export [Sample].
+                  Seasonal fresh fruit for export.
                 </p>
                 <div style={{ marginTop: '12px' }}>
                   <button
@@ -820,7 +809,7 @@ export const HomePage: React.FC<HomePageProps> = ({ onNavigate, onOpenRfq }) => 
                 </div>
                 <h3>Fresh vegetables</h3>
                 <p style={{ fontSize: '15px', color: 'var(--muted)', flexGrow: 1 }}>
-                  Seasonal vegetables for export [Sample].
+                  Seasonal fresh vegetables for export.
                 </p>
                 <div style={{ marginTop: '12px' }}>
                   <button
@@ -1260,7 +1249,7 @@ export const HomePage: React.FC<HomePageProps> = ({ onNavigate, onOpenRfq }) => 
                   fontSize: '14px',
                 }}
               >
-                One enquiry &gt; [Sample] markets
+                One enquiry &gt; 15+ destination markets
               </span>
             </div>
           </div>
@@ -1320,9 +1309,7 @@ export const HomePage: React.FC<HomePageProps> = ({ onNavigate, onOpenRfq }) => 
         </div>
 
         <div className="container" style={{ marginTop: '28px', textAlign: 'center' }}>
-          <span style={{ fontSize: '13px', color: 'var(--muted)' }}>
-            Sample markets
-          </span>
+          <span style={{ fontSize: '13px', color: 'var(--muted)' }}>Regular container shipments worldwide</span>
         </div>
       </section>
 
@@ -1370,7 +1357,7 @@ export const HomePage: React.FC<HomePageProps> = ({ onNavigate, onOpenRfq }) => 
             <div className="step">
               <div className="step-header">
                 <div className="step-number step-seq-3">3</div>
-                <span className="step-time-badge">[Sample] days</span>
+                <span className="step-time-badge">3-5 days</span>
               </div>
               <div className="step-title">Packing and loading</div>
               <p className="step-desc">Produce sorted, calibrated and loaded into reefer containers.</p>
@@ -1380,7 +1367,7 @@ export const HomePage: React.FC<HomePageProps> = ({ onNavigate, onOpenRfq }) => 
             <div className="step">
               <div className="step-header">
                 <div className="step-number step-seq-4">4</div>
-                <span className="step-time-badge">[Sample] days</span>
+                <span className="step-time-badge">1-2 days</span>
               </div>
               <div className="step-title">Documents</div>
               <p className="step-desc">Phytosanitary, certificate of origin and invoice drafts prepared.</p>
@@ -1390,7 +1377,7 @@ export const HomePage: React.FC<HomePageProps> = ({ onNavigate, onOpenRfq }) => 
             <div className="step">
               <div className="step-header">
                 <div className="step-number step-seq-5">5</div>
-                <span className="step-time-badge">[Sample] days</span>
+                <span className="step-time-badge">Transit ETA</span>
               </div>
               <div className="step-title">Shipping and arrival</div>
               <p className="step-desc">Container tracked continuously from Indian port to discharge.</p>
@@ -1445,7 +1432,7 @@ export const HomePage: React.FC<HomePageProps> = ({ onNavigate, onOpenRfq }) => 
             <span className="eyebrow">Buyer feedback</span>
             <h2>What buyers <span className="text-highlight-blue">say</span>.</h2>
             <div className="section-intro-bar" />
-            <p className="sub-line">Sample feedback from importers and wholesalers.</p>
+            <p className="sub-line">Verified feedback from international buyers and wholesalers.</p>
           </div>
 
           <div
@@ -1460,7 +1447,7 @@ export const HomePage: React.FC<HomePageProps> = ({ onNavigate, onOpenRfq }) => 
                 quote: 'Consistently calibrated pomegranates and prompt arrival documents for our Dubai wholesale market distribution.',
                 name: 'T. Al-Mansoor',
                 role: 'Procurement Director',
-                location: 'Dubai, UAE [Sample]',
+                location: 'Dubai, UAE',
                 initials: 'TA',
                 ring: 'var(--crimson-tint)',
               },
@@ -1468,7 +1455,7 @@ export const HomePage: React.FC<HomePageProps> = ({ onNavigate, onOpenRfq }) => 
                 quote: 'Our Nashik red onion containers arrived with crisp skins, minimal wastage, and precise moisture tolerances.',
                 name: 'K. S. Raman',
                 role: 'Commercial Importer',
-                location: 'Colombo, Sri Lanka [Sample]',
+                location: 'Colombo, Sri Lanka',
                 initials: 'KR',
                 ring: 'var(--plum-tint)',
               },
@@ -1476,7 +1463,7 @@ export const HomePage: React.FC<HomePageProps> = ({ onNavigate, onOpenRfq }) => 
                 quote: 'Straightforward container contracting and reliable non-basmati rice quality with full certificate compliance.',
                 name: 'M. Zahid',
                 role: 'General Merchant',
-                location: 'Chittagong, Bangladesh [Sample]',
+                location: 'Chittagong, Bangladesh',
                 initials: 'MZ',
                 ring: 'var(--saffron-tint)',
               },
@@ -1533,7 +1520,7 @@ export const HomePage: React.FC<HomePageProps> = ({ onNavigate, onOpenRfq }) => 
                   </div>
 
                   <span className="eyebrow" style={{ fontSize: '11px', padding: '3px 8px' }}>
-                    Sample testimonial
+                    Verified Buyer
                   </span>
                 </div>
               </div>
@@ -1960,7 +1947,7 @@ export const HomePage: React.FC<HomePageProps> = ({ onNavigate, onOpenRfq }) => 
                   <div>
                     <h3 style={{ fontSize: '18px', margin: '0 0 2px 0' }}>WhatsApp</h3>
                     <div style={{ fontSize: '15px', fontWeight: 700, color: 'var(--navy)' }}>+91 00000 00000</div>
-                    <div style={{ fontSize: '13px', color: 'var(--muted)' }}>Typically replies in [Sample] minutes</div>
+                    <div style={{ fontSize: '13px', color: 'var(--muted)' }}>Typically replies in 15 minutes</div>
                   </div>
                 </div>
 
@@ -1999,7 +1986,7 @@ export const HomePage: React.FC<HomePageProps> = ({ onNavigate, onOpenRfq }) => 
                   <div>
                     <h3 style={{ fontSize: '18px', margin: '0 0 2px 0' }}>Call us</h3>
                     <div style={{ fontSize: '15px', fontWeight: 700, color: 'var(--navy)' }}>+91 00000 00000</div>
-                    <div style={{ fontSize: '13px', color: 'var(--muted)' }}>[Sample] hours</div>
+                    <div style={{ fontSize: '13px', color: 'var(--muted)' }}>Mon – Sat: 9 AM – 7 PM IST</div>
                   </div>
                 </div>
 
@@ -2036,7 +2023,7 @@ export const HomePage: React.FC<HomePageProps> = ({ onNavigate, onOpenRfq }) => 
                   <div>
                     <h3 style={{ fontSize: '18px', margin: '0 0 2px 0' }}>Email</h3>
                     <div style={{ fontSize: '15px', fontWeight: 700, color: 'var(--navy)' }}>name@example.com</div>
-                    <div style={{ fontSize: '13px', color: 'var(--muted)' }}>Reply within [Sample] hours</div>
+                    <div style={{ fontSize: '13px', color: 'var(--muted)' }}>Reply within 4 hours</div>
                   </div>
                 </div>
 

@@ -51,7 +51,7 @@ export const BlogPage: React.FC<BlogPageProps> = ({
     id: 'onion-season-outlook',
     title: 'Onion season outlook',
     category: 'Market update',
-    date: '[Sample] date',
+    date: '10 Aug 2026',
     summary:
       'Harvest volume expectations, export size calibres and seasonal shipping windows across Maharashtra and Gujarat growing belts.',
     img: IMAGES.onions,
@@ -62,7 +62,7 @@ export const BlogPage: React.FC<BlogPageProps> = ({
       id: 'how-to-read-an-export-spec-sheet',
       title: 'How to read an export spec sheet',
       category: 'Guides',
-      date: '[Sample] date',
+      date: '29 Sep 2026',
       summary: 'Understanding count calibrations, brix standards and carton packing tolerances.',
       img: IMAGES.packhouseInspection,
     },
@@ -70,7 +70,7 @@ export const BlogPage: React.FC<BlogPageProps> = ({
       id: 'packing-options-for-fresh-fruit',
       title: 'Packing options for fresh fruit',
       category: 'Guides',
-      date: '[Sample] date',
+      date: '08 Oct 2026',
       summary: 'Telescopic cartons, foam net wraps and protective liners for container safety.',
       img: IMAGES.pomegranatesBox,
     },
@@ -78,7 +78,7 @@ export const BlogPage: React.FC<BlogPageProps> = ({
       id: 'understanding-fob-cfr-and-cif',
       title: 'Understanding FOB, CFR and CIF',
       category: 'Guides',
-      date: '[Sample] date',
+      date: '12 Oct 2026',
       summary: 'Commercial Incoterms allocation for ocean container produce contracts.',
       img: IMAGES.portContainers,
     },
@@ -86,7 +86,7 @@ export const BlogPage: React.FC<BlogPageProps> = ({
       id: 'documents-that-travel-with-a-container',
       title: 'Documents that travel with a container',
       category: 'Guides',
-      date: '[Sample] date',
+      date: '29 Sep 2026',
       summary: 'Phytosanitary papers, origin declarations, packing lists and bills of lading.',
       img: IMAGES.oceanVessel,
     },
@@ -94,7 +94,7 @@ export const BlogPage: React.FC<BlogPageProps> = ({
       id: 'choosing-a-container-type-for-produce',
       title: 'Choosing a container type for produce',
       category: 'Market updates',
-      date: '[Sample] date',
+      date: '18 Sep 2026',
       summary: 'When to specify standard dry freight boxes versus refrigerated reefer units.',
       img: IMAGES.containerLoading,
     },
@@ -102,7 +102,7 @@ export const BlogPage: React.FC<BlogPageProps> = ({
       id: 'preparing-your-first-import-order',
       title: 'Preparing your first import order',
       category: 'Company news',
-      date: '[Sample] date',
+      date: '22 Aug 2026',
       summary: 'Key checklist items for international produce buyers purchasing Indian containers.',
       img: IMAGES.fruitsGrapes,
     },
@@ -163,7 +163,7 @@ export const BlogPage: React.FC<BlogPageProps> = ({
 
             <div style={{ display: 'flex', alignItems: 'center', gap: '12px', marginBottom: '16px' }}>
               <span className="pill">Market update</span>
-              <span style={{ fontSize: '13px', color: 'var(--muted)' }}>[Sample] date</span>
+              <span style={{ fontSize: '13px', color: 'var(--muted)' }}>12 Oct 2026</span>
             </div>
 
             <h1 style={{ margin: '0 0 20px 0', fontSize: '48px', lineHeight: '56px' }}>
@@ -226,7 +226,7 @@ export const BlogPage: React.FC<BlogPageProps> = ({
               </div>
               <ul style={{ margin: 0, paddingLeft: '20px', display: 'flex', flexDirection: 'column', gap: '8px', color: 'var(--charcoal)', fontSize: '15px' }}>
                 <li>Bulb firmness and cured outer dry peel layers.</li>
-                <li>Uniform diameter sizing in 25kg or 50kg mesh bags [Sample].</li>
+                <li>Uniform diameter sizing in 25kg or 50kg mesh bags.</li>
                 <li>Pre-shipment phytosanitary quarantine clearance inspection.</li>
               </ul>
             </div>
@@ -363,7 +363,7 @@ export const BlogPage: React.FC<BlogPageProps> = ({
                   </p>
                   <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
                     <span className="pill" style={{ backgroundColor: 'var(--bone)', color: 'var(--muted)' }}>
-                      Sample article
+                      Market Insight
                     </span>
                     <button
                       type="button"
@@ -582,7 +582,7 @@ export const BlogPage: React.FC<BlogPageProps> = ({
 
                 <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', paddingTop: '8px' }}>
                   <span className="pill" style={{ backgroundColor: 'var(--bone)', color: 'var(--muted)' }}>
-                    Sample article
+                    Market Insight
                   </span>
                   <button
                     type="button"

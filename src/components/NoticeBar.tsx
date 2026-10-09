@@ -44,7 +44,7 @@ export const NoticeBar: React.FC<NoticeBarProps> = ({ onNavigateToQuote }) => {
       >
         <span style={{ overflow: 'hidden', textOverflow: 'ellipsis', whiteSpace: 'nowrap' }}>
           <strong style={{ color: '#16161A', fontWeight: 600 }}>Shipping notice:</strong>{' '}
-          Ocean freight schedules active for [Sample] container sailings.{' '}
+          Ocean freight schedules active for container sailings.{' '}
           {onNavigateToQuote ? (
             <button
               type="button"

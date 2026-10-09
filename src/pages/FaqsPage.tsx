@@ -48,7 +48,7 @@ export const FaqsPage: React.FC<FaqsPageProps> = ({ onNavigate, onOpenRfq }) => 
       id: 4,
       category: 'Ordering',
       q: 'Can I mix products in one container?',
-      a: 'Consolidated shipments of compatible produce or mixed spice varieties can be arranged in a single container upon request [Sample].',
+      a: 'Consolidated shipments of compatible produce or mixed spice varieties can be arranged in a single container upon request.',
     },
 
     // Shipping
@@ -56,19 +56,19 @@ export const FaqsPage: React.FC<FaqsPageProps> = ({ onNavigate, onOpenRfq }) => 
       id: 5,
       category: 'Shipping',
       q: 'Which ports do you ship from?',
-      a: 'We ship primarily from JNPT / Nhava Sheva (Maharashtra) and Mundra port (Gujarat), providing direct access to Gulf, Asian and European trade lanes [Sample].',
+      a: 'We ship primarily from JNPT / Nhava Sheva (Maharashtra) and Mundra port (Gujarat), providing direct access to Gulf, Asian and European trade lanes.',
     },
     {
       id: 6,
       category: 'Shipping',
       q: 'How long does shipping take?',
-      a: 'Ocean transit times range from [Sample] 4 to 28 days depending on the destination port, carrier routing and direct vessel connectivity.',
+      a: 'Ocean transit times range from 4 to 28 days depending on the destination port, carrier routing and direct vessel connectivity.',
     },
     {
       id: 7,
       category: 'Shipping',
       q: 'What happens if there is a delay?',
-      a: 'Reefer container set-points and vessel schedules are monitored continuously, with prompt proactive updates shared with consignees [Sample].',
+      a: 'Reefer container set-points and vessel schedules are monitored continuously, with prompt proactive updates shared with consignees.',
     },
 
     // Documents
@@ -82,7 +82,7 @@ export const FaqsPage: React.FC<FaqsPageProps> = ({ onNavigate, onOpenRfq }) => 
       id: 9,
       category: 'Documents',
       q: 'Can I get a certificate copy?',
-      a: 'Draft documentation, test certificates and statutory registrations are shared for consignee review prior to vessel departure [Sample].',
+      a: 'Draft documentation, test certificates and statutory registrations are shared for consignee review prior to vessel departure.',
     },
 
     // Payment
@@ -90,19 +90,19 @@ export const FaqsPage: React.FC<FaqsPageProps> = ({ onNavigate, onOpenRfq }) => 
       id: 10,
       category: 'Payment',
       q: 'Which payment terms do you accept?',
-      a: 'We work with confirmed irrevocable Letter of Credit (LC at sight) and Telegraphic Transfer (TT advance balance) for commercial shipments [Sample].',
+      a: 'We work with confirmed irrevocable Letter of Credit (LC at sight) and Telegraphic Transfer (TT advance balance) for commercial shipments.',
     },
     {
       id: 11,
       category: 'Payment',
       q: 'Do you offer private labelling?',
-      a: 'Yes, customized carton artwork, stencils, and pre-printed mesh bag bands can be produced to buyer specifications [Sample].',
+      a: 'Yes, customized carton artwork, stencils, and pre-printed mesh bag bands can be produced to buyer specifications.',
     },
     {
       id: 12,
       category: 'Payment',
       q: 'How are commodity prices quoted?',
-      a: 'Quotations are calculated in USD on FOB, CFR or CIF terms based on seasonal harvest rates and prevailing ocean freight indices [Sample].',
+      a: 'Quotations are calculated in USD on FOB, CFR or CIF terms based on seasonal harvest rates and prevailing ocean freight indices.',
     },
   ];
 

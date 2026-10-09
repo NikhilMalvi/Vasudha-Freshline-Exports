@@ -1571,7 +1571,7 @@ textarea:focus {
 /* Transparent Header on Hero */
 body:has(.home-hero-fullbleed) .site-header:not(.scrolled) {
   position: absolute;
-  top: 28px;
+  top: 0;
   left: 0;
   width: 100%;
   background: transparent;

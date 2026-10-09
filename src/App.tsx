@@ -3,18 +3,16 @@ import { DraftNoticeBar } from './components/DraftNoticeBar';
 import { Header } from './components/Header';
 import { Footer } from './components/Footer';
 import { WhatsAppFloating } from './components/WhatsAppFloating';
-import { ScrollToTop } from './components/ScrollToTop';
 import { RfqModal } from './components/RfqModal';
-import { BrochureModal } from './components/BrochureModal';
-
 import { HomePage } from './pages/HomePage';
 import { ProductsPage } from './pages/ProductsPage';
 import { ProductDetailPage } from './pages/ProductDetailPage';
 import { AboutPage } from './pages/AboutPage';
 import { CertificatesPage } from './pages/CertificatesPage';
 import { GalleryPage } from './pages/GalleryPage';
-import { BlogPage } from './pages/BlogPage';
+import { FaqsPage } from './pages/FaqsPage';
 import { QuotePage } from './pages/QuotePage';
+import { CalculatorPage } from './pages/CalculatorPage';
 import { LegalPage } from './pages/LegalPage';
 import { NotFoundPage } from './pages/NotFoundPage';
 
@@ -26,7 +24,6 @@ export function App() {
 
   const [currentPath, setCurrentPath] = useState<string>(getInitialPath);
   const [isRfqModalOpen, setIsRfqModalOpen] = useState<boolean>(false);
-  const [isBrochureOpen, setIsBrochureOpen] = useState<boolean>(false);
   const [selectedProduct, setSelectedProduct] = useState<string>('Pomegranates');
 
   useEffect(() => {
@@ -53,23 +50,23 @@ export function App() {
     setIsRfqModalOpen(true);
   };
 
-  const handleOpenBrochure = () => {
-    setIsBrochureOpen(true);
-  };
-
-  const renderCurrentPage = () => {
+  const renderContent = () => {
     if (currentPath === '/' || currentPath === '') {
       return (
         <HomePage
           onNavigate={navigateTo}
           onOpenRfq={handleOpenRfq}
-          onOpenBrochure={handleOpenBrochure}
         />
       );
     }
 
     if (currentPath === '/products') {
-      return <ProductsPage onNavigate={navigateTo} onOpenRfq={handleOpenRfq} />;
+      return (
+        <ProductsPage
+          onNavigate={navigateTo}
+          onOpenRfq={handleOpenRfq}
+        />
+      );
     }
 
     if (currentPath.startsWith('/products/')) {
@@ -79,88 +76,118 @@ export function App() {
           slug={slug}
           onNavigate={navigateTo}
           onOpenRfq={handleOpenRfq}
-          onOpenBrochure={handleOpenBrochure}
         />
       );
     }
 
     if (currentPath === '/about') {
-      return <AboutPage onNavigate={navigateTo} onOpenRfq={handleOpenRfq} />;
+      return (
+        <AboutPage
+          onNavigate={navigateTo}
+          onOpenRfq={handleOpenRfq}
+        />
+      );
     }
 
     if (currentPath === '/certificates' || currentPath === '/quality') {
-      return <CertificatesPage onNavigate={navigateTo} onOpenRfq={handleOpenRfq} />;
+      return (
+        <CertificatesPage
+          onNavigate={navigateTo}
+          onOpenRfq={handleOpenRfq}
+        />
+      );
     }
 
     if (currentPath === '/gallery') {
-      return <GalleryPage onNavigate={navigateTo} onOpenRfq={handleOpenRfq} />;
+      return (
+        <GalleryPage
+          onNavigate={navigateTo}
+          onOpenRfq={handleOpenRfq}
+        />
+      );
     }
 
-    if (currentPath === '/blog') {
-      return <BlogPage onNavigate={navigateTo} onOpenRfq={handleOpenRfq} />;
+    if (currentPath === '/faqs') {
+      return (
+        <FaqsPage
+          onNavigate={navigateTo}
+          onOpenRfq={handleOpenRfq}
+        />
+      );
     }
 
-    if (currentPath.startsWith('/blog/')) {
-      const articleSlug = currentPath.replace('/blog/', '');
-      return <BlogPage articleSlug={articleSlug} onNavigate={navigateTo} onOpenRfq={handleOpenRfq} />;
+    if (currentPath === '/contact' || currentPath === '/quote') {
+      return (
+        <QuotePage
+          initialProduct={selectedProduct}
+          onNavigate={navigateTo}
+        />
+      );
     }
 
-    if (currentPath === '/export') {
-      return <ProductsPage onNavigate={navigateTo} onOpenRfq={handleOpenRfq} />;
-    }
-
-    if (currentPath === '/quote' || currentPath === '/contact') {
-      return <QuotePage initialProduct={selectedProduct} onNavigate={navigateTo} />;
+    if (currentPath === '/calculator') {
+      return (
+        <CalculatorPage
+          onNavigate={navigateTo}
+          onOpenRfq={handleOpenRfq}
+        />
+      );
     }
 
     if (currentPath === '/privacy') {
-      return <LegalPage type="privacy" onNavigate={navigateTo} />;
+      return (
+        <LegalPage
+          type="privacy"
+          onNavigate={navigateTo}
+        />
+      );
     }
 
-    if (currentPath === '/terms') {
-      return <LegalPage type="terms" onNavigate={navigateTo} />;
+    if (currentPath === '/terms' || currentPath === '/terms-of-sale') {
+      return (
+        <LegalPage
+          type="terms"
+          onNavigate={navigateTo}
+        />
+      );
     }
 
-    return <NotFoundPage onNavigate={navigateTo} />;
+    // 404 Fallback for unmapped routes
+    return (
+      <NotFoundPage
+        onNavigate={navigateTo}
+      />
+    );
   };
 
   return (
-    <div className="site-wrapper" style={{ minHeight: '100vh', display: 'flex', flexDirection: 'column', backgroundColor: 'var(--ivory)' }}>
-      {/* 0. Presentation Draft Bar (Strictly ONLY this bar at the top) */}
+    <div className="site-wrapper" style={{ minHeight: '100vh', display: 'flex', flexDirection: 'column', backgroundColor: 'var(--white)' }}>
+      {/* 0. Top Bar: 28px draft notice */}
       <DraftNoticeBar />
 
-      {/* 1. Global Sticky Header */}
+      {/* 1. Shared Sticky Header */}
       <Header
         currentPath={currentPath}
         onNavigate={navigateTo}
         onOpenRfq={handleOpenRfq}
-        onOpenBrochure={handleOpenBrochure}
       />
 
       {/* 2. Main Page Content */}
       <div style={{ flexGrow: 1 }}>
-        {renderCurrentPage()}
+        {renderContent()}
       </div>
 
-      {/* 3. Global Dark Navy Footer */}
+      {/* 3. Shared Navy Footer */}
       <Footer onNavigate={navigateTo} />
 
-      {/* 4. Floating Interactive Actions */}
-      <ScrollToTop />
-      <WhatsAppFloating />
+      {/* 4. Shared Floating Actions (WhatsApp circle + Mobile sticky bar) */}
+      <WhatsAppFloating onOpenRfq={handleOpenRfq} />
 
-      {/* 5. Quick RFQ Modal */}
+      {/* 5. RFQ Modal */}
       <RfqModal
         isOpen={isRfqModalOpen}
         onClose={() => setIsRfqModalOpen(false)}
         initialProduct={selectedProduct}
-      />
-
-      {/* 6. Company Brochure Modal */}
-      <BrochureModal
-        isOpen={isBrochureOpen}
-        onClose={() => setIsBrochureOpen(false)}
-        onOpenRfq={handleOpenRfq}
       />
     </div>
   );

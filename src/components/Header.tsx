@@ -1,20 +1,29 @@
 import React, { useState, useEffect, useRef } from 'react';
 import { Logo } from './Logo';
-import { Menu, X, ChevronDown, Download, ArrowRight } from 'lucide-react';
-import { IMAGES } from '../data/images';
+import {
+  Menu,
+  X,
+  ChevronDown,
+  Phone,
+  ArrowRight,
+  Package,
+  CircleDot,
+  Layers,
+  Sparkles,
+  Apple,
+  Carrot
+} from 'lucide-react';
 
 interface HeaderProps {
-  currentPath: string;
-  onNavigate: (path: string) => void;
-  onOpenRfq: (initialProduct?: string) => void;
-  onOpenBrochure?: () => void;
+  currentPath?: string;
+  onNavigate?: (path: string) => void;
+  onOpenRfq?: (initialProduct?: string) => void;
 }
 
 export const Header: React.FC<HeaderProps> = ({
-  currentPath,
-  onNavigate,
-  onOpenRfq,
-  onOpenBrochure,
+  currentPath = '/',
+  onNavigate = () => {},
+  onOpenRfq = () => {},
 }) => {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
   const [productsDropdownOpen, setProductsDropdownOpen] = useState(false);
@@ -39,22 +48,55 @@ export const Header: React.FC<HeaderProps> = ({
     return () => document.removeEventListener('mousedown', handleClickOutside);
   }, []);
 
-  const productCategories = [
-    { name: 'Pomegranates', path: '/products/pomegranates', sub: 'Calibrated export cartons', img: IMAGES.pomegranates },
-    { name: 'Onions', path: '/products/onions', sub: 'Red & white mesh bags', img: IMAGES.onions },
-    { name: 'Rice', path: '/products/rice', sub: 'Basmati & non-basmati FCL', img: IMAGES.rice },
-    { name: 'Spices', path: '/products/spices', sub: 'Whole & ground export spice', img: IMAGES.spices },
-    { name: 'Fresh fruits', path: '/products/fresh-fruits', sub: 'Table grapes, bananas', img: IMAGES.fruits },
-    { name: 'Fresh vegetables', path: '/products/fresh-vegetables', sub: 'Cold-chain green veg', img: IMAGES.vegetables },
-  ];
+  // Prevent background scroll when mobile menu is open
+  useEffect(() => {
+    if (mobileMenuOpen) {
+      document.body.style.overflow = 'hidden';
+    } else {
+      document.body.style.overflow = '';
+    }
+    return () => {
+      document.body.style.overflow = '';
+    };
+  }, [mobileMenuOpen]);
 
-  const navLinks = [
-    { label: 'About', path: '/about' },
-    { label: 'Products', path: '/products', hasDropdown: true },
-    { label: 'Certificates', path: '/certificates' },
-    { label: 'Gallery', path: '/gallery' },
-    { label: 'Blog', path: '/blog' },
-    { label: 'Contact', path: '/contact' },
+  const productsList = [
+    {
+      name: 'Pomegranates',
+      path: '/products/pomegranates',
+      desc: 'Bhagwa variety fresh whole pomegranates',
+      icon: Sparkles,
+    },
+    {
+      name: 'Onions',
+      path: '/products/onions',
+      desc: 'Fresh red and white onions by container',
+      icon: CircleDot,
+    },
+    {
+      name: 'Rice',
+      path: '/products/rice',
+      desc: 'Traditional Basmati and non-Basmati grades',
+      icon: Layers,
+    },
+    {
+      name: 'Spices',
+      path: '/products/spices',
+      desc: 'Export-grade whole and ground Indian spices',
+      icon: Package,
+    },
+    {
+      name: 'Fresh fruits',
+      path: '/products/fresh-fruits',
+      desc: 'Table grapes, bananas and seasonal fruits',
+      icon: Apple,
+    },
+    {
+      name: 'Fresh vegetables',
+      path: '/products/fresh-vegetables',
+      desc: 'Cold-chain green and root vegetables',
+      icon: Carrot,
+    },
   ];
 
   const handleLinkClick = (path: string) => {
@@ -69,346 +111,271 @@ export const Header: React.FC<HeaderProps> = ({
   };
 
   return (
-    <header
-      className={`site-header ${isScrolled ? 'scrolled' : ''}`}
-      style={{
-        backgroundColor: isScrolled ? 'var(--white)' : 'var(--ivory)',
-        position: 'sticky',
-        top: 0,
-        zIndex: 50,
-        borderBottom: isScrolled ? '1px solid var(--line)' : '1px solid transparent',
-        transition: 'height 240ms cubic-bezier(0.22, 1, 0.36, 1), background-color 240ms ease, border-color 240ms ease',
-        display: 'flex',
-        alignItems: 'center',
-      }}
-    >
-      <div
-        className="container"
-        style={{
-          display: 'flex',
-          alignItems: 'center',
-          justifyContent: 'space-between',
-          width: '100%',
-        }}
-      >
+    <header className={`site-header ${isScrolled ? 'scrolled' : ''}`}>
+      <div className="container header-container">
         {/* Logo Left */}
-        <div style={{ display: 'flex', alignItems: 'center' }}>
+        <button
+          type="button"
+          onClick={() => handleLinkClick('/')}
+          className="header-logo-link"
+          style={{ background: 'none', border: 'none', cursor: 'pointer', padding: 0 }}
+          aria-label="Vasudha Freshline Exports LLP Home"
+        >
+          <Logo variant="default" width={220} />
+        </button>
+
+        {/* Desktop Navigation: Products (dropdown), About, Certificates, Gallery, FAQs, Contact */}
+        <nav className="header-nav" aria-label="Main Navigation">
+          {/* Products Dropdown */}
+          <div ref={dropdownRef} style={{ position: 'relative' }}>
+            <button
+              type="button"
+              className={`header-nav-link ${currentPath.startsWith('/products') ? 'active' : ''}`}
+              onClick={() => setProductsDropdownOpen(!productsDropdownOpen)}
+              aria-expanded={productsDropdownOpen}
+              aria-haspopup="true"
+            >
+              <span>Products</span>
+              <ChevronDown
+                size={14}
+                style={{
+                  transition: 'transform 0.2s ease',
+                  transform: productsDropdownOpen ? 'rotate(180deg)' : 'none',
+                }}
+              />
+            </button>
+
+            {productsDropdownOpen && (
+              <div className="products-dropdown-menu" role="menu">
+                {productsList.map((prod) => {
+                  const Icon = prod.icon;
+                  return (
+                    <button
+                      key={prod.name}
+                      type="button"
+                      className="dropdown-item"
+                      role="menuitem"
+                      onClick={() => handleLinkClick(prod.path)}
+                    >
+                      <div className="icon-circle" style={{ width: '40px', height: '40px', minWidth: '40px', minHeight: '40px' }}>
+                        <Icon size={18} />
+                      </div>
+                      <div>
+                        <div className="dropdown-item-title">{prod.name}</div>
+                        <div className="dropdown-item-desc">{prod.desc}</div>
+                      </div>
+                    </button>
+                  );
+                })}
+              </div>
+            )}
+          </div>
+
           <button
             type="button"
-            onClick={() => handleLinkClick('/')}
-            style={{
-              background: 'none',
-              border: 'none',
-              cursor: 'pointer',
-              padding: 0,
-              display: 'flex',
-              alignItems: 'center',
-            }}
-            aria-label="Vasudha Freshline Exports LLP Home"
+            className={`header-nav-link ${isActive('/about') ? 'active' : ''}`}
+            onClick={() => handleLinkClick('/about')}
           >
-            <Logo variant="default" width={210} />
+            About
           </button>
-        </div>
 
-        {/* Center Nav: About, Products, Certificates, Gallery, Blog, Contact */}
-        <nav
-          className="desktop-nav"
-          style={{
-            display: 'none',
-            alignItems: 'center',
-            gap: '28px',
-          }}
-          aria-label="Main Navigation"
-        >
-          {navLinks.map((link) => {
-            const active = isActive(link.path);
+          <button
+            type="button"
+            className={`header-nav-link ${isActive('/certificates') ? 'active' : ''}`}
+            onClick={() => handleLinkClick('/certificates')}
+          >
+            Certificates
+          </button>
 
-            if (link.hasDropdown) {
-              return (
-                <div key={link.path} ref={dropdownRef} style={{ position: 'relative' }}>
-                  <button
-                    type="button"
-                    onClick={() => setProductsDropdownOpen(!productsDropdownOpen)}
-                    style={{
-                      background: 'none',
-                      border: 'none',
-                      padding: '8px 0',
-                      cursor: 'pointer',
-                      fontFamily: 'var(--font-sans)',
-                      fontSize: '15px',
-                      fontWeight: 500,
-                      color: active ? 'var(--ink)' : 'var(--charcoal)',
-                      display: 'inline-flex',
-                      alignItems: 'center',
-                      gap: '4px',
-                      borderBottom: active ? '2px solid var(--olive)' : '2px solid transparent',
-                      paddingBottom: '2px',
-                    }}
-                    aria-expanded={productsDropdownOpen}
-                  >
-                    <span>{link.label}</span>
-                    <ChevronDown
-                      size={14}
-                      style={{
-                        transform: productsDropdownOpen ? 'rotate(180deg)' : 'none',
-                        transition: 'transform 180ms ease',
-                        color: 'var(--muted)',
-                      }}
-                    />
-                  </button>
+          <button
+            type="button"
+            className={`header-nav-link ${isActive('/gallery') ? 'active' : ''}`}
+            onClick={() => handleLinkClick('/gallery')}
+          >
+            Gallery
+          </button>
 
-                  {/* Dropdown with 6 products + thumbnails */}
-                  {productsDropdownOpen && (
-                    <div
-                      style={{
-                        position: 'absolute',
-                        top: '100%',
-                        left: '-40px',
-                        width: '320px',
-                        backgroundColor: 'var(--white)',
-                        border: '1px solid var(--line)',
-                        borderRadius: 'var(--radius-card)',
-                        boxShadow: 'var(--shadow-floating)',
-                        padding: '12px',
-                        marginTop: '12px',
-                        zIndex: 100,
-                      }}
-                    >
-                      <div
-                        style={{
-                          padding: '6px 10px 10px 10px',
-                          borderBottom: '1px solid var(--line)',
-                          display: 'flex',
-                          justifyContent: 'space-between',
-                          alignItems: 'center',
-                          marginBottom: '6px',
-                        }}
-                      >
-                        <span
-                          style={{
-                            fontFamily: 'var(--font-sans)',
-                            fontSize: '11px',
-                            fontWeight: 600,
-                            letterSpacing: '0.1em',
-                            textTransform: 'uppercase',
-                            color: 'var(--muted)',
-                          }}
-                        >
-                          6 Export Categories
-                        </span>
-                        <button
-                          type="button"
-                          onClick={() => handleLinkClick('/products')}
-                          style={{
-                            background: 'none',
-                            border: 'none',
-                            color: 'var(--olive-deep)',
-                            fontSize: '12px',
-                            fontWeight: 600,
-                            cursor: 'pointer',
-                            textDecoration: 'underline',
-                            padding: 0,
-                          }}
-                        >
-                          All &rarr;
-                        </button>
-                      </div>
+          <button
+            type="button"
+            className={`header-nav-link ${isActive('/faqs') ? 'active' : ''}`}
+            onClick={() => handleLinkClick('/faqs')}
+          >
+            FAQs
+          </button>
 
-                      <div style={{ display: 'flex', flexDirection: 'column', gap: '4px' }}>
-                        {productCategories.map((item) => (
-                          <button
-                            key={item.path}
-                            type="button"
-                            onClick={() => handleLinkClick(item.path)}
-                            style={{
-                              width: '100%',
-                              textAlign: 'left',
-                              background: 'none',
-                              border: 'none',
-                              padding: '8px 10px',
-                              borderRadius: '8px',
-                              cursor: 'pointer',
-                              display: 'flex',
-                              alignItems: 'center',
-                              gap: '12px',
-                              transition: 'background-color 150ms ease',
-                            }}
-                            onMouseEnter={(e) => {
-                              e.currentTarget.style.backgroundColor = 'var(--bone)';
-                            }}
-                            onMouseLeave={(e) => {
-                              e.currentTarget.style.backgroundColor = 'transparent';
-                            }}
-                          >
-                            <img
-                              src={item.img}
-                              alt={item.name}
-                              style={{
-                                width: '36px',
-                                height: '36px',
-                                borderRadius: '6px',
-                                objectFit: 'cover',
-                                flexShrink: 0,
-                              }}
-                            />
-                            <div style={{ display: 'flex', flexDirection: 'column' }}>
-                              <span style={{ fontSize: '14px', fontWeight: 500, color: 'var(--ink)' }}>
-                                {item.name}
-                              </span>
-                              <span style={{ fontSize: '12px', color: 'var(--muted)' }}>
-                                {item.sub}
-                              </span>
-                            </div>
-                          </button>
-                        ))}
-                      </div>
-                    </div>
-                  )}
-                </div>
-              );
-            }
-
-            return (
-              <button
-                key={link.path}
-                type="button"
-                onClick={() => handleLinkClick(link.path)}
-                style={{
-                  background: 'none',
-                  border: 'none',
-                  padding: '8px 0',
-                  cursor: 'pointer',
-                  fontFamily: 'var(--font-sans)',
-                  fontSize: '15px',
-                  fontWeight: 500,
-                  color: active ? 'var(--ink)' : 'var(--charcoal)',
-                  borderBottom: active ? '2px solid var(--olive)' : '2px solid transparent',
-                  paddingBottom: '2px',
-                }}
-              >
-                {link.label}
-              </button>
-            );
-          })}
+          <button
+            type="button"
+            className={`header-nav-link ${isActive('/contact') ? 'active' : ''}`}
+            onClick={() => handleLinkClick('/contact')}
+          >
+            Contact
+          </button>
         </nav>
 
-        {/* Right Actions: Ghost "Brochure" + Primary "Request a quote" */}
-        <div
-          className="desktop-actions"
-          style={{
-            display: 'none',
-            alignItems: 'center',
-            gap: '14px',
-          }}
-        >
-          <button
-            type="button"
-            className="btn-secondary"
-            onClick={onOpenBrochure}
-            style={{ height: '48px', padding: '0 20px', fontSize: '14px' }}
-            title="Download company profile"
-          >
-            <Download size={15} />
-            <span>Brochure</span>
-          </button>
+        {/* Right: Phone (hidden on tablet/mobile) + Request a quote button */}
+        <div className="header-actions">
+          <a href="tel:+910000000000" className="header-phone" aria-label="Call +91 00000 00000">
+            <Phone size={16} style={{ color: 'var(--olive)' }} />
+            <span>+91 00000 00000</span>
+          </a>
 
           <button
             type="button"
             className="btn-primary"
             onClick={() => onOpenRfq()}
-            style={{ height: '48px', padding: '0 22px', fontSize: '14px' }}
+            style={{ display: 'none' }} /* Desktop display handled by responsive CSS */
           >
             <span>Request a quote</span>
-            <ArrowRight size={15} />
+            <ArrowRight size={16} />
           </button>
-        </div>
 
-        {/* Mobile Hamburger Toggle */}
-        <div className="mobile-toggle" style={{ display: 'flex', alignItems: 'center' }}>
+          {/* Desktop request a quote button visible on >= 768px */}
+          <div className="hide-mobile">
+            <button
+              type="button"
+              className="btn-primary"
+              onClick={() => onOpenRfq()}
+            >
+              <span>Request a quote</span>
+              <ArrowRight size={16} />
+            </button>
+          </div>
+
+          {/* Mobile Hamburger Toggle */}
           <button
             type="button"
-            onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
-            aria-label={mobileMenuOpen ? 'Close menu' : 'Open menu'}
+            className="mobile-nav-toggle"
+            onClick={() => setMobileMenuOpen(true)}
+            aria-label="Open menu"
             aria-expanded={mobileMenuOpen}
-            style={{
-              background: 'none',
-              border: 'none',
-              color: 'var(--ink)',
-              padding: '8px',
-              cursor: 'pointer',
-              display: 'flex',
-              alignItems: 'center',
-              justifyContent: 'center',
-            }}
           >
-            {mobileMenuOpen ? <X size={24} /> : <Menu size={24} />}
+            <Menu size={26} />
           </button>
         </div>
       </div>
 
-      {/* Mobile Drawer (full screen panel) */}
+      {/* Mobile Full-Screen Panel */}
       {mobileMenuOpen && (
-        <div
-          style={{
-            position: 'fixed',
-            top: isScrolled ? '68px' : '84px',
-            left: 0,
-            right: 0,
-            bottom: 0,
-            backgroundColor: 'var(--ivory)',
-            borderTop: '1px solid var(--line)',
-            padding: '24px',
-            display: 'flex',
-            flexDirection: 'column',
-            justifyContent: 'space-between',
-            zIndex: 99,
-            overflowY: 'auto',
-          }}
-        >
-          <div style={{ display: 'flex', flexDirection: 'column', gap: '8px' }}>
-            <span className="eyebrow" style={{ marginBottom: '12px' }}>
-              Navigation
-            </span>
-
-            {navLinks.map((link) => (
-              <button
-                key={link.path}
-                type="button"
-                onClick={() => handleLinkClick(link.path)}
-                style={{
-                  background: 'none',
-                  border: 'none',
-                  textAlign: 'left',
-                  padding: '12px 0',
-                  fontSize: '18px',
-                  fontFamily: 'var(--font-serif)',
-                  color: 'var(--ink)',
-                  borderBottom: '1px solid var(--line)',
-                  cursor: 'pointer',
-                  display: 'flex',
-                  justifyContent: 'space-between',
-                  alignItems: 'center',
-                }}
-              >
-                <span>{link.label}</span>
-                <span style={{ fontSize: '14px', color: 'var(--muted)' }}>&rarr;</span>
-              </button>
-            ))}
-          </div>
-
-          <div style={{ paddingTop: '24px', display: 'flex', flexDirection: 'column', gap: '12px' }}>
+        <div className="mobile-nav-overlay" role="dialog" aria-modal="true" aria-label="Mobile Navigation">
+          <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', marginBottom: '32px' }}>
+            <Logo variant="default" width={190} />
             <button
               type="button"
-              className="btn-ghost-brochure"
-              style={{ width: '100%', height: '48px' }}
-              onClick={() => {
-                setMobileMenuOpen(false);
-                if (onOpenBrochure) onOpenBrochure();
+              onClick={() => setMobileMenuOpen(false)}
+              aria-label="Close menu"
+              style={{
+                background: 'none',
+                border: 'none',
+                cursor: 'pointer',
+                color: 'var(--navy)',
+                padding: '8px',
+                display: 'flex',
+                alignItems: 'center',
+                justifyContent: 'center',
               }}
             >
-              <Download size={16} />
-              <span>Download Brochure</span>
+              <X size={28} />
             </button>
+          </div>
+
+          <div style={{ display: 'flex', flexDirection: 'column', gap: '20px', flexGrow: 1 }}>
+            <div>
+              <div
+                style={{
+                  fontFamily: 'var(--font-heading)',
+                  fontSize: '13px',
+                  fontWeight: 700,
+                  textTransform: 'uppercase',
+                  letterSpacing: '0.08em',
+                  color: 'var(--muted)',
+                  marginBottom: '12px',
+                }}
+              >
+                Products
+              </div>
+              <div style={{ display: 'grid', gridTemplateColumns: '1fr', gap: '8px', paddingLeft: '8px' }}>
+                {productsList.map((prod) => (
+                  <button
+                    key={prod.name}
+                    type="button"
+                    onClick={() => handleLinkClick(prod.path)}
+                    style={{
+                      background: 'none',
+                      border: 'none',
+                      textAlign: 'left',
+                      fontSize: '16px',
+                      fontWeight: 600,
+                      color: 'var(--navy)',
+                      cursor: 'pointer',
+                      padding: '8px 0',
+                    }}
+                  >
+                    {prod.name}
+                  </button>
+                ))}
+              </div>
+            </div>
+
+            <div style={{ height: '1px', backgroundColor: 'var(--line)', margin: '8px 0' }} />
+
+            <button
+              type="button"
+              onClick={() => handleLinkClick('/about')}
+              style={{ background: 'none', border: 'none', textAlign: 'left', fontSize: '18px', fontWeight: 700, color: 'var(--navy)', cursor: 'pointer' }}
+            >
+              About
+            </button>
+
+            <button
+              type="button"
+              onClick={() => handleLinkClick('/certificates')}
+              style={{ background: 'none', border: 'none', textAlign: 'left', fontSize: '18px', fontWeight: 700, color: 'var(--navy)', cursor: 'pointer' }}
+            >
+              Certificates
+            </button>
+
+            <button
+              type="button"
+              onClick={() => handleLinkClick('/gallery')}
+              style={{ background: 'none', border: 'none', textAlign: 'left', fontSize: '18px', fontWeight: 700, color: 'var(--navy)', cursor: 'pointer' }}
+            >
+              Gallery
+            </button>
+
+            <button
+              type="button"
+              onClick={() => handleLinkClick('/faqs')}
+              style={{ background: 'none', border: 'none', textAlign: 'left', fontSize: '18px', fontWeight: 700, color: 'var(--navy)', cursor: 'pointer' }}
+            >
+              FAQs
+            </button>
+
+            <button
+              type="button"
+              onClick={() => handleLinkClick('/contact')}
+              style={{ background: 'none', border: 'none', textAlign: 'left', fontSize: '18px', fontWeight: 700, color: 'var(--navy)', cursor: 'pointer' }}
+            >
+              Contact
+            </button>
+          </div>
+
+          <div style={{ paddingTop: '24px', borderTop: '1px solid var(--line)', display: 'flex', flexDirection: 'column', gap: '14px' }}>
+            <a
+              href="tel:+910000000000"
+              style={{
+                display: 'inline-flex',
+                alignItems: 'center',
+                gap: '8px',
+                fontSize: '16px',
+                fontWeight: 600,
+                color: 'var(--navy)',
+                textDecoration: 'none',
+              }}
+            >
+              <Phone size={18} style={{ color: 'var(--olive)' }} />
+              <span>+91 00000 00000</span>
+            </a>
+
             <button
               type="button"
               className="btn-primary"
@@ -424,29 +391,6 @@ export const Header: React.FC<HeaderProps> = ({
           </div>
         </div>
       )}
-
-      {/* Responsive media query hooks */}
-      <style>{`
-        .site-header {
-          height: 84px;
-        }
-        .site-header.scrolled {
-          height: 68px;
-        }
-        @media (min-width: 960px) {
-          .desktop-nav { display: flex !important; }
-          .desktop-actions { display: flex !important; }
-          .mobile-toggle { display: none !important; }
-        }
-        @media (max-width: 768px) {
-          .site-header {
-            height: 64px !important;
-          }
-          .site-header.scrolled {
-            height: 58px !important;
-          }
-        }
-      `}</style>
     </header>
   );
 };

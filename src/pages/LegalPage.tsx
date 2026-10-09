@@ -7,6 +7,7 @@ interface LegalPageProps {
 
 export const LegalPage: React.FC<LegalPageProps> = ({ type, onNavigate }) => {
   const isPrivacy = type === 'privacy';
+  const pageTitle = isPrivacy ? 'Privacy Policy' : 'Terms of Sale';
   const [activeSection, setActiveSection] = useState<string>('sec1');
 
   const privacySections = [
@@ -29,54 +30,45 @@ export const LegalPage: React.FC<LegalPageProps> = ({ type, onNavigate }) => {
 
   return (
     <div className="legal-page-content" style={{ width: '100%', overflowX: 'hidden' }}>
-      <section className="section" style={{ paddingTop: '56px', paddingBottom: '88px' }}>
-        <div className="container">
-          {/* Breadcrumb */}
-          <nav
-            aria-label="Breadcrumb"
-            style={{
-              display: 'flex',
-              alignItems: 'center',
-              gap: '8px',
-              fontSize: '13px',
-              color: 'var(--muted)',
-              marginBottom: '24px',
-            }}
-          >
-            <button
-              type="button"
-              onClick={() => onNavigate('/')}
-              style={{ background: 'none', border: 'none', padding: 0, color: 'var(--charcoal)', cursor: 'pointer', font: 'inherit' }}
-            >
+      {/* 1. INNER PAGE HERO (compact 280px navy gradient banner with watermark) */}
+      <section className="inner-page-hero">
+        <img
+          src="/vasudha-mark-light-for-navy.svg"
+          alt=""
+          aria-hidden="true"
+          className="inner-page-hero-swoosh"
+        />
+        <div className="container" style={{ position: 'relative', zIndex: 1 }}>
+          <nav className="inner-page-hero-breadcrumb" aria-label="Breadcrumb">
+            <button type="button" onClick={() => onNavigate('/')}>
               Home
             </button>
             <span>/</span>
-            <span style={{ color: 'var(--ink)', fontWeight: 500 }}>
-              {isPrivacy ? 'Privacy Policy' : 'Terms of Trade'}
-            </span>
+            <span style={{ color: '#FFFFFF' }}>Legal</span>
+            <span>/</span>
+            <span style={{ color: '#FFFFFF' }}>{pageTitle}</span>
           </nav>
-
-          {/* Heading */}
-          <div style={{ maxWidth: '680px', marginBottom: '48px' }}>
-            <span className="eyebrow">LEGAL DOCUMENTATION</span>
-            <h1 style={{ margin: '12px 0 12px 0' }}>
-              {isPrivacy ? 'Privacy Policy' : 'Terms of Trade'}
-            </h1>
-            <p style={{ margin: 0, fontSize: '14px', color: 'var(--muted)' }}>
-              Last updated [Sample] date · Vasudha Freshline Exports LLP · LLPIN: AAA-0000
-            </p>
-          </div>
-
-          {/* Reading Layout with Sticky Left List on Desktop */}
-          <div
+          <span
+            className="eyebrow"
             style={{
-              display: 'grid',
-              gridTemplateColumns: 'repeat(auto-fit, minmax(min(100%, 280px), 1fr))',
-              gap: '56px',
-              alignItems: 'start',
+              backgroundColor: 'rgba(255, 255, 255, 0.16)',
+              color: '#FFFFFF',
             }}
           >
-            {/* Sticky Section List Left */}
+            Legal
+          </span>
+          <h1>{pageTitle}</h1>
+          <p className="sub-line">
+            Last updated January 2026 · Vasudha Freshline Exports LLP statutory compliance policies.
+          </p>
+        </div>
+      </section>
+
+      {/* 2. Reading Layout (Two columns on desktop) */}
+      <section className="section-white" style={{ paddingTop: '16px', paddingBottom: '96px' }}>
+        <div className="container">
+          <div className="legal-grid-layout">
+            {/* Left Column: Sticky Sidebar with section anchors */}
             <aside
               style={{
                 position: 'sticky',
@@ -88,19 +80,36 @@ export const LegalPage: React.FC<LegalPageProps> = ({ type, onNavigate }) => {
                 gap: '14px',
               }}
             >
-              <span style={{ fontSize: '12px', fontWeight: 600, letterSpacing: '0.08em', textTransform: 'uppercase', color: 'var(--olive-deep)' }}>
-                SECTIONS
+              <span
+                style={{
+                  fontFamily: 'var(--font-heading)',
+                  fontSize: '12px',
+                  fontWeight: 700,
+                  letterSpacing: '0.08em',
+                  textTransform: 'uppercase',
+                  color: 'var(--olive-deep)',
+                }}
+              >
+                CONTENTS
               </span>
               {sections.map((s) => (
                 <a
                   key={s.id}
                   href={`#${s.id}`}
-                  onClick={() => setActiveSection(s.id)}
+                  onClick={(e) => {
+                    e.preventDefault();
+                    setActiveSection(s.id);
+                    const el = document.getElementById(s.id);
+                    if (el) {
+                      el.scrollIntoView({ behavior: 'smooth' });
+                    }
+                  }}
                   style={{
                     textDecoration: 'none',
                     fontSize: '14px',
+                    lineHeight: '20px',
                     color: activeSection === s.id ? 'var(--navy)' : 'var(--muted)',
-                    fontWeight: activeSection === s.id ? 600 : 400,
+                    fontWeight: activeSection === s.id ? 700 : 500,
                     transition: 'color 150ms ease',
                   }}
                 >
@@ -109,8 +118,28 @@ export const LegalPage: React.FC<LegalPageProps> = ({ type, onNavigate }) => {
               ))}
             </aside>
 
-            {/* 680px Reading Column Right */}
-            <article style={{ maxWidth: '680px', display: 'flex', flexDirection: 'column', gap: '36px' }}>
+            {/* Right Column: Max-width 680px Reading Column */}
+            <article style={{ maxWidth: '680px', display: 'flex', flexDirection: 'column', gap: '40px' }}>
+              {/* Draft badge at top */}
+              <div>
+                <span
+                  className="chip"
+                  style={{
+                    display: 'inline-flex',
+                    alignItems: 'center',
+                    gap: '6px',
+                    fontSize: '12px',
+                    fontWeight: 600,
+                    backgroundColor: 'var(--mist)',
+                    borderColor: 'var(--line)',
+                    color: 'var(--olive-deep)',
+                    padding: '4px 12px',
+                  }}
+                >
+                  Draft version for review
+                </span>
+              </div>
+
               {isPrivacy ? (
                 <>
                   <div id="sec1">
@@ -144,7 +173,7 @@ export const LegalPage: React.FC<LegalPageProps> = ({ type, onNavigate }) => {
                   <div id="sec5">
                     <h2 style={{ fontSize: '24px', margin: '0 0 12px 0' }}>5. Contact coordinates</h2>
                     <p style={{ margin: 0, fontSize: '16px', lineHeight: '26px', color: 'var(--charcoal)' }}>
-                      For privacy documentation requests, contact Vasudha Freshline Exports LLP at name@example.com, Street, City, State, PIN.
+                      For privacy documentation requests, contact Vasudha Freshline Exports LLP at exports@vasudhafreshline.com, Pune, Maharashtra, India.
                     </p>
                   </div>
                 </>

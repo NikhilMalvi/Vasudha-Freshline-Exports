@@ -6,7 +6,6 @@ interface FooterProps {
   onNavigate?: (path: string) => void;
 }
 
-// Clean inline social icons
 const LinkedInIcon: React.FC = () => (
   <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round">
     <path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z" />
@@ -38,360 +37,182 @@ const YouTubeIcon: React.FC = () => (
 
 export const Footer: React.FC<FooterProps> = ({ onNavigate = () => {} }) => {
   return (
-    <footer
-      style={{
-        backgroundColor: 'var(--navy)',
-        color: 'var(--ivory)',
-        paddingTop: '80px',
-        paddingBottom: '40px',
-        borderTop: '1px solid rgba(247, 245, 239, 0.15)',
-      }}
-      className="dark-section"
-    >
-      <div className="container">
-        {/* Main 5-Column Grid */}
+    <footer className="site-footer">
+      {/* Subtle Outlined Logo Swoosh Watermark at 6% opacity */}
+      <img
+        src="/vasudha-mark-light-for-navy.svg"
+        alt=""
+        aria-hidden="true"
+        className="site-footer-swoosh"
+      />
+      <div className="container" style={{ position: 'relative', zIndex: 1 }}>
+        {/* Main Columns Grid */}
         <div
           style={{
             display: 'grid',
-            gridTemplateColumns: 'repeat(auto-fit, minmax(min(100%, 200px), 1fr))',
-            gap: '40px',
+            gridTemplateColumns: 'repeat(auto-fit, minmax(min(100%, 220px), 1fr))',
+            gap: '48px',
             paddingBottom: '56px',
-            borderBottom: '1px solid rgba(247, 245, 239, 0.15)',
+            borderBottom: '1px solid rgba(255, 255, 255, 0.12)',
           }}
         >
           {/* Brand Col */}
-          <div style={{ display: 'flex', flexDirection: 'column', gap: '16px', gridColumn: 'span 1' }}>
+          <div style={{ display: 'flex', flexDirection: 'column', gap: '16px' }}>
             <Logo variant="navy" width={220} />
-            <div
-              style={{
-                width: '32px',
-                height: '1.5px',
-                backgroundColor: 'var(--olive-light)',
-                margin: '4px 0',
-              }}
-            />
             <p
               style={{
-                fontSize: '14px',
-                lineHeight: '22px',
-                color: 'rgba(247, 245, 239, 0.85)',
-                margin: 0,
+                fontSize: '15px',
+                lineHeight: '24px',
+                color: 'rgba(255, 255, 255, 0.82)',
+                margin: '4px 0 12px 0',
+                maxWidth: '320px',
               }}
             >
-              Indian produce, exported with precision. Container loads to importers and wholesalers worldwide.
+              Indian produce, exported with precision by container to importers worldwide.
             </p>
             {/* Social Icons */}
-            <div style={{ display: 'flex', gap: '12px', marginTop: '8px' }}>
-              <a
-                href="#"
-                aria-label="LinkedIn"
-                style={{
-                  color: 'var(--ivory)',
-                  opacity: 0.8,
-                  transition: 'opacity 150ms ease',
-                  display: 'flex',
-                  alignItems: 'center',
-                }}
-                onMouseEnter={(e) => (e.currentTarget.style.opacity = '1')}
-                onMouseLeave={(e) => (e.currentTarget.style.opacity = '0.8')}
-              >
+            <div style={{ display: 'flex', gap: '10px' }}>
+              <a href="#" aria-label="LinkedIn" className="footer-social-link">
                 <LinkedInIcon />
               </a>
-              <a
-                href="#"
-                aria-label="Facebook"
-                style={{
-                  color: 'var(--ivory)',
-                  opacity: 0.8,
-                  transition: 'opacity 150ms ease',
-                  display: 'flex',
-                  alignItems: 'center',
-                }}
-                onMouseEnter={(e) => (e.currentTarget.style.opacity = '1')}
-                onMouseLeave={(e) => (e.currentTarget.style.opacity = '0.8')}
-              >
+              <a href="#" aria-label="Facebook" className="footer-social-link">
                 <FacebookIcon />
               </a>
-              <a
-                href="#"
-                aria-label="Instagram"
-                style={{
-                  color: 'var(--ivory)',
-                  opacity: 0.8,
-                  transition: 'opacity 150ms ease',
-                  display: 'flex',
-                  alignItems: 'center',
-                }}
-                onMouseEnter={(e) => (e.currentTarget.style.opacity = '1')}
-                onMouseLeave={(e) => (e.currentTarget.style.opacity = '0.8')}
-              >
+              <a href="#" aria-label="Instagram" className="footer-social-link">
                 <InstagramIcon />
               </a>
-              <a
-                href="#"
-                aria-label="YouTube"
-                style={{
-                  color: 'var(--ivory)',
-                  opacity: 0.8,
-                  transition: 'opacity 150ms ease',
-                  display: 'flex',
-                  alignItems: 'center',
-                }}
-                onMouseEnter={(e) => (e.currentTarget.style.opacity = '1')}
-                onMouseLeave={(e) => (e.currentTarget.style.opacity = '0.8')}
-              >
+              <a href="#" aria-label="YouTube" className="footer-social-link">
                 <YouTubeIcon />
               </a>
             </div>
           </div>
 
           {/* Col 1: Products */}
-          <div style={{ display: 'flex', flexDirection: 'column', gap: '14px' }}>
-            <span
-              style={{
-                fontFamily: 'var(--font-sans)',
-                fontSize: '12px',
-                letterSpacing: '0.12em',
-                textTransform: 'uppercase',
-                color: 'var(--ivory)',
-                fontWeight: 600,
-              }}
-            >
-              Products
-            </span>
-            <ul
-              style={{
-                listStyle: 'none',
-                display: 'flex',
-                flexDirection: 'column',
-                gap: '8px',
-                fontSize: '14px',
-                color: 'rgba(247, 245, 239, 0.85)',
-              }}
-            >
+          <div>
+            <div className="footer-col-title">Products</div>
+            <ul>
               <li>
-                <button
-                  type="button"
-                  onClick={() => onNavigate('/products/pomegranates')}
-                  style={{ background: 'none', border: 'none', color: 'inherit', cursor: 'pointer', padding: 0, font: 'inherit' }}
-                >
+                <button type="button" onClick={() => onNavigate('/products/pomegranates')}>
                   Pomegranates
                 </button>
               </li>
               <li>
-                <button
-                  type="button"
-                  onClick={() => onNavigate('/products/onions')}
-                  style={{ background: 'none', border: 'none', color: 'inherit', cursor: 'pointer', padding: 0, font: 'inherit' }}
-                >
+                <button type="button" onClick={() => onNavigate('/products/onions')}>
                   Onions
                 </button>
               </li>
               <li>
-                <button
-                  type="button"
-                  onClick={() => onNavigate('/products/rice')}
-                  style={{ background: 'none', border: 'none', color: 'inherit', cursor: 'pointer', padding: 0, font: 'inherit' }}
-                >
+                <button type="button" onClick={() => onNavigate('/products/rice')}>
                   Rice
                 </button>
               </li>
               <li>
-                <button
-                  type="button"
-                  onClick={() => onNavigate('/products/spices')}
-                  style={{ background: 'none', border: 'none', color: 'inherit', cursor: 'pointer', padding: 0, font: 'inherit' }}
-                >
+                <button type="button" onClick={() => onNavigate('/products/spices')}>
                   Spices
                 </button>
               </li>
               <li>
-                <button
-                  type="button"
-                  onClick={() => onNavigate('/products/fresh-fruits')}
-                  style={{ background: 'none', border: 'none', color: 'inherit', cursor: 'pointer', padding: 0, font: 'inherit' }}
-                >
+                <button type="button" onClick={() => onNavigate('/products/fresh-fruits')}>
                   Fresh fruits
                 </button>
               </li>
               <li>
-                <button
-                  type="button"
-                  onClick={() => onNavigate('/products/fresh-vegetables')}
-                  style={{ background: 'none', border: 'none', color: 'inherit', cursor: 'pointer', padding: 0, font: 'inherit' }}
-                >
+                <button type="button" onClick={() => onNavigate('/products/fresh-vegetables')}>
                   Fresh vegetables
                 </button>
               </li>
             </ul>
           </div>
 
-          {/* Col 2: Company */}
-          <div style={{ display: 'flex', flexDirection: 'column', gap: '14px' }}>
-            <span
-              style={{
-                fontFamily: 'var(--font-sans)',
-                fontSize: '12px',
-                letterSpacing: '0.12em',
-                textTransform: 'uppercase',
-                color: 'var(--ivory)',
-                fontWeight: 600,
-              }}
-            >
-              Company
-            </span>
-            <ul
-              style={{
-                listStyle: 'none',
-                display: 'flex',
-                flexDirection: 'column',
-                gap: '8px',
-                fontSize: '14px',
-                color: 'rgba(247, 245, 239, 0.85)',
-              }}
-            >
+          {/* Col 2: Quick Links */}
+          <div>
+            <div className="footer-col-title">Quick links</div>
+            <ul>
               <li>
-                <button
-                  type="button"
-                  onClick={() => onNavigate('/about')}
-                  style={{ background: 'none', border: 'none', color: 'inherit', cursor: 'pointer', padding: 0, font: 'inherit' }}
-                >
-                  About us
+                <button type="button" onClick={() => onNavigate('/about')}>
+                  About Us
                 </button>
               </li>
               <li>
-                <button
-                  type="button"
-                  onClick={() => onNavigate('/certificates')}
-                  style={{ background: 'none', border: 'none', color: 'inherit', cursor: 'pointer', padding: 0, font: 'inherit' }}
-                >
+                <button type="button" onClick={() => onNavigate('/certificates')}>
                   Certificates
                 </button>
               </li>
               <li>
-                <button
-                  type="button"
-                  onClick={() => onNavigate('/gallery')}
-                  style={{ background: 'none', border: 'none', color: 'inherit', cursor: 'pointer', padding: 0, font: 'inherit' }}
-                >
+                <button type="button" onClick={() => onNavigate('/gallery')}>
                   Gallery
                 </button>
               </li>
               <li>
-                <button
-                  type="button"
-                  onClick={() => onNavigate('/contact')}
-                  style={{ background: 'none', border: 'none', color: 'inherit', cursor: 'pointer', padding: 0, font: 'inherit' }}
-                >
+                <button type="button" onClick={() => onNavigate('/faqs')}>
+                  FAQs
+                </button>
+              </li>
+              <li>
+                <button type="button" onClick={() => onNavigate('/calculator')}>
+                  Container Calculator
+                </button>
+              </li>
+              <li>
+                <button type="button" onClick={() => onNavigate('/contact')}>
                   Contact
                 </button>
               </li>
               <li>
-                <button
-                  type="button"
-                  onClick={() => onNavigate('/privacy')}
-                  style={{ background: 'none', border: 'none', color: 'inherit', cursor: 'pointer', padding: 0, font: 'inherit' }}
-                >
-                  Privacy policy
+                <button type="button" onClick={() => onNavigate('/privacy')}>
+                  Privacy Policy
                 </button>
               </li>
               <li>
-                <button
-                  type="button"
-                  onClick={() => onNavigate('/terms')}
-                  style={{ background: 'none', border: 'none', color: 'inherit', cursor: 'pointer', padding: 0, font: 'inherit' }}
-                >
-                  Terms of trade
+                <button type="button" onClick={() => onNavigate('/terms')}>
+                  Terms of Sale
                 </button>
               </li>
             </ul>
           </div>
 
-          {/* Col 3: Contact with Icons */}
-          <div style={{ display: 'flex', flexDirection: 'column', gap: '14px' }}>
-            <span
-              style={{
-                fontFamily: 'var(--font-sans)',
-                fontSize: '12px',
-                letterSpacing: '0.12em',
-                textTransform: 'uppercase',
-                color: 'var(--ivory)',
-                fontWeight: 600,
-              }}
-            >
-              Contact
-            </span>
-            <div style={{ display: 'flex', flexDirection: 'column', gap: '12px', fontSize: '13px', color: 'rgba(247, 245, 239, 0.85)' }}>
+          {/* Col 3: Contact */}
+          <div>
+            <div className="footer-col-title">Contact</div>
+            <div style={{ display: 'flex', flexDirection: 'column', gap: '14px', fontSize: '14px', color: 'rgba(255, 255, 255, 0.82)' }}>
               <div style={{ display: 'flex', alignItems: 'flex-start', gap: '10px' }}>
-                <MapPin size={16} style={{ color: 'var(--olive-light)', flexShrink: 0, marginTop: '2px' }} />
+                <MapPin size={17} style={{ color: 'var(--olive-light)', flexShrink: 0, marginTop: '3px' }} />
                 <span>Street, City, State, PIN</span>
               </div>
               <div style={{ display: 'flex', alignItems: 'center', gap: '10px' }}>
-                <Phone size={16} style={{ color: 'var(--olive-light)', flexShrink: 0 }} />
-                <span>+91 00000 00000</span>
+                <Phone size={17} style={{ color: 'var(--olive-light)', flexShrink: 0 }} />
+                <a href="tel:+910000000000" style={{ color: 'inherit' }}>+91 00000 00000</a>
               </div>
               <div style={{ display: 'flex', alignItems: 'center', gap: '10px' }}>
-                <Mail size={16} style={{ color: 'var(--olive-light)', flexShrink: 0 }} />
-                <span>name@example.com</span>
+                <Mail size={17} style={{ color: 'var(--olive-light)', flexShrink: 0 }} />
+                <a href="mailto:name@example.com" style={{ color: 'inherit' }}>name@example.com</a>
               </div>
               <div style={{ display: 'flex', alignItems: 'flex-start', gap: '10px' }}>
-                <Clock size={16} style={{ color: 'var(--olive-light)', flexShrink: 0, marginTop: '2px' }} />
-                <span>Mon &ndash; Sat: 9:00 AM &ndash; 6:00 PM IST</span>
+                <Clock size={17} style={{ color: 'var(--olive-light)', flexShrink: 0, marginTop: '3px' }} />
+                <span>Mon – Sat: 9:00 AM – 6:00 PM IST</span>
               </div>
             </div>
           </div>
         </div>
 
-        {/* Small Print & Statutory Bar */}
+        {/* Small Print Statutory Bar */}
         <div
           style={{
-            padding: '20px 0',
+            paddingTop: '28px',
             display: 'flex',
             flexWrap: 'wrap',
             alignItems: 'center',
             justifyContent: 'space-between',
             gap: '16px',
             fontSize: '13px',
-            color: 'rgba(247, 245, 239, 0.70)',
-            borderBottom: '1px solid rgba(247, 245, 239, 0.10)',
+            color: 'rgba(255, 255, 255, 0.65)',
           }}
         >
           <div>
-            Vasudha Freshline Exports LLP · LLPIN: AAA-0000 · IEC: 0000000000 · APEDA: AAA-0000 · GST: 0000000000
+            (c) 2026 Vasudha Freshline Exports LLP · LLPIN: AAA-0000 · IEC: 0000000000 · APEDA: AAA-0000 · GST: 0000000000
           </div>
-        </div>
-
-        {/* Bottom Copyright & Legal Links */}
-        <div
-          style={{
-            paddingTop: '20px',
-            display: 'flex',
-            flexWrap: 'wrap',
-            alignItems: 'center',
-            justifyContent: 'space-between',
-            gap: '12px',
-            fontSize: '12px',
-            color: 'rgba(247, 245, 239, 0.65)',
-          }}
-        >
-          <span>
-            &copy; {new Date().getFullYear()} Vasudha Freshline Exports LLP. All rights reserved.
-          </span>
-          <div style={{ display: 'flex', gap: '16px' }}>
-            <button
-              type="button"
-              onClick={() => onNavigate('/privacy')}
-              style={{ background: 'none', border: 'none', color: 'inherit', cursor: 'pointer', padding: 0, font: 'inherit', textDecoration: 'underline' }}
-            >
-              Privacy Policy
-            </button>
-            <button
-              type="button"
-              onClick={() => onNavigate('/terms')}
-              style={{ background: 'none', border: 'none', color: 'inherit', cursor: 'pointer', padding: 0, font: 'inherit', textDecoration: 'underline' }}
-            >
-              Terms of Trade
-            </button>
+          <div>
+            All rights reserved. B2B Produce Exportation.
           </div>
         </div>
       </div>

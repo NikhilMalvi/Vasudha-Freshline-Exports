@@ -83,7 +83,7 @@ export const ContactPage: React.FC<ContactPageProps> = ({ onNavigate, onOpenRfq 
       {/* =====================================================================
           2. TWO COLUMNS (white section; left 7 of 12 columns, right 5)
           ===================================================================== */}
-      <section className="section section-white has-glows" style={{ position: 'relative', overflow: 'hidden' }}>
+      <section className="section section-white has-glows" style={{ position: 'relative', overflow: 'hidden', paddingTop: '72px', paddingBottom: '104px' }}>
         <div className="glow-orb glow-leaf-tl" aria-hidden="true" />
         <div className="glow-orb glow-blue-br" aria-hidden="true" />
 
@@ -92,7 +92,7 @@ export const ContactPage: React.FC<ContactPageProps> = ({ onNavigate, onOpenRfq 
             style={{
               display: 'grid',
               gridTemplateColumns: 'repeat(12, 1fr)',
-              gap: '48px',
+              gap: '64px',
               alignItems: 'start',
             }}
           >
@@ -111,24 +111,24 @@ export const ContactPage: React.FC<ContactPageProps> = ({ onNavigate, onOpenRfq 
                   }}
                 />
 
-                <div style={{ marginBottom: '28px' }}>
+                <div style={{ marginBottom: '36px' }}>
                   <span
                     className="eyebrow"
                     style={{
                       backgroundColor: 'var(--leaf-tint)',
                       color: 'var(--leaf)',
                       fontSize: '11px',
-                      padding: '4px 12px',
+                      padding: '5px 14px',
                       display: 'inline-block',
-                      marginBottom: '10px',
+                      marginBottom: '12px',
                     }}
                   >
                     TRADE ENQUIRY
                   </span>
-                  <h3 style={{ fontSize: '28px', color: 'var(--navy)', margin: '0 0 8px 0', fontFamily: 'var(--font-heading)', fontWeight: 800 }}>
+                  <h3 style={{ fontSize: '30px', color: 'var(--navy)', margin: '0 0 10px 0', fontFamily: 'var(--font-heading)', fontWeight: 800 }}>
                     Send us a message
                   </h3>
-                  <p style={{ fontSize: '15px', color: 'var(--muted)', margin: 0, lineHeight: '24px' }}>
+                  <p style={{ fontSize: '15px', color: 'var(--muted)', margin: 0, lineHeight: '25px' }}>
                     Our export sales desk reviews all trade inquiries and replies with full specifications promptly.
                   </p>
                 </div>
@@ -211,19 +211,19 @@ export const ContactPage: React.FC<ContactPageProps> = ({ onNavigate, onOpenRfq 
                   </div>
                 </div>
               ) : (
-                <form onSubmit={handleSubmit} style={{ display: 'flex', flexDirection: 'column', gap: '22px' }}>
+                <form onSubmit={handleSubmit} style={{ display: 'flex', flexDirection: 'column', gap: '28px' }}>
                   {/* Row 1: Full name* | WhatsApp / mobile* */}
                   <div
                     style={{
                       display: 'grid',
                       gridTemplateColumns: 'repeat(auto-fit, minmax(min(100%, 250px), 1fr))',
-                      gap: '20px',
+                      gap: '24px',
                     }}
                   >
                     <div>
                       <label
                         htmlFor="fullName"
-                        style={{ display: 'block', fontSize: '13px', fontWeight: 600, color: 'var(--navy)', marginBottom: '8px' }}
+                        style={{ display: 'block', fontSize: '14px', fontWeight: 700, color: 'var(--navy)', marginBottom: '10px' }}
                       >
                         Full name *
                       </label>
@@ -238,10 +238,10 @@ export const ContactPage: React.FC<ContactPageProps> = ({ onNavigate, onOpenRfq 
                         className="v4-form-input"
                         style={{
                           width: '100%',
-                          height: '48px',
-                          padding: '0 16px',
+                          height: '52px',
+                          padding: '0 18px',
                           borderRadius: '12px',
-                          border: '1px solid var(--border-subtle)',
+                          border: '1.5px solid #D2D7C8',
                           backgroundColor: 'var(--white)',
                           fontSize: '15px',
                           fontFamily: 'var(--font-body)',
@@ -255,7 +255,7 @@ export const ContactPage: React.FC<ContactPageProps> = ({ onNavigate, onOpenRfq 
                     <div>
                       <label
                         htmlFor="mobile"
-                        style={{ display: 'block', fontSize: '13px', fontWeight: 600, color: 'var(--navy)', marginBottom: '8px' }}
+                        style={{ display: 'block', fontSize: '14px', fontWeight: 700, color: 'var(--navy)', marginBottom: '10px' }}
                       >
                         WhatsApp / mobile *
                       </label>
@@ -267,16 +267,16 @@ export const ContactPage: React.FC<ContactPageProps> = ({ onNavigate, onOpenRfq 
                           onChange={handleInputChange}
                           className="v4-form-select"
                           style={{
-                            width: '94px',
-                            height: '48px',
-                            padding: '0 8px 0 12px',
+                            width: '105px',
+                            height: '52px',
+                            padding: '0 8px 0 14px',
                             borderTopLeftRadius: '12px',
                             borderBottomLeftRadius: '12px',
                             borderTopRightRadius: 0,
                             borderBottomRightRadius: 0,
-                            border: '1px solid var(--border-subtle)',
+                            border: '1.5px solid #D2D7C8',
                             borderRight: 'none',
-                            backgroundColor: 'var(--mist)',
+                            backgroundColor: '#EEF0E6',
                             fontSize: '14px',
                             fontWeight: 600,
                             fontFamily: 'var(--font-body)',
@@ -305,13 +305,13 @@ export const ContactPage: React.FC<ContactPageProps> = ({ onNavigate, onOpenRfq 
                           className="v4-form-input"
                           style={{
                             flex: 1,
-                            height: '48px',
-                            padding: '0 16px',
+                            height: '52px',
+                            padding: '0 18px',
                             borderTopRightRadius: '12px',
                             borderBottomRightRadius: '12px',
                             borderTopLeftRadius: 0,
                             borderBottomLeftRadius: 0,
-                            border: '1px solid var(--border-subtle)',
+                            border: '1.5px solid #D2D7C8',
                             backgroundColor: 'var(--white)',
                             fontSize: '15px',
                             fontFamily: 'var(--font-body)',
@@ -329,13 +329,13 @@ export const ContactPage: React.FC<ContactPageProps> = ({ onNavigate, onOpenRfq 
                     style={{
                       display: 'grid',
                       gridTemplateColumns: 'repeat(auto-fit, minmax(min(100%, 250px), 1fr))',
-                      gap: '20px',
+                      gap: '24px',
                     }}
                   >
                     <div>
                       <label
                         htmlFor="email"
-                        style={{ display: 'block', fontSize: '13px', fontWeight: 600, color: 'var(--navy)', marginBottom: '8px' }}
+                        style={{ display: 'block', fontSize: '14px', fontWeight: 700, color: 'var(--navy)', marginBottom: '10px' }}
                       >
                         Email (optional)
                       </label>
@@ -349,10 +349,10 @@ export const ContactPage: React.FC<ContactPageProps> = ({ onNavigate, onOpenRfq 
                         className="v4-form-input"
                         style={{
                           width: '100%',
-                          height: '48px',
-                          padding: '0 16px',
+                          height: '52px',
+                          padding: '0 18px',
                           borderRadius: '12px',
-                          border: '1px solid var(--border-subtle)',
+                          border: '1.5px solid #D2D7C8',
                           backgroundColor: 'var(--white)',
                           fontSize: '15px',
                           fontFamily: 'var(--font-body)',
@@ -366,7 +366,7 @@ export const ContactPage: React.FC<ContactPageProps> = ({ onNavigate, onOpenRfq 
                     <div>
                       <label
                         htmlFor="companyName"
-                        style={{ display: 'block', fontSize: '13px', fontWeight: 600, color: 'var(--navy)', marginBottom: '8px' }}
+                        style={{ display: 'block', fontSize: '14px', fontWeight: 700, color: 'var(--navy)', marginBottom: '10px' }}
                       >
                         Company name (optional)
                       </label>
@@ -380,10 +380,10 @@ export const ContactPage: React.FC<ContactPageProps> = ({ onNavigate, onOpenRfq 
                         className="v4-form-input"
                         style={{
                           width: '100%',
-                          height: '48px',
-                          padding: '0 16px',
+                          height: '52px',
+                          padding: '0 18px',
                           borderRadius: '12px',
-                          border: '1px solid var(--border-subtle)',
+                          border: '1.5px solid #D2D7C8',
                           backgroundColor: 'var(--white)',
                           fontSize: '15px',
                           fontFamily: 'var(--font-body)',
@@ -400,13 +400,13 @@ export const ContactPage: React.FC<ContactPageProps> = ({ onNavigate, onOpenRfq 
                     style={{
                       display: 'grid',
                       gridTemplateColumns: 'repeat(auto-fit, minmax(min(100%, 250px), 1fr))',
-                      gap: '20px',
+                      gap: '24px',
                     }}
                   >
                     <div>
                       <label
                         htmlFor="product"
-                        style={{ display: 'block', fontSize: '13px', fontWeight: 600, color: 'var(--navy)', marginBottom: '8px' }}
+                        style={{ display: 'block', fontSize: '14px', fontWeight: 700, color: 'var(--navy)', marginBottom: '10px' }}
                       >
                         Product *
                       </label>
@@ -419,10 +419,10 @@ export const ContactPage: React.FC<ContactPageProps> = ({ onNavigate, onOpenRfq 
                         className="v4-form-select"
                         style={{
                           width: '100%',
-                          height: '48px',
-                          padding: '0 16px',
+                          height: '52px',
+                          padding: '0 18px',
                           borderRadius: '12px',
-                          border: '1px solid var(--border-subtle)',
+                          border: '1.5px solid #D2D7C8',
                           backgroundColor: 'var(--white)',
                           fontSize: '15px',
                           fontFamily: 'var(--font-body)',
@@ -446,7 +446,7 @@ export const ContactPage: React.FC<ContactPageProps> = ({ onNavigate, onOpenRfq 
                     <div>
                       <label
                         htmlFor="quantityTonnes"
-                        style={{ display: 'block', fontSize: '13px', fontWeight: 600, color: 'var(--navy)', marginBottom: '8px' }}
+                        style={{ display: 'block', fontSize: '14px', fontWeight: 700, color: 'var(--navy)', marginBottom: '10px' }}
                       >
                         Approx. quantity in tonnes
                       </label>
@@ -460,10 +460,10 @@ export const ContactPage: React.FC<ContactPageProps> = ({ onNavigate, onOpenRfq 
                         className="v4-form-input"
                         style={{
                           width: '100%',
-                          height: '48px',
-                          padding: '0 16px',
+                          height: '52px',
+                          padding: '0 18px',
                           borderRadius: '12px',
-                          border: '1px solid var(--border-subtle)',
+                          border: '1.5px solid #D2D7C8',
                           backgroundColor: 'var(--white)',
                           fontSize: '15px',
                           fontFamily: 'var(--font-body)',
@@ -479,7 +479,7 @@ export const ContactPage: React.FC<ContactPageProps> = ({ onNavigate, onOpenRfq 
                   <div>
                     <label
                       htmlFor="destinationCountry"
-                      style={{ display: 'block', fontSize: '13px', fontWeight: 600, color: 'var(--navy)', marginBottom: '8px' }}
+                      style={{ display: 'block', fontSize: '14px', fontWeight: 700, color: 'var(--navy)', marginBottom: '10px' }}
                     >
                       Destination country *
                     </label>
@@ -494,10 +494,10 @@ export const ContactPage: React.FC<ContactPageProps> = ({ onNavigate, onOpenRfq 
                       className="v4-form-input"
                       style={{
                         width: '100%',
-                        height: '48px',
-                        padding: '0 16px',
+                        height: '52px',
+                        padding: '0 18px',
                         borderRadius: '12px',
-                        border: '1px solid var(--border-subtle)',
+                        border: '1.5px solid #D2D7C8',
                         backgroundColor: 'var(--white)',
                         fontSize: '15px',
                         fontFamily: 'var(--font-body)',
@@ -512,41 +512,42 @@ export const ContactPage: React.FC<ContactPageProps> = ({ onNavigate, onOpenRfq 
                   <div>
                     <label
                       htmlFor="message"
-                      style={{ display: 'block', fontSize: '13px', fontWeight: 600, color: 'var(--navy)', marginBottom: '8px' }}
+                      style={{ display: 'block', fontSize: '14px', fontWeight: 700, color: 'var(--navy)', marginBottom: '10px' }}
                     >
                       Message (specifications, preferred packing, port)
                     </label>
                     <textarea
                       id="message"
                       name="message"
-                      rows={4}
+                      rows={5}
                       value={formData.message}
                       onChange={handleInputChange}
                       placeholder="Provide target destination port, caliber/size specifications, packaging preference (cartons, mesh bags, polypropylene), or target shipment month."
                       className="v4-form-textarea"
                       style={{
                         width: '100%',
-                        padding: '14px 16px',
+                        padding: '16px 18px',
                         borderRadius: '12px',
-                        border: '1px solid var(--border-subtle)',
+                        border: '1.5px solid #D2D7C8',
                         backgroundColor: 'var(--white)',
                         fontSize: '15px',
-                        lineHeight: '24px',
+                        lineHeight: '26px',
                         fontFamily: 'var(--font-body)',
                         color: 'var(--navy)',
                         boxSizing: 'border-box',
                         resize: 'vertical',
+                        minHeight: '130px',
                         transition: 'border-color 0.2s, box-shadow 0.2s',
                       }}
                     />
                   </div>
 
-                  <div style={{ marginTop: '8px', display: 'flex', alignItems: 'center', justifyContent: 'space-between', flexWrap: 'wrap', gap: '16px' }}>
+                  <div style={{ marginTop: '16px', display: 'flex', alignItems: 'center', justifyContent: 'space-between', flexWrap: 'wrap', gap: '20px' }}>
                     <button
                       type="submit"
                       className="btn-primary"
                       disabled={formSubmitting}
-                      style={{ padding: '0 32px', minWidth: '220px' }}
+                      style={{ padding: '0 36px', height: '52px', minWidth: '220px' }}
                     >
                       <span>{formSubmitting ? 'Submitting...' : 'Submit enquiry'}</span>
                       <ArrowRight size={16} />

@@ -143,7 +143,7 @@ export function App() {
       );
     }
 
-    if (currentPath === '/terms' || currentPath === '/terms-of-sale') {
+    if (currentPath === '/terms' || currentPath === '/terms-of-sale' || currentPath === '/terms-of-trade') {
       return (
         <LegalPage
           type="terms"

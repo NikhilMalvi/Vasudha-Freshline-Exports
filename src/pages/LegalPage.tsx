@@ -1,224 +1,367 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
+import { ArrowRight, HelpCircle } from 'lucide-react';
+import { InnerBanner } from '../components/InnerBanner';
 
 interface LegalPageProps {
   type: 'privacy' | 'terms';
   onNavigate: (path: string) => void;
 }
 
+interface SectionItem {
+  id: string;
+  title: string;
+  content: string[];
+}
+
 export const LegalPage: React.FC<LegalPageProps> = ({ type, onNavigate }) => {
-  const isPrivacy = type === 'privacy';
-  const pageTitle = isPrivacy ? 'Privacy Policy' : 'Terms of Sale';
-  const [activeSection, setActiveSection] = useState<string>('sec1');
+  const [activeTab, setActiveTab] = useState<'privacy' | 'terms'>(type);
+  const [activeSectionId, setActiveSectionId] = useState<string>('sec-1');
 
-  const privacySections = [
-    { id: 'sec1', title: '1. Information collected' },
-    { id: 'sec2', title: '2. Purpose of processing' },
-    { id: 'sec3', title: '3. Data security & retention' },
-    { id: 'sec4', title: '4. International trade partners' },
-    { id: 'sec5', title: '5. Contact coordinates' },
+  useEffect(() => {
+    setActiveTab(type);
+  }, [type]);
+
+  const isPrivacy = activeTab === 'privacy';
+  const pageTitle = isPrivacy ? 'Privacy Policy' : 'Terms of Trade';
+  const subLine = 'Last updated October 2026.';
+
+  const privacySections: SectionItem[] = [
+    {
+      id: 'sec-1',
+      title: 'Information we collect',
+      content: [
+        'Vasudha Freshline Exports LLP collects commercial identity and contact information provided voluntarily by wholesale importers, overseas buyers, and freight partners when requesting price quotations, product specifications, or export agreements.',
+        'This information typically includes your name, company registration name, corporate email address, WhatsApp or direct telephone numbers, destination sea port, and prospective container cargo requirements.',
+      ],
+    },
+    {
+      id: 'sec-2',
+      title: 'Commercial use of data',
+      content: [
+        'All information gathered through this website or direct communication channels is utilized exclusively for B2B trade coordination, drafting accurate proforma invoices, calculating freight estimations, and fulfilling regulatory export customs compliance.',
+        'We do not sell, license, or monetize any corporate or personal data to third-party marketing services under any circumstances.',
+      ],
+    },
+    {
+      id: 'sec-3',
+      title: 'Data security & storage',
+      content: [
+        'We deploy strict technical and organizational safeguards to protect trade communications, pricing quotations, and commercial bills from unauthorized access, alteration, or disclosure.',
+        'Digital inquiries and shipment logs are retained for statutory accounting, foreign trade auditing, and DGFT/Customs compliance periods in accordance with applicable Indian legislation.',
+      ],
+    },
+    {
+      id: 'sec-4',
+      title: 'Sharing with trade authorities & carriers',
+      content: [
+        'To execute international ocean shipments, essential buyer and consignee details must be shared with statutory authorities (such as Indian Customs, APEDA, Plant Quarantine officials) and operational service providers (shipping lines, chamber of commerce, port authorities).',
+        'These transmissions are strictly confined to the documentation necessary to clear port gate-in, phytosanitary inspection, and generate valid bills of lading.',
+      ],
+    },
+    {
+      id: 'sec-5',
+      title: 'Buyer rights and contact coordinates',
+      content: [
+        'Commercial partners and prospective buyers have the right to review, update, or request the deletion of their registered contact information at any time.',
+        'For queries concerning data management or compliance, please reach our administrative desk through our official communication channels.',
+      ],
+    },
   ];
 
-  const termsSections = [
-    { id: 'sec1', title: '1. Wholesale export scope' },
-    { id: 'sec2', title: '2. Container specifications & tolerance' },
-    { id: 'sec3', title: '3. Pricing, shipping & Incoterms' },
-    { id: 'sec4', title: '4. Documentation & inspection' },
-    { id: 'sec5', title: '5. Governing law & arbitration' },
+  const termsSections: SectionItem[] = [
+    {
+      id: 'sec-1',
+      title: 'Scope of commercial wholesale',
+      content: [
+        'All quotations, proforma contracts, and shipments issued by Vasudha Freshline Exports LLP are governed by these Terms of Trade. Our sales are conducted strictly on a wholesale, full container load (FCL) basis.',
+        'Acceptance of our proforma invoice or issuance of a purchase order confirms the buyer’s unconditional acceptance of these terms.',
+      ],
+    },
+    {
+      id: 'sec-2',
+      title: 'Specifications, grading & tolerance',
+      content: [
+        'Agricultural produce (including Bhagwa pomegranates, Nashik red onions, Basmati rice, and spices) is graded in conformity with mutually agreed specifications and statutory APEDA / Agmark export standards.',
+        'Due to the natural organic characteristics of perishable cargo, slight natural tolerances in caliber diameter, weight variance (+/- 5%), and minor natural skin shading are recognized within standard international commerce conventions.',
+      ],
+    },
+    {
+      id: 'sec-3',
+      title: 'Incoterms & ocean freight',
+      content: [
+        'Unless expressly stated otherwise in written contracts, all sales terms follow Incoterms 2020 rules (principally FOB Nhava Sheva/Mundra or CIF destination port).',
+        'Risk of loss or damage transfers in accordance with the specified Incoterm once the sealed shipping container crosses the ocean vessel’s rail at the Indian loading terminal.',
+      ],
+    },
+    {
+      id: 'sec-4',
+      title: 'Inspection & phytosanitary clearance',
+      content: [
+        'All consignments undergo statutory pre-shipment phytosanitary quarantine clearance and packhouse grading inspection prior to container sealing.',
+        'Independent third-party inspection (e.g., SGS, Bureau Veritas) may be arranged at the loading port upon the buyer’s written request and expense prior to dispatch.',
+      ],
+    },
+    {
+      id: 'sec-5',
+      title: 'Payment terms & documents release',
+      content: [
+        'Standard accepted payment terms include confirmed irrevocable Letter of Credit (L/C) at sight or 30% advance Telegraphic Transfer (T/T) with remaining balance payable upon presentation of scanned shipping documents (draft BL, invoice, packing list, phytosanitary certificate).',
+        'Original negotiable documents or electronic telex release will only be executed upon receipt of cleared funds.',
+      ],
+    },
+    {
+      id: 'sec-6',
+      title: 'Governing law & dispute resolution',
+      content: [
+        'These trade terms and all underlying export contracts are governed by and construed in accordance with the laws of India.',
+        'Any disputes arising in connection with trade contracts that cannot be resolved amicably shall be submitted to arbitration under Indian arbitration procedures in Maharashtra, India.',
+      ],
+    },
   ];
 
-  const sections = isPrivacy ? privacySections : termsSections;
+  const activeSections = isPrivacy ? privacySections : termsSections;
 
   return (
-    <div className="legal-page-content" style={{ width: '100%', overflowX: 'hidden' }}>
-      {/* 1. INNER PAGE HERO (compact 280px navy gradient banner with watermark) */}
-      <section className="inner-page-hero">
-        <img
-          src="/vasudha-mark-light-for-navy.svg"
-          alt=""
-          aria-hidden="true"
-          className="inner-page-hero-swoosh"
-        />
-        <div className="container" style={{ position: 'relative', zIndex: 1 }}>
-          <nav className="inner-page-hero-breadcrumb" aria-label="Breadcrumb">
-            <button type="button" onClick={() => onNavigate('/')}>
-              Home
-            </button>
-            <span>/</span>
-            <span style={{ color: '#FFFFFF' }}>Legal</span>
-            <span>/</span>
-            <span style={{ color: '#FFFFFF' }}>{pageTitle}</span>
-          </nav>
-          <span
-            className="eyebrow"
+    <div className="legal-page-flow" style={{ width: '100%', overflow: 'hidden' }}>
+      {/* =====================================================================
+          1. INNER BANNER (Pattern A)
+          ===================================================================== */}
+      <InnerBanner
+        pill="Legal & Compliance"
+        title={pageTitle}
+        subtitle={subLine}
+      />
+
+      {/* Switcher Pill Tabs for Convenient Toggling */}
+      <div style={{ backgroundColor: 'var(--white)', borderBottom: '1px solid var(--line)', padding: '16px 0' }}>
+        <div className="container" style={{ display: 'flex', justifyContent: 'center', gap: '12px' }}>
+          <button
+            type="button"
+            className={`chip ${isPrivacy ? 'selected' : ''}`}
+            onClick={() => {
+              setActiveTab('privacy');
+              setActiveSectionId('sec-1');
+            }}
             style={{
-              backgroundColor: 'rgba(255, 255, 255, 0.16)',
-              color: '#FFFFFF',
+              padding: '8px 24px',
+              borderRadius: 'var(--radius-pill)',
+              cursor: 'pointer',
+              fontWeight: 600,
             }}
           >
-            Legal
-          </span>
-          <h1>{pageTitle}</h1>
-          <p className="sub-line">
-            Last updated January 2026 · Vasudha Freshline Exports LLP statutory compliance policies.
-          </p>
+            Privacy Policy
+          </button>
+          <button
+            type="button"
+            className={`chip ${!isPrivacy ? 'selected' : ''}`}
+            onClick={() => {
+              setActiveTab('terms');
+              setActiveSectionId('sec-1');
+            }}
+            style={{
+              padding: '8px 24px',
+              borderRadius: 'var(--radius-pill)',
+              cursor: 'pointer',
+              fontWeight: 600,
+            }}
+          >
+            Terms of Trade
+          </button>
         </div>
-      </section>
+      </div>
 
-      {/* 2. Reading Layout (Two columns on desktop) */}
-      <section className="section-white" style={{ paddingTop: '16px', paddingBottom: '96px' }}>
+      {/* =====================================================================
+          2. READING LAYOUT (White section, 720px column + sticky desktop index)
+          ===================================================================== */}
+      <section className="section section-white" style={{ paddingTop: '56px', paddingBottom: '96px' }}>
         <div className="container">
-          <div className="legal-grid-layout">
-            {/* Left Column: Sticky Sidebar with section anchors */}
+          <div
+            style={{
+              display: 'flex',
+              gap: '56px',
+              alignItems: 'flex-start',
+              justifyContent: 'center',
+            }}
+          >
+            {/* Desktop Sticky Section List (Left Column) */}
             <aside
               style={{
+                width: '240px',
+                minWidth: '240px',
                 position: 'sticky',
-                top: '100px',
-                paddingLeft: '16px',
-                borderLeft: '2px solid var(--line)',
-                display: 'flex',
-                flexDirection: 'column',
-                gap: '14px',
+                top: '110px',
+                display: 'none',
               }}
+              className="legal-desktop-sidebar"
             >
-              <span
+              <div
                 style={{
-                  fontFamily: 'var(--font-heading)',
-                  fontSize: '12px',
-                  fontWeight: 700,
-                  letterSpacing: '0.08em',
-                  textTransform: 'uppercase',
-                  color: 'var(--olive-deep)',
+                  padding: '24px',
+                  backgroundColor: '#F8F9F5',
+                  borderRadius: '16px',
+                  border: '1px solid var(--line)',
                 }}
               >
-                CONTENTS
-              </span>
-              {sections.map((s) => (
-                <a
-                  key={s.id}
-                  href={`#${s.id}`}
-                  onClick={(e) => {
-                    e.preventDefault();
-                    setActiveSection(s.id);
-                    const el = document.getElementById(s.id);
-                    if (el) {
-                      el.scrollIntoView({ behavior: 'smooth' });
-                    }
-                  }}
+                <div
                   style={{
-                    textDecoration: 'none',
-                    fontSize: '14px',
-                    lineHeight: '20px',
-                    color: activeSection === s.id ? 'var(--navy)' : 'var(--muted)',
-                    fontWeight: activeSection === s.id ? 700 : 500,
-                    transition: 'color 150ms ease',
+                    fontSize: '12px',
+                    fontWeight: 700,
+                    textTransform: 'uppercase',
+                    letterSpacing: '0.08em',
+                    color: 'var(--navy)',
+                    marginBottom: '16px',
                   }}
                 >
-                  {s.title}
-                </a>
-              ))}
+                  SECTIONS
+                </div>
+
+                <nav style={{ display: 'flex', flexDirection: 'column', gap: '10px' }}>
+                  {activeSections.map((sec, idx) => {
+                    const isActive = activeSectionId === sec.id;
+                    return (
+                      <a
+                        key={sec.id}
+                        href={`#${sec.id}`}
+                        onClick={(e) => {
+                          e.preventDefault();
+                          setActiveSectionId(sec.id);
+                          const el = document.getElementById(sec.id);
+                          if (el) {
+                            el.scrollIntoView({ behavior: 'smooth', block: 'start' });
+                          }
+                        }}
+                        style={{
+                          fontSize: '14px',
+                          lineHeight: '20px',
+                          color: isActive ? 'var(--navy)' : 'var(--muted)',
+                          fontWeight: isActive ? 700 : 500,
+                          textDecoration: 'none',
+                          paddingBottom: '4px',
+                          borderBottom: isActive ? '2px solid var(--leaf)' : '2px solid transparent',
+                          transition: 'all 0.2s ease',
+                        }}
+                      >
+                        {idx + 1}. {sec.title}
+                      </a>
+                    );
+                  })}
+                </nav>
+              </div>
             </aside>
 
-            {/* Right Column: Max-width 680px Reading Column */}
-            <article style={{ maxWidth: '680px', display: 'flex', flexDirection: 'column', gap: '40px' }}>
-              {/* Draft badge at top */}
-              <div>
-                <span
-                  className="chip"
+            {/* Main Reading Column (720px) */}
+            <main
+              style={{
+                maxWidth: '720px',
+                width: '100%',
+                flex: '1 1 auto',
+              }}
+            >
+              <div style={{ display: 'flex', flexDirection: 'column', gap: '48px' }}>
+                {activeSections.map((sec, idx) => (
+                  <article
+                    key={sec.id}
+                    id={sec.id}
+                    style={{
+                      scrollMarginTop: '120px',
+                    }}
+                  >
+                    <h2
+                      style={{
+                        fontFamily: 'var(--font-heading)',
+                        fontSize: '24px',
+                        fontWeight: 800,
+                        color: 'var(--navy)',
+                        marginBottom: '16px',
+                        lineHeight: '1.3',
+                      }}
+                    >
+                      {idx + 1}. {sec.title}
+                    </h2>
+                    <div style={{ display: 'flex', flexDirection: 'column', gap: '14px' }}>
+                      {sec.content.map((p, pIdx) => (
+                        <p
+                          key={pIdx}
+                          style={{
+                            fontSize: '16px',
+                            lineHeight: '28px',
+                            color: 'var(--body)',
+                            margin: 0,
+                          }}
+                        >
+                          {p}
+                        </p>
+                      ))}
+                    </div>
+                  </article>
+                ))}
+
+                {/* Small Card at the End: "Questions about this page? Contact us." */}
+                <div
+                  className="card"
                   style={{
-                    display: 'inline-flex',
+                    backgroundColor: '#F8F9F5',
+                    borderRadius: '20px',
+                    padding: '32px',
+                    border: '1px solid var(--line)',
+                    display: 'flex',
                     alignItems: 'center',
-                    gap: '6px',
-                    fontSize: '12px',
-                    fontWeight: 600,
-                    backgroundColor: 'var(--mist)',
-                    borderColor: 'var(--line)',
-                    color: 'var(--olive-deep)',
-                    padding: '4px 12px',
+                    justifyContent: 'space-between',
+                    gap: '24px',
+                    flexWrap: 'wrap',
+                    marginTop: '24px',
                   }}
                 >
-                  Draft version for review
-                </span>
+                  <div style={{ display: 'flex', alignItems: 'center', gap: '16px' }}>
+                    <div
+                      style={{
+                        width: '48px',
+                        height: '48px',
+                        minWidth: '48px',
+                        borderRadius: '50%',
+                        backgroundColor: 'var(--leaf-tint)',
+                        color: 'var(--leaf)',
+                        display: 'flex',
+                        alignItems: 'center',
+                        justifyContent: 'center',
+                      }}
+                    >
+                      <HelpCircle size={24} />
+                    </div>
+                    <div>
+                      <h3 style={{ fontSize: '18px', color: 'var(--navy)', margin: '0 0 4px 0' }}>
+                        Questions about this page?
+                      </h3>
+                      <p style={{ fontSize: '14px', color: 'var(--muted)', margin: 0 }}>
+                        Speak with our export legal and compliance desk for clarifications.
+                      </p>
+                    </div>
+                  </div>
+
+                  <button
+                    type="button"
+                    className="btn-primary"
+                    onClick={() => onNavigate('/contact')}
+                    style={{ padding: '0 24px' }}
+                  >
+                    <span>Contact us</span>
+                    <ArrowRight size={16} />
+                  </button>
+                </div>
               </div>
-
-              {isPrivacy ? (
-                <>
-                  <div id="sec1">
-                    <h2 style={{ fontSize: '24px', margin: '0 0 12px 0' }}>1. Information collected</h2>
-                    <p style={{ margin: 0, fontSize: '16px', lineHeight: '26px', color: 'var(--charcoal)' }}>
-                      We collect business contact information, commercial company names, delivery requirements and communication coordinates submitted via quotation and contact requests.
-                    </p>
-                  </div>
-
-                  <div id="sec2">
-                    <h2 style={{ fontSize: '24px', margin: '0 0 12px 0' }}>2. Purpose of processing</h2>
-                    <p style={{ margin: 0, fontSize: '16px', lineHeight: '26px', color: 'var(--charcoal)' }}>
-                      Information is processed strictly to prepare export specifications, evaluate container logistics routes, arrange phytosanitary inspections and communicate trade contract details.
-                    </p>
-                  </div>
-
-                  <div id="sec3">
-                    <h2 style={{ fontSize: '24px', margin: '0 0 12px 0' }}>3. Data security & retention</h2>
-                    <p style={{ margin: 0, fontSize: '16px', lineHeight: '26px', color: 'var(--charcoal)' }}>
-                      All commercial customer records and export customs filings are maintained securely in compliance with applicable statutory recordkeeping standards.
-                    </p>
-                  </div>
-
-                  <div id="sec4">
-                    <h2 style={{ fontSize: '24px', margin: '0 0 12px 0' }}>4. International trade partners</h2>
-                    <p style={{ margin: 0, fontSize: '16px', lineHeight: '26px', color: 'var(--charcoal)' }}>
-                      Necessary shipment details are shared solely with authorized customs brokers, port authorities and ocean carriers required to complete container transport.
-                    </p>
-                  </div>
-
-                  <div id="sec5">
-                    <h2 style={{ fontSize: '24px', margin: '0 0 12px 0' }}>5. Contact coordinates</h2>
-                    <p style={{ margin: 0, fontSize: '16px', lineHeight: '26px', color: 'var(--charcoal)' }}>
-                      For privacy documentation requests, contact Vasudha Freshline Exports LLP at exports@vasudhafreshline.com, Pune, Maharashtra, India.
-                    </p>
-                  </div>
-                </>
-              ) : (
-                <>
-                  <div id="sec1">
-                    <h2 style={{ fontSize: '24px', margin: '0 0 12px 0' }}>1. Wholesale export scope</h2>
-                    <p style={{ margin: 0, fontSize: '16px', lineHeight: '26px', color: 'var(--charcoal)' }}>
-                      All transactions are conducted on a business-to-business basis for full container loads (FCL). Orders are subject to confirmed commercial invoices and sales contracts.
-                    </p>
-                  </div>
-
-                  <div id="sec2">
-                    <h2 style={{ fontSize: '24px', margin: '0 0 12px 0' }}>2. Container specifications & tolerance</h2>
-                    <p style={{ margin: 0, fontSize: '16px', lineHeight: '26px', color: 'var(--charcoal)' }}>
-                      Agricultural produce is graded to agreed caliber parameters at the packhouse. Natural transit moisture loss is accounted for in agreed packaging allowances.
-                    </p>
-                  </div>
-
-                  <div id="sec3">
-                    <h2 style={{ fontSize: '24px', margin: '0 0 12px 0' }}>3. Pricing, shipping & Incoterms</h2>
-                    <p style={{ margin: 0, fontSize: '16px', lineHeight: '26px', color: 'var(--charcoal)' }}>
-                      Prices are quoted in agreed foreign currency under Incoterms (FOB, CFR, or CIF). Vessel departure schedules and ocean freight rates are confirmed upon booking.
-                    </p>
-                  </div>
-
-                  <div id="sec4">
-                    <h2 style={{ fontSize: '24px', margin: '0 0 12px 0' }}>4. Documentation & inspection</h2>
-                    <p style={{ margin: 0, fontSize: '16px', lineHeight: '26px', color: 'var(--charcoal)' }}>
-                      Each container is accompanied by commercial invoice, packing list, bill of lading, certificate of origin and phytosanitary certificate.
-                    </p>
-                  </div>
-
-                  <div id="sec5">
-                    <h2 style={{ fontSize: '24px', margin: '0 0 12px 0' }}>5. Governing law & arbitration</h2>
-                    <p style={{ margin: 0, fontSize: '16px', lineHeight: '26px', color: 'var(--charcoal)' }}>
-                      Commercial contracts are governed by Indian law. Disputes are resolved under standard commercial arbitration protocols in India.
-                    </p>
-                  </div>
-                </>
-              )}
-            </article>
+            </main>
           </div>
         </div>
       </section>
+
+      {/* Responsive CSS for desktop sidebar */}
+      <style>{`
+        @media (min-width: 992px) {
+          .legal-desktop-sidebar {
+            display: block !important;
+          }
+        }
+      `}</style>
     </div>
   );
 };

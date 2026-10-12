@@ -1,37 +1,110 @@
 import React, { useState } from 'react';
 import {
   ArrowRight,
-  Boxes,
-  Scale,
-  Globe,
+  Ship,
+  Sparkles,
+  Info,
 } from 'lucide-react';
-import { QuoteFormSection } from '../components/QuoteFormSection';
+import { InnerBanner } from '../components/InnerBanner';
+import { CallStrip } from '../components/CallStrip';
+import { ClosingCtaBand } from '../components/ClosingCtaBand';
 
 interface CalculatorPageProps {
   onNavigate: (path: string) => void;
   onOpenRfq: (product?: string) => void;
 }
 
-const PRODUCTS = [
-  'Pomegranates',
-  'Onions',
-  'Rice',
-  'Spices',
-  'Fresh fruits',
-  'Fresh vegetables',
+interface ProductItem {
+  id: string;
+  name: string;
+  color: string;
+  colorHex: string;
+  tint: string;
+  category: string;
+  typicalContainer: '20 ft' | '40 ft';
+}
+
+const PRODUCTS_DATA: ProductItem[] = [
+  {
+    id: 'pomegranates',
+    name: 'Pomegranates',
+    color: 'var(--crimson)',
+    colorHex: '#B3263E',
+    tint: 'var(--crimson-tint)',
+    category: 'Fresh fruit',
+    typicalContainer: '40 ft',
+  },
+  {
+    id: 'onions',
+    name: 'Onions',
+    color: 'var(--plum)',
+    colorHex: '#7B3F86',
+    tint: 'var(--plum-tint)',
+    category: 'Fresh vegetable',
+    typicalContainer: '40 ft',
+  },
+  {
+    id: 'rice',
+    name: 'Rice',
+    color: 'var(--saffron)',
+    colorHex: '#B05A06',
+    tint: 'var(--saffron-tint)',
+    category: 'Grain',
+    typicalContainer: '20 ft',
+  },
+  {
+    id: 'spices',
+    name: 'Spices',
+    color: 'var(--blue)',
+    colorHex: '#2F55C2',
+    tint: 'var(--blue-tint)',
+    category: 'Spice',
+    typicalContainer: '20 ft',
+  },
+  {
+    id: 'fresh-fruits',
+    name: 'Fresh fruits',
+    color: 'var(--teal)',
+    colorHex: '#0D7377',
+    tint: 'var(--teal-tint)',
+    category: 'Fresh fruit',
+    typicalContainer: '40 ft',
+  },
+  {
+    id: 'fresh-vegetables',
+    name: 'Fresh vegetables',
+    color: 'var(--leaf)',
+    colorHex: '#5B7A1F',
+    tint: 'var(--leaf-tint)',
+    category: 'Fresh vegetable',
+    typicalContainer: '40 ft',
+  },
 ];
 
 export const CalculatorPage: React.FC<CalculatorPageProps> = ({
   onNavigate,
   onOpenRfq,
 }) => {
-  const [product, setProduct] = useState<string>('Pomegranates');
+  const [selectedProduct, setSelectedProduct] = useState<string>('Pomegranates');
   const [quantity, setQuantity] = useState<number>(100);
-  const [containerType, setContainerType] = useState<'20ft' | '40ft'>('40ft');
+  const [containerSize, setContainerSize] = useState<'20 ft' | '40 ft'>('40 ft');
 
-  // Sample payload figures: 20 ft = 20 tonnes; 40 ft = 26 tonnes
-  const payloadPerContainer = containerType === '20ft' ? 20 : 26;
-  const containerCount = Math.max(1, Math.ceil(quantity / payloadPerContainer));
+  const currentProduct =
+    PRODUCTS_DATA.find((p) => p.name === selectedProduct) || PRODUCTS_DATA[0];
+
+  // Payloads: 20 ft = 20 tonnes, 40 ft = 26 tonnes
+  const payloadPerContainer = containerSize === '20 ft' ? 20 : 26;
+  const containersNeeded = Math.max(1, Math.ceil(quantity / payloadPerContainer));
+  const sliderPercent = Math.min(100, Math.max(0, ((quantity - 1) / (500 - 1)) * 100));
+
+  const handleProductChange = (e: React.ChangeEvent<HTMLSelectElement>) => {
+    const newName = e.target.value;
+    setSelectedProduct(newName);
+    const prod = PRODUCTS_DATA.find((p) => p.name === newName);
+    if (prod) {
+      setContainerSize(prod.typicalContainer);
+    }
+  };
 
   const handleSliderChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     const val = parseInt(e.target.value, 10);
@@ -47,492 +120,545 @@ export const CalculatorPage: React.FC<CalculatorPageProps> = ({
     }
   };
 
-  const handleRequestQuote = () => {
-    // Scroll smoothly to the quote form section or open RFQ modal
-    const quoteEl = document.getElementById('quote-section');
-    if (quoteEl) {
-      quoteEl.scrollIntoView({ behavior: 'smooth' });
-    } else {
-      onOpenRfq(product);
-    }
-  };
-
   return (
-    <div className="calculator-page" style={{ width: '100%', overflowX: 'hidden' }}>
-      {/* 1. INNER PAGE HERO (compact 280px navy gradient banner with watermark) */}
-      <section className="inner-page-hero">
-        <img
-          src="/vasudha-mark-light-for-navy.svg"
-          alt=""
-          aria-hidden="true"
-          className="inner-page-hero-swoosh"
-        />
-        <div className="container" style={{ position: 'relative', zIndex: 1 }}>
-          <nav className="inner-page-hero-breadcrumb" aria-label="Breadcrumb">
-            <button type="button" onClick={() => onNavigate('/')}>
-              Home
-            </button>
-            <span>/</span>
-            <span style={{ color: '#FFFFFF' }}>Tools</span>
-            <span>/</span>
-            <span style={{ color: '#FFFFFF' }}>Container calculator</span>
-          </nav>
-          <span
-            className="eyebrow"
-            style={{
-              backgroundColor: 'rgba(255, 255, 255, 0.16)',
-              color: '#FFFFFF',
-            }}
-          >
-            Tools
-          </span>
-          <h1>Container load calculator.</h1>
-          <p className="sub-line">
-            Estimate how many 20ft or 40ft containers you need for your order volume.
-          </p>
-        </div>
-      </section>
+    <div className="calculator-page-flow" style={{ width: '100%', overflow: 'hidden' }}>
+      {/* =====================================================================
+          1. INNER BANNER (Pattern A)
+          ===================================================================== */}
+      <InnerBanner
+        pill="Calculator"
+        title="Container load estimator"
+        subtitle="Estimate how many containers your order needs."
+      />
 
-      {/* 2. CALCULATOR SECTION (Mist with two glows, 2 Columns) */}
-      <section className="section-mist has-glows" style={{ paddingTop: '72px', paddingBottom: '88px', position: 'relative' }}>
+      {/* =====================================================================
+          2. TWO COLUMNS (White with two glows)
+          Left: Large white card titled "Your order"
+          Right: Result card with banner gradient background
+          ===================================================================== */}
+      <section className="section section-white has-glows">
         <div className="glow-orb glow-leaf-tl" aria-hidden="true" />
         <div className="glow-orb glow-blue-br" aria-hidden="true" />
+
         <div className="container" style={{ position: 'relative', zIndex: 1 }}>
           <div
             style={{
               display: 'grid',
               gridTemplateColumns: 'repeat(auto-fit, minmax(min(100%, 460px), 1fr))',
               gap: '40px',
-              alignItems: 'start',
+              alignItems: 'stretch',
             }}
           >
-            {/* Left Column: Form Controls */}
+            {/* LEFT COLUMN: Input Card */}
             <div
               className="card"
               style={{
-                padding: '40px',
+                backgroundColor: 'var(--white)',
+                borderRadius: '24px',
+                padding: '40px 36px',
+                boxShadow: 'var(--shadow-lg)',
+                border: '1px solid var(--border-subtle)',
+                position: 'relative',
+                overflow: 'hidden',
                 display: 'flex',
                 flexDirection: 'column',
-                gap: '32px',
-                border: '1px solid rgba(16, 16, 79, 0.08)',
+                justifyContent: 'space-between',
               }}
             >
-              {/* Product Selector */}
-              <div>
-                <label
-                  style={{
-                    display: 'block',
-                    fontFamily: 'var(--font-heading)',
-                    fontSize: '15px',
-                    fontWeight: 700,
-                    color: 'var(--navy)',
-                    marginBottom: '12px',
-                  }}
-                >
-                  Select produce commodity
-                </label>
-                <div style={{ display: 'flex', flexWrap: 'wrap', gap: '8px' }}>
-                  {PRODUCTS.map((p) => {
-                    const isActive = product === p;
-                    return (
-                      <button
-                        key={p}
-                        type="button"
-                        onClick={() => setProduct(p)}
-                        className={`chip ${isActive ? 'active' : ''}`}
-                        style={{
-                          cursor: 'pointer',
-                          padding: '8px 16px',
-                          fontSize: '14px',
-                          fontWeight: isActive ? 600 : 500,
-                          borderRadius: 'var(--radius-pill)',
-                          border: isActive ? '1px solid var(--navy)' : '1px solid var(--line)',
-                          backgroundColor: isActive ? 'var(--navy)' : 'var(--white)',
-                          color: isActive ? 'var(--white)' : 'var(--charcoal)',
-                          transition: 'all 0.2s ease',
-                        }}
-                      >
-                        {p}
-                      </button>
-                    );
-                  })}
-                </div>
-              </div>
+              {/* 4px Gradient Top Bar */}
+              <div
+                style={{
+                  position: 'absolute',
+                  top: 0,
+                  left: 0,
+                  right: 0,
+                  height: '4px',
+                  background: 'linear-gradient(90deg, var(--leaf) 0%, var(--blue) 100%)',
+                }}
+              />
 
-              {/* Quantity Input & Slider (1 to 500 tonnes) */}
               <div>
-                <div
-                  style={{
-                    display: 'flex',
-                    justifyContent: 'space-between',
-                    alignItems: 'center',
-                    marginBottom: '12px',
-                  }}
-                >
-                  <label
-                    htmlFor="calc-quantity-input"
+                <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', marginBottom: '28px' }}>
+                  <h2 style={{ fontSize: '24px', color: 'var(--navy)', margin: 0 }}>
+                    Your order
+                  </h2>
+                  <span
                     style={{
-                      fontFamily: 'var(--font-heading)',
-                      fontSize: '15px',
-                      fontWeight: 700,
-                      color: 'var(--navy)',
+                      display: 'inline-flex',
+                      alignItems: 'center',
+                      gap: '6px',
+                      fontSize: '13px',
+                      fontWeight: 600,
+                      color: currentProduct.color,
+                      backgroundColor: currentProduct.tint,
+                      padding: '4px 12px',
+                      borderRadius: 'var(--radius-pill)',
                     }}
                   >
-                    Target volume (Metric Tonnes)
+                    <Sparkles size={13} />
+                    {currentProduct.category}
+                  </span>
+                </div>
+
+                {/* 1. Product (Styled Select, six products) */}
+                <div style={{ marginBottom: '28px' }}>
+                  <label
+                    htmlFor="calc-product-select"
+                    style={{
+                      display: 'block',
+                      fontSize: '14px',
+                      fontWeight: 700,
+                      color: 'var(--navy)',
+                      marginBottom: '8px',
+                      letterSpacing: '0.02em',
+                    }}
+                  >
+                    Product
                   </label>
-                  <div style={{ display: 'flex', alignItems: 'center', gap: '8px' }}>
-                    <input
-                      id="calc-quantity-input"
-                      type="number"
-                      min={1}
-                      max={500}
-                      step={1}
-                      value={quantity}
-                      onChange={handleNumberChange}
+                  <div style={{ position: 'relative' }}>
+                    <select
+                      id="calc-product-select"
+                      value={selectedProduct}
+                      onChange={handleProductChange}
+                      className="input"
                       style={{
-                        width: '90px',
-                        height: '42px',
-                        textAlign: 'center',
-                        fontWeight: 700,
-                        fontSize: '16px',
-                        color: 'var(--navy)',
-                        borderRadius: '8px',
+                        width: '100%',
+                        height: '52px',
+                        padding: '0 16px',
+                        borderRadius: 'var(--radius-input)',
                         border: '1.5px solid var(--line)',
-                        padding: '0 8px',
+                        backgroundColor: 'var(--white)',
+                        color: 'var(--navy)',
+                        fontSize: '16px',
+                        fontWeight: 600,
+                        cursor: 'pointer',
+                        outline: 'none',
                       }}
-                    />
-                    <span style={{ fontSize: '14px', fontWeight: 600, color: 'var(--muted)' }}>MT</span>
+                    >
+                      {PRODUCTS_DATA.map((p) => (
+                        <option key={p.id} value={p.name}>
+                          {p.name}
+                        </option>
+                      ))}
+                    </select>
                   </div>
                 </div>
 
-                <input
-                  type="range"
-                  min={1}
-                  max={500}
-                  step={1}
-                  value={quantity}
-                  onChange={handleSliderChange}
-                  aria-label="Volume slider in metric tonnes"
-                  style={{
-                    width: '100%',
-                    accentColor: 'var(--navy)',
-                    cursor: 'pointer',
-                    height: '8px',
-                    borderRadius: '4px',
-                    marginTop: '8px',
-                  }}
-                />
+                {/* 2. Quantity in Tonnes (Slider 1 to 500 with number field) */}
+                <div style={{ marginBottom: '28px' }}>
+                  <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: '8px' }}>
+                    <label
+                      htmlFor="calc-quantity-number"
+                      style={{
+                        fontSize: '14px',
+                        fontWeight: 700,
+                        color: 'var(--navy)',
+                        letterSpacing: '0.02em',
+                      }}
+                    >
+                      Quantity in tonnes
+                    </label>
+                    <div style={{ display: 'flex', alignItems: 'center', gap: '8px' }}>
+                      <input
+                        id="calc-quantity-number"
+                        type="number"
+                        min="1"
+                        max="500"
+                        value={quantity}
+                        onChange={handleNumberChange}
+                        style={{
+                          width: '90px',
+                          height: '42px',
+                          padding: '0 10px',
+                          textAlign: 'center',
+                          borderRadius: '10px',
+                          border: '1.5px solid var(--line)',
+                          fontSize: '16px',
+                          fontWeight: 700,
+                          color: 'var(--navy)',
+                          outline: 'none',
+                        }}
+                      />
+                      <span style={{ fontSize: '14px', color: 'var(--muted)', fontWeight: 600 }}>tonnes</span>
+                    </div>
+                  </div>
 
-                <div
-                  style={{
-                    display: 'flex',
-                    justifyContent: 'space-between',
-                    fontSize: '12px',
-                    color: 'var(--muted)',
-                    marginTop: '8px',
-                  }}
-                >
-                  <span>1 MT (Min)</span>
-                  <span>100 MT</span>
-                  <span>250 MT</span>
-                  <span>500 MT</span>
+                  {/* Slider with filled part in product color */}
+                  <div style={{ padding: '8px 0' }}>
+                    <input
+                      type="range"
+                      min="1"
+                      max="500"
+                      value={quantity}
+                      onChange={handleSliderChange}
+                      aria-label="Order quantity in tonnes"
+                      style={{
+                        width: '100%',
+                        height: '8px',
+                        borderRadius: '4px',
+                        outline: 'none',
+                        appearance: 'none',
+                        WebkitAppearance: 'none',
+                        cursor: 'pointer',
+                        background: `linear-gradient(to right, ${currentProduct.colorHex} 0%, ${currentProduct.colorHex} ${sliderPercent}%, #E2E6D8 ${sliderPercent}%, #E2E6D8 100%)`,
+                      }}
+                    />
+                    <div
+                      style={{
+                        display: 'flex',
+                        justifyContent: 'space-between',
+                        marginTop: '8px',
+                        fontSize: '12px',
+                        color: 'var(--muted)',
+                        fontWeight: 500,
+                      }}
+                    >
+                      <span>1 tonne (Min FCL)</span>
+                      <span>250 tonnes</span>
+                      <span>500 tonnes</span>
+                    </div>
+                  </div>
+                </div>
+
+                {/* 3. Container size (.chip: 20 ft, 40 ft) */}
+                <div>
+                  <span
+                    style={{
+                      display: 'block',
+                      fontSize: '14px',
+                      fontWeight: 700,
+                      color: 'var(--navy)',
+                      marginBottom: '10px',
+                      letterSpacing: '0.02em',
+                    }}
+                  >
+                    Container size
+                  </span>
+                  <div style={{ display: 'flex', gap: '12px', flexWrap: 'wrap' }}>
+                    <button
+                      type="button"
+                      className={`chip ${containerSize === '20 ft' ? 'selected' : ''}`}
+                      onClick={() => setContainerSize('20 ft')}
+                      style={{
+                        padding: '10px 24px',
+                        borderRadius: 'var(--radius-pill)',
+                        cursor: 'pointer',
+                        transition: 'all 0.2s ease',
+                      }}
+                    >
+                      <span>20 ft container</span>
+                    </button>
+                    <button
+                      type="button"
+                      className={`chip ${containerSize === '40 ft' ? 'selected' : ''}`}
+                      onClick={() => setContainerSize('40 ft')}
+                      style={{
+                        padding: '10px 24px',
+                        borderRadius: 'var(--radius-pill)',
+                        cursor: 'pointer',
+                        transition: 'all 0.2s ease',
+                      }}
+                    >
+                      <span>40 ft container</span>
+                    </button>
+                  </div>
                 </div>
               </div>
 
-              {/* Container Size Selector Chips */}
-              <div>
-                <label
-                  style={{
-                    display: 'block',
-                    fontFamily: 'var(--font-heading)',
-                    fontSize: '15px',
-                    fontWeight: 700,
-                    color: 'var(--navy)',
-                    marginBottom: '12px',
-                  }}
-                >
-                  Container specification
-                </label>
-                <div style={{ display: 'flex', flexDirection: 'column', gap: '10px' }}>
-                  <button
-                    type="button"
-                    onClick={() => setContainerType('40ft')}
-                    style={{
-                      textAlign: 'left',
-                      padding: '16px 20px',
-                      borderRadius: '14px',
-                      cursor: 'pointer',
-                      border: containerType === '40ft' ? '2px solid var(--navy)' : '1px solid var(--line)',
-                      backgroundColor: containerType === '40ft' ? 'rgba(16, 16, 79, 0.04)' : 'var(--white)',
-                      transition: 'all 0.2s ease',
-                      display: 'flex',
-                      alignItems: 'center',
-                      justifyContent: 'space-between',
-                    }}
-                  >
-                    <div>
-                      <div style={{ fontWeight: 700, color: 'var(--navy)', fontSize: '15px' }}>
-                        40 ft High-cube / Reefer
-                      </div>
-                      <div style={{ fontSize: '13px', color: 'var(--muted)', marginTop: '2px' }}>
-                        Standard payload: 26 metric tonnes per container
-                      </div>
-                    </div>
-                    {containerType === '40ft' && (
-                      <div
-                        style={{
-                          width: '20px',
-                          height: '20px',
-                          borderRadius: '50%',
-                          backgroundColor: 'var(--navy)',
-                          display: 'flex',
-                          alignItems: 'center',
-                          justifyContent: 'center',
-                          color: '#fff',
-                        }}
-                      >
-                        ✓
-                      </div>
-                    )}
-                  </button>
-
-                  <button
-                    type="button"
-                    onClick={() => setContainerType('20ft')}
-                    style={{
-                      textAlign: 'left',
-                      padding: '16px 20px',
-                      borderRadius: '14px',
-                      cursor: 'pointer',
-                      border: containerType === '20ft' ? '2px solid var(--navy)' : '1px solid var(--line)',
-                      backgroundColor: containerType === '20ft' ? 'rgba(16, 16, 79, 0.04)' : 'var(--white)',
-                      transition: 'all 0.2s ease',
-                      display: 'flex',
-                      alignItems: 'center',
-                      justifyContent: 'space-between',
-                    }}
-                  >
-                    <div>
-                      <div style={{ fontWeight: 700, color: 'var(--navy)', fontSize: '15px' }}>
-                        20 ft Standard Dry / Reefer
-                      </div>
-                      <div style={{ fontSize: '13px', color: 'var(--muted)', marginTop: '2px' }}>
-                        Standard payload: 20 metric tonnes per container
-                      </div>
-                    </div>
-                    {containerType === '20ft' && (
-                      <div
-                        style={{
-                          width: '20px',
-                          height: '20px',
-                          borderRadius: '50%',
-                          backgroundColor: 'var(--navy)',
-                          display: 'flex',
-                          alignItems: 'center',
-                          justifyContent: 'center',
-                          color: '#fff',
-                        }}
-                      >
-                        ✓
-                      </div>
-                    )}
-                  </button>
-                </div>
+              <div
+                style={{
+                  marginTop: '32px',
+                  paddingTop: '20px',
+                  borderTop: '1px solid var(--line)',
+                  display: 'flex',
+                  alignItems: 'center',
+                  gap: '8px',
+                  fontSize: '13px',
+                  color: 'var(--muted)',
+                }}
+              >
+                <Info size={15} style={{ flexShrink: 0, color: 'var(--olive)' }} />
+                <span>
+                  Slider color matches fixed produce tone for <strong>{currentProduct.name}</strong>.
+                </span>
               </div>
             </div>
 
-            {/* Right Column: Navy Card (Matches Stats Strip) with Live Results */}
+            {/* RIGHT COLUMN: Result Card with Banner Gradient Background */}
             <div
+              className="card"
               style={{
-                backgroundColor: 'var(--navy)',
-                borderRadius: 'var(--radius-card)',
-                padding: '48px 40px',
-                color: 'var(--white)',
-                boxShadow: '0 20px 48px rgba(16, 16, 79, 0.2)',
+                background: 'linear-gradient(100deg, #10104F 0%, #1A2A7C 55%, #0D6B72 100%)',
+                borderRadius: '24px',
+                padding: '40px 36px',
+                boxShadow: 'var(--shadow-lg)',
+                color: '#FFFFFF',
                 display: 'flex',
                 flexDirection: 'column',
-                gap: '32px',
-                position: 'sticky',
-                top: '100px',
+                justifyContent: 'space-between',
+                position: 'relative',
+                overflow: 'hidden',
               }}
             >
-              <div>
+              {/* Swoosh watermark background */}
+              <img
+                src="/vasudha-mark-light-for-navy.svg"
+                alt=""
+                aria-hidden="true"
+                style={{
+                  position: 'absolute',
+                  right: '-60px',
+                  bottom: '-60px',
+                  width: '320px',
+                  height: '320px',
+                  opacity: 0.08,
+                  pointerEvents: 'none',
+                }}
+              />
+
+              <div style={{ position: 'relative', zIndex: 1 }}>
                 <span
                   style={{
                     display: 'inline-block',
-                    fontFamily: 'var(--font-heading)',
+                    backgroundColor: 'rgba(255, 255, 255, 0.16)',
+                    color: '#FFFFFF',
+                    padding: '6px 16px',
+                    borderRadius: 'var(--radius-pill)',
                     fontSize: '12px',
                     fontWeight: 700,
+                    letterSpacing: '0.06em',
                     textTransform: 'uppercase',
-                    letterSpacing: '0.08em',
-                    color: 'var(--olive-light)',
-                    marginBottom: '8px',
+                    marginBottom: '20px',
                   }}
                 >
-                  ESTIMATED SHIPMENT REQUIREMENT
+                  ESTIMATE SUMMARY
                 </span>
+
+                <div style={{ fontSize: '16px', color: 'rgba(255, 255, 255, 0.85)', fontWeight: 600 }}>
+                  Approx. containers needed
+                </div>
+
+                {/* Very large live number */}
                 <div
                   style={{
                     fontFamily: 'var(--font-heading)',
-                    fontSize: '56px',
-                    lineHeight: '1.1',
+                    fontSize: 'clamp(64px, 10vw, 88px)',
                     fontWeight: 800,
-                    color: 'var(--white)',
-                    letterSpacing: '-0.02em',
+                    lineHeight: 1,
+                    letterSpacing: '-0.04em',
+                    color: '#FFFFFF',
+                    margin: '8px 0 24px 0',
+                    transition: 'all 0.3s cubic-bezier(0.22, 1, 0.36, 1)',
                   }}
                 >
-                  {containerCount} {containerCount === 1 ? 'container' : 'containers'}
+                  {containersNeeded}
+                  <span
+                    style={{
+                      fontSize: '22px',
+                      fontWeight: 700,
+                      color: 'rgba(255, 255, 255, 0.75)',
+                      marginLeft: '12px',
+                      letterSpacing: 'normal',
+                    }}
+                  >
+                    {containersNeeded === 1 ? 'container' : 'containers'}
+                  </span>
                 </div>
+
+                {/* Specification breakdown */}
                 <div
                   style={{
-                    fontSize: '18px',
-                    fontWeight: 600,
-                    color: 'rgba(255, 255, 255, 0.9)',
-                    marginTop: '8px',
+                    backgroundColor: 'rgba(255, 255, 255, 0.08)',
+                    borderRadius: '16px',
+                    padding: '20px',
+                    display: 'flex',
+                    flexDirection: 'column',
+                    gap: '12px',
+                    marginBottom: '28px',
+                    border: '1px solid rgba(255, 255, 255, 0.12)',
                   }}
                 >
-                  {quantity} tonnes total weight · {product}
+                  <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', fontSize: '15px' }}>
+                    <span style={{ color: 'rgba(255, 255, 255, 0.75)' }}>Approx. total weight:</span>
+                    <strong style={{ color: '#FFFFFF', fontSize: '16px' }}>{quantity} tonnes</strong>
+                  </div>
+
+                  <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', fontSize: '15px' }}>
+                    <span style={{ color: 'rgba(255, 255, 255, 0.75)' }}>Product:</span>
+                    <strong style={{ color: '#FFFFFF', fontSize: '16px' }}>{currentProduct.name}</strong>
+                  </div>
+
+                  <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', fontSize: '15px' }}>
+                    <span style={{ color: 'rgba(255, 255, 255, 0.75)' }}>Container size:</span>
+                    <strong style={{ color: '#FFFFFF', fontSize: '16px' }}>{containerSize} ({containerSize === '20 ft' ? 'Dry Box' : 'Reefer / HC'})</strong>
+                  </div>
+
+                  <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', fontSize: '15px' }}>
+                    <span style={{ color: 'rgba(255, 255, 255, 0.75)' }}>Payload factor:</span>
+                    <strong style={{ color: '#FFFFFF', fontSize: '16px' }}>{payloadPerContainer} tonnes / box</strong>
+                  </div>
                 </div>
+
+                {/* Small Note */}
+                <p
+                  style={{
+                    fontSize: '13px',
+                    lineHeight: '20px',
+                    color: 'rgba(255, 255, 255, 0.75)',
+                    margin: '0 0 28px 0',
+                  }}
+                >
+                  Sample payloads only. Final loading is confirmed in your quote.
+                </p>
               </div>
 
-              {/* Specification Breakdown */}
-              <div
-                style={{
-                  backgroundColor: 'rgba(255, 255, 255, 0.08)',
-                  borderRadius: '16px',
-                  padding: '24px',
-                  display: 'flex',
-                  flexDirection: 'column',
-                  gap: '12px',
-                  fontSize: '14px',
-                  lineHeight: '22px',
-                  color: 'rgba(255, 255, 255, 0.85)',
-                }}
-              >
-                <div style={{ display: 'flex', justifyContent: 'space-between', borderBottom: '1px solid rgba(255, 255, 255, 0.1)', paddingBottom: '10px' }}>
-                  <span>Container specification:</span>
-                  <strong style={{ color: 'var(--white)' }}>
-                    {containerType === '40ft' ? '40 ft High-cube' : '20 ft Standard'}
-                  </strong>
-                </div>
-                <div style={{ display: 'flex', justifyContent: 'space-between', borderBottom: '1px solid rgba(255, 255, 255, 0.1)', paddingBottom: '10px' }}>
-                  <span>Calculated payload per unit:</span>
-                  <strong style={{ color: 'var(--white)' }}>{payloadPerContainer} MT / FCL</strong>
-                </div>
-                <div style={{ display: 'flex', justifyContent: 'space-between' }}>
-                  <span>Estimated cargo volume:</span>
-                  <strong style={{ color: 'var(--white)' }}>{(containerCount * payloadPerContainer)} MT nominal capacity</strong>
-                </div>
+              {/* White .btn-light button opening Contact */}
+              <div style={{ position: 'relative', zIndex: 1 }}>
+                <button
+                  type="button"
+                  className="btn-light"
+                  onClick={() => onNavigate('/contact')}
+                  style={{
+                    width: '100%',
+                    justifyContent: 'center',
+                    cursor: 'pointer',
+                  }}
+                >
+                  <span>Request a quote for this order</span>
+                  <ArrowRight size={16} />
+                </button>
               </div>
-
-              {/* Soft Note */}
-              <p
-                style={{
-                  margin: 0,
-                  fontSize: '13px',
-                  lineHeight: '20px',
-                  color: 'rgba(255, 255, 255, 0.7)',
-                  fontStyle: 'italic',
-                }}
-              >
-                Indicative calculation. Final container payload depends on product grade, packing format, and port weight regulations.
-              </p>
-
-              {/* Primary CTA */}
-              <button
-                type="button"
-                className="btn-light"
-                onClick={handleRequestQuote}
-                style={{ width: '100%', justifyContent: 'center' }}
-              >
-                <span>Request a quote for this order</span>
-                <ArrowRight size={16} />
-              </button>
             </div>
           </div>
         </div>
       </section>
 
-      {/* 3. HOW WE CALCULATE (White, 3 Cards) */}
-      <section className="section-white has-glows" style={{ paddingTop: '88px', paddingBottom: '88px' }}>
-        <div className="glow-orb glow-plum-tr" aria-hidden="true" />
-        <div className="glow-orb glow-teal-bl" aria-hidden="true" />
-        <div className="container" style={{ position: 'relative', zIndex: 1 }}>
-          <div className="section-intro" style={{ maxWidth: '640px', marginBottom: '48px' }}>
-            <span className="eyebrow">Calculations</span>
-            <h2>How we calculate <span className="text-highlight-leaf">payloads</span>.</h2>
-            <div className="section-intro-bar" />
-            <p className="sub-line">
-              Standard commercial payload guidelines applied by our export logistics operations.
-            </p>
-          </div>
-
+      {/* =====================================================================
+          3. HOW WE CALCULATE (Mist section)
+          White card with two general sentences and a small table of sample payloads
+          ===================================================================== */}
+      <section className="section section-mist">
+        <div className="container">
           <div
+            className="card"
             style={{
-              display: 'grid',
-              gridTemplateColumns: 'repeat(auto-fit, minmax(min(100%, 320px), 1fr))',
-              gap: '32px',
+              maxWidth: '960px',
+              margin: '0 auto',
+              backgroundColor: 'var(--white)',
+              borderRadius: '24px',
+              padding: '44px 40px',
+              boxShadow: 'var(--shadow-md)',
+              border: '1px solid var(--border-subtle)',
             }}
           >
-            {/* Card 1: Reefer vs Dry Payload */}
-            <div className="card">
-              <div
-                className="icon-circle"
+            <div style={{ textAlign: 'center', marginBottom: '32px' }}>
+              <span className="eyebrow">Calculations</span>
+              <h3 style={{ fontSize: '26px', color: 'var(--navy)', margin: '8px 0 12px 0' }}>
+                How we calculate container payload
+              </h3>
+              <p
                 style={{
-                  backgroundColor: 'var(--leaf-tint)',
-                  color: 'var(--leaf)',
-                  marginBottom: '20px',
+                  fontSize: '16px',
+                  lineHeight: '26px',
+                  color: 'var(--body)',
+                  maxWidth: '720px',
+                  margin: '0 auto',
                 }}
               >
-                <Boxes size={24} />
-              </div>
-              <h3 style={{ fontSize: '20px', marginBottom: '12px' }}>Reefer vs Dry payload</h3>
-              <p style={{ margin: 0, fontSize: '15px', lineHeight: '24px', color: 'var(--muted)' }}>
-                Refrigerated containers (reefers) dedicate internal volume to airflow ducts and refrigeration machinery, typically yielding 20–26 MT net produce. Standard dry containers for non-perishables maximize structural tare weight allowances.
+                We calculate container capacity based on standard ocean carrier payload limits for dry freight and temperature-controlled reefer boxes. Final stowage volume depends on packaging specifications, gross tare weight, pallet configuration, and destination port weight regulations.
               </p>
             </div>
 
-            {/* Card 2: Packing Weight Overhead */}
-            <div className="card">
-              <div
-                className="icon-circle"
+            {/* Small Table of Sample Payloads */}
+            <div style={{ overflowX: 'auto', WebkitOverflowScrolling: 'touch' }}>
+              <table
                 style={{
-                  backgroundColor: 'var(--blue-tint)',
-                  color: 'var(--blue)',
-                  marginBottom: '20px',
+                  width: '100%',
+                  borderCollapse: 'collapse',
+                  fontSize: '14px',
+                  textAlign: 'left',
                 }}
               >
-                <Scale size={24} />
-              </div>
-              <h3 style={{ fontSize: '20px', marginBottom: '12px' }}>Packing weight overhead</h3>
-              <p style={{ margin: 0, fontSize: '15px', lineHeight: '24px', color: 'var(--muted)' }}>
-                Master cartons, corrugated dividers, wooden pallets, corner boards, and moisture absorbers contribute approximately 5% to 8% tare to total gross container weight. Specifications account for this buffer.
-              </p>
+                <thead>
+                  <tr style={{ backgroundColor: '#F4F6EF', borderBottom: '2px solid var(--line)' }}>
+                    <th style={{ padding: '14px 18px', fontWeight: 700, color: 'var(--navy)' }}>
+                      Container Size
+                    </th>
+                    <th style={{ padding: '14px 18px', fontWeight: 700, color: 'var(--navy)' }}>
+                      Sample Payload
+                    </th>
+                    <th style={{ padding: '14px 18px', fontWeight: 700, color: 'var(--navy)' }}>
+                      Commodity Suitability
+                    </th>
+                    <th style={{ padding: '14px 18px', fontWeight: 700, color: 'var(--navy)' }}>
+                      Container Type
+                    </th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr style={{ borderBottom: '1px solid var(--line)' }}>
+                    <td style={{ padding: '16px 18px', fontWeight: 700, color: 'var(--navy)' }}>
+                      <div style={{ display: 'flex', alignItems: 'center', gap: '8px' }}>
+                        <Ship size={16} style={{ color: 'var(--blue)' }} />
+                        <span>20 ft Container</span>
+                      </div>
+                    </td>
+                    <td style={{ padding: '16px 18px', color: 'var(--body)', fontWeight: 600 }}>
+                      20 tonnes
+                    </td>
+                    <td style={{ padding: '16px 18px', color: 'var(--muted)' }}>
+                      Basmati rice, non-Basmati rice, whole & ground spices in sacks
+                    </td>
+                    <td style={{ padding: '16px 18px', color: 'var(--muted)' }}>
+                      Standard Dry Van (General Purpose)
+                    </td>
+                  </tr>
+                  <tr>
+                    <td style={{ padding: '16px 18px', fontWeight: 700, color: 'var(--navy)' }}>
+                      <div style={{ display: 'flex', alignItems: 'center', gap: '8px' }}>
+                        <Ship size={16} style={{ color: 'var(--teal)' }} />
+                        <span>40 ft High-Cube Reefer</span>
+                      </div>
+                    </td>
+                    <td style={{ padding: '16px 18px', color: 'var(--body)', fontWeight: 600 }}>
+                      26 tonnes
+                    </td>
+                    <td style={{ padding: '16px 18px', color: 'var(--muted)' }}>
+                      Bhagwa pomegranates, Nashik red onions, fresh seasonal fruits & vegetables
+                    </td>
+                    <td style={{ padding: '16px 18px', color: 'var(--muted)' }}>
+                      Temperature-Controlled Reefer (-0.5°C to +14°C)
+                    </td>
+                  </tr>
+                </tbody>
+              </table>
             </div>
 
-            {/* Card 3: Weight Limits by Destination Country */}
-            <div className="card">
-              <div
-                className="icon-circle"
-                style={{
-                  backgroundColor: 'var(--teal-tint)',
-                  color: 'var(--teal)',
-                  marginBottom: '20px',
-                }}
-              >
-                <Globe size={24} />
-              </div>
-              <h3 style={{ fontSize: '20px', marginBottom: '12px' }}>Destination country limits</h3>
-              <p style={{ margin: 0, fontSize: '15px', lineHeight: '24px', color: 'var(--muted)' }}>
-                Road axle weight regulations vary by country. Middle East and GCC ports generally permit up to 26–28 MT gross container mass, whereas specific European and North American overland routes impose stricter 20–22 MT limits.
-              </p>
+            <div style={{ textAlign: 'center', marginTop: '24px' }}>
+              <span style={{ fontSize: '13px', color: 'var(--muted)' }}>
+                Sample payloads. Exact loading is confirmed with carton dimensions, pallet weights, and destination road limits.
+              </span>
             </div>
           </div>
         </div>
       </section>
 
-      {/* 4. QUOTE FORM BAND (Navy) */}
-      <QuoteFormSection initialProduct={product} />
+      {/* =====================================================================
+          4. CALL STRIP (Pattern D)
+          ===================================================================== */}
+      <section className="section section-white" style={{ paddingTop: 0, paddingBottom: '64px' }}>
+        <div className="container">
+          <CallStrip />
+        </div>
+      </section>
+
+      {/* =====================================================================
+          5. CLOSING CTA BAND (Pattern E)
+          ===================================================================== */}
+      <ClosingCtaBand
+        onOpenRfq={() => onOpenRfq(selectedProduct)}
+        onRequestQuote={() => onNavigate('/contact')}
+      />
     </div>
   );
 };

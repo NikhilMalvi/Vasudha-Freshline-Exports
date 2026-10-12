@@ -11,7 +11,7 @@ import { AboutPage } from './pages/AboutPage';
 import { CertificatesPage } from './pages/CertificatesPage';
 import { GalleryPage } from './pages/GalleryPage';
 import { FaqsPage } from './pages/FaqsPage';
-import { QuotePage } from './pages/QuotePage';
+import { ContactPage } from './pages/ContactPage';
 import { CalculatorPage } from './pages/CalculatorPage';
 import { LegalPage } from './pages/LegalPage';
 import { NotFoundPage } from './pages/NotFoundPage';
@@ -118,9 +118,9 @@ export function App() {
 
     if (currentPath === '/contact' || currentPath === '/quote') {
       return (
-        <QuotePage
-          initialProduct={selectedProduct}
+        <ContactPage
           onNavigate={navigateTo}
+          onOpenRfq={handleOpenRfq}
         />
       );
     }

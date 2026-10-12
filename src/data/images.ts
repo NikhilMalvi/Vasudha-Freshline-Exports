@@ -13,8 +13,8 @@ export const IMAGES: Record<string, string> = {
   // ---------------------------------------------------------------------------
 
   // 01-pomegranate-cut-open (Home hero, Products, Pomegranates page)
-  pomegranatesCut: 'https://images.unsplash.com/photo-1606923829579-0cb981a83e2e?auto=format&fit=crop&w=1200&q=80',
-  '01-pomegranate-cut-open': 'https://images.unsplash.com/photo-1606923829579-0cb981a83e2e?auto=format&fit=crop&w=1200&q=80',
+  pomegranatesCut: 'https://images.unsplash.com/photo-1553530666-ba11a7da3888?auto=format&fit=crop&w=1200&q=80',
+  '01-pomegranate-cut-open': 'https://images.unsplash.com/photo-1553530666-ba11a7da3888?auto=format&fit=crop&w=1200&q=80',
 
   // 02-pomegranates-crate (Pomegranates page, Gallery)
   pomegranatesBox: 'https://images.unsplash.com/photo-1541344999736-83eca272f6fc?auto=format&fit=crop&w=1200&q=80',
@@ -96,7 +96,7 @@ export const IMAGES: Record<string, string> = {
   'H3-hero-rice-wide': 'https://images.unsplash.com/photo-1586201375761-83865001e31c?auto=format&fit=crop&w=2000&q=85',
 
   // Fallback commodity keys
-  pomegranates: 'https://images.unsplash.com/photo-1615485290382-441e4d049cb5?auto=format&fit=crop&w=1000&q=80',
+  pomegranates: 'https://images.unsplash.com/photo-1541344999736-83eca272f6fc?auto=format&fit=crop&w=1000&q=80',
   rice: 'https://images.unsplash.com/photo-1586201375761-83865001e31c?auto=format&fit=crop&w=1000&q=80',
 };
 

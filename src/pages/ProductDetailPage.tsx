@@ -1027,13 +1027,13 @@ export const ProductDetailPage: React.FC<ProductDetailPageProps> = ({
           <div
             style={{
               display: 'grid',
-              gridTemplateColumns: 'repeat(auto-fit, minmax(min(100%, 460px), 1fr))',
-              gap: '56px',
+              gridTemplateColumns: 'repeat(auto-fit, minmax(min(100%, 420px), 1fr))',
+              gap: '48px',
               alignItems: 'center',
             }}
           >
             {/* Left Content */}
-            <div>
+            <div style={{ maxWidth: '580px' }}>
               <div style={{ marginBottom: '14px' }}>
                 <span
                   className="eyebrow"
@@ -1052,8 +1052,8 @@ export const ProductDetailPage: React.FC<ProductDetailPageProps> = ({
                 style={{
                   fontFamily: 'var(--font-heading)',
                   fontWeight: 800,
-                  fontSize: 'clamp(36px, 4.5vw, 52px)',
-                  lineHeight: '1.14',
+                  fontSize: 'clamp(34px, 4vw, 48px)',
+                  lineHeight: '1.15',
                   color: 'var(--navy)',
                   margin: '0 0 16px 0',
                   letterSpacing: '-0.02em',
@@ -1064,11 +1064,11 @@ export const ProductDetailPage: React.FC<ProductDetailPageProps> = ({
 
               <p
                 style={{
-                  fontSize: '18px',
-                  lineHeight: '28px',
+                  fontSize: '17px',
+                  lineHeight: '27px',
                   color: 'var(--body)',
                   marginBottom: '28px',
-                  maxWidth: '540px',
+                  maxWidth: '520px',
                 }}
               >
                 {product.sentence}
@@ -1154,14 +1154,22 @@ export const ProductDetailPage: React.FC<ProductDetailPageProps> = ({
             </div>
 
             {/* Right Media Gallery */}
-            <div style={{ position: 'relative' }}>
-              {/* Main Rounded Image (4:5) */}
+            <div
+              style={{
+                position: 'relative',
+                maxWidth: '400px',
+                width: '100%',
+                margin: '0 auto',
+              }}
+            >
+              {/* Main Rounded Image (Compact 4:3) */}
               <div
                 style={{
                   position: 'relative',
                   width: '100%',
-                  aspectRatio: '4 / 5',
-                  borderRadius: '24px',
+                  aspectRatio: '4 / 3',
+                  maxHeight: '320px',
+                  borderRadius: '20px',
                   overflow: 'hidden',
                   boxShadow: 'var(--shadow-md)',
                   backgroundColor: 'var(--mist)',
@@ -1179,20 +1187,20 @@ export const ProductDetailPage: React.FC<ProductDetailPageProps> = ({
                   }}
                 />
 
-                {/* Floating Card on Lower-Left corner with 4px top bar */}
+                {/* Floating Card on Lower-Left corner with 3px top bar */}
                 <div
                   style={{
                     position: 'absolute',
-                    bottom: '20px',
-                    left: '20px',
-                    right: '20px',
-                    backgroundColor: 'var(--white)',
-                    borderRadius: '16px',
-                    padding: '16px 20px',
-                    boxShadow: 'var(--shadow-lg)',
+                    bottom: '12px',
+                    left: '12px',
+                    right: '12px',
+                    backgroundColor: 'rgba(255, 255, 255, 0.95)',
+                    borderRadius: '14px',
+                    padding: '10px 14px',
+                    boxShadow: '0 8px 24px rgba(16, 16, 79, 0.12)',
                     border: '1px solid rgba(255, 255, 255, 0.8)',
                     zIndex: 2,
-                    backdropFilter: 'blur(10px)',
+                    backdropFilter: 'blur(8px)',
                   }}
                 >
                   <div
@@ -1201,33 +1209,33 @@ export const ProductDetailPage: React.FC<ProductDetailPageProps> = ({
                       top: 0,
                       left: 0,
                       right: 0,
-                      height: '4px',
+                      height: '3px',
                       backgroundColor: product.colorVar,
-                      borderTopLeftRadius: '16px',
-                      borderTopRightRadius: '16px',
+                      borderTopLeftRadius: '14px',
+                      borderTopRightRadius: '14px',
                     }}
                   />
-                  <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', flexWrap: 'wrap', gap: '10px' }}>
+                  <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', flexWrap: 'wrap', gap: '8px' }}>
                     <div>
-                      <div style={{ fontSize: '11px', color: 'var(--muted)', textTransform: 'uppercase', fontWeight: 600 }}>Season</div>
-                      <div style={{ fontSize: '13px', fontWeight: 700, color: 'var(--navy)' }}>{product.floatingCard.season}</div>
+                      <div style={{ fontSize: '10px', color: 'var(--muted)', textTransform: 'uppercase', fontWeight: 600 }}>Season</div>
+                      <div style={{ fontSize: '12px', fontWeight: 700, color: 'var(--navy)' }}>{product.floatingCard.season}</div>
                     </div>
-                    <div style={{ width: '1px', height: '24px', backgroundColor: 'var(--line)' }} />
+                    <div style={{ width: '1px', height: '18px', backgroundColor: 'var(--line)' }} />
                     <div>
-                      <div style={{ fontSize: '11px', color: 'var(--muted)', textTransform: 'uppercase', fontWeight: 600 }}>Packing</div>
-                      <div style={{ fontSize: '13px', fontWeight: 700, color: 'var(--navy)' }}>{product.floatingCard.packing}</div>
+                      <div style={{ fontSize: '10px', color: 'var(--muted)', textTransform: 'uppercase', fontWeight: 600 }}>Packing</div>
+                      <div style={{ fontSize: '12px', fontWeight: 700, color: 'var(--navy)' }}>{product.floatingCard.packing}</div>
                     </div>
-                    <div style={{ width: '1px', height: '24px', backgroundColor: 'var(--line)' }} />
+                    <div style={{ width: '1px', height: '18px', backgroundColor: 'var(--line)' }} />
                     <div>
-                      <div style={{ fontSize: '11px', color: 'var(--muted)', textTransform: 'uppercase', fontWeight: 600 }}>Min. Order</div>
-                      <div style={{ fontSize: '13px', fontWeight: 700, color: 'var(--leaf)' }}>{product.floatingCard.moq}</div>
+                      <div style={{ fontSize: '10px', color: 'var(--muted)', textTransform: 'uppercase', fontWeight: 600 }}>Min. Order</div>
+                      <div style={{ fontSize: '12px', fontWeight: 700, color: 'var(--leaf)' }}>{product.floatingCard.moq}</div>
                     </div>
                   </div>
                 </div>
               </div>
 
               {/* Three Thumbnails */}
-              <div style={{ display: 'flex', gap: '12px', marginTop: '16px' }}>
+              <div style={{ display: 'flex', gap: '10px', marginTop: '12px', justifyContent: 'center' }}>
                 {product.thumbnails.map((thumb, idx) => (
                   <button
                     key={idx}
@@ -1235,16 +1243,16 @@ export const ProductDetailPage: React.FC<ProductDetailPageProps> = ({
                     onClick={() => setActiveImage(thumb)}
                     style={{
                       flex: 1,
-                      aspectRatio: '1',
-                      borderRadius: '14px',
+                      height: '62px',
+                      borderRadius: '12px',
                       overflow: 'hidden',
                       padding: 0,
-                      border: activeImage === thumb ? `3px solid ${product.colorVar}` : '2px solid transparent',
+                      border: activeImage === thumb ? `2.5px solid ${product.colorVar}` : '1.5px solid var(--line)',
                       cursor: 'pointer',
                       boxShadow: 'var(--shadow-xs)',
                       backgroundColor: 'var(--mist)',
                       transition: 'border 0.2s ease, transform 0.2s ease',
-                      transform: activeImage === thumb ? 'scale(1.02)' : 'none',
+                      transform: activeImage === thumb ? 'scale(1.03)' : 'none',
                     }}
                   >
                     <img

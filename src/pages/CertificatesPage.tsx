@@ -386,7 +386,7 @@ export const CertificatesPage: React.FC<CertificatesPageProps> = ({
           5. REQUEST CARD (mist section)
           Wide white card (--shadow-md, radius 24px)
           ===================================================================== */}
-      <section className="section section-mist" style={{ paddingTop: '64px', paddingBottom: '64px' }}>
+      <section className="section section-mist" style={{ paddingTop: '88px', paddingBottom: '88px' }}>
         <div className="container">
           <div
             className="card"
@@ -395,14 +395,14 @@ export const CertificatesPage: React.FC<CertificatesPageProps> = ({
               margin: '0 auto',
               backgroundColor: 'var(--white)',
               borderRadius: '24px',
-              padding: '48px 40px',
+              padding: '52px 40px',
               boxShadow: 'var(--shadow-md)',
               border: '1px solid var(--border-subtle)',
               textAlign: 'center',
               display: 'flex',
               flexDirection: 'column',
               alignItems: 'center',
-              gap: '16px',
+              gap: '20px',
             }}
           >
             <div
@@ -422,11 +422,11 @@ export const CertificatesPage: React.FC<CertificatesPageProps> = ({
               Need a copy of a certificate or a test report?
             </h3>
 
-            <p style={{ fontSize: '16px', color: 'var(--body)', margin: 0, maxWidth: '600px' }}>
+            <p style={{ fontSize: '16px', color: 'var(--body)', margin: 0, maxWidth: '600px', lineHeight: '26px' }}>
               We share statutory certificates and accredited lab test reports with verified buyers upon inquiry.
             </p>
 
-            <div style={{ marginTop: '12px' }}>
+            <div style={{ marginTop: '16px' }}>
               <button
                 type="button"
                 className="btn-primary"
@@ -443,7 +443,7 @@ export const CertificatesPage: React.FC<CertificatesPageProps> = ({
       {/* =====================================================================
           6. CALL STRIP (Pattern D)
           ===================================================================== */}
-      <section className="section section-white" style={{ paddingTop: 0, paddingBottom: '64px' }}>
+      <section className="section section-white" style={{ paddingTop: '80px', paddingBottom: '104px' }}>
         <div className="container">
           <CallStrip />
         </div>

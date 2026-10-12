@@ -742,7 +742,7 @@ export const AboutPage: React.FC<AboutPageProps> = ({ onNavigate, onOpenRfq }) =
       {/* =====================================================================
           8. CALL STRIP (Pattern D)
           ===================================================================== */}
-      <section className="section section-white" style={{ paddingTop: 0, paddingBottom: '64px' }}>
+      <section className="section section-white" style={{ paddingTop: '80px', paddingBottom: '104px' }}>
         <div className="container">
           <CallStrip />
         </div>

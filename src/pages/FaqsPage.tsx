@@ -280,7 +280,7 @@ export const FaqsPage: React.FC<FaqsPageProps> = ({ onOpenRfq }) => {
       {/* =====================================================================
           4. CALL STRIP (Pattern D)
           ===================================================================== */}
-      <section className="section section-white" style={{ paddingTop: '64px', paddingBottom: '64px' }}>
+      <section className="section section-white" style={{ paddingTop: '80px', paddingBottom: '104px' }}>
         <div className="container">
           <CallStrip />
         </div>

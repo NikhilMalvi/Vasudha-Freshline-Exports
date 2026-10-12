@@ -646,7 +646,7 @@ export const CalculatorPage: React.FC<CalculatorPageProps> = ({
       {/* =====================================================================
           4. CALL STRIP (Pattern D)
           ===================================================================== */}
-      <section className="section section-white" style={{ paddingTop: 0, paddingBottom: '64px' }}>
+      <section className="section section-white" style={{ paddingTop: '80px', paddingBottom: '104px' }}>
         <div className="container">
           <CallStrip />
         </div>

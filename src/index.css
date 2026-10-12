@@ -1964,6 +1964,20 @@ body:has(.home-hero-fullbleed) .site-header:not(.scrolled) .brand-logo-img {
   border-radius: var(--radius-pill);
 }
 
+/* Form inputs V4 crisp field styling */
+.v4-form-input,
+.v4-form-select,
+.v4-form-textarea {
+  border: 1.5px solid #D2D7C8 !important;
+  background-color: #FFFFFF !important;
+  box-shadow: 0 1px 3px rgba(16, 16, 79, 0.04);
+}
+
+.v4-form-select[name="countryCode"] {
+  background-color: #EEF0E6 !important;
+  border-right: none !important;
+}
+
 /* Form inputs V4 clean focus styling */
 .v4-form-input:focus,
 .v4-form-select:focus,
@@ -1978,8 +1992,24 @@ body:has(.home-hero-fullbleed) .site-header:not(.scrolled) .brand-logo-img {
   grid-column: span 7;
 }
 
+.contact-form-card {
+  background-color: #F7F8F3;
+  border-radius: 24px;
+  padding: 44px 38px;
+  box-shadow: var(--shadow-md);
+  border: 1.5px solid var(--line);
+  position: relative;
+  overflow: hidden;
+}
+
 .contact-col-right {
   grid-column: span 5;
+}
+
+@media (max-width: 768px) {
+  .contact-form-card {
+    padding: 28px 20px;
+  }
 }
 
 @media (max-width: 900px) {

@@ -6,6 +6,7 @@ import {
   MapPin,
   Clock,
   CheckCircle2,
+  Lock,
 } from 'lucide-react';
 import { InnerBanner } from '../components/InnerBanner';
 import { ClosingCtaBand } from '../components/ClosingCtaBand';
@@ -82,8 +83,11 @@ export const ContactPage: React.FC<ContactPageProps> = ({ onNavigate, onOpenRfq 
       {/* =====================================================================
           2. TWO COLUMNS (white section; left 7 of 12 columns, right 5)
           ===================================================================== */}
-      <section className="section section-white">
-        <div className="container">
+      <section className="section section-white has-glows" style={{ position: 'relative', overflow: 'hidden' }}>
+        <div className="glow-orb glow-leaf-tl" aria-hidden="true" />
+        <div className="glow-orb glow-blue-br" aria-hidden="true" />
+
+        <div className="container" style={{ position: 'relative', zIndex: 1 }}>
           <div
             style={{
               display: 'grid',
@@ -92,14 +96,42 @@ export const ContactPage: React.FC<ContactPageProps> = ({ onNavigate, onOpenRfq 
               alignItems: 'start',
             }}
           >
-            {/* Left 7 Columns: Form */}
+            {/* Left 7 Columns: Form in dedicated Card */}
             <div className="contact-col-left">
-              <h3 style={{ fontSize: '28px', color: 'var(--navy)', marginBottom: '8px' }}>
-                Send us a message
-              </h3>
-              <p style={{ fontSize: '15px', color: 'var(--muted)', marginBottom: '32px' }}>
-                Our export sales desk reviews all trade inquiries and replies with full specifications promptly.
-              </p>
+              <div className="contact-form-card">
+                {/* 4px Gradient Accent Top Bar */}
+                <div
+                  style={{
+                    position: 'absolute',
+                    top: 0,
+                    left: 0,
+                    right: 0,
+                    height: '4px',
+                    background: 'linear-gradient(90deg, var(--leaf) 0%, var(--blue) 100%)',
+                  }}
+                />
+
+                <div style={{ marginBottom: '28px' }}>
+                  <span
+                    className="eyebrow"
+                    style={{
+                      backgroundColor: 'var(--leaf-tint)',
+                      color: 'var(--leaf)',
+                      fontSize: '11px',
+                      padding: '4px 12px',
+                      display: 'inline-block',
+                      marginBottom: '10px',
+                    }}
+                  >
+                    TRADE ENQUIRY
+                  </span>
+                  <h3 style={{ fontSize: '28px', color: 'var(--navy)', margin: '0 0 8px 0', fontFamily: 'var(--font-heading)', fontWeight: 800 }}>
+                    Send us a message
+                  </h3>
+                  <p style={{ fontSize: '15px', color: 'var(--muted)', margin: 0, lineHeight: '24px' }}>
+                    Our export sales desk reviews all trade inquiries and replies with full specifications promptly.
+                  </p>
+                </div>
 
               {formSubmitted ? (
                 <div
@@ -509,19 +541,25 @@ export const ContactPage: React.FC<ContactPageProps> = ({ onNavigate, onOpenRfq 
                     />
                   </div>
 
-                  <div style={{ marginTop: '8px' }}>
+                  <div style={{ marginTop: '8px', display: 'flex', alignItems: 'center', justifyContent: 'space-between', flexWrap: 'wrap', gap: '16px' }}>
                     <button
                       type="submit"
                       className="btn-primary"
                       disabled={formSubmitting}
-                      style={{ width: '100%', maxWidth: '280px' }}
+                      style={{ padding: '0 32px', minWidth: '220px' }}
                     >
                       <span>{formSubmitting ? 'Submitting...' : 'Submit enquiry'}</span>
                       <ArrowRight size={16} />
                     </button>
+
+                    <div style={{ display: 'flex', alignItems: 'center', gap: '8px', fontSize: '13px', color: 'var(--muted)' }}>
+                      <Lock size={14} style={{ color: 'var(--leaf)' }} />
+                      <span>Inquiries handled confidentially</span>
+                    </div>
                   </div>
                 </form>
               )}
+              </div>
             </div>
 
             {/* Right 5 Columns: Our Details */}

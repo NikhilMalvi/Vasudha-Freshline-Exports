@@ -9,111 +9,150 @@ import {
   FileText,
   ShieldCheck,
   Award,
-  Globe,
-  HelpCircle,
+  ChevronDown,
   FileCheck,
-  PackageCheck,
-  Image as ImageIcon,
+  Sparkles,
+  CircleDot,
+  Layers,
+  Apple,
+  Carrot,
 } from 'lucide-react';
 import { IMAGES } from '../data/images';
-import { QuoteFormSection } from '../components/QuoteFormSection';
 
 interface ProductDetailPageProps {
   slug: string;
   onNavigate: (path: string) => void;
   onOpenRfq: (product?: string) => void;
-  onOpenBrochure?: () => void;
 }
 
-interface ProductData {
+interface SpecItem {
+  label: string;
+  value: string;
+}
+
+interface MonthItem {
+  month: string;
+  status: 'peak' | 'available' | 'none';
+}
+
+interface ProductConfig {
   id: string;
   name: string;
   category: string;
+  colorVar: string;
+  tintVar: string;
+  badgeClass: string;
   sentence: string;
   mainImage: string;
   thumbnails: string[];
+  floatingCard: {
+    season: string;
+    packing: string;
+    moq: string;
+  };
   keyFacts: {
     variety: string;
     origin: string;
     packing: string;
     moq: string;
-    season: string;
   };
-  specTable: {
-    product: { label: string; value: string }[];
-    packing: { label: string; value: string }[];
-    shipping: { label: string; value: string }[];
-    terms: { label: string; value: string }[];
-  };
-  months: { month: string; status: 'peak' | 'available' | 'none' }[];
+  isOnionSeasonCard?: boolean;
+  itemsWeSupply?: {
+    name: string;
+    img: string;
+  }[];
+  specGroups: {
+    title: string;
+    items: SpecItem[];
+  }[];
+  months: MonthItem[];
   isRealSeason?: boolean;
   packingCards: {
     title: string;
-    caption: string;
-    img?: string;
-    isPlaceholder?: boolean;
+    desc: string;
+    img: string;
   }[];
-  supplyItems?: {
-    name: string;
-    img?: string;
-    isPlaceholder?: boolean;
+  faq: {
+    q: string;
+    a: string;
   }[];
-  faq: { q: string; a: string }[];
-  related: {
+  relatedProducts: {
     id: string;
     name: string;
     category: string;
     path: string;
     img: string;
     desc: string;
+    colorVar: string;
+    badgeClass: string;
+    icon: React.ElementType;
   }[];
 }
 
-const PRODUCTS_MAP: Record<string, ProductData> = {
+const PRODUCTS_DATA: Record<string, ProductConfig> = {
   pomegranates: {
     id: 'pomegranates',
     name: 'Pomegranates',
     category: 'Fresh fruit',
+    colorVar: 'var(--crimson)',
+    tintVar: 'var(--crimson-tint)',
+    badgeClass: 'badge-crimson',
     sentence: 'Export-grade Bhagwa pomegranates packed in calibrated corrugated cartons.',
     mainImage: IMAGES.pomegranatesCut,
     thumbnails: [
       IMAGES.pomegranatesCut,
-      IMAGES.pomegranates,
       IMAGES.pomegranatesBox,
+      IMAGES['01-pomegranate-cut-open'],
     ],
+    floatingCard: {
+      season: 'July to February',
+      packing: '3.5kg / 5kg cartons',
+      moq: '1 container (FCL)',
+    },
     keyFacts: {
-      variety: 'Bhagwa',
+      variety: 'Bhagwa (Sindhuri)',
       origin: 'Maharashtra, India',
       packing: '3.5kg / 5kg cartons',
       moq: '1 container (FCL)',
-      season: 'Year-round',
     },
-    specTable: {
-      product: [
-        { label: 'Variety', value: 'Bhagwa (Sindhuri)' },
-        { label: 'Origin', value: 'India' },
-        { label: 'Size or grade', value: 'Count 9 to 15 (200g - 400g)' },
-        { label: 'Colour', value: 'Deep red arils, glossy red skin' },
-      ],
-      packing: [
-        { label: 'Packing type', value: 'Ventilated export cartons' },
-        { label: 'Net weight', value: '3.5 kg / 5.0 kg net per box' },
-        { label: 'Labelling', value: 'Buyer specifications / barcode' },
-      ],
-      shipping: [
-        { label: 'Container type', value: '40ft High Cube Reefer (+5°C to +7°C)' },
-        { label: 'Quantity per container', value: 'Approx. 4,400 to 5,000 cartons' },
-        { label: 'Port of loading', value: 'JNPT / Nhava Sheva, India' },
-        { label: 'Trade terms', value: 'FOB, CIF, CFR' },
-      ],
-      terms: [
-        { label: 'Minimum order', value: '1 container (FCL)' },
-        { label: 'Payment terms', value: 'Irrevocable LC at sight / TT advance' },
-        { label: 'Samples', value: 'Available on request' },
-      ],
-    },
+    specGroups: [
+      {
+        title: 'PRODUCT',
+        items: [
+          { label: 'Variety', value: 'Bhagwa (Sindhuri)' },
+          { label: 'Origin', value: 'Maharashtra, India' },
+          { label: 'Size or grade', value: 'Count 9 to 15 (200g - 400g+ per piece)' },
+          { label: 'Colour', value: 'Glossy deep ruby red skin with dark crimson arils' },
+        ],
+      },
+      {
+        title: 'PACKING',
+        items: [
+          { label: 'Packing type', value: 'Ventilated 5-ply corrugated export cartons with foam netting' },
+          { label: 'Net weight', value: '3.5 kg / 5.0 kg net per box' },
+          { label: 'Labelling', value: 'Buyer specifications, barcode, and regulatory marks' },
+        ],
+      },
+      {
+        title: 'SHIPPING',
+        items: [
+          { label: 'Container type', value: '40ft High Cube Reefer (+5°C to +7°C, 90-95% RH)' },
+          { label: 'Quantity per container', value: 'Approx. 4,400 to 5,000 cartons on 20 fumigated pallets' },
+          { label: 'Port of loading', value: 'Nhava Sheva (JNPT) / Mundra, India' },
+          { label: 'Trade terms', value: 'FOB, CIF, CFR per Incoterms 2020' },
+        ],
+      },
+      {
+        title: 'TERMS',
+        items: [
+          { label: 'Minimum order', value: '1 container (FCL)' },
+          { label: 'Payment terms', value: '30% advance T/T, balance against shipping documents / L/C' },
+          { label: 'Samples', value: 'Pre-shipment photo & video reports, airfreight samples on request' },
+        ],
+      },
+    ],
     months: [
-      { month: 'Jan', status: 'available' },
+      { month: 'Jan', status: 'peak' },
       { month: 'Feb', status: 'available' },
       { month: 'Mar', status: 'none' },
       { month: 'Apr', status: 'none' },
@@ -121,26 +160,69 @@ const PRODUCTS_MAP: Record<string, ProductData> = {
       { month: 'Jun', status: 'none' },
       { month: 'Jul', status: 'available' },
       { month: 'Aug', status: 'available' },
-      { month: 'Sep', status: 'peak' },
+      { month: 'Sep', status: 'available' },
       { month: 'Oct', status: 'peak' },
       { month: 'Nov', status: 'peak' },
       { month: 'Dec', status: 'peak' },
     ],
-    isRealSeason: false,
     packingCards: [
-      { title: 'Sorting & grading', caption: 'Defect-free inspection and size calibration.', img: IMAGES.packhouseInspection },
-      { title: 'Palletising', caption: 'Corner protected cartons secured on wooden pallets.', img: IMAGES.portContainers },
-      { title: 'Reefer loading', caption: 'Direct pre-cooled container stuffing for ocean freight.', img: IMAGES.containerLoading },
+      {
+        title: 'Packhouse Sorting',
+        desc: 'Manual calibration and Brix testing with individual protective foam net wrappers.',
+        img: IMAGES.packhouseInspection,
+      },
+      {
+        title: 'Palletising & Strapping',
+        desc: 'Vented cartons stacked on treated pallets with reinforced corner angle boards.',
+        img: IMAGES.portContainers,
+      },
+      {
+        title: 'Reefer Container Stuffing',
+        desc: 'Pre-cooled 40ft reefer loading maintaining cold chain at +5°C throughout transit.',
+        img: IMAGES.containerLoading,
+      },
     ],
     faq: [
-      { q: 'Which varieties of pomegranates do you export?', a: 'We primarily export the premium Indian Bhagwa variety, celebrated for its deep red arils, sweet taste and soft seeds.' },
-      { q: 'What packaging options are available for overseas shipments?', a: 'Standard packaging is 3.5kg and 5kg corrugated export boxes with individual fruit paper cups or foam nets.' },
-      { q: 'What is the minimum order quantity?', a: 'Minimum order is 1 container (FCL), typically a 40ft reefer container carrying calibrated cartons.' },
-      { q: 'Can you provide pre-shipment quality and inspection reports?', a: 'Yes, phytosanitary certificates, quality inspection sheets, and pre-cooling logs accompany every shipment.' },
+      {
+        q: 'Which pomegranate variety do you export and what is the Brix level?',
+        a: 'We primarily export the renowned Bhagwa (Sindhuri) variety, recognized for its deep ruby-red arils, soft chewable seeds, and a balanced natural sweetness of 15° to 16° Brix.',
+      },
+      {
+        q: 'What packaging sizes and fruit counts are available?',
+        a: 'Our standard packs are 3.5 kg net (Counts 9, 10, 12, 14) and 5.0 kg net (Counts 12, 15, 18), packed in telescopic corrugated boxes with foam nettings.',
+      },
+      {
+        q: 'What is the minimum order quantity for ocean shipments?',
+        a: 'The minimum order quantity is 1 container (FCL), equivalent to one 40ft refrigerated container carrying approx. 4,400 to 5,000 cartons on 20 pallets.',
+      },
+      {
+        q: 'Can we inspect samples or receive pre-shipment quality logs?',
+        a: 'Yes. We provide digital fruit count, Brix, and weight verification videos before container sealing, and can dispatch commercial samples via air cargo.',
+      },
     ],
-    related: [
-      { id: 'fresh-fruits', name: 'Fresh fruits', category: 'Fresh fruit', path: '/products/fresh-fruits', img: IMAGES.fruits, desc: 'Seasonal fruit for export.' },
-      { id: 'onions', name: 'Onions', category: 'Fresh vegetable', path: '/products/onions', img: IMAGES.onionsMesh, desc: 'Red onions in mesh bags, October to April.' },
+    relatedProducts: [
+      {
+        id: 'onions',
+        name: 'Onions',
+        category: 'Fresh vegetable',
+        path: '/products/onions',
+        img: IMAGES.onionsMesh,
+        desc: 'Red onions in mesh bags, October to April.',
+        colorVar: 'var(--plum)',
+        badgeClass: 'badge-plum',
+        icon: CircleDot,
+      },
+      {
+        id: 'fresh-fruits',
+        name: 'Fresh fruits',
+        category: 'Fresh fruit',
+        path: '/products/fresh-fruits',
+        img: IMAGES.fruits,
+        desc: 'Seasonal fresh fruit for export.',
+        colorVar: 'var(--teal)',
+        badgeClass: 'badge-teal',
+        icon: Apple,
+      },
     ],
   },
 
@@ -148,44 +230,65 @@ const PRODUCTS_MAP: Record<string, ProductData> = {
     id: 'onions',
     name: 'Onions',
     category: 'Fresh vegetable',
-    sentence: 'Red onions for container shipments, sourced directly from Maharashtra farms.',
+    colorVar: 'var(--plum)',
+    tintVar: 'var(--plum-tint)',
+    badgeClass: 'badge-plum',
+    sentence: 'Red onions for container shipments, October to April.',
     mainImage: IMAGES.onionsMesh,
     thumbnails: [
-      IMAGES.onionsMesh,
       IMAGES.onions,
+      IMAGES.onionsMesh,
       IMAGES.onionsSortingHands,
     ],
-    keyFacts: {
-      variety: 'Garwa / Red Onion',
-      origin: 'Nashik, Maharashtra',
-      packing: '10kg / 25kg mesh bags',
+    floatingCard: {
+      season: 'October to April (Peak Dec–Feb)',
+      packing: '25kg / 50kg mesh bags',
       moq: '1 container (FCL)',
-      season: 'October to April',
     },
-    specTable: {
-      product: [
-        { label: 'Variety', value: 'Nashik Medium & Big Red Onion' },
-        { label: 'Origin', value: 'India' },
-        { label: 'Size or grade', value: '45mm to 65mm+ diameter' },
-        { label: 'Colour', value: 'Deep pink to red, firm skin' },
-      ],
-      packing: [
-        { label: 'Packing type', value: 'Red leno mesh bags with drawstrings' },
-        { label: 'Net weight', value: '10 kg, 20 kg or 25 kg bags' },
-        { label: 'Labelling', value: 'Printed customized bag bands' },
-      ],
-      shipping: [
-        { label: 'Container type', value: '40ft Reefer (+1°C to +3°C, 65% RH) or ventilated dry' },
-        { label: 'Quantity per container', value: '28 to 29 Metric Tonnes' },
-        { label: 'Port of loading', value: 'JNPT / Nhava Sheva, India' },
-        { label: 'Trade terms', value: 'FOB, CIF, CFR' },
-      ],
-      terms: [
-        { label: 'Minimum order', value: '1 container (FCL)' },
-        { label: 'Payment terms', value: 'Irrevocable LC at sight / TT advance' },
-        { label: 'Samples', value: 'Available on request' },
-      ],
+    keyFacts: {
+      variety: 'Nashik Red / Garwa & Pol',
+      origin: 'Maharashtra, India',
+      packing: '25kg / 50kg mesh bags',
+      moq: '1 container (FCL)',
     },
+    isOnionSeasonCard: true,
+    specGroups: [
+      {
+        title: 'PRODUCT',
+        items: [
+          { label: 'Variety', value: 'Nashik Red (Garwa / Pol / Rangda)' },
+          { label: 'Origin', value: 'Nashik, Maharashtra, India' },
+          { label: 'Size or grade', value: '45mm - 55mm / 50mm - 60mm / 60mm+' },
+          { label: 'Colour', value: 'Dark red / light pink cured outer skins' },
+        ],
+      },
+      {
+        title: 'PACKING',
+        items: [
+          { label: 'Packing type', value: 'Breathable leno mesh bags with drawstring' },
+          { label: 'Net weight', value: '10kg / 20kg / 25kg / 50kg net' },
+          { label: 'Labelling', value: 'Standard export print or custom private brand tag' },
+        ],
+      },
+      {
+        title: 'SHIPPING',
+        items: [
+          { label: 'Container type', value: '40ft High Cube Reefer (vented) or Ventilated Dry Box' },
+          { label: 'Quantity per container', value: '28 to 29 Metric Tonnes (approx. 1,120 to 1,160 × 25kg bags)' },
+          { label: 'Port of loading', value: 'Nhava Sheva (JNPT) / Mundra, India' },
+          { label: 'Trade terms', value: 'FOB, CIF, CFR per Incoterms 2020' },
+        ],
+      },
+      {
+        title: 'TERMS',
+        items: [
+          { label: 'Minimum order', value: '1 container (FCL)' },
+          { label: 'Payment terms', value: '30% advance T/T, balance against shipping documents' },
+          { label: 'Samples', value: 'Pre-shipment batch sizing photos and weight tickets' },
+        ],
+      },
+    ],
+    isRealSeason: true,
     months: [
       { month: 'Jan', status: 'peak' },
       { month: 'Feb', status: 'peak' },
@@ -200,21 +303,64 @@ const PRODUCTS_MAP: Record<string, ProductData> = {
       { month: 'Nov', status: 'available' },
       { month: 'Dec', status: 'peak' },
     ],
-    isRealSeason: true,
     packingCards: [
-      { title: 'Sorting & grading', caption: 'Cleaned, sun-cured and mechanically calibrated.', img: IMAGES.onionsSortingHands },
-      { title: 'Palletising', caption: 'Ventilated stacking to maintain continuous airflow.', img: IMAGES.portContainers },
-      { title: 'Reefer loading', caption: 'Temperature and humidity controlled container stuffing.', img: IMAGES.containerLoading },
+      {
+        title: 'Curing & Sizing',
+        desc: 'Field-cured dry skins, mechanically sorted into 45mm+, 50mm+, and 60mm+ calibers.',
+        img: IMAGES.onionsSortingHands,
+      },
+      {
+        title: 'Mesh Bag Packing',
+        desc: 'Breathable heavy-duty red/yellow leno bags allowing optimal in-transit airflow.',
+        img: IMAGES.onionsMesh,
+      },
+      {
+        title: 'Container Loading',
+        desc: 'Careful container floor stuffing up to 29 MT with active ventilation.',
+        img: IMAGES.containerLoading,
+      },
     ],
     faq: [
-      { q: 'What is the seasonal availability for Indian red onions?', a: 'Indian red onions are available from October to April, with peak supply and optimal quality from December to February.' },
-      { q: 'What mesh bag sizes are supplied?', a: 'We supply in 10kg, 20kg, and 25kg ventilated red mesh bags suitable for sea transit.' },
-      { q: 'What is the minimum order quantity?', a: 'Minimum order is 1 container (FCL), typically loaded to 28-29 metric tonnes.' },
-      { q: 'How is moisture managed during sea transport?', a: 'Onions are thoroughly dried and cured, transported in containers with active de-humidification settings.' },
+      {
+        q: 'What size calibers are available for export?',
+        a: 'We supply 45mm - 55mm, 50mm - 60mm, and 60mm+ grades. All bulbs are well cured with tight necks and dry, intact outer skins.',
+      },
+      {
+        q: 'What packaging configurations do you offer?',
+        a: 'Red leno mesh bags in 10 kg, 20 kg, 25 kg, and 50 kg capacities. Palletized loading is also available on request.',
+      },
+      {
+        q: 'What is the container loading capacity?',
+        a: 'A 40ft container carries approximately 28 to 29 metric tonnes of mesh bags in floor-stuffed arrangement.',
+      },
+      {
+        q: 'How do you prevent sprouting during ocean transit?',
+        a: 'We export fully cured, dormant Nashik stock packed under controlled humidity with active container ventilation, guaranteeing 20+ days transit stability.',
+      },
     ],
-    related: [
-      { id: 'fresh-vegetables', name: 'Fresh vegetables', category: 'Fresh vegetable', path: '/products/fresh-vegetables', img: IMAGES.vegetables, desc: 'Seasonal vegetables for export.' },
-      { id: 'pomegranates', name: 'Pomegranates', category: 'Fresh fruit', path: '/products/pomegranates', img: IMAGES.pomegranatesCut, desc: 'Export-grade fruit packed in cartons.' },
+    relatedProducts: [
+      {
+        id: 'pomegranates',
+        name: 'Pomegranates',
+        category: 'Fresh fruit',
+        path: '/products/pomegranates',
+        img: IMAGES.pomegranatesCut,
+        desc: 'Export-grade fruit packed in cartons.',
+        colorVar: 'var(--crimson)',
+        badgeClass: 'badge-crimson',
+        icon: Sparkles,
+      },
+      {
+        id: 'fresh-vegetables',
+        name: 'Fresh vegetables',
+        category: 'Fresh vegetable',
+        path: '/products/fresh-vegetables',
+        img: IMAGES.vegetables,
+        desc: 'Seasonal fresh vegetables for export.',
+        colorVar: 'var(--leaf)',
+        badgeClass: 'badge-leaf',
+        icon: Carrot,
+      },
     ],
   },
 
@@ -222,46 +368,65 @@ const PRODUCTS_MAP: Record<string, ProductData> = {
     id: 'rice',
     name: 'Rice',
     category: 'Grain',
-    sentence: 'Basmati and non-basmati rice grades, milled and packed for bulk international buyers.',
+    colorVar: 'var(--saffron)',
+    tintVar: 'var(--saffron-tint)',
+    badgeClass: 'badge-saffron',
+    sentence: 'Basmati and non-basmati rice, shipped in bulk and bagged container lots.',
     mainImage: IMAGES.riceGrains,
     thumbnails: [
       IMAGES.riceGrains,
       IMAGES.riceSack,
-      IMAGES.rice,
+      IMAGES['06-rice-grains-scoop'],
     ],
-    keyFacts: {
-      variety: 'Traditional & 1121 Basmati',
-      origin: 'Punjab & Haryana, India',
-      packing: '25kg / 50kg PP bags',
+    floatingCard: {
+      season: 'Year-round (Aged stock)',
+      packing: '10kg / 25kg / 50kg bags',
       moq: '1 container (FCL)',
-      season: 'Year-round',
     },
-    specTable: {
-      product: [
-        { label: 'Variety', value: '1121 Basmati, Sugandha, Sona Masoori' },
-        { label: 'Origin', value: 'India' },
-        { label: 'Size or grade', value: 'Average grain length 8.35mm+ (Basmati)' },
-        { label: 'Colour', value: 'Silky white / Golden parboiled' },
-      ],
-      packing: [
-        { label: 'Packing type', value: 'Non-woven, BOPP, or PP woven sacks' },
-        { label: 'Net weight', value: '10 kg, 25 kg, 50 kg bags' },
-        { label: 'Labelling', value: 'Custom brand packaging' },
-      ],
-      shipping: [
-        { label: 'Container type', value: '20ft Dry Heavy Container' },
-        { label: 'Quantity per container', value: '25 to 26 Metric Tonnes' },
-        { label: 'Port of loading', value: 'Mundra / Kandla / JNPT, India' },
-        { label: 'Trade terms', value: 'FOB, CIF, CFR' },
-      ],
-      terms: [
-        { label: 'Minimum order', value: '1 container (FCL)' },
-        { label: 'Payment terms', value: 'Irrevocable LC at sight / TT advance' },
-        { label: 'Samples', value: 'Available on request' },
-      ],
+    keyFacts: {
+      variety: '1121 Basmati / Sona Masoori',
+      origin: 'Punjab & Haryana, India',
+      packing: '10kg / 25kg / 50kg bags',
+      moq: '1 container (FCL)',
     },
+    specGroups: [
+      {
+        title: 'PRODUCT',
+        items: [
+          { label: 'Variety', value: '1121 Pusa Basmati / Traditional / Sona Masoori' },
+          { label: 'Origin', value: 'Indo-Gangetic Plains, India' },
+          { label: 'Size or grade', value: 'Average grain length: 8.35mm+ (1121) / 5.2mm (Non-Basmati)' },
+          { label: 'Colour', value: 'Creamy white / golden parboiled (Sella)' },
+        ],
+      },
+      {
+        title: 'PACKING',
+        items: [
+          { label: 'Packing type', value: 'Non-woven, BOPP, multi-wall paper, or PP woven bags' },
+          { label: 'Net weight', value: '5kg, 10kg, 20kg, 25kg, and 50kg' },
+          { label: 'Labelling', value: 'Full customized private label graphic printing supported' },
+        ],
+      },
+      {
+        title: 'SHIPPING',
+        items: [
+          { label: 'Container type', value: '20ft Heavy Tested Dry Container (with kraft paper lining)' },
+          { label: 'Quantity per container', value: '25 to 26 Metric Tonnes per 20ft box' },
+          { label: 'Port of loading', value: 'Mundra / Kandla, India' },
+          { label: 'Trade terms', value: 'FOB, CIF, CFR per Incoterms 2020' },
+        ],
+      },
+      {
+        title: 'TERMS',
+        items: [
+          { label: 'Minimum order', value: '1 container (FCL)' },
+          { label: 'Payment terms', value: '30% advance T/T, balance against shipping documents / L/C' },
+          { label: 'Samples', value: 'Certified laboratory grain test samples airfreighted on request' },
+        ],
+      },
+    ],
     months: [
-      { month: 'Jan', status: 'peak' },
+      { month: 'Jan', status: 'available' },
       { month: 'Feb', status: 'available' },
       { month: 'Mar', status: 'available' },
       { month: 'Apr', status: 'available' },
@@ -274,21 +439,64 @@ const PRODUCTS_MAP: Record<string, ProductData> = {
       { month: 'Nov', status: 'peak' },
       { month: 'Dec', status: 'peak' },
     ],
-    isRealSeason: false,
     packingCards: [
-      { title: 'Milling & sorting', caption: 'Optical color sorters remove discolored grains.', img: IMAGES.riceSack },
-      { title: 'Palletising', caption: 'Heavy duty moisture barrier bags palletised.', img: IMAGES.portContainers },
-      { title: 'Dry container loading', caption: 'Fumigated 20ft box containers filled to maximum payload.', img: IMAGES.containerLoading },
+      {
+        title: 'Sortex Cleaning',
+        desc: 'Advanced optical color sorters removing broken kernels and foreign particles to 99.5% purity.',
+        img: IMAGES.packhouseInspection,
+      },
+      {
+        title: 'Moisture Barrier Packing',
+        desc: 'Laminated moisture-proof bags maintaining grain dryness below 12.5%.',
+        img: IMAGES.riceSack,
+      },
+      {
+        title: 'Container Lining & Desiccants',
+        desc: 'Heavy kraft paper insulation and hanging silica gel bags protecting cargo during ocean transit.',
+        img: IMAGES.containerLoading,
+      },
     ],
     faq: [
-      { q: 'Which rice varieties are available?', a: 'We offer 1121 Steam/Sella Basmati, Pusa, Sugandha, as well as PR11 and Sona Masoori non-basmati grades.' },
-      { q: 'Can you provide private label packaging?', a: 'Yes, we pack into customized BOPP bags with client branding and multilingual specifications.' },
-      { q: 'What is the minimum order quantity?', a: 'Minimum order is 1 container (FCL), standard 20ft container holding 25-26 metric tonnes.' },
-      { q: 'Are moisture and purity certificates provided?', a: 'Independent inspection certificates verifying moisture content under 12.5% and purity are provided.' },
+      {
+        q: 'Which Basmati and non-Basmati grades do you provide?',
+        a: 'We supply aged 1121 Raw & Steam Basmati, 1509 Basmati, Sugandha, Sharbati, PR11/14, and Sona Masoori rice.',
+      },
+      {
+        q: 'How long has the Basmati rice been aged?',
+        a: 'Our premium export Basmati is aged for a minimum of 12 to 24 months, providing superior elongation (over 2.5×) without stickiness upon cooking.',
+      },
+      {
+        q: 'Can you pack under our private supermarket brand?',
+        a: 'Yes. We offer turnkey private labelling in BOPP, non-woven fabric, and master cartons with your custom brand artwork.',
+      },
+      {
+        q: 'What is the standard container capacity for rice shipments?',
+        a: 'A 20ft container carries 25 to 26 metric tonnes of bagged rice, maximizing weight economics per container.',
+      },
     ],
-    related: [
-      { id: 'spices', name: 'Spices', category: 'Spice', path: '/products/spices', img: IMAGES.spices, desc: 'Whole and ground spices.' },
-      { id: 'pomegranates', name: 'Pomegranates', category: 'Fresh fruit', path: '/products/pomegranates', img: IMAGES.pomegranatesCut, desc: 'Export-grade fruit packed in cartons.' },
+    relatedProducts: [
+      {
+        id: 'spices',
+        name: 'Spices',
+        category: 'Spice',
+        path: '/products/spices',
+        img: IMAGES.spices,
+        desc: 'Whole and ground spices.',
+        colorVar: 'var(--blue)',
+        badgeClass: 'badge-blue',
+        icon: Package,
+      },
+      {
+        id: 'pomegranates',
+        name: 'Pomegranates',
+        category: 'Fresh fruit',
+        path: '/products/pomegranates',
+        img: IMAGES.pomegranatesCut,
+        desc: 'Export-grade fruit packed in cartons.',
+        colorVar: 'var(--crimson)',
+        badgeClass: 'badge-crimson',
+        icon: Sparkles,
+      },
     ],
   },
 
@@ -296,44 +504,63 @@ const PRODUCTS_MAP: Record<string, ProductData> = {
     id: 'spices',
     name: 'Spices',
     category: 'Spice',
-    sentence: 'Whole and ground export-grade Indian spices, certified for international purity standards.',
+    colorVar: 'var(--blue)',
+    tintVar: 'var(--blue-tint)',
+    badgeClass: 'badge-blue',
+    sentence: 'Whole and ground Indian spices processed and packed for export.',
     mainImage: IMAGES.spices,
     thumbnails: [
       IMAGES.spices,
-      IMAGES.spicesTurmeric,
       IMAGES.spicesCumin,
+      IMAGES.spicesTurmeric,
     ],
-    keyFacts: {
-      variety: 'Whole & Ground Spices',
-      origin: 'Gujarat & Rajasthan, India',
-      packing: '25kg multiwall paper bags',
+    floatingCard: {
+      season: 'Year-round harvest',
+      packing: '25kg / 50kg jute & PP bags',
       moq: '1 container (FCL)',
-      season: 'Year-round',
     },
-    specTable: {
-      product: [
-        { label: 'Variety', value: 'Cumin seeds, Turmeric fingers, Coriander' },
-        { label: 'Origin', value: 'India' },
-        { label: 'Size or grade', value: 'Machine cleaned 99% / 99.5% purity' },
-        { label: 'Colour', value: 'Natural, unadulterated' },
-      ],
-      packing: [
-        { label: 'Packing type', value: 'Multi-ply craft paper bags / PP bags' },
-        { label: 'Net weight', value: '25 kg or 50 kg bags' },
-        { label: 'Labelling', value: 'Standard export markings' },
-      ],
-      shipping: [
-        { label: 'Container type', value: '20ft Dry Container with desiccant strips' },
-        { label: 'Quantity per container', value: '18 to 22 Metric Tonnes' },
-        { label: 'Port of loading', value: 'Mundra / Pipavav, India' },
-        { label: 'Trade terms', value: 'FOB, CIF, CFR' },
-      ],
-      terms: [
-        { label: 'Minimum order', value: '1 container (FCL)' },
-        { label: 'Payment terms', value: 'Irrevocable LC at sight / TT advance' },
-        { label: 'Samples', value: 'Available on request' },
-      ],
+    keyFacts: {
+      variety: 'Cumin, Turmeric, Chilli, Coriander',
+      origin: 'Gujarat & Rajasthan, India',
+      packing: '25kg / 50kg jute & PP bags',
+      moq: '1 container (FCL)',
     },
+    specGroups: [
+      {
+        title: 'PRODUCT',
+        items: [
+          { label: 'Variety', value: 'Cumin (Jeera), Turmeric (Salem/Nizamabad), Red Chilli (Teja), Coriander' },
+          { label: 'Origin', value: 'Western & Southern India' },
+          { label: 'Size or grade', value: 'Machine Cleaned 99% / Sortex 99.5% / Ground powders' },
+          { label: 'Colour', value: 'Natural uniform aromatic whole spices, zero artificial dyes' },
+        ],
+      },
+      {
+        title: 'PACKING',
+        items: [
+          { label: 'Packing type', value: 'Multi-layer paper bags, poly-lined jute sacks, or woven PP bags' },
+          { label: 'Net weight', value: '25 kg / 50 kg net' },
+          { label: 'Labelling', value: 'Food-grade batch code, harvest year, and gross/net marks' },
+        ],
+      },
+      {
+        title: 'SHIPPING',
+        items: [
+          { label: 'Container type', value: '20ft / 40ft Dry Freight Container with moisture barrier' },
+          { label: 'Quantity per container', value: '18 to 22 MT per 20ft box (commodity density dependent)' },
+          { label: 'Port of loading', value: 'Mundra / Nhava Sheva (JNPT), India' },
+          { label: 'Trade terms', value: 'FOB, CIF, CFR per Incoterms 2020' },
+        ],
+      },
+      {
+        title: 'TERMS',
+        items: [
+          { label: 'Minimum order', value: '1 container (FCL)' },
+          { label: 'Payment terms', value: '30% advance T/T, balance against shipping documents / L/C' },
+          { label: 'Samples', value: 'Lab-tested volatile oil & purity sample packets available' },
+        ],
+      },
+    ],
     months: [
       { month: 'Jan', status: 'available' },
       { month: 'Feb', status: 'peak' },
@@ -348,21 +575,64 @@ const PRODUCTS_MAP: Record<string, ProductData> = {
       { month: 'Nov', status: 'available' },
       { month: 'Dec', status: 'available' },
     ],
-    isRealSeason: false,
     packingCards: [
-      { title: 'Sorting & cleaning', caption: 'Purity filtration and metal detection checks.', img: IMAGES.spices },
-      { title: 'Palletising', caption: 'Moisture-sealed pallets with desiccant protection.', img: IMAGES.portContainers },
-      { title: 'Container loading', caption: 'Carefully loaded into clean dry containers.', img: IMAGES.containerLoading },
+      {
+        title: 'Optical Cleaning',
+        desc: 'Sortex cleaned to eliminate dust, light seeds, and foreign materials.',
+        img: IMAGES.spicesCumin,
+      },
+      {
+        title: 'Aroma-Sealed Packaging',
+        desc: 'Food-grade inner poly liners preserving volatile essential oils and aroma.',
+        img: IMAGES.spicesTurmeric,
+      },
+      {
+        title: 'Fumigated Stuffing',
+        desc: 'Strict fumigation per destination country phytosanitary protocols before export dispatch.',
+        img: IMAGES.containerLoading,
+      },
     ],
     faq: [
-      { q: 'Which whole spices do you export?', a: 'Our range includes cumin seeds (jeera), turmeric fingers, coriander seeds, fenugreek, and black pepper.' },
-      { q: 'What purity grades are offered?', a: 'We supply 99% to 99.5% machine clean and sortex cleaned qualities.' },
-      { q: 'What is the minimum order quantity?', a: 'Minimum order is 1 container (FCL), approximately 18-22 tonnes depending on bulk density.' },
-      { q: 'Can we combine multiple spices in one container?', a: 'Yes, multi-item consolidated spice containers can be arranged upon request.' },
+      {
+        q: 'Which specific whole and ground spices do you export?',
+        a: 'Our core volume includes Cumin seeds (Europe / Singapore grade), Turmeric fingers & powder (curcumin 2.5% to 5%), Red Chilli (Teja / S17 / Sanam), Coriander seeds, and Black Pepper.',
+      },
+      {
+        q: 'Are your spices tested for chemical residues and aflatoxin?',
+        a: 'Yes. Every batch is certified for pesticide residue limits, aflatoxin, Salmonella, and heavy metals at NABL-accredited laboratories prior to stuffing.',
+      },
+      {
+        q: 'Can we order mixed spice pallets in one container?',
+        a: 'Subject to customs and cargo compatibility, we accommodate consolidated spice containers featuring multiple commodities on pallets.',
+      },
+      {
+        q: 'What is the minimum order quantity?',
+        a: '1 container (FCL), typically 18 to 22 metric tonnes in a 20ft container depending on spice density.',
+      },
     ],
-    related: [
-      { id: 'rice', name: 'Rice', category: 'Grain', path: '/products/rice', img: IMAGES.riceGrains, desc: 'Basmati and non-basmati.' },
-      { id: 'pomegranates', name: 'Pomegranates', category: 'Fresh fruit', path: '/products/pomegranates', img: IMAGES.pomegranatesCut, desc: 'Export-grade fruit packed in cartons.' },
+    relatedProducts: [
+      {
+        id: 'rice',
+        name: 'Rice',
+        category: 'Grain',
+        path: '/products/rice',
+        img: IMAGES.riceGrains,
+        desc: 'Basmati and non-basmati grades.',
+        colorVar: 'var(--saffron)',
+        badgeClass: 'badge-saffron',
+        icon: Layers,
+      },
+      {
+        id: 'onions',
+        name: 'Onions',
+        category: 'Fresh vegetable',
+        path: '/products/onions',
+        img: IMAGES.onionsMesh,
+        desc: 'Red onions in mesh bags, October to April.',
+        colorVar: 'var(--plum)',
+        badgeClass: 'badge-plum',
+        icon: CircleDot,
+      },
     ],
   },
 
@@ -370,81 +640,143 @@ const PRODUCTS_MAP: Record<string, ProductData> = {
     id: 'fresh-fruits',
     name: 'Fresh fruits',
     category: 'Fresh fruit',
-    sentence: 'Table grapes, bananas and seasonal Indian fruits packed for cold-chain ocean transit.',
+    colorVar: 'var(--teal)',
+    tintVar: 'var(--teal-tint)',
+    badgeClass: 'badge-teal',
+    sentence: 'Seasonal fresh fruit for export by the container, handled through cold-chain packhouses.',
     mainImage: IMAGES.fruits,
     thumbnails: [
       IMAGES.fruits,
-      IMAGES.packhouseInspection,
-      IMAGES.portContainers,
+      IMAGES.fruitsGrapes,
+      IMAGES.fruitsBananas,
     ],
-    keyFacts: {
-      variety: 'Table Grapes, Bananas, Mangoes',
-      origin: 'Maharashtra & Gujarat, India',
-      packing: '4.5kg / 5kg / 7kg cartons',
+    floatingCard: {
+      season: 'Seasonal calendars',
+      packing: '4.5kg / 7kg / 13kg cartons',
       moq: '1 container (FCL)',
-      season: 'Seasonal',
     },
-    specTable: {
-      product: [
-        { label: 'Variety', value: 'Thompson Seedless Grapes, G9 Bananas' },
-        { label: 'Origin', value: 'India' },
-        { label: 'Size or grade', value: 'Export calibrated brix and berry size' },
-        { label: 'Colour', value: 'Uniform natural fruit appearance' },
-      ],
-      packing: [
-        { label: 'Packing type', value: 'Pouch bags or punnets in corrugated cartons' },
-        { label: 'Net weight', value: '4.5 kg / 5 kg / 7 kg net cartons' },
-        { label: 'Labelling', value: 'Buyer specifications / barcode' },
-      ],
-      shipping: [
-        { label: 'Container type', value: '40ft Reefer with Controlled Atmosphere' },
-        { label: 'Quantity per container', value: 'Approx. 20 to 22 Metric Tonnes' },
-        { label: 'Port of loading', value: 'JNPT / Nhava Sheva, India' },
-        { label: 'Trade terms', value: 'FOB, CIF, CFR' },
-      ],
-      terms: [
-        { label: 'Minimum order', value: '1 container (FCL)' },
-        { label: 'Payment terms', value: 'Irrevocable LC at sight / TT advance' },
-        { label: 'Samples', value: 'Available on request' },
-      ],
+    keyFacts: {
+      variety: 'Grapes, Bananas, Mangoes, Papayas',
+      origin: 'Maharashtra & Gujarat, India',
+      packing: 'Calibrated export cartons',
+      moq: '1 container (FCL)',
     },
+    itemsWeSupply: [
+      { name: 'Table Grapes (Sonaka & Thompson)', img: IMAGES.fruitsGrapes },
+      { name: 'Cavendish Bananas (G9)', img: IMAGES.fruitsBananas },
+      { name: 'Alphonso & Kesar Mangoes', img: IMAGES.fruits },
+      { name: 'Fresh Papayas (Red Lady)', img: IMAGES.fruits },
+      { name: 'Pink & White Guavas', img: IMAGES.fruits },
+      { name: 'Fresh Watermelons', img: IMAGES.fruits },
+    ],
+    specGroups: [
+      {
+        title: 'PRODUCT',
+        items: [
+          { label: 'Variety', value: 'Table Grapes, Cavendish Bananas (Grand Naine), Mangoes, Papayas' },
+          { label: 'Origin', value: 'Maharashtra, Gujarat, Tamil Nadu, India' },
+          { label: 'Size or grade', value: 'Calibrated berry/finger size, export Grade A standards' },
+          { label: 'Colour', value: 'Uniform natural skin hue, zero sun-scald or pest scars' },
+        ],
+      },
+      {
+        title: 'PACKING',
+        items: [
+          { label: 'Packing type', value: 'Ventilated 5-ply cartons with MAP liners and ethylene absorbers' },
+          { label: 'Net weight', value: '4.5kg, 5.0kg, 7.0kg, or 13.5kg net' },
+          { label: 'Labelling', value: 'Global traceability QR, farm origin code, weight specifications' },
+        ],
+      },
+      {
+        title: 'SHIPPING',
+        items: [
+          { label: 'Container type', value: '40ft High Cube Controlled Atmosphere (CA) / Reefer Container' },
+          { label: 'Quantity per container', value: 'Approx. 1,540 to 2,400 cartons (configuration dependent)' },
+          { label: 'Port of loading', value: 'Nhava Sheva (JNPT), Mumbai, India' },
+          { label: 'Trade terms', value: 'FOB, CIF, CFR per Incoterms 2020' },
+        ],
+      },
+      {
+        title: 'TERMS',
+        items: [
+          { label: 'Minimum order', value: '1 container (FCL)' },
+          { label: 'Payment terms', value: '30% advance T/T, balance against shipping documents' },
+          { label: 'Samples', value: 'Pre-cooling logs, Brix calibration sheets and inspection photos' },
+        ],
+      },
+    ],
     months: [
       { month: 'Jan', status: 'peak' },
       { month: 'Feb', status: 'peak' },
       { month: 'Mar', status: 'peak' },
       { month: 'Apr', status: 'available' },
       { month: 'May', status: 'available' },
-      { month: 'Jun', status: 'none' },
-      { month: 'Jul', status: 'none' },
+      { month: 'Jun', status: 'available' },
+      { month: 'Jul', status: 'available' },
       { month: 'Aug', status: 'available' },
       { month: 'Sep', status: 'available' },
       { month: 'Oct', status: 'available' },
-      { month: 'Nov', status: 'available' },
+      { month: 'Nov', status: 'peak' },
       { month: 'Dec', status: 'peak' },
     ],
-    isRealSeason: false,
-    supplyItems: [
-      { name: 'Table Grapes', img: IMAGES.fruitsGrapes },
-      { name: 'Fresh Bananas', img: IMAGES.fruitsBananas },
-      { name: 'Bhagwa Pomegranates', img: IMAGES.pomegranatesCut },
-      { name: 'Fresh Mangoes', isPlaceholder: true },
-      { name: 'Fresh Guavas', isPlaceholder: true },
-      { name: 'Fresh Papayas', isPlaceholder: true },
-    ],
     packingCards: [
-      { title: 'Sorting & packing', caption: 'Packhouse grading with protective liners and punnets.', img: IMAGES.packhouseInspection },
-      { title: 'Cold-chain pallets', caption: 'Rapid pre-cooling down to +0.5°C before pallet strapping.', img: IMAGES.portContainers },
-      { title: 'Reefer loading', caption: 'Strict continuous temperature recorder logging.', img: IMAGES.containerLoading },
+      {
+        title: 'Forced-Air Pre-Cooling',
+        desc: 'Rapid temperature reduction within 4 hours of harvest to arrest ripening.',
+        img: IMAGES.fruitsGrapes,
+      },
+      {
+        title: 'MAP Protective Liners',
+        desc: 'Modified Atmosphere Packaging bags preserving moisture and controlling respiration.',
+        img: IMAGES.packhouseInspection,
+      },
+      {
+        title: 'Controlled Atmosphere Reefers',
+        desc: 'Precision ocean reefers maintaining continuous temperature and humidity logging.',
+        img: IMAGES.containerLoading,
+      },
     ],
     faq: [
-      { q: 'Which fresh fruits do you export throughout the year?', a: 'G9 Bananas are shipped year-round, while Thompson grapes, mangoes, and pomegranates follow seasonal harvesting windows.' },
-      { q: 'How is fruit shelf life preserved during voyage?', a: 'Rapid pre-cooling, SO2 generator sheets for grapes, and controlled-atmosphere containers preserve firmness.' },
-      { q: 'What is the minimum order quantity?', a: 'Minimum order is 1 container (FCL), approximately 20-22 tonnes in a 40ft High Cube reefer.' },
-      { q: 'Are MRL and pesticide test certificates provided?', a: 'Yes, APEDA and accredited lab residue tests accompany European and Middle Eastern shipments.' },
+      {
+        q: 'Which fresh fruits do you export in container volumes?',
+        a: 'Our primary export volumes comprise Indian Table Grapes (Jan-Apr), Cavendish G9 Bananas (Year-round), seasonal Mangoes (Apr-Jun), and Red Lady Papayas.',
+      },
+      {
+        q: 'How is cold chain integrity maintained from farm to port?',
+        a: 'Produce is harvested early morning, brought immediately to certified packhouses, pre-cooled in forced-air tunnels, and loaded directly into reefers on dock.',
+      },
+      {
+        q: 'What is the minimum order quantity?',
+        a: '1 container (FCL), typically one 40ft refrigerated container holding 1,540 to 2,400 cartons depending on pallet height.',
+      },
+      {
+        q: 'Do shipments comply with European and Middle Eastern residue norms?',
+        a: 'Yes. All orchard batches are tested at APEDA-recognized laboratories to ensure 100% compliance with destination MRL limits.',
+      },
     ],
-    related: [
-      { id: 'pomegranates', name: 'Pomegranates', category: 'Fresh fruit', path: '/products/pomegranates', img: IMAGES.pomegranatesCut, desc: 'Export-grade fruit packed in cartons.' },
-      { id: 'fresh-vegetables', name: 'Fresh vegetables', category: 'Fresh vegetable', path: '/products/fresh-vegetables', img: IMAGES.vegetables, desc: 'Seasonal vegetables for export.' },
+    relatedProducts: [
+      {
+        id: 'pomegranates',
+        name: 'Pomegranates',
+        category: 'Fresh fruit',
+        path: '/products/pomegranates',
+        img: IMAGES.pomegranatesCut,
+        desc: 'Export-grade fruit packed in cartons.',
+        colorVar: 'var(--crimson)',
+        badgeClass: 'badge-crimson',
+        icon: Sparkles,
+      },
+      {
+        id: 'fresh-vegetables',
+        name: 'Fresh vegetables',
+        category: 'Fresh vegetable',
+        path: '/products/fresh-vegetables',
+        img: IMAGES.vegetables,
+        desc: 'Seasonal fresh vegetables for export.',
+        colorVar: 'var(--leaf)',
+        badgeClass: 'badge-leaf',
+        icon: Carrot,
+      },
     ],
   },
 
@@ -452,81 +784,143 @@ const PRODUCTS_MAP: Record<string, ProductData> = {
     id: 'fresh-vegetables',
     name: 'Fresh vegetables',
     category: 'Fresh vegetable',
-    sentence: 'Cold-chain green and root vegetables, cleaned and packed for container sea freight.',
+    colorVar: 'var(--leaf)',
+    tintVar: 'var(--leaf-tint)',
+    badgeClass: 'badge-leaf',
+    sentence: 'Seasonal fresh vegetables for export, sorted and packed to international specifications.',
     mainImage: IMAGES.vegetables,
     thumbnails: [
       IMAGES.vegetables,
-      IMAGES.onionsSortingHands,
-      IMAGES.portContainers,
+      IMAGES.vegetablesOkra,
+      IMAGES.vegetablesGinger,
     ],
-    keyFacts: {
-      variety: 'Okra, Ginger, Green Chillies',
-      origin: 'Maharashtra & Gujarat, India',
+    floatingCard: {
+      season: 'Year-round rotational',
       packing: '4kg / 5kg / 10kg cartons',
       moq: '1 container (FCL)',
-      season: 'Seasonal',
     },
-    specTable: {
-      product: [
-        { label: 'Variety', value: 'Fresh Okra, G4 Green Chillies, Ginger' },
-        { label: 'Origin', value: 'India' },
-        { label: 'Size or grade', value: 'Export tender grade, uniform lengths' },
-        { label: 'Colour', value: 'Vibrant green, clean roots' },
-      ],
-      packing: [
-        { label: 'Packing type', value: 'Perforated corrugated cartons / mesh' },
-        { label: 'Net weight', value: '4 kg / 5 kg / 10 kg cartons' },
-        { label: 'Labelling', value: 'Buyer specifications / barcode' },
-      ],
-      shipping: [
-        { label: 'Container type', value: '40ft High Cube Reefer (+8°C to +10°C)' },
-        { label: 'Quantity per container', value: 'Approx. 12 to 14 Metric Tonnes' },
-        { label: 'Port of loading', value: 'JNPT / Nhava Sheva, India' },
-        { label: 'Trade terms', value: 'FOB, CIF, CFR' },
-      ],
-      terms: [
-        { label: 'Minimum order', value: '1 container (FCL)' },
-        { label: 'Payment terms', value: 'Irrevocable LC at sight / TT advance' },
-        { label: 'Samples', value: 'Available on request' },
-      ],
+    keyFacts: {
+      variety: 'Green Chillies, Okra, Ginger, Drumstick',
+      origin: 'Maharashtra & Karnataka, India',
+      packing: 'Perforated export cartons',
+      moq: '1 container (FCL)',
     },
+    itemsWeSupply: [
+      { name: 'Green Chillies (G4 & Bullet)', img: IMAGES.vegetables },
+      { name: 'Fresh Okra (Lady Finger)', img: IMAGES.vegetablesOkra },
+      { name: 'Fresh Ginger (Whole Rhizomes)', img: IMAGES.vegetablesGinger },
+      { name: 'Red & White Onions', img: IMAGES.onionsMesh },
+      { name: 'Fresh Drumsticks (Moringa)', img: IMAGES.vegetables },
+      { name: 'Bitter Gourd (Karela) & Bottle Gourd', img: IMAGES.vegetables },
+    ],
+    specGroups: [
+      {
+        title: 'PRODUCT',
+        items: [
+          { label: 'Variety', value: 'G4 Green Chillies, Fresh Okra, Moringa Drumsticks, Ginger, Bottle Gourd' },
+          { label: 'Origin', value: 'Western & Southern India' },
+          { label: 'Size or grade', value: 'Calibrated pod length: Chillies 7-10cm / Okra 8-12cm' },
+          { label: 'Colour', value: 'Bright uniform natural green, crisp and fiber-free' },
+        ],
+      },
+      {
+        title: 'PACKING',
+        items: [
+          { label: 'Packing type', value: 'Corrugated cartons with air circulation vents and parchment paper lining' },
+          { label: 'Net weight', value: '4.0kg, 5.0kg, or 10.0kg net' },
+          { label: 'Labelling', value: 'Barcoded export carton labeling with net weight and packing date' },
+        ],
+      },
+      {
+        title: 'SHIPPING',
+        items: [
+          { label: 'Container type', value: '40ft High Cube Reefer (+8°C to +12°C depending on commodity)' },
+          { label: 'Quantity per container', value: 'Approx. 2,000 to 3,200 cartons on pallets' },
+          { label: 'Port of loading', value: 'Nhava Sheva (JNPT) / Air Cargo Mumbai, India' },
+          { label: 'Trade terms', value: 'FOB, CIF, CFR per Incoterms 2020' },
+        ],
+      },
+      {
+        title: 'TERMS',
+        items: [
+          { label: 'Minimum order', value: '1 container (FCL)' },
+          { label: 'Payment terms', value: '30% advance T/T, balance against shipping documents' },
+          { label: 'Samples', value: 'Inspection video recordings and sorting lot certificates' },
+        ],
+      },
+    ],
     months: [
       { month: 'Jan', status: 'available' },
       { month: 'Feb', status: 'available' },
       { month: 'Mar', status: 'available' },
-      { month: 'Apr', status: 'none' },
-      { month: 'May', status: 'none' },
-      { month: 'Jun', status: 'none' },
-      { month: 'Jul', status: 'none' },
+      { month: 'Apr', status: 'available' },
+      { month: 'May', status: 'available' },
+      { month: 'Jun', status: 'available' },
+      { month: 'Jul', status: 'available' },
       { month: 'Aug', status: 'available' },
       { month: 'Sep', status: 'available' },
-      { month: 'Oct', status: 'peak' },
+      { month: 'Oct', status: 'available' },
       { month: 'Nov', status: 'peak' },
       { month: 'Dec', status: 'peak' },
     ],
-    isRealSeason: false,
-    supplyItems: [
-      { name: 'Red Onions', img: IMAGES.onions },
-      { name: 'Fresh Okra', img: IMAGES.vegetablesOkra },
-      { name: 'Fresh Ginger', img: IMAGES.vegetablesGinger },
-      { name: 'Green Chillies', isPlaceholder: true },
-      { name: 'Fresh Garlic', isPlaceholder: true },
-      { name: 'Moringa / Drumsticks', isPlaceholder: true },
-    ],
     packingCards: [
-      { title: 'Sorting & packing', caption: 'Manual sorting for tender, defect-free green produce.', img: IMAGES.packhouseInspection },
-      { title: 'Palletising', caption: 'Ventilated cartons stacked on pallets with air channels.', img: IMAGES.portContainers },
-      { title: 'Reefer loading', caption: 'Strictly monitored temperature controlled container loading.', img: IMAGES.containerLoading },
+      {
+        title: 'Sanitization & Grading',
+        desc: 'Manual sorting for uniform length, thickness, and complete defect removal.',
+        img: IMAGES.vegetablesOkra,
+      },
+      {
+        title: 'Ventilated Carton Packing',
+        desc: 'Food-grade moisture-absorbing paper inside perforated corrugated master boxes.',
+        img: IMAGES.vegetablesGinger,
+      },
+      {
+        title: 'Fast Reefer Dispatch',
+        desc: 'Temperature regulated reefer loading (+9°C to +11°C) with real-time temperature tracking.',
+        img: IMAGES.containerLoading,
+      },
     ],
     faq: [
-      { q: 'Which fresh vegetables are suitable for sea shipment?', a: 'Okra, green chillies, fresh ginger, garlic, and onions tolerate reefer container transit exceptionally well.' },
-      { q: 'What packaging is used for green chillies and okra?', a: 'We pack in 4kg and 5kg ventilated CFB (corrugated fibre board) cartons with moisture absorptive sheets.' },
-      { q: 'What is the minimum order quantity?', a: 'Minimum order is 1 container (FCL), or consolidated multi-vegetable reefer container.' },
-      { q: 'Are phytosanitary checks carried out prior to loading?', a: 'Every consignment undergoes Plant Quarantine inspection and phytosanitary clearance before port departure.' },
+      {
+        q: 'Which vegetables are available for sea container export?',
+        a: 'We regularly ship G4 Green Chillies, Fresh Okra, Fresh Ginger, Moringa Drumsticks, and seasonal Gourds under strict cold-chain supervision.',
+      },
+      {
+        q: 'How do you prevent condensation and decay during transit?',
+        a: 'Vegetables are pre-cooled to remove field heat and packed with breathable food-grade liners in perforated cartons to allow uniform cold-air circulation.',
+      },
+      {
+        q: 'What is the minimum order quantity?',
+        a: '1 container (FCL). For highly perishable specialty greens, we also facilitate consolidated airfreight shipments.',
+      },
+      {
+        q: 'Do you provide phytosanitary certification?',
+        a: 'Yes. Every shipment includes government phytosanitary inspection certificates and pest-free declarations before vessel departure.',
+      },
     ],
-    related: [
-      { id: 'onions', name: 'Onions', category: 'Fresh vegetable', path: '/products/onions', img: IMAGES.onionsMesh, desc: 'Red onions in mesh bags, October to April.' },
-      { id: 'fresh-fruits', name: 'Fresh fruits', category: 'Fresh fruit', path: '/products/fresh-fruits', img: IMAGES.fruits, desc: 'Seasonal fruit for export.' },
+    relatedProducts: [
+      {
+        id: 'onions',
+        name: 'Onions',
+        category: 'Fresh vegetable',
+        path: '/products/onions',
+        img: IMAGES.onionsMesh,
+        desc: 'Red onions in mesh bags, October to April.',
+        colorVar: 'var(--plum)',
+        badgeClass: 'badge-plum',
+        icon: CircleDot,
+      },
+      {
+        id: 'fresh-fruits',
+        name: 'Fresh fruits',
+        category: 'Fresh fruit',
+        path: '/products/fresh-fruits',
+        img: IMAGES.fruits,
+        desc: 'Seasonal fresh fruit for export.',
+        colorVar: 'var(--teal)',
+        badgeClass: 'badge-teal',
+        icon: Apple,
+      },
     ],
   },
 };
@@ -536,51 +930,84 @@ export const ProductDetailPage: React.FC<ProductDetailPageProps> = ({
   onNavigate,
   onOpenRfq,
 }) => {
-  const productKey = slug.toLowerCase();
-  const product = PRODUCTS_MAP[productKey] || PRODUCTS_MAP['pomegranates'];
+  const productKey = PRODUCTS_DATA[slug] ? slug : 'pomegranates';
+  const product = PRODUCTS_DATA[productKey];
 
-  // Thumbnail swap state
+  // Image Gallery state
   const [activeImage, setActiveImage] = useState<string>(product.mainImage);
+  const [activeFaq, setActiveFaq] = useState<number | null>(null);
 
-  // Sync active image when slug changes
-  React.useEffect(() => {
-    setActiveImage(product.mainImage);
-  }, [product.mainImage]);
+  // Quote Form inside product detail page (Preselected with THIS product only)
+  const [formSubmitted, setFormSubmitted] = useState(false);
+  const [formSubmitting, setFormSubmitting] = useState(false);
+  const [formData, setFormData] = useState({
+    fullName: '',
+    phoneCode: '+971',
+    mobile: '',
+    product: product.name,
+    quantityNum: '',
+    quantityUnit: 'containers',
+    destinationCountry: '',
+    companyName: '',
+    email: '',
+  });
 
-  const whatsappUrl = `https://wa.me/910000000000?text=Hello%20Vasudha%20Freshline%20Exports%20LLP,%20I%20am%20interested%20in%20importing%20${encodeURIComponent(product.name)}.`;
+  const handleFormChange = (
+    e: React.ChangeEvent<HTMLInputElement | HTMLSelectElement>
+  ) => {
+    const { name, value } = e.target;
+    setFormData((prev) => ({ ...prev, [name]: value }));
+  };
+
+  const handleFormSubmit = (e: React.FormEvent) => {
+    e.preventDefault();
+    setFormSubmitting(true);
+    setTimeout(() => {
+      setFormSubmitting(false);
+      setFormSubmitted(true);
+    }, 600);
+  };
+
+  const scrollToQuote = () => {
+    const el = document.getElementById('product-quote-section');
+    if (el) {
+      el.scrollIntoView({ behavior: 'smooth' });
+    } else {
+      onOpenRfq(product.name);
+    }
+  };
+
+  const whatsappUrl = `https://wa.me/910000000000?text=Hello%20Vasudha%20Freshline%20Exports%20LLP,%20I%20would%20like%20to%20request%20a%20quote%20for%20${encodeURIComponent(product.name)}.`;
 
   return (
-    <div className="product-detail-flow" style={{ width: '100%', overflow: 'hidden' }}>
+    <div className="product-detail-page-flow" style={{ width: '100%', overflow: 'hidden' }}>
       {/* =====================================================================
-          1. BREADCRUMB & 2. HERO (white with two glows)
+          1. HERO (white with two glows, split)
+          Breadcrumb above: Home / Products / [Product]
+          Left: category pill (tint), H1 (Manrope 800, 52px), sentence, 2 buttons, 3 ticks
+          Right: 4:5 image, 3 thumbnails, floating card with product colour top bar
           ===================================================================== */}
-      <section
-        className="section section-white has-glows"
-        style={{
-          paddingTop: '36px',
-          paddingBottom: '72px',
-          borderBottom: '1px solid var(--line)',
-        }}
-      >
+      <section className="section section-white has-glows" style={{ paddingTop: '32px', paddingBottom: '72px' }}>
         <div className="glow-orb glow-leaf-tl" aria-hidden="true" />
         <div className="glow-orb glow-blue-br" aria-hidden="true" />
+
         <div className="container" style={{ position: 'relative', zIndex: 1 }}>
-          {/* 1. Breadcrumb */}
+          {/* Breadcrumb */}
           <nav
             style={{
               display: 'flex',
               alignItems: 'center',
               gap: '8px',
-              fontSize: '14px',
+              fontSize: '13px',
               color: 'var(--muted)',
-              marginBottom: '28px',
+              marginBottom: '32px',
             }}
             aria-label="Breadcrumb"
           >
             <button
               type="button"
               onClick={() => onNavigate('/')}
-              style={{ background: 'none', border: 'none', color: 'var(--muted)', cursor: 'pointer', padding: 0 }}
+              style={{ background: 'none', border: 'none', padding: 0, color: 'var(--muted)', cursor: 'pointer', fontSize: '13px' }}
             >
               Home
             </button>
@@ -588,7 +1015,7 @@ export const ProductDetailPage: React.FC<ProductDetailPageProps> = ({
             <button
               type="button"
               onClick={() => onNavigate('/products')}
-              style={{ background: 'none', border: 'none', color: 'var(--muted)', cursor: 'pointer', padding: 0 }}
+              style={{ background: 'none', border: 'none', padding: 0, color: 'var(--muted)', cursor: 'pointer', fontSize: '13px' }}
             >
               Products
             </button>
@@ -596,7 +1023,7 @@ export const ProductDetailPage: React.FC<ProductDetailPageProps> = ({
             <span style={{ color: 'var(--navy)', fontWeight: 600 }}>{product.name}</span>
           </nav>
 
-          {/* 2. HERO: Two Columns */}
+          {/* Split Hero Layout */}
           <div
             style={{
               display: 'grid',
@@ -605,37 +1032,57 @@ export const ProductDetailPage: React.FC<ProductDetailPageProps> = ({
               alignItems: 'center',
             }}
           >
-            {/* Left Column */}
-            <div style={{ display: 'flex', flexDirection: 'column', gap: '20px', maxWidth: '560px' }}>
-              <div>
-                <span className="eyebrow">{product.category}</span>
+            {/* Left Content */}
+            <div>
+              <div style={{ marginBottom: '14px' }}>
+                <span
+                  className="eyebrow"
+                  style={{
+                    backgroundColor: product.tintVar,
+                    color: product.colorVar,
+                    fontSize: '12px',
+                    padding: '5px 14px',
+                  }}
+                >
+                  {product.category}
+                </span>
               </div>
 
-              <h1 style={{ fontSize: 'clamp(36px, 5vw, 56px)', lineHeight: '1.14', margin: 0 }}>
+              <h1
+                style={{
+                  fontFamily: 'var(--font-heading)',
+                  fontWeight: 800,
+                  fontSize: 'clamp(36px, 4.5vw, 52px)',
+                  lineHeight: '1.14',
+                  color: 'var(--navy)',
+                  margin: '0 0 16px 0',
+                  letterSpacing: '-0.02em',
+                }}
+              >
                 {product.name}
               </h1>
 
-              <p className="sub-line" style={{ fontSize: '18px', color: 'var(--body)', margin: 0 }}>
+              <p
+                style={{
+                  fontSize: '18px',
+                  lineHeight: '28px',
+                  color: 'var(--body)',
+                  marginBottom: '28px',
+                  maxWidth: '540px',
+                }}
+              >
                 {product.sentence}
               </p>
 
               {/* Action Buttons */}
-              <div
-                style={{
-                  display: 'flex',
-                  alignItems: 'center',
-                  gap: '14px',
-                  flexWrap: 'wrap',
-                  marginTop: '8px',
-                }}
-              >
+              <div style={{ display: 'flex', gap: '14px', flexWrap: 'wrap', marginBottom: '32px' }}>
                 <button
                   type="button"
                   className="btn-primary"
-                  onClick={() => onOpenRfq(product.name)}
+                  onClick={scrollToQuote}
                 >
-                  <span>Request a quote for {product.name.toLowerCase()}</span>
-                  <ArrowRight size={17} />
+                  <span>Request a quote for {product.name}</span>
+                  <ArrowRight size={16} />
                 </button>
 
                 <button
@@ -648,61 +1095,76 @@ export const ProductDetailPage: React.FC<ProductDetailPageProps> = ({
                 </button>
               </div>
 
-              {/* Three olive ticks */}
-              <div
-                style={{
-                  display: 'flex',
-                  alignItems: 'center',
-                  gap: '20px',
-                  flexWrap: 'wrap',
-                  paddingTop: '18px',
-                  borderTop: '1px solid var(--line)',
-                  marginTop: '8px',
-                }}
-              >
-                <div style={{ display: 'flex', alignItems: 'center', gap: '8px', fontSize: '14px', fontWeight: 600, color: 'var(--body)' }}>
-                  <span style={{ color: 'var(--olive)', display: 'flex' }}>
-                    <Check size={16} strokeWidth={2.6} />
-                  </span>
+              {/* Three Olive/Leaf Ticks */}
+              <div style={{ display: 'flex', flexDirection: 'column', gap: '12px' }}>
+                <div style={{ display: 'flex', alignItems: 'center', gap: '10px', fontSize: '15px', color: 'var(--body)' }}>
+                  <div
+                    style={{
+                      width: '22px',
+                      height: '22px',
+                      borderRadius: '50%',
+                      backgroundColor: 'var(--leaf-tint)',
+                      color: 'var(--leaf)',
+                      display: 'flex',
+                      alignItems: 'center',
+                      justifyContent: 'center',
+                    }}
+                  >
+                    <Check size={14} strokeWidth={3} />
+                  </div>
                   <span>Clear specifications</span>
                 </div>
 
-                <div style={{ display: 'flex', alignItems: 'center', gap: '8px', fontSize: '14px', fontWeight: 600, color: 'var(--body)' }}>
-                  <span style={{ color: 'var(--olive)', display: 'flex' }}>
-                    <Check size={16} strokeWidth={2.6} />
-                  </span>
+                <div style={{ display: 'flex', alignItems: 'center', gap: '10px', fontSize: '15px', color: 'var(--body)' }}>
+                  <div
+                    style={{
+                      width: '22px',
+                      height: '22px',
+                      borderRadius: '50%',
+                      backgroundColor: 'var(--leaf-tint)',
+                      color: 'var(--leaf)',
+                      display: 'flex',
+                      alignItems: 'center',
+                      justifyContent: 'center',
+                    }}
+                  >
+                    <Check size={14} strokeWidth={3} />
+                  </div>
                   <span>Documents with every shipment</span>
                 </div>
 
-                <div style={{ display: 'flex', alignItems: 'center', gap: '8px', fontSize: '14px', fontWeight: 600, color: 'var(--body)' }}>
-                  <span style={{ color: 'var(--olive)', display: 'flex' }}>
-                    <Check size={16} strokeWidth={2.6} />
-                  </span>
+                <div style={{ display: 'flex', alignItems: 'center', gap: '10px', fontSize: '15px', color: 'var(--body)' }}>
+                  <div
+                    style={{
+                      width: '22px',
+                      height: '22px',
+                      borderRadius: '50%',
+                      backgroundColor: 'var(--leaf-tint)',
+                      color: 'var(--leaf)',
+                      display: 'flex',
+                      alignItems: 'center',
+                      justifyContent: 'center',
+                    }}
+                  >
+                    <Check size={14} strokeWidth={3} />
+                  </div>
                   <span>Replies within 4 hours</span>
                 </div>
               </div>
             </div>
 
-            {/* Right Column: Main image (4:5) + 3 Thumbnails + Floating KEY-FACTS CARD */}
-            <div
-              style={{
-                position: 'relative',
-                width: '100%',
-                maxWidth: '480px',
-                margin: '0 auto',
-              }}
-            >
-              {/* Main Image Stage (4:5) */}
+            {/* Right Media Gallery */}
+            <div style={{ position: 'relative' }}>
+              {/* Main Rounded Image (4:5) */}
               <div
                 style={{
+                  position: 'relative',
                   width: '100%',
                   aspectRatio: '4 / 5',
-                  minHeight: '480px',
-                  borderRadius: 'var(--radius-img)',
+                  borderRadius: '24px',
                   overflow: 'hidden',
-                  position: 'relative',
+                  boxShadow: 'var(--shadow-md)',
                   backgroundColor: 'var(--mist)',
-                  boxShadow: 'var(--shadow-rest)',
                 }}
               >
                 <img
@@ -713,96 +1175,85 @@ export const ProductDetailPage: React.FC<ProductDetailPageProps> = ({
                     height: '100%',
                     objectFit: 'cover',
                     display: 'block',
-                    transition: 'all 0.3s ease',
+                    transition: 'opacity 0.3s ease',
                   }}
                 />
+
+                {/* Floating Card on Lower-Left corner with 4px top bar */}
+                <div
+                  style={{
+                    position: 'absolute',
+                    bottom: '20px',
+                    left: '20px',
+                    right: '20px',
+                    backgroundColor: 'var(--white)',
+                    borderRadius: '16px',
+                    padding: '16px 20px',
+                    boxShadow: 'var(--shadow-lg)',
+                    border: '1px solid rgba(255, 255, 255, 0.8)',
+                    zIndex: 2,
+                    backdropFilter: 'blur(10px)',
+                  }}
+                >
+                  <div
+                    style={{
+                      position: 'absolute',
+                      top: 0,
+                      left: 0,
+                      right: 0,
+                      height: '4px',
+                      backgroundColor: product.colorVar,
+                      borderTopLeftRadius: '16px',
+                      borderTopRightRadius: '16px',
+                    }}
+                  />
+                  <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', flexWrap: 'wrap', gap: '10px' }}>
+                    <div>
+                      <div style={{ fontSize: '11px', color: 'var(--muted)', textTransform: 'uppercase', fontWeight: 600 }}>Season</div>
+                      <div style={{ fontSize: '13px', fontWeight: 700, color: 'var(--navy)' }}>{product.floatingCard.season}</div>
+                    </div>
+                    <div style={{ width: '1px', height: '24px', backgroundColor: 'var(--line)' }} />
+                    <div>
+                      <div style={{ fontSize: '11px', color: 'var(--muted)', textTransform: 'uppercase', fontWeight: 600 }}>Packing</div>
+                      <div style={{ fontSize: '13px', fontWeight: 700, color: 'var(--navy)' }}>{product.floatingCard.packing}</div>
+                    </div>
+                    <div style={{ width: '1px', height: '24px', backgroundColor: 'var(--line)' }} />
+                    <div>
+                      <div style={{ fontSize: '11px', color: 'var(--muted)', textTransform: 'uppercase', fontWeight: 600 }}>Min. Order</div>
+                      <div style={{ fontSize: '13px', fontWeight: 700, color: 'var(--leaf)' }}>{product.floatingCard.moq}</div>
+                    </div>
+                  </div>
+                </div>
               </div>
 
               {/* Three Thumbnails */}
-              <div
-                style={{
-                  display: 'grid',
-                  gridTemplateColumns: 'repeat(3, 1fr)',
-                  gap: '12px',
-                  marginTop: '14px',
-                }}
-              >
+              <div style={{ display: 'flex', gap: '12px', marginTop: '16px' }}>
                 {product.thumbnails.map((thumb, idx) => (
                   <button
                     key={idx}
                     type="button"
                     onClick={() => setActiveImage(thumb)}
                     style={{
-                      aspectRatio: '4 / 3',
-                      borderRadius: '12px',
+                      flex: 1,
+                      aspectRatio: '1',
+                      borderRadius: '14px',
                       overflow: 'hidden',
-                      border: activeImage === thumb ? '2px solid var(--navy)' : '2px solid transparent',
                       padding: 0,
+                      border: activeImage === thumb ? `3px solid ${product.colorVar}` : '2px solid transparent',
                       cursor: 'pointer',
-                      background: 'var(--mist)',
-                      position: 'relative',
-                      boxShadow: '0 2px 8px rgba(16, 16, 79, 0.04)',
+                      boxShadow: 'var(--shadow-xs)',
+                      backgroundColor: 'var(--mist)',
+                      transition: 'border 0.2s ease, transform 0.2s ease',
+                      transform: activeImage === thumb ? 'scale(1.02)' : 'none',
                     }}
-                    aria-label={`Select photo ${idx + 1}`}
                   >
                     <img
                       src={thumb}
-                      alt={`${product.name} thumbnail ${idx + 1}`}
-                      style={{
-                        width: '100%',
-                        height: '100%',
-                        objectFit: 'cover',
-                        display: 'block',
-                      }}
+                      alt={`${product.name} thumb ${idx + 1}`}
+                      style={{ width: '100%', height: '100%', objectFit: 'cover', display: 'block' }}
                     />
                   </button>
                 ))}
-              </div>
-
-              {/* Floating white KEY-FACTS CARD on lower-left corner */}
-              <div
-                style={{
-                  position: 'absolute',
-                  bottom: '84px',
-                  left: '-20px',
-                  backgroundColor: 'var(--white)',
-                  borderRadius: '16px',
-                  boxShadow: '0 16px 40px rgba(16, 16, 79, 0.14)',
-                  border: '1px solid var(--line)',
-                  padding: '20px 24px',
-                  width: 'min(92%, 300px)',
-                  zIndex: 20,
-                  display: 'flex',
-                  flexDirection: 'column',
-                  gap: '8px',
-                }}
-              >
-                <div
-                  style={{
-                    fontFamily: 'var(--font-heading)',
-                    fontSize: '16px',
-                    fontWeight: 800,
-                    color: 'var(--navy)',
-                    borderBottom: '1px solid var(--line)',
-                    paddingBottom: '6px',
-                  }}
-                >
-                  Key Facts
-                </div>
-                <div style={{ display: 'flex', flexDirection: 'column', gap: '6px', fontSize: '13px' }}>
-                  <div style={{ display: 'flex', justifyContent: 'space-between' }}>
-                    <span style={{ color: 'var(--muted)' }}>Season:</span>
-                    <strong style={{ color: 'var(--navy)' }}>{product.keyFacts.season}</strong>
-                  </div>
-                  <div style={{ display: 'flex', justifyContent: 'space-between' }}>
-                    <span style={{ color: 'var(--muted)' }}>Packing:</span>
-                    <span style={{ color: 'var(--body)' }}>{product.keyFacts.packing}</span>
-                  </div>
-                  <div style={{ display: 'flex', justifyContent: 'space-between' }}>
-                    <span style={{ color: 'var(--muted)' }}>Minimum order:</span>
-                    <strong style={{ color: 'var(--navy)' }}>1 container (FCL)</strong>
-                  </div>
-                </div>
               </div>
             </div>
           </div>
@@ -810,132 +1261,219 @@ export const ProductDetailPage: React.FC<ProductDetailPageProps> = ({
       </section>
 
       {/* =====================================================================
-          3. KEY FACTS (mist)
-          Four .card items in a row with icons
+          2. KEY FACTS (mist section)
+          Four white cards in a row + Product-specific sections
           ===================================================================== */}
       <section className="section section-mist">
         <div className="container">
           <div
             style={{
               display: 'grid',
-              gridTemplateColumns: 'repeat(auto-fit, minmax(min(100%, 260px), 1fr))',
-              gap: '24px',
+              gridTemplateColumns: 'repeat(auto-fit, minmax(min(100%, 240px), 1fr))',
+              gap: '20px',
             }}
           >
-            <div className="card">
-              <div className="icon-circle" style={{ marginBottom: '16px' }}>
-                <Award size={24} />
+            {/* Fact 1: Variety */}
+            <div
+              className="card"
+              style={{
+                backgroundColor: 'var(--white)',
+                borderRadius: '18px',
+                padding: '24px',
+                border: '1px solid var(--border-subtle)',
+              }}
+            >
+              <div
+                className="icon-circle"
+                style={{
+                  backgroundColor: product.tintVar,
+                  color: product.colorVar,
+                  marginBottom: '14px',
+                  width: '44px',
+                  height: '44px',
+                }}
+              >
+                <Sparkles size={20} />
               </div>
-              <div style={{ fontSize: '13px', color: 'var(--muted)', marginBottom: '4px' }}>Variety</div>
-              <h3 style={{ fontSize: '19px', margin: 0 }}>{product.keyFacts.variety}</h3>
+              <div style={{ fontSize: '12px', color: 'var(--muted)', fontWeight: 600, textTransform: 'uppercase', marginBottom: '4px' }}>
+                Variety
+              </div>
+              <div style={{ fontSize: '17px', fontWeight: 700, color: 'var(--navy)' }}>
+                {product.keyFacts.variety}
+              </div>
             </div>
 
-            <div className="card">
-              <div className="icon-circle" style={{ marginBottom: '16px' }}>
-                <Globe size={24} />
+            {/* Fact 2: Origin */}
+            <div
+              className="card"
+              style={{
+                backgroundColor: 'var(--white)',
+                borderRadius: '18px',
+                padding: '24px',
+                border: '1px solid var(--border-subtle)',
+              }}
+            >
+              <div
+                className="icon-circle"
+                style={{
+                  backgroundColor: product.tintVar,
+                  color: product.colorVar,
+                  marginBottom: '14px',
+                  width: '44px',
+                  height: '44px',
+                }}
+              >
+                <Ship size={20} />
               </div>
-              <div style={{ fontSize: '13px', color: 'var(--muted)', marginBottom: '4px' }}>Origin</div>
-              <h3 style={{ fontSize: '19px', margin: 0 }}>{product.keyFacts.origin}</h3>
+              <div style={{ fontSize: '12px', color: 'var(--muted)', fontWeight: 600, textTransform: 'uppercase', marginBottom: '4px' }}>
+                Origin
+              </div>
+              <div style={{ fontSize: '17px', fontWeight: 700, color: 'var(--navy)' }}>
+                {product.keyFacts.origin}
+              </div>
             </div>
 
-            <div className="card">
-              <div className="icon-circle" style={{ marginBottom: '16px' }}>
-                <Package size={24} />
+            {/* Fact 3: Packing */}
+            <div
+              className="card"
+              style={{
+                backgroundColor: 'var(--white)',
+                borderRadius: '18px',
+                padding: '24px',
+                border: '1px solid var(--border-subtle)',
+              }}
+            >
+              <div
+                className="icon-circle"
+                style={{
+                  backgroundColor: product.tintVar,
+                  color: product.colorVar,
+                  marginBottom: '14px',
+                  width: '44px',
+                  height: '44px',
+                }}
+              >
+                <Package size={20} />
               </div>
-              <div style={{ fontSize: '13px', color: 'var(--muted)', marginBottom: '4px' }}>Packing</div>
-              <h3 style={{ fontSize: '19px', margin: 0 }}>{product.keyFacts.packing}</h3>
+              <div style={{ fontSize: '12px', color: 'var(--muted)', fontWeight: 600, textTransform: 'uppercase', marginBottom: '4px' }}>
+                Packing
+              </div>
+              <div style={{ fontSize: '17px', fontWeight: 700, color: 'var(--navy)' }}>
+                {product.keyFacts.packing}
+              </div>
             </div>
 
-            <div className="card">
-              <div className="icon-circle" style={{ marginBottom: '16px' }}>
-                <Ship size={24} />
+            {/* Fact 4: Minimum order */}
+            <div
+              className="card"
+              style={{
+                backgroundColor: 'var(--white)',
+                borderRadius: '18px',
+                padding: '24px',
+                border: '1px solid var(--border-subtle)',
+              }}
+            >
+              <div
+                className="icon-circle"
+                style={{
+                  backgroundColor: product.tintVar,
+                  color: product.colorVar,
+                  marginBottom: '14px',
+                  width: '44px',
+                  height: '44px',
+                }}
+              >
+                <ShieldCheck size={20} />
               </div>
-              <div style={{ fontSize: '13px', color: 'var(--muted)', marginBottom: '4px' }}>Minimum order</div>
-              <h3 style={{ fontSize: '19px', margin: 0 }}>1 container (FCL)</h3>
+              <div style={{ fontSize: '12px', color: 'var(--muted)', fontWeight: 600, textTransform: 'uppercase', marginBottom: '4px' }}>
+                Minimum Order
+              </div>
+              <div style={{ fontSize: '17px', fontWeight: 700, color: 'var(--leaf)' }}>
+                {product.keyFacts.moq}
+              </div>
             </div>
           </div>
 
-          {/* Special addition for Onions: olive-tint info card */}
-          {product.id === 'onions' && (
+          {/* Product Specific: Onions Season Card */}
+          {product.isOnionSeasonCard && (
             <div
               style={{
-                marginTop: '32px',
-                backgroundColor: 'var(--olive-tint)',
-                border: '1px solid rgba(104, 112, 54, 0.2)',
-                borderRadius: '16px',
-                padding: '20px 28px',
+                marginTop: '28px',
+                backgroundColor: '#F1E6F4',
+                borderRadius: '20px',
+                padding: '24px 32px',
+                border: '1px solid rgba(123, 63, 134, 0.2)',
                 display: 'flex',
                 alignItems: 'center',
-                gap: '16px',
+                gap: '20px',
+                flexWrap: 'wrap',
               }}
             >
-              <div className="icon-circle" style={{ backgroundColor: 'var(--white)' }}>
-                <Calendar size={22} style={{ color: 'var(--olive-deep)' }} />
+              <div
+                style={{
+                  width: '48px',
+                  height: '48px',
+                  borderRadius: '50%',
+                  backgroundColor: 'var(--white)',
+                  color: 'var(--plum)',
+                  display: 'flex',
+                  alignItems: 'center',
+                  justifyContent: 'center',
+                  boxShadow: 'var(--shadow-xs)',
+                }}
+              >
+                <Calendar size={24} />
               </div>
               <div>
-                <div style={{ fontFamily: 'var(--font-heading)', fontWeight: 800, fontSize: '16px', color: 'var(--olive-deep)' }}>
+                <div style={{ fontSize: '17px', fontWeight: 700, color: 'var(--plum)' }}>
                   Season: October to April, peak December to February
                 </div>
                 <div style={{ fontSize: '14px', color: 'var(--body)', marginTop: '2px' }}>
-                  Direct harvest from Nashik agricultural belt with optimal curing and firmness for overseas voyages.
+                  Nashik Red crop harvested and natural field-cured for superior transit dormancy and shelf stability.
                 </div>
               </div>
             </div>
           )}
 
-          {/* Special addition for Fresh Fruits & Fresh Vegetables: "Items we supply" */}
-          {product.supplyItems && product.supplyItems.length > 0 && (
-            <div style={{ marginTop: '56px' }}>
-              <div style={{ marginBottom: '24px' }}>
-                <span className="eyebrow" style={{ marginBottom: '8px' }}>Range</span>
-                <h3 style={{ fontSize: '26px', margin: 0 }}>Items we supply</h3>
+          {/* Product Specific: Items We Supply (Fresh Fruits and Fresh Vegetables) */}
+          {product.itemsWeSupply && (
+            <div style={{ marginTop: '48px' }}>
+              <div style={{ textAlign: 'center', marginBottom: '28px' }}>
+                <span className="eyebrow" style={{ backgroundColor: product.tintVar, color: product.colorVar }}>
+                  Portfolio
+                </span>
+                <h3 style={{ fontSize: '26px', color: 'var(--navy)', margin: '8px 0 0 0' }}>
+                  Items we supply
+                </h3>
               </div>
 
               <div
                 style={{
                   display: 'grid',
                   gridTemplateColumns: 'repeat(auto-fit, minmax(min(100%, 170px), 1fr))',
-                  gap: '20px',
+                  gap: '16px',
                 }}
               >
-                {product.supplyItems.map((item, idx) => (
+                {product.itemsWeSupply.map((item, idx) => (
                   <div
                     key={idx}
-                    className="card"
                     style={{
-                      padding: '16px',
-                      alignItems: 'center',
+                      backgroundColor: 'var(--white)',
+                      borderRadius: '16px',
+                      overflow: 'hidden',
+                      border: '1px solid var(--border-subtle)',
+                      boxShadow: 'var(--shadow-xs)',
                       textAlign: 'center',
-                      gap: '12px',
                     }}
                   >
-                    <div
-                      style={{
-                        width: '100%',
-                        aspectRatio: '1 / 1',
-                        borderRadius: '12px',
-                        overflow: 'hidden',
-                        backgroundColor: 'var(--mist)',
-                        display: 'flex',
-                        alignItems: 'center',
-                        justifyContent: 'center',
-                        position: 'relative',
-                      }}
-                    >
-                      {item.isPlaceholder ? (
-                        <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', gap: '6px', color: 'var(--muted)' }}>
-                          <ImageIcon size={24} />
-                          <span style={{ fontSize: '11px' }}>Photo</span>
-                        </div>
-                      ) : (
-                        <img
-                          src={item.img}
-                          alt={item.name}
-                          style={{ width: '100%', height: '100%', objectFit: 'cover' }}
-                        />
-                      )}
+                    <div style={{ width: '100%', height: '110px', backgroundColor: 'var(--mist)', overflow: 'hidden' }}>
+                      <img
+                        src={item.img}
+                        alt={item.name}
+                        style={{ width: '100%', height: '100%', objectFit: 'cover' }}
+                      />
                     </div>
-                    <div style={{ fontSize: '14px', fontWeight: 700, color: 'var(--navy)' }}>
+                    <div style={{ padding: '12px 10px', fontSize: '13px', fontWeight: 700, color: 'var(--navy)' }}>
                       {item.name}
                     </div>
                   </div>
@@ -947,190 +1485,100 @@ export const ProductDetailPage: React.FC<ProductDetailPageProps> = ({
       </section>
 
       {/* =====================================================================
-          4. SPECIFICATION (white)
-          Clean two-column table in 4 groups
+          3. SPECIFICATION (white section)
+          Intro (C) + White card with two-column table in 4 groups
           ===================================================================== */}
       <section className="section section-white">
         <div className="container">
-          <div className="section-intro left">
+          <div className="section-intro centered">
             <span className="eyebrow">Specification</span>
-            <h2>Product specification.</h2>
-            <p className="sub-line">Clear technical parameters agreed in writing with every container.</p>
+            <h2>Product <span className="text-highlight-leaf">specification</span>.</h2>
+            <div className="section-intro-bar" />
+            <p className="sub-line">Parameters agreed upfront and verified with phytosanitary documentation.</p>
           </div>
 
-          <div className="card" style={{ padding: '36px', overflowX: 'auto' }}>
-            <div
-              style={{
-                display: 'grid',
-                gridTemplateColumns: 'repeat(auto-fit, minmax(min(100%, 460px), 1fr))',
-                gap: '36px',
-              }}
-            >
-              {/* Group 1: PRODUCT */}
-              <div>
+          <div
+            className="card"
+            style={{
+              maxWidth: '920px',
+              margin: '48px auto 0 auto',
+              backgroundColor: 'var(--white)',
+              borderRadius: '24px',
+              padding: '40px',
+              boxShadow: 'var(--shadow-md)',
+              border: '1px solid var(--border-subtle)',
+            }}
+          >
+            {product.specGroups.map((group, gIdx) => (
+              <div
+                key={gIdx}
+                style={{
+                  marginBottom: gIdx === product.specGroups.length - 1 ? 0 : '32px',
+                  paddingBottom: gIdx === product.specGroups.length - 1 ? 0 : '24px',
+                  borderBottom: gIdx === product.specGroups.length - 1 ? 'none' : '1px solid var(--line)',
+                }}
+              >
                 <div
                   style={{
-                    fontFamily: 'var(--font-heading)',
-                    fontSize: '14px',
+                    fontSize: '13px',
                     fontWeight: 800,
-                    textTransform: 'uppercase',
+                    color: product.colorVar,
                     letterSpacing: '0.08em',
-                    color: 'var(--navy)',
-                    borderBottom: '2px solid var(--navy)',
-                    paddingBottom: '8px',
+                    textTransform: 'uppercase',
                     marginBottom: '16px',
                   }}
                 >
-                  Product
+                  {group.title}
                 </div>
-                <div style={{ display: 'flex', flexDirection: 'column', gap: '12px' }}>
-                  {product.specTable.product.map((row, idx) => (
-                    <div
-                      key={idx}
-                      style={{
-                        display: 'flex',
-                        justifyContent: 'space-between',
-                        paddingBottom: '8px',
-                        borderBottom: '1px solid var(--line)',
-                        fontSize: '14px',
-                      }}
-                    >
-                      <span style={{ color: 'var(--muted)' }}>{row.label}</span>
-                      <strong style={{ color: 'var(--navy)', textAlign: 'right' }}>{row.value}</strong>
-                    </div>
-                  ))}
-                </div>
-              </div>
 
-              {/* Group 2: PACKING */}
-              <div>
-                <div
-                  style={{
-                    fontFamily: 'var(--font-heading)',
-                    fontSize: '14px',
-                    fontWeight: 800,
-                    textTransform: 'uppercase',
-                    letterSpacing: '0.08em',
-                    color: 'var(--navy)',
-                    borderBottom: '2px solid var(--navy)',
-                    paddingBottom: '8px',
-                    marginBottom: '16px',
-                  }}
-                >
-                  Packing
-                </div>
                 <div style={{ display: 'flex', flexDirection: 'column', gap: '12px' }}>
-                  {product.specTable.packing.map((row, idx) => (
+                  {group.items.map((item, iIdx) => (
                     <div
-                      key={idx}
+                      key={iIdx}
                       style={{
-                        display: 'flex',
-                        justifyContent: 'space-between',
-                        paddingBottom: '8px',
-                        borderBottom: '1px solid var(--line)',
+                        display: 'grid',
+                        gridTemplateColumns: 'repeat(auto-fit, minmax(min(100%, 220px), 1fr))',
+                        gap: '12px',
+                        padding: '6px 0',
                         fontSize: '14px',
                       }}
                     >
-                      <span style={{ color: 'var(--muted)' }}>{row.label}</span>
-                      <strong style={{ color: 'var(--navy)', textAlign: 'right' }}>{row.value}</strong>
+                      <span style={{ color: 'var(--muted)', fontWeight: 500 }}>{item.label}</span>
+                      <span style={{ color: 'var(--navy)', fontWeight: 600 }}>{item.value}</span>
                     </div>
                   ))}
                 </div>
               </div>
-
-              {/* Group 3: SHIPPING */}
-              <div>
-                <div
-                  style={{
-                    fontFamily: 'var(--font-heading)',
-                    fontSize: '14px',
-                    fontWeight: 800,
-                    textTransform: 'uppercase',
-                    letterSpacing: '0.08em',
-                    color: 'var(--navy)',
-                    borderBottom: '2px solid var(--navy)',
-                    paddingBottom: '8px',
-                    marginBottom: '16px',
-                  }}
-                >
-                  Shipping
-                </div>
-                <div style={{ display: 'flex', flexDirection: 'column', gap: '12px' }}>
-                  {product.specTable.shipping.map((row, idx) => (
-                    <div
-                      key={idx}
-                      style={{
-                        display: 'flex',
-                        justifyContent: 'space-between',
-                        paddingBottom: '8px',
-                        borderBottom: '1px solid var(--line)',
-                        fontSize: '14px',
-                      }}
-                    >
-                      <span style={{ color: 'var(--muted)' }}>{row.label}</span>
-                      <strong style={{ color: 'var(--navy)', textAlign: 'right' }}>{row.value}</strong>
-                    </div>
-                  ))}
-                </div>
-              </div>
-
-              {/* Group 4: TERMS */}
-              <div>
-                <div
-                  style={{
-                    fontFamily: 'var(--font-heading)',
-                    fontSize: '14px',
-                    fontWeight: 800,
-                    textTransform: 'uppercase',
-                    letterSpacing: '0.08em',
-                    color: 'var(--navy)',
-                    borderBottom: '2px solid var(--navy)',
-                    paddingBottom: '8px',
-                    marginBottom: '16px',
-                  }}
-                >
-                  Terms
-                </div>
-                <div style={{ display: 'flex', flexDirection: 'column', gap: '12px' }}>
-                  {product.specTable.terms.map((row, idx) => (
-                    <div
-                      key={idx}
-                      style={{
-                        display: 'flex',
-                        justifyContent: 'space-between',
-                        paddingBottom: '8px',
-                        borderBottom: '1px solid var(--line)',
-                        fontSize: '14px',
-                      }}
-                    >
-                      <span style={{ color: 'var(--muted)' }}>{row.label}</span>
-                      <strong style={{ color: 'var(--navy)', textAlign: 'right' }}>{row.value}</strong>
-                    </div>
-                  ))}
-                </div>
-              </div>
-            </div>
+            ))}
           </div>
         </div>
       </section>
 
       {/* =====================================================================
-          5. AVAILABILITY (mist)
-          12-month calendar bar with legend
+          4. AVAILABILITY (mist section)
+          Intro (C) + White card with 12-month bar
           ===================================================================== */}
       <section className="section section-mist">
         <div className="container">
-          <div className="section-intro left">
-            <span className="eyebrow">Seasonality</span>
-            <h2>When it is available.</h2>
-            <p className="sub-line">
-              {product.isRealSeason
-                ? 'Harvested from October to April with peak supply December to February.'
-                : 'Commercial harvesting calendar for container booking throughout the harvest season.'}
-            </p>
+          <div className="section-intro centered">
+            <span className="eyebrow">Availability</span>
+            <h2>When it is <span className="text-highlight-blue">available</span>.</h2>
+            <div className="section-intro-bar" />
+            <p className="sub-line">Commercial seasonal availability from Indian harvest regions.</p>
           </div>
 
-          <div className="card" style={{ padding: '32px' }}>
+          <div
+            className="card"
+            style={{
+              maxWidth: '920px',
+              margin: '48px auto 0 auto',
+              backgroundColor: 'var(--white)',
+              borderRadius: '24px',
+              padding: '40px 32px',
+              boxShadow: 'var(--shadow-sm)',
+              border: '1px solid var(--border-subtle)',
+            }}
+          >
             {/* 12-Month Bar Grid */}
             <div
               style={{
@@ -1140,35 +1588,46 @@ export const ProductDetailPage: React.FC<ProductDetailPageProps> = ({
                 textAlign: 'center',
               }}
             >
-              {product.months.map((m) => {
+              {product.months.map((m, idx) => {
                 const isPeak = m.status === 'peak';
-                const isAvailable = m.status === 'available';
+                const isAvail = m.status === 'available';
+
+                let bg = 'var(--mist)';
+                let textColor = 'var(--muted)';
+                let border = '1px solid var(--line)';
+
+                if (isPeak) {
+                  bg = 'var(--navy)';
+                  textColor = '#FFFFFF';
+                  border = '1px solid var(--navy)';
+                } else if (isAvail) {
+                  bg = product.colorVar;
+                  textColor = '#FFFFFF';
+                  border = `1px solid ${product.colorVar}`;
+                }
 
                 return (
-                  <div key={m.month} style={{ display: 'flex', flexDirection: 'column', gap: '8px' }}>
+                  <div key={idx} style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', gap: '8px' }}>
+                    <span style={{ fontSize: '13px', fontWeight: 600, color: 'var(--navy)' }}>{m.month}</span>
                     <div
                       style={{
+                        width: '100%',
                         height: '48px',
                         borderRadius: '10px',
-                        backgroundColor: isPeak
-                          ? 'var(--navy)'
-                          : isAvailable
-                          ? 'var(--olive)'
-                          : 'transparent',
-                        border: isPeak || isAvailable ? 'none' : '1px solid var(--line)',
+                        backgroundColor: bg,
+                        border: border,
                         display: 'flex',
                         alignItems: 'center',
                         justifyContent: 'center',
-                        color: isPeak || isAvailable ? 'var(--white)' : 'var(--muted)',
+                        color: textColor,
+                        fontSize: '11px',
                         fontWeight: 700,
-                        fontSize: '12px',
+                        transition: 'transform 0.2s',
                       }}
+                      title={`${m.month}: ${m.status}`}
                     >
-                      {isPeak ? 'PEAK' : isAvailable ? '✓' : '—'}
+                      {isPeak ? 'PEAK' : isAvail ? 'AVAIL' : '—'}
                     </div>
-                    <span style={{ fontSize: '13px', fontWeight: 600, color: 'var(--navy)' }}>
-                      {m.month}
-                    </span>
                   </div>
                 );
               })}
@@ -1179,71 +1638,85 @@ export const ProductDetailPage: React.FC<ProductDetailPageProps> = ({
               style={{
                 display: 'flex',
                 alignItems: 'center',
-                justifyContent: 'space-between',
+                justifyContent: 'center',
+                gap: '24px',
+                marginTop: '32px',
                 flexWrap: 'wrap',
-                gap: '16px',
-                borderTop: '1px solid var(--line)',
-                paddingTop: '20px',
-                marginTop: '28px',
                 fontSize: '13px',
               }}
             >
-              <div style={{ display: 'flex', alignItems: 'center', gap: '20px' }}>
-                <div style={{ display: 'flex', alignItems: 'center', gap: '8px' }}>
-                  <div style={{ width: '14px', height: '14px', borderRadius: '4px', backgroundColor: 'var(--navy)' }} />
-                  <span>Peak season</span>
-                </div>
-                <div style={{ display: 'flex', alignItems: 'center', gap: '8px' }}>
-                  <div style={{ width: '14px', height: '14px', borderRadius: '4px', backgroundColor: 'var(--olive)' }} />
-                  <span>Available</span>
-                </div>
-                <div style={{ display: 'flex', alignItems: 'center', gap: '8px' }}>
-                  <div style={{ width: '14px', height: '14px', borderRadius: '4px', border: '1px solid var(--line)' }} />
-                  <span>Off-season</span>
-                </div>
+              <div style={{ display: 'flex', alignItems: 'center', gap: '8px' }}>
+                <div style={{ width: '16px', height: '16px', borderRadius: '4px', backgroundColor: product.colorVar }} />
+                <span style={{ fontWeight: 600, color: 'var(--navy)' }}>Available</span>
               </div>
-
-              {!product.isRealSeason && (
-                <span style={{ color: 'var(--muted)', fontSize: '12px' }}>Harvest calendar</span>
-              )}
+              <div style={{ display: 'flex', alignItems: 'center', gap: '8px' }}>
+                <div style={{ width: '16px', height: '16px', borderRadius: '4px', backgroundColor: 'var(--navy)' }} />
+                <span style={{ fontWeight: 600, color: 'var(--navy)' }}>Peak season</span>
+              </div>
+              <div style={{ display: 'flex', alignItems: 'center', gap: '8px' }}>
+                <div style={{ width: '16px', height: '16px', borderRadius: '4px', backgroundColor: 'var(--mist)', border: '1px solid var(--line)' }} />
+                <span style={{ color: 'var(--muted)' }}>Off-season</span>
+              </div>
             </div>
+
+            {!product.isRealSeason && (
+              <div style={{ textAlign: 'center', marginTop: '18px' }}>
+                <span style={{ fontSize: '12px', color: 'var(--muted)', letterSpacing: '0.04em' }}>
+                  Sample months
+                </span>
+              </div>
+            )}
           </div>
         </div>
       </section>
 
       {/* =====================================================================
-          6. PACKING AND LOADING (white)
-          Three image .card items with captions
+          5. PACKING AND LOADING (white section)
+          Intro (C) + Three image cards with captions
           ===================================================================== */}
       <section className="section section-white">
         <div className="container">
-          <div className="section-intro left">
-            <span className="eyebrow">Packing & Loading</span>
-            <h2>Packed and loaded with care.</h2>
-            <p className="sub-line">Cold-chain protocols protecting shelf-life until destination discharge.</p>
+          <div className="section-intro centered">
+            <span className="eyebrow">Packing</span>
+            <h2>Packed and loaded with <span className="text-highlight-leaf">care</span>.</h2>
+            <div className="section-intro-bar" />
+            <p className="sub-line">Packhouse grading, pallet stability, and continuous cold chain integrity.</p>
           </div>
 
           <div
             style={{
               display: 'grid',
               gridTemplateColumns: 'repeat(auto-fit, minmax(min(100%, 320px), 1fr))',
-              gap: '32px',
+              gap: '28px',
+              marginTop: '48px',
             }}
           >
             {product.packingCards.map((card, idx) => (
-              <div key={idx} className="card">
-                <div className="card-img-wrap">
-                  {card.isPlaceholder || !card.img ? (
-                    <div className="placeholder-box" style={{ width: '100%', height: '100%' }}>
-                      <ImageIcon size={32} style={{ color: 'var(--muted)' }} />
-                      <span className="placeholder-caption">{card.title} placeholder</span>
-                    </div>
-                  ) : (
-                    <img src={card.img} alt={card.title} className="card-img" />
-                  )}
+              <div
+                key={idx}
+                className="card"
+                style={{
+                  padding: 0,
+                  overflow: 'hidden',
+                  borderRadius: '20px',
+                  backgroundColor: 'var(--white)',
+                  border: '1px solid var(--border-subtle)',
+                  boxShadow: 'var(--shadow-sm)',
+                }}
+              >
+                <div style={{ width: '100%', height: '220px', overflow: 'hidden', backgroundColor: 'var(--mist)' }}>
+                  <img
+                    src={card.img}
+                    alt={card.title}
+                    style={{ width: '100%', height: '100%', objectFit: 'cover' }}
+                  />
                 </div>
-                <h3 style={{ marginTop: '20px', marginBottom: '8px', fontSize: '20px' }}>{card.title}</h3>
-                <p style={{ fontSize: '15px', color: 'var(--muted)' }}>{card.caption}</p>
+                <div style={{ padding: '24px' }}>
+                  <h3 style={{ fontSize: '18px', color: 'var(--navy)', margin: '0 0 8px 0' }}>{card.title}</h3>
+                  <p style={{ fontSize: '14px', lineHeight: '22px', color: 'var(--muted)', margin: 0 }}>
+                    {card.desc}
+                  </p>
+                </div>
               </div>
             ))}
           </div>
@@ -1251,54 +1724,63 @@ export const ProductDetailPage: React.FC<ProductDetailPageProps> = ({
       </section>
 
       {/* =====================================================================
-          7. DOCUMENTS (mist)
-          Six chips with icons
+          6. DOCUMENTS (mist section)
+          Intro (C) + Six white chips with icons
           ===================================================================== */}
       <section className="section section-mist">
         <div className="container">
           <div className="section-intro centered">
-            <span className="eyebrow">Export Compliance</span>
-            <h2>Documents with every shipment.</h2>
-            <p className="sub-line">Standard documentation prepared accurately before vessel departure.</p>
+            <span className="eyebrow">Documents</span>
+            <h2>Documents with <span className="text-highlight-blue">every shipment</span>.</h2>
+            <div className="section-intro-bar" />
+            <p className="sub-line">Full compliance paperwork prepared and dispatched before vessel arrival.</p>
           </div>
 
           <div
             style={{
               display: 'grid',
               gridTemplateColumns: 'repeat(auto-fit, minmax(min(100%, 280px), 1fr))',
-              gap: '20px',
-              marginTop: '16px',
+              gap: '18px',
+              maxWidth: '920px',
+              margin: '48px auto 0 auto',
             }}
           >
             {[
-              { label: 'Commercial invoice', icon: FileText },
-              { label: 'Packing list', icon: PackageCheck },
-              { label: 'Phytosanitary certificate', icon: ShieldCheck },
-              { label: 'Certificate of origin', icon: Award },
-              { label: 'Bill of lading', icon: Ship },
-              { label: 'Quality report on request', icon: FileCheck },
+              { title: 'Commercial invoice', icon: FileText },
+              { title: 'Packing list', icon: FileCheck },
+              { title: 'Phytosanitary certificate', icon: ShieldCheck },
+              { title: 'Certificate of origin', icon: Award },
+              { title: 'Bill of lading (BL)', icon: Ship },
+              { title: 'Quality report on request', icon: FileCheck },
             ].map((doc, idx) => {
-              const Icon = doc.icon;
+              const DocIcon = doc.icon;
               return (
                 <div
                   key={idx}
                   style={{
                     backgroundColor: 'var(--white)',
-                    borderRadius: 'var(--radius-pill)',
-                    padding: '16px 24px',
+                    borderRadius: '16px',
+                    padding: '20px 24px',
                     display: 'flex',
                     alignItems: 'center',
-                    gap: '14px',
-                    border: '1px solid var(--line)',
-                    boxShadow: '0 4px 16px rgba(16, 16, 79, 0.04)',
+                    gap: '16px',
+                    boxShadow: 'var(--shadow-xs)',
+                    border: '1px solid var(--border-subtle)',
                   }}
                 >
-                  <div className="icon-circle" style={{ width: '40px', height: '40px', minWidth: '40px', minHeight: '40px' }}>
-                    <Icon size={18} />
+                  <div
+                    className="icon-circle"
+                    style={{
+                      width: '42px',
+                      height: '42px',
+                      minWidth: '42px',
+                      backgroundColor: product.tintVar,
+                      color: product.colorVar,
+                    }}
+                  >
+                    <DocIcon size={20} />
                   </div>
-                  <span style={{ fontFamily: 'var(--font-heading)', fontWeight: 700, fontSize: '15px', color: 'var(--navy)' }}>
-                    {doc.label}
-                  </span>
+                  <span style={{ fontSize: '15px', fontWeight: 700, color: 'var(--navy)' }}>{doc.title}</span>
                 </div>
               );
             })}
@@ -1307,14 +1789,17 @@ export const ProductDetailPage: React.FC<ProductDetailPageProps> = ({
       </section>
 
       {/* =====================================================================
-          8. HOW IT WORKS (white)
-          The same five .step items as on Home
+          7. HOW IT WORKS (white section)
+          The five step cards from Home page
           ===================================================================== */}
-      <section className="section section-white">
-        <div className="container">
+      <section className="section section-white has-glows">
+        <div className="glow-orb glow-leaf-tl" aria-hidden="true" />
+        <div className="glow-orb glow-blue-br" aria-hidden="true" />
+
+        <div className="container" style={{ position: 'relative', zIndex: 1 }}>
           <div className="section-intro centered">
             <span className="eyebrow">How it works</span>
-            <h2>Your container in 5 <span className="text-highlight-leaf">steps</span>.</h2>
+            <h2>Your container in 5 simple <span className="text-highlight-leaf">steps</span>.</h2>
             <div className="section-intro-bar" />
             <p className="sub-line">From first enquiry to arrival, exactly what to expect.</p>
           </div>
@@ -1328,7 +1813,7 @@ export const ProductDetailPage: React.FC<ProductDetailPageProps> = ({
                 <span className="step-time-badge">1 min</span>
               </div>
               <div className="step-title">Enquiry</div>
-              <p className="step-desc">Share your requirements, destination port and requested schedule.</p>
+              <p className="step-desc">Share your {product.name.toLowerCase()} specs, destination port and schedule.</p>
             </div>
 
             <div className="step">
@@ -1352,7 +1837,7 @@ export const ProductDetailPage: React.FC<ProductDetailPageProps> = ({
             <div className="step">
               <div className="step-header">
                 <div className="step-number step-seq-4">4</div>
-                <span className="step-time-badge">3-5 days</span>
+                <span className="step-time-badge">1-2 days</span>
               </div>
               <div className="step-title">Documents</div>
               <p className="step-desc">Phytosanitary, certificate of origin and invoice drafts prepared.</p>
@@ -1361,7 +1846,7 @@ export const ProductDetailPage: React.FC<ProductDetailPageProps> = ({
             <div className="step">
               <div className="step-header">
                 <div className="step-number step-seq-5">5</div>
-                <span className="step-time-badge">3-5 days</span>
+                <span className="step-time-badge">Transit ETA</span>
               </div>
               <div className="step-title">Shipping and arrival</div>
               <p className="step-desc">Container tracked continuously from Indian port to discharge.</p>
@@ -1371,73 +1856,153 @@ export const ProductDetailPage: React.FC<ProductDetailPageProps> = ({
       </section>
 
       {/* =====================================================================
-          9. QUESTIONS (mist)
-          .accordion with four product questions + "Still have questions?" card
+          8. QUESTIONS (mist section)
+          Accordion with 4 product questions + leaf-tint card on right
           ===================================================================== */}
       <section className="section section-mist">
         <div className="container">
           <div className="section-intro centered">
             <span className="eyebrow">FAQs</span>
-            <h2>Common questions.</h2>
-            <p className="sub-line">Practical details about importing {product.name.toLowerCase()} from India.</p>
+            <h2>Common <span className="text-highlight-blue">questions</span>.</h2>
+            <div className="section-intro-bar" />
+            <p className="sub-line">Clear answers on {product.name.toLowerCase()} specifications, packing, and minimums.</p>
           </div>
 
           <div
             style={{
               display: 'grid',
-              gridTemplateColumns: 'repeat(auto-fit, minmax(min(100%, 340px), 1fr))',
-              gap: '40px',
+              gridTemplateColumns: 'repeat(auto-fit, minmax(min(100%, 420px), 1fr))',
+              gap: '36px',
+              marginTop: '48px',
               alignItems: 'start',
             }}
           >
-            {/* Accordion List */}
-            <div className="accordion">
-              {product.faq.map((item, idx) => (
-                <details key={idx} open={idx === 0}>
-                  <summary>
-                    <span>{item.q}</span>
-                    <div className="accordion-icon-circle">+</div>
-                  </summary>
-                  <div className="accordion-content">
-                    {item.a}
+            {/* Accordion Questions */}
+            <div style={{ display: 'flex', flexDirection: 'column', gap: '14px' }}>
+              {product.faq.map((item, idx) => {
+                const isOpen = activeFaq === idx;
+                return (
+                  <div
+                    key={idx}
+                    style={{
+                      backgroundColor: 'var(--white)',
+                      borderRadius: '16px',
+                      overflow: 'hidden',
+                      border: '1px solid var(--border-subtle)',
+                      boxShadow: 'var(--shadow-xs)',
+                    }}
+                  >
+                    <button
+                      type="button"
+                      onClick={() => setActiveFaq(isOpen ? null : idx)}
+                      style={{
+                        width: '100%',
+                        padding: '20px 24px',
+                        display: 'flex',
+                        alignItems: 'center',
+                        justifyContent: 'space-between',
+                        background: 'none',
+                        border: 'none',
+                        textAlign: 'left',
+                        cursor: 'pointer',
+                        fontSize: '16px',
+                        fontWeight: 700,
+                        color: 'var(--navy)',
+                      }}
+                    >
+                      <span>{item.q}</span>
+                      <ChevronDown
+                        size={18}
+                        style={{
+                          transition: 'transform 0.25s ease',
+                          transform: isOpen ? 'rotate(180deg)' : 'none',
+                          color: 'var(--muted)',
+                          flexShrink: 0,
+                          marginLeft: '12px',
+                        }}
+                      />
+                    </button>
+                    {isOpen && (
+                      <div
+                        style={{
+                          padding: '0 24px 20px 24px',
+                          fontSize: '14px',
+                          lineHeight: '24px',
+                          color: 'var(--muted)',
+                        }}
+                      >
+                        {item.a}
+                      </div>
+                    )}
                   </div>
-                </details>
-              ))}
+                );
+              })}
             </div>
 
-            {/* "Still have questions?" Card */}
-            <div className="card" style={{ padding: '36px', textAlign: 'center', alignItems: 'center' }}>
-              <div className="icon-circle" style={{ margin: '0 auto 16px auto' }}>
-                <HelpCircle size={26} />
-              </div>
-              <h3 style={{ marginBottom: '8px' }}>Still have questions?</h3>
-              <p style={{ fontSize: '15px', color: 'var(--muted)', marginBottom: '24px' }}>
-                Our export desk is on WhatsApp to answer custom packing or schedule queries.
-              </p>
-              <a
-                href={whatsappUrl}
-                target="_blank"
-                rel="noopener noreferrer"
-                className="btn-whatsapp"
-                style={{ width: '100%' }}
+            {/* Right: Leaf-tint card Still have questions? */}
+            <div
+              style={{
+                backgroundColor: '#EEF3DC',
+                borderRadius: '24px',
+                padding: '36px',
+                border: '1px solid rgba(91, 122, 31, 0.16)',
+                boxShadow: 'var(--shadow-sm)',
+                display: 'flex',
+                flexDirection: 'column',
+                gap: '16px',
+              }}
+            >
+              <div
+                style={{
+                  width: '52px',
+                  height: '52px',
+                  borderRadius: '50%',
+                  backgroundColor: 'var(--white)',
+                  color: 'var(--leaf)',
+                  display: 'flex',
+                  alignItems: 'center',
+                  justifyContent: 'center',
+                  boxShadow: 'var(--shadow-xs)',
+                }}
               >
-                <span>Chat on WhatsApp</span>
-              </a>
+                <ShieldCheck size={26} />
+              </div>
+
+              <h3 style={{ fontSize: '22px', color: 'var(--navy)', margin: 0 }}>
+                Still have questions?
+              </h3>
+              <p style={{ fontSize: '15px', lineHeight: '24px', color: 'var(--body)', margin: 0 }}>
+                Our produce export specialists can discuss custom grade sorting, ocean freight schedules, and tailored destination customs documents.
+              </p>
+
+              <div style={{ marginTop: '12px' }}>
+                <a
+                  href={whatsappUrl}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="btn-whatsapp"
+                  style={{ width: '100%', maxWidth: '240px' }}
+                >
+                  <span>Chat on WhatsApp</span>
+                  <ArrowRight size={16} />
+                </a>
+              </div>
             </div>
           </div>
         </div>
       </section>
 
       {/* =====================================================================
-          10. RELATED PRODUCTS (white)
-          Two product .card items
+          9. RELATED PRODUCTS (white section)
+          Two product cards
           ===================================================================== */}
       <section className="section section-white">
         <div className="container">
-          <div className="section-intro left">
-            <span className="eyebrow">Complementary</span>
-            <h2>Related products.</h2>
-            <p className="sub-line">Other agricultural commodities frequently ordered together.</p>
+          <div className="section-intro centered">
+            <span className="eyebrow">Explore</span>
+            <h2>Related <span className="text-highlight-leaf">products</span>.</h2>
+            <div className="section-intro-bar" />
+            <p className="sub-line">Other export commodities frequently shipped together.</p>
           </div>
 
           <div
@@ -1445,47 +2010,357 @@ export const ProductDetailPage: React.FC<ProductDetailPageProps> = ({
               display: 'grid',
               gridTemplateColumns: 'repeat(auto-fit, minmax(min(100%, 340px), 1fr))',
               gap: '32px',
-              maxWidth: '840px',
+              maxWidth: '820px',
+              margin: '48px auto 0 auto',
             }}
           >
-            {product.related.map((rel) => (
-              <div key={rel.id} className="card">
-                <div className="card-img-wrap">
-                  <img src={rel.img} alt={rel.name} className="card-img" />
-                </div>
-                <div style={{ marginTop: '20px', display: 'flex', flexDirection: 'column', gap: '8px', flexGrow: 1 }}>
-                  <div>
-                    <span className="eyebrow" style={{ fontSize: '11px', padding: '4px 10px' }}>
-                      {rel.category}
-                    </span>
+            {product.relatedProducts.map((rel) => {
+              const RelIcon = rel.icon;
+              return (
+                <div
+                  key={rel.id}
+                  className="card"
+                  style={{
+                    backgroundColor: 'var(--white)',
+                    borderRadius: '20px',
+                    display: 'flex',
+                    flexDirection: 'column',
+                  }}
+                >
+                  <div className="card-img-wrap" style={{ position: 'relative', overflow: 'visible' }}>
+                    <img src={rel.img} alt={rel.name} className="card-img" />
+                    <div className={`card-icon-badge ${rel.badgeClass}`} title={rel.name}>
+                      <RelIcon size={22} />
+                    </div>
                   </div>
-                  <h3>{rel.name}</h3>
-                  <p style={{ fontSize: '15px', color: 'var(--muted)', flexGrow: 1 }}>
-                    {rel.desc}
-                  </p>
-                  <div style={{ marginTop: '12px' }}>
-                    <button
-                      type="button"
-                      className="link"
-                      onClick={() => onNavigate(rel.path)}
-                      style={{ background: 'none', border: 'none', padding: 0 }}
-                    >
-                      <span>Explore</span>
-                      <ArrowRight size={15} />
-                    </button>
+
+                  <div style={{ marginTop: '18px', display: 'flex', flexDirection: 'column', gap: '8px', flexGrow: 1 }}>
+                    <div>
+                      <span className="eyebrow" style={{ fontSize: '11px', padding: '4px 10px' }}>
+                        {rel.category}
+                      </span>
+                    </div>
+                    <h3 style={{ margin: 0, fontSize: '22px' }}>{rel.name}</h3>
+                    <p style={{ fontSize: '15px', color: 'var(--muted)', flexGrow: 1, margin: 0 }}>
+                      {rel.desc}
+                    </p>
+                    <div style={{ marginTop: '16px' }}>
+                      <button
+                        type="button"
+                        className="link"
+                        onClick={() => onNavigate(rel.path)}
+                        style={{ background: 'none', border: 'none', padding: 0, color: rel.colorVar, cursor: 'pointer' }}
+                      >
+                        <span>Explore</span>
+                        <ArrowRight size={15} />
+                      </button>
+                    </div>
                   </div>
                 </div>
-              </div>
-            ))}
+              );
+            })}
           </div>
         </div>
       </section>
 
       {/* =====================================================================
-          11. QUOTE FORM band (navy)
-          Product preselected ONLY on its own product page!
+          10. QUOTE FORM (light, mist with glows)
+          The same two-column quote section as on Home, with product preselected ONLY here!
           ===================================================================== */}
-      <QuoteFormSection initialProduct={product.name} />
+      <section className="section-quote-light has-glows" id="product-quote-section">
+        <div className="glow-orb glow-leaf-tl" aria-hidden="true" />
+        <div className="glow-orb glow-blue-br" aria-hidden="true" />
+
+        <div className="container" style={{ position: 'relative', zIndex: 1 }}>
+          <div
+            style={{
+              display: 'grid',
+              gridTemplateColumns: 'repeat(auto-fit, minmax(min(100%, 460px), 1fr))',
+              gap: '48px',
+              alignItems: 'center',
+            }}
+          >
+            {/* Left Column: Eyebrow pill + H2 + 4 leaf ticks */}
+            <div style={{ display: 'flex', flexDirection: 'column', gap: '24px' }}>
+              <div>
+                <span className="eyebrow">
+                  Get started
+                </span>
+              </div>
+
+              <h2 style={{ fontSize: 'clamp(32px, 4vw, 44px)', lineHeight: '1.2', color: 'var(--navy)', margin: 0 }}>
+                Request a quote for <span className="text-highlight-leaf">{product.name}</span>.
+              </h2>
+              <div className="section-intro-bar" style={{ margin: '4px 0 0 0' }} />
+
+              <div style={{ display: 'flex', flexDirection: 'column', gap: '14px', marginTop: '12px' }}>
+                <div style={{ display: 'flex', alignItems: 'center', gap: '12px', fontSize: '16px', color: 'var(--body)' }}>
+                  <span style={{ color: 'var(--leaf)', display: 'flex' }}>
+                    <Check size={18} strokeWidth={2.6} />
+                  </span>
+                  <span>Free enquiry, no obligation</span>
+                </div>
+
+                <div style={{ display: 'flex', alignItems: 'center', gap: '12px', fontSize: '16px', color: 'var(--body)' }}>
+                  <span style={{ color: 'var(--leaf)', display: 'flex' }}>
+                    <Check size={18} strokeWidth={2.6} />
+                  </span>
+                  <span>Specification and indicative price from our team</span>
+                </div>
+
+                <div style={{ display: 'flex', alignItems: 'center', gap: '12px', fontSize: '16px', color: 'var(--body)' }}>
+                  <span style={{ color: 'var(--leaf)', display: 'flex' }}>
+                    <Check size={18} strokeWidth={2.6} />
+                  </span>
+                  <span>One contact person from start to finish</span>
+                </div>
+
+                <div style={{ display: 'flex', alignItems: 'center', gap: '12px', fontSize: '16px', color: 'var(--body)' }}>
+                  <span style={{ color: 'var(--leaf)', display: 'flex' }}>
+                    <Check size={18} strokeWidth={2.6} />
+                  </span>
+                  <span>Your details stay private</span>
+                </div>
+              </div>
+            </div>
+
+            {/* Right Column: Large White Form Card with top gradient bar */}
+            <div className="quote-white-card" style={{ position: 'relative' }}>
+              <div className="form-card-topbar" />
+
+              {formSubmitted ? (
+                <div style={{ textAlign: 'center', padding: '40px 16px' }}>
+                  <div
+                    style={{
+                      width: '64px',
+                      height: '64px',
+                      borderRadius: '50%',
+                      backgroundColor: 'var(--leaf-tint)',
+                      color: 'var(--leaf)',
+                      display: 'flex',
+                      alignItems: 'center',
+                      justifyContent: 'center',
+                      margin: '0 auto 20px auto',
+                    }}
+                  >
+                    <Check size={32} strokeWidth={3} />
+                  </div>
+                  <h3 style={{ marginBottom: '8px' }}>Thank you. Your request is with our team.</h3>
+                  <p style={{ color: 'var(--body)', fontSize: '16px', marginBottom: '24px' }}>
+                    Our commercial specialists will review your {product.name} requirements and follow up with specifications and container pricing.
+                  </p>
+                  <button
+                    type="button"
+                    className="btn-secondary"
+                    onClick={() => {
+                      setFormSubmitted(false);
+                      setFormData({
+                        fullName: '',
+                        phoneCode: '+971',
+                        mobile: '',
+                        product: product.name,
+                        quantityNum: '',
+                        quantityUnit: 'containers',
+                        destinationCountry: '',
+                        companyName: '',
+                        email: '',
+                      });
+                    }}
+                  >
+                    Send another enquiry
+                  </button>
+                </div>
+              ) : (
+                <form onSubmit={handleFormSubmit} style={{ display: 'flex', flexDirection: 'column', gap: '16px' }}>
+                  <h3 style={{ margin: 0, fontSize: '24px' }}>Tell us what you need.</h3>
+
+                  {/* 1. Full name* */}
+                  <div>
+                    <label style={{ display: 'block', fontSize: '13px', fontWeight: 600, marginBottom: '6px' }}>
+                      Full name <span style={{ color: 'var(--crimson)' }}>*</span>
+                    </label>
+                    <input
+                      type="text"
+                      name="fullName"
+                      required
+                      placeholder="Your name"
+                      value={formData.fullName}
+                      onChange={handleFormChange}
+                      className="form-input-v4"
+                      style={{
+                        width: '100%',
+                        padding: '12px 14px',
+                        borderRadius: 'var(--radius-input)',
+                        border: '1px solid var(--line)',
+                        fontSize: '15px',
+                        boxSizing: 'border-box',
+                      }}
+                    />
+                  </div>
+
+                  {/* 2. WhatsApp / mobile* with country-code selector */}
+                  <div>
+                    <label style={{ display: 'block', fontSize: '13px', fontWeight: 600, marginBottom: '6px' }}>
+                      WhatsApp / Mobile <span style={{ color: 'var(--crimson)' }}>*</span>
+                    </label>
+                    <div style={{ display: 'grid', gridTemplateColumns: '110px 1fr', gap: '8px' }}>
+                      <select
+                        name="phoneCode"
+                        value={formData.phoneCode}
+                        onChange={handleFormChange}
+                        className="form-select-v4"
+                        style={{
+                          padding: '12px 10px',
+                          borderRadius: 'var(--radius-input)',
+                          border: '1px solid var(--line)',
+                          fontSize: '14px',
+                          backgroundColor: 'var(--white)',
+                          cursor: 'pointer',
+                        }}
+                      >
+                        <option value="+971">+971 (UAE)</option>
+                        <option value="+966">+966 (KSA)</option>
+                        <option value="+968">+968 (OM)</option>
+                        <option value="+974">+974 (QA)</option>
+                        <option value="+965">+965 (KW)</option>
+                        <option value="+973">+973 (BH)</option>
+                        <option value="+880">+880 (BD)</option>
+                        <option value="+94">+94 (LK)</option>
+                        <option value="+60">+60 (MY)</option>
+                        <option value="+65">+65 (SG)</option>
+                        <option value="+254">+254 (KE)</option>
+                        <option value="+91">+91 (IN)</option>
+                        <option value="+44">+44 (UK)</option>
+                        <option value="+1">+1 (US)</option>
+                      </select>
+                      <input
+                        type="tel"
+                        name="mobile"
+                        required
+                        placeholder="Mobile number"
+                        value={formData.mobile}
+                        onChange={handleFormChange}
+                        className="form-input-v4"
+                        style={{
+                          width: '100%',
+                          padding: '12px 14px',
+                          borderRadius: 'var(--radius-input)',
+                          border: '1px solid var(--line)',
+                          fontSize: '15px',
+                          boxSizing: 'border-box',
+                        }}
+                      />
+                    </div>
+                  </div>
+
+                  {/* 3. Product* (Preselected to this product!) */}
+                  <div>
+                    <label style={{ display: 'block', fontSize: '13px', fontWeight: 600, marginBottom: '6px' }}>
+                      Product <span style={{ color: 'var(--crimson)' }}>*</span>
+                    </label>
+                    <input
+                      type="text"
+                      name="product"
+                      readOnly
+                      value={formData.product}
+                      className="form-input-v4"
+                      style={{
+                        width: '100%',
+                        padding: '12px 14px',
+                        borderRadius: 'var(--radius-input)',
+                        border: '1px solid var(--line)',
+                        fontSize: '15px',
+                        backgroundColor: 'var(--mist)',
+                        color: 'var(--navy)',
+                        fontWeight: 700,
+                        boxSizing: 'border-box',
+                      }}
+                    />
+                  </div>
+
+                  {/* 4. Approx. quantity */}
+                  <div>
+                    <label style={{ display: 'block', fontSize: '13px', fontWeight: 600, marginBottom: '6px' }}>
+                      Approx. quantity
+                    </label>
+                    <div style={{ display: 'grid', gridTemplateColumns: '1fr 140px', gap: '8px' }}>
+                      <input
+                        type="number"
+                        name="quantityNum"
+                        placeholder="e.g. 1, 2, 5"
+                        min="1"
+                        value={formData.quantityNum}
+                        onChange={handleFormChange}
+                        className="form-input-v4"
+                        style={{
+                          padding: '12px 14px',
+                          borderRadius: 'var(--radius-input)',
+                          border: '1px solid var(--line)',
+                          fontSize: '15px',
+                          boxSizing: 'border-box',
+                        }}
+                      />
+                      <select
+                        name="quantityUnit"
+                        value={formData.quantityUnit}
+                        onChange={handleFormChange}
+                        className="form-select-v4"
+                        style={{
+                          padding: '12px 10px',
+                          borderRadius: 'var(--radius-input)',
+                          border: '1px solid var(--line)',
+                          fontSize: '14px',
+                          backgroundColor: 'var(--white)',
+                          cursor: 'pointer',
+                        }}
+                      >
+                        <option value="containers">Container(s)</option>
+                        <option value="tonnes">Tonnes (MT)</option>
+                      </select>
+                    </div>
+                  </div>
+
+                  {/* 5. Destination country* */}
+                  <div>
+                    <label style={{ display: 'block', fontSize: '13px', fontWeight: 600, marginBottom: '6px' }}>
+                      Destination country <span style={{ color: 'var(--crimson)' }}>*</span>
+                    </label>
+                    <input
+                      type="text"
+                      name="destinationCountry"
+                      required
+                      placeholder="e.g. UAE, Saudi Arabia, Netherlands"
+                      value={formData.destinationCountry}
+                      onChange={handleFormChange}
+                      className="form-input-v4"
+                      style={{
+                        width: '100%',
+                        padding: '12px 14px',
+                        borderRadius: 'var(--radius-input)',
+                        border: '1px solid var(--line)',
+                        fontSize: '15px',
+                        boxSizing: 'border-box',
+                      }}
+                    />
+                  </div>
+
+                  <div style={{ marginTop: '8px' }}>
+                    <button
+                      type="submit"
+                      className="btn-primary"
+                      disabled={formSubmitting}
+                      style={{ width: '100%' }}
+                    >
+                      <span>{formSubmitting ? 'Submitting...' : 'Submit enquiry'}</span>
+                      <ArrowRight size={16} />
+                    </button>
+                  </div>
+                </form>
+              )}
+            </div>
+          </div>
+        </div>
+      </section>
     </div>
   );
 };

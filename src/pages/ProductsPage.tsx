@@ -10,7 +10,8 @@ import {
   Carrot,
 } from 'lucide-react';
 import { IMAGES } from '../data/images';
-import { QuoteFormSection } from '../components/QuoteFormSection';
+import { InnerBanner } from '../components/InnerBanner';
+import { ClosingCtaBand } from '../components/ClosingCtaBand';
 
 interface ProductsPageProps {
   onNavigate: (path: string) => void;
@@ -40,6 +41,7 @@ export const ProductsPage: React.FC<ProductsPageProps> = ({
       img: IMAGES.pomegranatesCut,
       desc: 'Export-grade fruit packed in cartons.',
       badgeClass: 'badge-crimson',
+      colorVar: 'var(--crimson)',
       icon: Sparkles,
     },
     {
@@ -50,6 +52,7 @@ export const ProductsPage: React.FC<ProductsPageProps> = ({
       img: IMAGES.onionsMesh,
       desc: 'Red onions in mesh bags, October to April.',
       badgeClass: 'badge-plum',
+      colorVar: 'var(--plum)',
       icon: CircleDot,
     },
     {
@@ -60,6 +63,7 @@ export const ProductsPage: React.FC<ProductsPageProps> = ({
       img: IMAGES.riceGrains,
       desc: 'Basmati and non-basmati grades.',
       badgeClass: 'badge-saffron',
+      colorVar: 'var(--saffron)',
       icon: Layers,
     },
     {
@@ -70,6 +74,7 @@ export const ProductsPage: React.FC<ProductsPageProps> = ({
       img: IMAGES.spices,
       desc: 'Whole and ground spices.',
       badgeClass: 'badge-blue',
+      colorVar: 'var(--blue)',
       icon: Package,
     },
     {
@@ -80,6 +85,7 @@ export const ProductsPage: React.FC<ProductsPageProps> = ({
       img: IMAGES.fruits,
       desc: 'Seasonal fresh fruit for export.',
       badgeClass: 'badge-teal',
+      colorVar: 'var(--teal)',
       icon: Apple,
     },
     {
@@ -90,6 +96,7 @@ export const ProductsPage: React.FC<ProductsPageProps> = ({
       img: IMAGES.vegetables,
       desc: 'Seasonal fresh vegetables for export.',
       badgeClass: 'badge-leaf',
+      colorVar: 'var(--leaf)',
       icon: Carrot,
     },
   ];
@@ -102,103 +109,118 @@ export const ProductsPage: React.FC<ProductsPageProps> = ({
   return (
     <div className="products-page-flow" style={{ width: '100%', overflow: 'hidden' }}>
       {/* =====================================================================
-          1. INNER PAGE HERO (compact 280px navy gradient banner with watermark)
+          1. INNER BANNER (Pattern A)
           ===================================================================== */}
-      <section className="inner-page-hero">
-        <img
-          src="/vasudha-mark-light-for-navy.svg"
-          alt=""
-          aria-hidden="true"
-          className="inner-page-hero-swoosh"
-        />
-        <div className="container" style={{ position: 'relative', zIndex: 1 }}>
-          <nav className="inner-page-hero-breadcrumb" aria-label="Breadcrumb">
-            <button type="button" onClick={() => onNavigate('/')}>
-              Home
-            </button>
-            <span>/</span>
-            <span style={{ color: '#FFFFFF' }}>Products</span>
-          </nav>
-          <span
-            className="eyebrow"
-            style={{
-              backgroundColor: 'rgba(255, 255, 255, 0.16)',
-              color: '#FFFFFF',
-            }}
-          >
-            Products
-          </span>
-          <h1>Our products</h1>
-          <p className="sub-line">
-            Specifications, packing and seasonality for everything we export.
-          </p>
-        </div>
-      </section>
+      <InnerBanner
+        pill="Products"
+        title="Our products"
+        subtitle="Specifications, packing and seasonality for everything we export."
+      />
 
       {/* =====================================================================
-          2. GRID (mist section with two soft glows)
-          Filter chips + 6 .card items + 7th inquiry card
+          2. FILTER CHIPS (White section)
+          Selected = navy. They filter the grid with a soft fade.
           ===================================================================== */}
-      <section className="section section-mist has-glows">
-        <div className="glow-orb glow-leaf-tl" aria-hidden="true" />
-        <div className="glow-orb glow-plum-tr" aria-hidden="true" />
-
-        <div className="container" style={{ position: 'relative', zIndex: 1 }}>
-          {/* Filter chips (.chip) */}
+      <section className="section section-white" style={{ paddingTop: '40px', paddingBottom: '32px' }}>
+        <div className="container">
           <div
             style={{
               display: 'flex',
               alignItems: 'center',
-              gap: '10px',
+              justifyContent: 'center',
+              gap: '12px',
               flexWrap: 'wrap',
-              marginBottom: '36px',
             }}
           >
-            {filterChips.map((chip) => (
-              <button
-                key={chip}
-                type="button"
-                className={`chip ${selectedFilter === chip ? 'selected' : ''}`}
-                onClick={() => setSelectedFilter(chip)}
-              >
-                {chip}
-              </button>
-            ))}
+            {filterChips.map((chip) => {
+              const isSelected = selectedFilter === chip;
+              return (
+                <button
+                  key={chip}
+                  type="button"
+                  className={`chip ${isSelected ? 'selected' : ''}`}
+                  onClick={() => setSelectedFilter(chip)}
+                  style={{
+                    backgroundColor: isSelected ? 'var(--navy)' : 'var(--white)',
+                    color: isSelected ? '#FFFFFF' : 'var(--body)',
+                    border: isSelected ? '1px solid var(--navy)' : '1px solid var(--border-subtle)',
+                    padding: '10px 22px',
+                    borderRadius: 'var(--radius-pill)',
+                    fontSize: '14px',
+                    fontWeight: 600,
+                    cursor: 'pointer',
+                    transition: 'all 0.25s ease',
+                    boxShadow: isSelected ? 'var(--shadow-sm)' : 'none',
+                  }}
+                >
+                  {chip}
+                </button>
+              );
+            })}
           </div>
+        </div>
+      </section>
 
+      {/* =====================================================================
+          3. GRID (Mist with two glows)
+          6 product cards + 7th card with dashed outline: equal heights
+          ===================================================================== */}
+      <section className="section section-mist has-glows" style={{ paddingTop: '48px', paddingBottom: '88px' }}>
+        <div className="glow-orb glow-leaf-tl" aria-hidden="true" />
+        <div className="glow-orb glow-plum-tr" aria-hidden="true" />
+
+        <div className="container" style={{ position: 'relative', zIndex: 1 }}>
           <div
             style={{
               display: 'grid',
               gridTemplateColumns: 'repeat(auto-fit, minmax(min(100%, 340px), 1fr))',
               gap: '32px',
+              alignItems: 'stretch',
             }}
           >
             {filteredProducts.map((prod) => {
               const IconComp = prod.icon;
               return (
-                <div key={prod.id} className="card" style={{ transition: 'opacity 0.3s ease' }}>
+                <div
+                  key={prod.id}
+                  className="card"
+                  style={{
+                    transition: 'opacity 0.3s ease, transform 0.25s ease',
+                    display: 'flex',
+                    flexDirection: 'column',
+                    height: '100%',
+                    boxSizing: 'border-box',
+                  }}
+                >
                   <div className="card-img-wrap" style={{ position: 'relative', overflow: 'visible' }}>
                     <img src={prod.img} alt={prod.name} className="card-img" />
                     <div className={`card-icon-badge ${prod.badgeClass}`} title={prod.name}>
-                      <IconComp />
+                      <IconComp size={22} />
                     </div>
                   </div>
+
                   <div style={{ marginTop: '18px', display: 'flex', flexDirection: 'column', gap: '8px', flexGrow: 1 }}>
                     <div>
                       <span className="eyebrow" style={{ fontSize: '11px', padding: '4px 10px' }}>
                         {prod.category}
                       </span>
                     </div>
-                    <h3>{prod.name}</h3>
-                    <p style={{ fontSize: '15px', color: 'var(--muted)', flexGrow: 1 }}>
+                    <h3 style={{ margin: 0, fontSize: '22px' }}>{prod.name}</h3>
+                    <p style={{ fontSize: '15px', color: 'var(--muted)', flexGrow: 1, margin: 0 }}>
                       {prod.desc}
                     </p>
-                    <div style={{ marginTop: '12px' }}>
+                    <div style={{ marginTop: '16px' }}>
                       <button
                         type="button"
                         className="link"
                         onClick={() => onNavigate(prod.path)}
-                        style={{ background: 'none', border: 'none', padding: 0 }}
+                        style={{
+                          background: 'none',
+                          border: 'none',
+                          padding: 0,
+                          color: prod.colorVar,
+                          cursor: 'pointer',
+                        }}
                       >
                         <span>Explore</span>
                         <ArrowRight size={15} />
@@ -221,20 +243,32 @@ export const ProductsPage: React.FC<ProductsPageProps> = ({
                 justifyContent: 'center',
                 alignItems: 'center',
                 textAlign: 'center',
-                padding: '40px 32px',
+                padding: '48px 32px',
+                height: '100%',
+                boxSizing: 'border-box',
               }}
             >
-              <div className="icon-circle" style={{ marginBottom: '18px' }}>
-                <HelpCircle size={24} />
+              <div
+                className="icon-circle"
+                style={{
+                  width: '56px',
+                  height: '56px',
+                  minWidth: '56px',
+                  backgroundColor: 'var(--mist)',
+                  color: 'var(--navy)',
+                  marginBottom: '20px',
+                }}
+              >
+                <HelpCircle size={28} />
               </div>
-              <h3 style={{ marginBottom: '8px' }}>Looking for something else?</h3>
-              <p style={{ fontSize: '15px', color: 'var(--muted)', marginBottom: '24px', maxWidth: '280px' }}>
-                Ask us for customized grades, packaging or commodities from India.
+              <h3 style={{ marginBottom: '8px', fontSize: '22px' }}>Looking for something else? Ask us.</h3>
+              <p style={{ fontSize: '15px', color: 'var(--muted)', marginBottom: '28px', maxWidth: '300px' }}>
+                Ask us for customized agricultural commodities, special sizing parameters, or private label packing from India.
               </p>
               <button
                 type="button"
                 className="btn-secondary"
-                onClick={() => onOpenRfq()}
+                onClick={() => onNavigate('/contact')}
               >
                 <span>Contact us</span>
                 <ArrowRight size={15} />
@@ -245,9 +279,9 @@ export const ProductsPage: React.FC<ProductsPageProps> = ({
       </section>
 
       {/* =====================================================================
-          3. QUOTE FORM (Light mist with white card + glows)
+          4. CLOSING CTA BAND (Pattern E)
           ===================================================================== */}
-      <QuoteFormSection />
+      <ClosingCtaBand onOpenRfq={() => onOpenRfq()} onRequestQuote={() => onOpenRfq()} />
     </div>
   );
 };

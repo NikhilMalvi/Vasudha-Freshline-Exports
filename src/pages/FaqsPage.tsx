@@ -1,5 +1,8 @@
 import React, { useState } from 'react';
-import { ArrowRight, HelpCircle } from 'lucide-react';
+import { Plus, Minus } from 'lucide-react';
+import { InnerBanner } from '../components/InnerBanner';
+import { CallStrip } from '../components/CallStrip';
+import { ClosingCtaBand } from '../components/ClosingCtaBand';
 
 interface FaqsPageProps {
   onNavigate: (path: string) => void;
@@ -13,263 +16,280 @@ interface FaqItem {
   a: string;
 }
 
-const WhatsAppInlineIcon: React.FC<{ size?: number; color?: string }> = ({ size = 18, color = 'var(--navy)' }) => (
-  <svg width={size} height={size} viewBox="0 0 24 24" fill={color} style={{ display: 'block' }}>
-    <path d="M12.04 2C6.58 2 2.13 6.45 2.13 11.91C2.13 13.66 2.59 15.36 3.45 16.86L2.05 22L7.3 20.62C8.75 21.41 10.38 21.83 12.04 21.83C17.5 21.83 21.95 17.38 21.95 11.92C21.95 9.27 20.92 6.78 19.05 4.91C17.18 3.03 14.69 2 12.04 2ZM12.05 3.67C14.25 3.67 16.31 4.53 17.87 6.09C19.42 7.65 20.28 9.72 20.28 11.92C20.28 16.46 16.59 20.15 12.04 20.15C10.66 20.15 9.3 19.8 8.1 19.14L7.81 18.97L4.69 19.79L5.52 16.75L5.33 16.45C4.6 15.29 4.22 13.93 4.22 11.91C4.22 7.37 7.51 3.67 12.05 3.67ZM8.94 7.42C8.74 7.42 8.54 7.43 8.36 7.74C8.18 8.05 7.67 8.53 7.67 9.51C7.67 10.49 8.38 11.43 8.48 11.57C8.58 11.71 9.87 13.7 11.87 14.56C13.53 15.28 13.87 15.13 14.23 15.1C14.59 15.06 15.39 14.62 15.55 14.16C15.71 13.7 15.71 13.31 15.66 13.23C15.61 13.15 15.48 13.1 15.28 13C15.08 12.9 14.09 12.41 13.91 12.34C13.73 12.27 13.6 12.24 13.47 12.44C13.34 12.64 12.96 13.1 12.84 13.23C12.72 13.36 12.6 13.38 12.4 13.28C12.2 13.18 11.56 12.97 10.8 12.3C10.21 11.78 9.81 11.13 9.69 10.93C9.57 10.73 9.68 10.62 9.78 10.52C9.87 10.43 9.98 10.29 10.08 10.17C10.18 10.05 10.22 9.96 10.29 9.83C10.36 9.7 10.32 9.58 10.27 9.48C10.22 9.38 9.73 8.18 9.53 7.68C9.33 7.2 9.13 7.26 8.97 7.25L8.94 7.42Z" />
-  </svg>
-);
+export const FaqsPage: React.FC<FaqsPageProps> = ({ onOpenRfq }) => {
+  const [selectedCategory, setSelectedCategory] = useState<string>('All');
+  const [openFaqIds, setOpenFaqIds] = useState<number[]>([1]); // First FAQ open by default
 
-export const FaqsPage: React.FC<FaqsPageProps> = ({ onNavigate, onOpenRfq }) => {
-  const [selectedFilter, setSelectedFilter] = useState<string>('All');
+  const categoryChips = ['All', 'Ordering', 'Shipping', 'Documents', 'Payment'];
 
-  const filterChips = ['All', 'Ordering', 'Shipping', 'Documents', 'Payment'];
-
-  const faqData: FaqItem[] = [
-    // Ordering
+  const allFaqs: FaqItem[] = [
+    // Ordering (4 questions)
     {
       id: 1,
       category: 'Ordering',
       q: 'What do you export?',
-      a: 'We export pomegranates, red onions, rice, whole spices, fresh fruits and fresh vegetables by the container to overseas importers and wholesalers.',
+      a: 'We export fresh pomegranates, red onions, Basmati and non-Basmati rice, whole and ground spices, seasonal fresh fruits, and fresh vegetables by full container load (FCL).',
     },
     {
       id: 2,
       category: 'Ordering',
       q: 'How do I request a quote?',
-      a: 'Submit an enquiry form with your product, quantity and destination port, or reach our export desk directly on WhatsApp for an indicative quotation.',
+      a: 'Submit our online quote form with your product, desired volume, and destination port, or reach our trade desk directly on WhatsApp for indicative pricing within 4 hours.',
     },
     {
       id: 3,
       category: 'Ordering',
       q: 'What is the minimum order?',
-      a: 'The minimum order quantity for all export commodities is 1 container (FCL), ensuring optimal cold-chain and ocean freight economy.',
+      a: 'Our minimum order quantity for all sea shipments is 1 container (FCL)—either a 20ft box for dense grains/spices or a 40ft reefer for temperature-sensitive perishables.',
     },
     {
       id: 4,
       category: 'Ordering',
       q: 'Can I mix products in one container?',
-      a: 'Consolidated shipments of compatible produce or mixed spice varieties can be arranged in a single container upon request.',
+      a: 'Subject to commodity temperature compatibility and destination quarantine regulations, we can consolidate mixed produce or assorted spice pallets within a single container.',
     },
 
-    // Shipping
+    // Shipping (3 questions)
     {
       id: 5,
       category: 'Shipping',
       q: 'Which ports do you ship from?',
-      a: 'We ship primarily from JNPT / Nhava Sheva (Maharashtra) and Mundra port (Gujarat), providing direct access to Gulf, Asian and European trade lanes.',
+      a: 'We ship primarily from Nhava Sheva (JNPT, Mumbai) and Mundra port (Gujarat), providing direct access to major global shipping corridors.',
     },
     {
       id: 6,
       category: 'Shipping',
       q: 'How long does shipping take?',
-      a: 'Ocean transit times range from 4 to 28 days depending on the destination port, carrier routing and direct vessel connectivity.',
+      a: 'Ocean transit times typically range from 4–7 days to the Middle East (Jebel Ali/Dammam), 14–18 days to Southeast Asia, and 20–26 days to Western Europe, depending on carrier schedules.',
     },
     {
       id: 7,
       category: 'Shipping',
       q: 'What happens if there is a delay?',
-      a: 'Reefer container set-points and vessel schedules are monitored continuously, with prompt proactive updates shared with consignees.',
+      a: 'We monitor vessel ETA continuously and notify you immediately of transshipment updates; all perishables are packed in pre-cooled reefer containers maintaining continuous temperature stability.',
     },
 
-    // Documents
+    // Documents (2 questions)
     {
       id: 8,
       category: 'Documents',
       q: 'Which documents come with a shipment?',
-      a: 'Standard export files include the commercial invoice, packing list, phytosanitary certificate, certificate of origin, and original bill of lading.',
+      a: 'Every export consignment includes a commercial invoice, packing list, official phytosanitary certificate, certificate of origin, ocean bill of lading (BL), and pre-shipment lab reports.',
     },
     {
       id: 9,
       category: 'Documents',
       q: 'Can I get a certificate copy?',
-      a: 'Draft documentation, test certificates and statutory registrations are shared for consignee review prior to vessel departure.',
+      a: 'Yes. Draft copies of the bill of lading, certificate of origin, and phytosanitary certificates are emailed to you for verification before the vessel sails.',
     },
 
-    // Payment
+    // Payment (3 questions)
     {
       id: 10,
       category: 'Payment',
       q: 'Which payment terms do you accept?',
-      a: 'We work with confirmed irrevocable Letter of Credit (LC at sight) and Telegraphic Transfer (TT advance balance) for commercial shipments.',
+      a: 'We accept standard international trade terms including 30% advance T/T with balance against copy of shipping documents, as well as confirmed irrevocable Letter of Credit (L/C) at sight.',
     },
     {
       id: 11,
       category: 'Payment',
       q: 'Do you offer private labelling?',
-      a: 'Yes, customized carton artwork, stencils, and pre-printed mesh bag bands can be produced to buyer specifications.',
+      a: 'Yes. For container volumes of rice, onions, and spices, we provide customized retail bagging, master cartons, and barcoded private brand printing per your design specifications.',
     },
     {
       id: 12,
       category: 'Payment',
-      q: 'How are commodity prices quoted?',
-      a: 'Quotations are calculated in USD on FOB, CFR or CIF terms based on seasonal harvest rates and prevailing ocean freight indices.',
+      q: 'Can I see a sample first?',
+      a: 'Yes. Commercial commodity samples and comprehensive packhouse sorting videos can be dispatched via international courier/air freight upon receipt of a qualified trade inquiry.',
     },
   ];
 
-  const getCategoryStyles = (cat: string) => {
-    switch (cat) {
-      case 'Ordering':
-        return { bg: 'var(--leaf-tint)', color: 'var(--leaf)' };
-      case 'Shipping':
-        return { bg: 'var(--blue-tint)', color: 'var(--blue)' };
-      case 'Documents':
-        return { bg: 'var(--teal-tint)', color: 'var(--teal)' };
-      case 'Payment':
-        return { bg: 'var(--saffron-tint)', color: 'var(--saffron)' };
-      default:
-        return { bg: 'var(--mist)', color: 'var(--navy)' };
+  const filteredFaqs =
+    selectedCategory === 'All'
+      ? allFaqs
+      : allFaqs.filter((f) => f.category === selectedCategory);
+
+  const toggleFaq = (id: number) => {
+    if (openFaqIds.includes(id)) {
+      setOpenFaqIds(openFaqIds.filter((item) => item !== id));
+    } else {
+      setOpenFaqIds([...openFaqIds, id]);
     }
   };
-
-  const filteredFaqs =
-    selectedFilter === 'All'
-      ? faqData
-      : faqData.filter((item) => item.category === selectedFilter);
-
-  const whatsappUrl =
-    'https://wa.me/910000000000?text=Hello%20Vasudha%20Freshline%20Exports%20LLP,%20I%20have%20a%20question%20regarding%20container%20exports.';
 
   return (
     <div className="faqs-page-flow" style={{ width: '100%', overflow: 'hidden' }}>
       {/* =====================================================================
-          1. INNER PAGE HERO (compact 280px navy gradient banner with watermark)
+          1. INNER BANNER (Pattern A)
           ===================================================================== */}
-      <section className="inner-page-hero">
-        <img
-          src="/vasudha-mark-light-for-navy.svg"
-          alt=""
-          aria-hidden="true"
-          className="inner-page-hero-swoosh"
-        />
-        <div className="container" style={{ position: 'relative', zIndex: 1 }}>
-          <nav className="inner-page-hero-breadcrumb" aria-label="Breadcrumb">
-            <button type="button" onClick={() => onNavigate('/')}>
-              Home
-            </button>
-            <span>/</span>
-            <span style={{ color: '#FFFFFF' }}>FAQs</span>
-          </nav>
-          <span
-            className="eyebrow"
-            style={{
-              backgroundColor: 'rgba(255, 255, 255, 0.16)',
-              color: '#FFFFFF',
-            }}
-          >
-            FAQs
-          </span>
-          <h1>Questions, answered.</h1>
-          <p className="sub-line">
-            Everything commercial buyers ask before booking container produce orders.
-          </p>
-        </div>
-      </section>
+      <InnerBanner
+        pill="FAQs"
+        title="Questions, answered."
+        subtitle="Everything buyers ask before they order."
+      />
 
       {/* =====================================================================
-          2. ACCORDION (mist section with two soft glows)
-          Filter chips + 12 questions
+          2. CATEGORY CHIPS (white section)
+          All, Ordering, Shipping, Documents, Payment
           ===================================================================== */}
-      <section className="section section-mist has-glows" style={{ paddingTop: '48px', paddingBottom: '72px' }}>
-        <div className="glow-orb glow-leaf-tl" aria-hidden="true" />
-        <div className="glow-orb glow-blue-br" aria-hidden="true" />
-
-        <div className="container" style={{ maxWidth: '900px', position: 'relative', zIndex: 1 }}>
-          {/* Category chips (.chip) */}
+      <section className="section section-white" style={{ paddingTop: '40px', paddingBottom: '32px' }}>
+        <div className="container">
           <div
             style={{
               display: 'flex',
               alignItems: 'center',
               justifyContent: 'center',
-              gap: '10px',
+              gap: '12px',
               flexWrap: 'wrap',
-              marginBottom: '36px',
             }}
           >
-            {filterChips.map((chip) => (
-              <button
-                key={chip}
-                type="button"
-                className={`chip ${selectedFilter === chip ? 'selected' : ''}`}
-                onClick={() => setSelectedFilter(chip)}
-              >
-                {chip}
-              </button>
-            ))}
-          </div>
-
-          <div className="accordion">
-            {filteredFaqs.map((faq, idx) => {
-              const catStyle = getCategoryStyles(faq.category);
+            {categoryChips.map((chip) => {
+              const isSelected = selectedCategory === chip;
               return (
-                <details key={faq.id} open={idx === 0}>
-                  <summary>
+                <button
+                  key={chip}
+                  type="button"
+                  className={`chip ${isSelected ? 'selected' : ''}`}
+                  onClick={() => setSelectedCategory(chip)}
+                  style={{
+                    backgroundColor: isSelected ? 'var(--navy)' : 'var(--white)',
+                    color: isSelected ? '#FFFFFF' : 'var(--body)',
+                    border: isSelected ? '1px solid var(--navy)' : '1px solid var(--border-subtle)',
+                    padding: '10px 22px',
+                    borderRadius: 'var(--radius-pill)',
+                    fontSize: '14px',
+                    fontWeight: 600,
+                    cursor: 'pointer',
+                    transition: 'all 0.25s ease',
+                    boxShadow: isSelected ? 'var(--shadow-sm)' : 'none',
+                  }}
+                >
+                  {chip}
+                </button>
+              );
+            })}
+          </div>
+        </div>
+      </section>
+
+      {/* =====================================================================
+          3. ACCORDION (mist with two glows)
+          A centred column (820px) with 12 white accordion rows (--shadow-sm, radius 16px)
+          ===================================================================== */}
+      <section className="section section-mist has-glows" style={{ paddingTop: '32px', paddingBottom: '88px' }}>
+        <div className="glow-orb glow-leaf-tl" aria-hidden="true" />
+        <div className="glow-orb glow-blue-br" aria-hidden="true" />
+
+        <div className="container" style={{ position: 'relative', zIndex: 1 }}>
+          <div
+            style={{
+              maxWidth: '820px',
+              margin: '0 auto',
+              display: 'flex',
+              flexDirection: 'column',
+              gap: '16px',
+            }}
+          >
+            {filteredFaqs.map((faq) => {
+              const isOpen = openFaqIds.includes(faq.id);
+              return (
+                <div
+                  key={faq.id}
+                  style={{
+                    backgroundColor: 'var(--white)',
+                    borderRadius: '16px',
+                    overflow: 'hidden',
+                    border: '1px solid var(--border-subtle)',
+                    boxShadow: 'var(--shadow-sm)',
+                    transition: 'border-color 0.2s ease, box-shadow 0.2s ease',
+                  }}
+                >
+                  <button
+                    type="button"
+                    onClick={() => toggleFaq(faq.id)}
+                    style={{
+                      width: '100%',
+                      padding: '24px 28px',
+                      display: 'flex',
+                      alignItems: 'center',
+                      justifyContent: 'space-between',
+                      background: 'none',
+                      border: 'none',
+                      textAlign: 'left',
+                      cursor: 'pointer',
+                      gap: '16px',
+                    }}
+                  >
                     <div style={{ display: 'flex', alignItems: 'center', gap: '14px' }}>
                       <span
                         className="eyebrow"
                         style={{
-                          fontSize: '10px',
+                          fontSize: '11px',
                           padding: '3px 8px',
-                          fontWeight: 700,
-                          backgroundColor: catStyle.bg,
-                          color: catStyle.color,
+                          backgroundColor: 'var(--mist)',
+                          color: 'var(--muted)',
+                          margin: 0,
                         }}
                       >
                         {faq.category}
                       </span>
-                      <span>{faq.q}</span>
+                      <span style={{ fontSize: '17px', fontWeight: 700, color: 'var(--navy)' }}>
+                        {faq.q}
+                      </span>
                     </div>
-                    <div className="accordion-icon-circle">+</div>
-                  </summary>
-                  <div className="accordion-content">
-                    {faq.a}
-                  </div>
-                </details>
+
+                    <div
+                      style={{
+                        width: '36px',
+                        height: '36px',
+                        minWidth: '36px',
+                        borderRadius: '50%',
+                        backgroundColor: isOpen ? 'var(--leaf-tint)' : 'var(--mist)',
+                        color: isOpen ? 'var(--leaf)' : 'var(--navy)',
+                        display: 'flex',
+                        alignItems: 'center',
+                        justifyContent: 'center',
+                        transition: 'background-color 0.2s ease, color 0.2s ease',
+                      }}
+                    >
+                      {isOpen ? <Minus size={18} strokeWidth={2.5} /> : <Plus size={18} strokeWidth={2.5} />}
+                    </div>
+                  </button>
+
+                  {isOpen && (
+                    <div
+                      style={{
+                        padding: '0 28px 24px 28px',
+                        fontSize: '15px',
+                        lineHeight: '26px',
+                        color: 'var(--body)',
+                        borderTop: '1px solid var(--line)',
+                        paddingTop: '18px',
+                      }}
+                    >
+                      {faq.a}
+                    </div>
+                  )}
+                </div>
               );
             })}
           </div>
-
-          {/* 3. "Still have questions?" Card */}
-          <div
-            className="card"
-            style={{
-              marginTop: '56px',
-              padding: '44px 32px',
-              textAlign: 'center',
-              alignItems: 'center',
-              backgroundColor: 'var(--white)',
-              boxShadow: 'var(--shadow-md)',
-            }}
-          >
-            <div className="icon-circle" style={{ backgroundColor: 'var(--teal-tint)', color: 'var(--teal)', margin: '0 auto 16px auto' }}>
-              <HelpCircle size={26} />
-            </div>
-            <h3 style={{ fontSize: '24px', marginBottom: '8px' }}>Still have questions?</h3>
-            <p style={{ fontSize: '15px', color: 'var(--muted)', maxWidth: '480px', margin: '0 auto 28px auto' }}>
-              Our trade desk answers custom packing specifications, seasonal pricing and delivery schedules directly.
-            </p>
-            <div style={{ display: 'flex', gap: '14px', flexWrap: 'wrap', justifyContent: 'center' }}>
-              <a
-                href={whatsappUrl}
-                target="_blank"
-                rel="noopener noreferrer"
-                className="btn-whatsapp"
-              >
-                <WhatsAppInlineIcon size={18} />
-                <span>Chat on WhatsApp</span>
-              </a>
-
-              <button
-                type="button"
-                className="btn-primary"
-                onClick={() => onOpenRfq()}
-              >
-                <span>Request a quote</span>
-                <ArrowRight size={17} />
-              </button>
-            </div>
-          </div>
         </div>
       </section>
+
+      {/* =====================================================================
+          4. CALL STRIP (Pattern D)
+          ===================================================================== */}
+      <section className="section section-white" style={{ paddingTop: '64px', paddingBottom: '64px' }}>
+        <div className="container">
+          <CallStrip />
+        </div>
+      </section>
+
+      {/* =====================================================================
+          5. CLOSING CTA BAND (Pattern E)
+          ===================================================================== */}
+      <ClosingCtaBand onOpenRfq={() => onOpenRfq()} onRequestQuote={() => onOpenRfq()} />
     </div>
   );
 };
